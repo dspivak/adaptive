@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.3.17)  17 MAR 2022 14:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.3.17)  17 MAR 2022 18:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1620,56 +1620,56 @@ LaTeX Font Info:    Redeclaring math symbol \fatsemi on input line 175.
 \@quotelevel=\count501
 \@quotereset=\count502
 LaTeX Font Info:    Trying to load font information for T1+zplTLF on input line
- 351.
+ 356.
 
 (C:\Program Files\MiKTeX 2.9\tex/latex/newpx\t1zpltlf.fd
 File: t1zpltlf.fd 2021/05/25 v1.0 font definition file for T1/zpl/TLF
 )
 LaTeX Font Info:    Font shape `T1/zplTLF/m/n' will be
-(Font)              scaled to size 10.95pt on input line 351.
+(Font)              scaled to size 10.95pt on input line 356.
  (adaptives.aux)
 \openout1 = `adaptives.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/npxmi/m/it on input line 351.
+LaTeX Font Info:    Checking defaults for OML/npxmi/m/it on input line 356.
 LaTeX Font Info:    Trying to load font information for OML+npxmi on input line
- 351.
+ 356.
 
 (C:\Program Files\MiKTeX 2.9\tex/latex/newpx\omlnpxmi.fd
 File: omlnpxmi.fd 2013/03/21 Fontinst v1.933 font definitions for OML/npxmi.
 )
-LaTeX Font Info:    ... okay on input line 351.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 351.
-LaTeX Font Info:    ... okay on input line 351.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 351.
-LaTeX Font Info:    ... okay on input line 351.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 351.
-LaTeX Font Info:    ... okay on input line 351.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 351.
-LaTeX Font Info:    ... okay on input line 351.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 351.
-LaTeX Font Info:    ... okay on input line 351.
-LaTeX Font Info:    Checking defaults for U/mathx/m/n on input line 351.
-LaTeX Font Info:    ... okay on input line 351.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 351.
-LaTeX Font Info:    ... okay on input line 351.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 351.
-LaTeX Font Info:    ... okay on input line 351.
-LaTeX Font Info:    Checking defaults for LMS/npxsy/m/n on input line 351.
+LaTeX Font Info:    ... okay on input line 356.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 356.
+LaTeX Font Info:    ... okay on input line 356.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 356.
+LaTeX Font Info:    ... okay on input line 356.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 356.
+LaTeX Font Info:    ... okay on input line 356.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 356.
+LaTeX Font Info:    ... okay on input line 356.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 356.
+LaTeX Font Info:    ... okay on input line 356.
+LaTeX Font Info:    Checking defaults for U/mathx/m/n on input line 356.
+LaTeX Font Info:    ... okay on input line 356.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 356.
+LaTeX Font Info:    ... okay on input line 356.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 356.
+LaTeX Font Info:    ... okay on input line 356.
+LaTeX Font Info:    Checking defaults for LMS/npxsy/m/n on input line 356.
 LaTeX Font Info:    Trying to load font information for LMS+npxsy on input line
- 351.
+ 356.
 
 (C:\Program Files\MiKTeX 2.9\tex/latex/newpx\lmsnpxsy.fd
 File: lmsnpxsy.fd 2016/07/04 Fontinst v1.933 font definitions for LMS/npxsy.
 )
-LaTeX Font Info:    ... okay on input line 351.
-LaTeX Font Info:    Checking defaults for LMX/npxexx/m/n on input line 351.
+LaTeX Font Info:    ... okay on input line 356.
+LaTeX Font Info:    Checking defaults for LMX/npxexx/m/n on input line 356.
 LaTeX Font Info:    Trying to load font information for LMX+npxexx on input lin
-e 351.
+e 356.
 
 (C:\Program Files\MiKTeX 2.9\tex/latex/newpx\lmxnpxexx.fd
 File: lmxnpxexx.fd 2016/07/04 Fontinst v1.933 font definitions for LMX/npxexx.
 )
-LaTeX Font Info:    ... okay on input line 351.
+LaTeX Font Info:    ... okay on input line 356.
 
 (C:\Program Files\MiKTeX 2.9\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1706,9 +1706,9 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'adaptives.bbl' found.
  (adaptives.bbl)
-Package biblatex Info: Reference section=0 on input line 351.
-Package biblatex Info: Reference segment=0 on input line 351.
-Package hyperref Info: Link coloring ON on input line 351.
+Package biblatex Info: Reference section=0 on input line 356.
+Package biblatex Info: Reference segment=0 on input line 356.
+Package hyperref Info: Link coloring ON on input line 356.
  (C:\Program Files\MiKTeX 2.9\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 
@@ -1722,10 +1722,10 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 Redoing nameref's sectioning
 Redoing nameref's label
-LaTeX Info: Redefining \nameref on input line 351.
-LaTeX Info: Redefining \ref on input line 351.
-LaTeX Info: Redefining \pageref on input line 351.
-LaTeX Info: Redefining \nameref on input line 351.
+LaTeX Info: Redefining \nameref on input line 356.
+LaTeX Info: Redefining \ref on input line 356.
+LaTeX Info: Redefining \pageref on input line 356.
+LaTeX Info: Redefining \nameref on input line 356.
 (adaptives.out) (adaptives.out)
 \@outlinefile=\write6
 \openout6 = `adaptives.out'.
@@ -1733,126 +1733,208 @@ LaTeX Info: Redefining \nameref on input line 351.
 \c@mv@tabular=\count510
 \c@mv@boldtabular=\count511
 LaTeX Font Info:    Font shape `T1/zplTLF/m/n' will be
-(Font)              scaled to size 17.28pt on input line 360.
+(Font)              scaled to size 17.28pt on input line 365.
 LaTeX Font Info:    Font shape `T1/zplTLF/m/n' will be
-(Font)              scaled to size 12.0pt on input line 360.
+(Font)              scaled to size 12.0pt on input line 365.
 LaTeX Font Info:    Trying to load font information for OT1+zplTLF on input lin
-e 360.
+e 365.
 
 (C:\Program Files\MiKTeX 2.9\tex/latex/newpx\ot1zpltlf.fd
 File: ot1zpltlf.fd 2021/05/25 v1.0 font definition file for OT1/zpl/TLF
 )
 LaTeX Font Info:    Font shape `OT1/zplTLF/m/n' will be
-(Font)              scaled to size 12.0pt on input line 360.
+(Font)              scaled to size 12.0pt on input line 365.
 LaTeX Font Info:    Font shape `OT1/zplTLF/m/n' will be
-(Font)              scaled to size 8.8pt on input line 360.
+(Font)              scaled to size 8.8pt on input line 365.
 LaTeX Font Info:    Font shape `OT1/zplTLF/m/n' will be
-(Font)              scaled to size 6.6pt on input line 360.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 360
+(Font)              scaled to size 6.6pt on input line 365.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 365
 .
 
 (C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 360
+LaTeX Font Info:    Trying to load font information for U+msb on input line 365
 .
 
 (C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for U+npxmia on input line 
-360.
+365.
 
 (C:\Program Files\MiKTeX 2.9\tex/latex/newpx\unpxmia.fd
 File: unpxmia.fd 2013/03/24 Fontinst v1.933 font definitions for U/npxmia.
 )
 LaTeX Font Info:    Trying to load font information for U+npxsym on input line 
-360.
+365.
 
 (C:\Program Files\MiKTeX 2.9\tex/latex/newpx\unpxsym.fd
 File: unpxsym.fd 2015/03/21 Fontinst v1.933 font definitions for U/npxsym.
 )
 LaTeX Font Info:    Trying to load font information for U+npxsyc on input line 
-360.
+365.
 
 (C:\Program Files\MiKTeX 2.9\tex/latex/newpx\unpxsyc.fd
 File: unpxsyc.fd 2013/03/24 Fontinst v1.933 font definitions for U/npxsyc.
 )
 LaTeX Font Info:    Trying to load font information for U+npxexa on input line 
-360.
+365.
 
 (C:\Program Files\MiKTeX 2.9\tex/latex/newpx\unpxexa.fd
 File: unpxexa.fd 2013/03/24 Fontinst v1.933 font definitions for U/npxexa.
 )
 LaTeX Font Info:    Trying to load font information for U+rsfs on input line 36
-0.
+5.
 
 (C:\Program Files\MiKTeX 2.9\tex/latex/jknappen\ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 LaTeX Font Info:    Trying to load font information for U+stmry on input line 3
-60.
+65.
 
 (C:\Program Files\MiKTeX 2.9\tex/latex/stmaryrd\ustmry.fd)
 LaTeX Font Info:    Font shape `T1/zplTLF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 361.
+(Font)              scaled to size 10.0pt on input line 366.
 LaTeX Font Info:    Font shape `T1/zplTLF/b/n' will be
-(Font)              scaled to size 10.0pt on input line 361.
+(Font)              scaled to size 10.0pt on input line 366.
 LaTeX Font Info:    Font shape `T1/zplTLF/m/n' will be
-(Font)              scaled to size 14.4pt on input line 365.
+(Font)              scaled to size 14.4pt on input line 370.
 LaTeX Font Info:    Font shape `T1/zplTLF/b/n' will be
-(Font)              scaled to size 14.4pt on input line 365.
-LaTeX Font Info:    Trying to load font information for TS1+zplTLF on input lin
-e 371.
+(Font)              scaled to size 14.4pt on input line 370.
+LaTeX Font Info:    Font shape `T1/zplTLF/b/n' will be
+(Font)              scaled to size 10.95pt on input line 379.
+LaTeX Font Info:    Font shape `OT1/zplTLF/m/n' will be
+(Font)              scaled to size 10.95pt on input line 379.
+LaTeX Font Info:    Font shape `OT1/zplTLF/m/n' will be
+(Font)              scaled to size 8.0pt on input line 379.
+LaTeX Font Info:    Font shape `OT1/zplTLF/m/n' will be
+(Font)              scaled to size 6.1pt on input line 379.
+LaTeX Font Info:    Font shape `OT1/zplTLF/m/n' will be
+(Font)              scaled to size 14.4pt on input line 385.
+LaTeX Font Info:    Font shape `OT1/zplTLF/m/n' will be
+(Font)              scaled to size 10.5pt on input line 385.
+LaTeX Font Info:    Font shape `OT1/zplTLF/m/n' will be
+(Font)              scaled to size 7.9pt on input line 385.
 
+
+LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <10.5> not available
+(Font)              size <10.95> substituted on input line 385.
+
+
+LaTeX Font Warning: Font shape `U/stmry/m/n' in size <10.5> not available
+(Font)              size <10.95> substituted on input line 385.
+
+
+LaTeX Font Warning: Font shape `U/mathx/m/n' in size <10.5> not available
+(Font)              size <10.95> substituted on input line 385.
+
+LaTeX Font Info:    Font shape `OT1/zplTLF/b/n' will be
+(Font)              scaled to size 14.4pt on input line 385.
+LaTeX Font Info:    Font shape `OT1/zplTLF/b/n' will be
+(Font)              scaled to size 10.5pt on input line 385.
+LaTeX Font Info:    Font shape `OT1/zplTLF/b/n' will be
+(Font)              scaled to size 7.9pt on input line 385.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 385.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 385.
+
+LaTeX Font Info:    Font shape `OT1/zplTLF/b/n' will be
+(Font)              scaled to size 10.95pt on input line 393.
+LaTeX Font Info:    Font shape `OT1/zplTLF/b/n' will be
+(Font)              scaled to size 8.0pt on input line 393.
+LaTeX Font Info:    Font shape `OT1/zplTLF/b/n' will be
+(Font)              scaled to size 6.1pt on input line 393.
+LaTeX Font Info:    Trying to load font information for TS1+zplTLF on input lin
+e 395.
 (C:\Program Files\MiKTeX 2.9\tex/latex/newpx\ts1zpltlf.fd
 File: ts1zpltlf.fd 2021/11/24 v1.0 fd file for TS1/zplTLF
 )
 LaTeX Font Info:    Font shape `TS1/zplTLF/m/n' will be
-(Font)              scaled to size 10.95pt on input line 371.
-LaTeX Font Info:    Font shape `T1/zplTLF/b/n' will be
-(Font)              scaled to size 10.95pt on input line 382.
-LaTeX Font Info:    Font shape `T1/zplTLF/m/it' will be
-(Font)              scaled to size 10.95pt on input line 382.
-LaTeX Font Info:    Font shape `OT1/zplTLF/m/n' will be
-(Font)              scaled to size 10.95pt on input line 382.
-LaTeX Font Info:    Font shape `OT1/zplTLF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 382.
-LaTeX Font Info:    Font shape `OT1/zplTLF/m/n' will be
-(Font)              scaled to size 6.1pt on input line 382.
-
-
-LaTeX Warning: Empty bibliography on input line 411.
-
-[1
+(Font)              scaled to size 10.95pt on input line 395.
+ [1
 
 {C:/Users/btazu/AppData/Local/MiKTeX/2.9/fonts/map/pdftex/pdftex.map}]
-[2] (adaptives.aux)
+LaTeX Font Info:    Font shape `T1/zplTLF/m/it' will be
+(Font)              scaled to size 10.95pt on input line 431.
+LaTeX Font Info:    Trying to load font information for T1+zplsups on input lin
+e 434.
+
+(C:\Program Files\MiKTeX 2.9\tex/latex/newpx\t1zplsups.fd
+File: t1zplsups.fd 2015/01/17 v1.0
+)
+LaTeX Font Info:    Font shape `T1/zplsups/m/it' will be
+(Font)              scaled to size 10.95pt on input line 434.
+LaTeX Font Info:    Font shape `T1/zplTLF/m/n' will be
+(Font)              scaled to size 9.0pt on input line 434.
+LaTeX Font Info:    Font shape `OT1/zplTLF/m/n' will be
+(Font)              scaled to size 9.0pt on input line 434.
+LaTeX Font Info:    Font shape `OT1/zplTLF/m/n' will be
+(Font)              scaled to size 7.3pt on input line 434.
+LaTeX Font Info:    Font shape `OT1/zplTLF/m/n' will be
+(Font)              scaled to size 5.5pt on input line 434.
+LaTeX Font Info:    Font shape `OT1/zplTLF/b/n' will be
+(Font)              scaled to size 9.0pt on input line 434.
+LaTeX Font Info:    Font shape `OT1/zplTLF/b/n' will be
+(Font)              scaled to size 7.3pt on input line 434.
+LaTeX Font Info:    Font shape `OT1/zplTLF/b/n' will be
+(Font)              scaled to size 5.5pt on input line 434.
+
+
+LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <5.5> not available
+(Font)              size <5> substituted on input line 434.
+
+
+LaTeX Font Warning: Font shape `U/stmry/m/n' in size <5.5> not available
+(Font)              size <5> substituted on input line 434.
+
+
+LaTeX Font Warning: Font shape `U/mathx/m/n' in size <5.5> not available
+(Font)              size <5> substituted on input line 434.
+
+LaTeX Font Info:    Font shape `T1/zplTLF/m/n' will be
+(Font)              scaled to size 7.3pt on input line 434.
+[2]
+
+LaTeX Warning: Empty bibliography on input line 485.
+
+[3] (adaptives.aux)
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 0.5pt have occurred.
+
 Package rerunfilecheck Info: File `adaptives.out' has not changed.
-(rerunfilecheck)             Checksum: 76D0E7BF7880D146ED530826D712ADEC;1144.
+(rerunfilecheck)             Checksum: CF29D89A99613D3BEB565FCD69E70011;1922.
 Package logreq Info: Writing requests to 'adaptives.run.xml'.
 \openout1 = `adaptives.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 43727 strings out of 478548
- 855961 string characters out of 2850969
- 1556937 words of memory out of 3000000
- 61220 multiletter control sequences out of 15000+600000
- 530797 words of font info for 132 fonts, out of 8000000 for 9000
+ 44052 strings out of 478548
+ 862446 string characters out of 2850969
+ 1562966 words of memory out of 3000000
+ 61508 multiletter control sequences out of 15000+600000
+ 576414 words of font info for 228 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 100i,11n,104p,1156b,848s stack positions out of 10000i,1000n,20000p,200000b,80000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{C:/Progra
-m Files/MiKTeX 2.9/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}{C:/Program Files/MiKTe
-X 2.9/fonts/enc/dvips/newpx/zpl_TOsF.enc}<C:/Program Files/MiKTeX 2.9/fonts/typ
-e1/public/newpx/NewPXMI.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/new
-px/pxsys.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/txfonts/txsya.pfb>
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/newpx/zplb.pfb><C:/Program File
-s/MiKTeX 2.9/fonts/type1/public/newpx/zplr.pfb><C:/Program Files/MiKTeX 2.9/fon
-ts/type1/public/newpx/zplri.pfb>
-Output written on adaptives.pdf (2 pages, 119893 bytes).
+ 100i,15n,104p,1156b,1195s stack positions out of 10000i,1000n,20000p,200000b,80000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/newpx/npxsups_T1.enc}{C:/Program
+ Files/MiKTeX 2.9/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}{C:/Program Files/MiKTeX
+ 2.9/fonts/enc/dvips/newpx/zpl_TOsF.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/
+dvips/newtx/ntx-ot1-tlf.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/new
+px/NewPXMI.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/newpx/npxsups-It
+alic.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/newpx/pxmiaX.pfb><C:/P
+rogram Files/MiKTeX 2.9/fonts/type1/public/newpx/pxsys.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/txfonts/txsya.pfb><C:/Program Files/MiKTeX 2.9/font
+s/type1/public/txfonts/txsyb.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
+c/newpx/zplb.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/newpx/zplr.pfb
+><C:/Program Files/MiKTeX 2.9/fonts/type1/public/newpx/zplri.pfb>
+Output written on adaptives.pdf (3 pages, 156808 bytes).
 PDF statistics:
- 117 PDF objects out of 1000 (max. 8388607)
- 12 named destinations out of 1000 (max. 500000)
- 173 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 165 PDF objects out of 1000 (max. 8388607)
+ 23 named destinations out of 1000 (max. 500000)
+ 205 words of extra memory for PDF output out of 10000 (max. 10000000)
 
