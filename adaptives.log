@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.3.17)  17 MAR 2022 18:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.3.17)  18 MAR 2022 17:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1810,97 +1810,98 @@ LaTeX Font Info:    Font shape `OT1/zplTLF/m/n' will be
 (Font)              scaled to size 8.0pt on input line 379.
 LaTeX Font Info:    Font shape `OT1/zplTLF/m/n' will be
 (Font)              scaled to size 6.1pt on input line 379.
-LaTeX Font Info:    Font shape `OT1/zplTLF/m/n' will be
-(Font)              scaled to size 14.4pt on input line 385.
-LaTeX Font Info:    Font shape `OT1/zplTLF/m/n' will be
-(Font)              scaled to size 10.5pt on input line 385.
-LaTeX Font Info:    Font shape `OT1/zplTLF/m/n' will be
-(Font)              scaled to size 7.9pt on input line 385.
-
-
-LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <10.5> not available
-(Font)              size <10.95> substituted on input line 385.
-
-
-LaTeX Font Warning: Font shape `U/stmry/m/n' in size <10.5> not available
-(Font)              size <10.95> substituted on input line 385.
-
-
-LaTeX Font Warning: Font shape `U/mathx/m/n' in size <10.5> not available
-(Font)              size <10.95> substituted on input line 385.
-
-LaTeX Font Info:    Font shape `OT1/zplTLF/b/n' will be
-(Font)              scaled to size 14.4pt on input line 385.
-LaTeX Font Info:    Font shape `OT1/zplTLF/b/n' will be
-(Font)              scaled to size 10.5pt on input line 385.
-LaTeX Font Info:    Font shape `OT1/zplTLF/b/n' will be
-(Font)              scaled to size 7.9pt on input line 385.
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 385.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 385.
-
-LaTeX Font Info:    Font shape `OT1/zplTLF/b/n' will be
-(Font)              scaled to size 10.95pt on input line 393.
-LaTeX Font Info:    Font shape `OT1/zplTLF/b/n' will be
-(Font)              scaled to size 8.0pt on input line 393.
-LaTeX Font Info:    Font shape `OT1/zplTLF/b/n' will be
-(Font)              scaled to size 6.1pt on input line 393.
 LaTeX Font Info:    Trying to load font information for TS1+zplTLF on input lin
-e 395.
+e 388.
+
 (C:\Program Files\MiKTeX 2.9\tex/latex/newpx\ts1zpltlf.fd
 File: ts1zpltlf.fd 2021/11/24 v1.0 fd file for TS1/zplTLF
 )
 LaTeX Font Info:    Font shape `TS1/zplTLF/m/n' will be
-(Font)              scaled to size 10.95pt on input line 395.
- [1
+(Font)              scaled to size 10.95pt on input line 388.
+LaTeX Font Info:    Font shape `OT1/zplTLF/m/n' will be
+(Font)              scaled to size 14.4pt on input line 395.
+LaTeX Font Info:    Font shape `OT1/zplTLF/m/n' will be
+(Font)              scaled to size 10.5pt on input line 395.
+LaTeX Font Info:    Font shape `OT1/zplTLF/m/n' will be
+(Font)              scaled to size 7.9pt on input line 395.
+
+
+LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <10.5> not available
+(Font)              size <10.95> substituted on input line 395.
+
+
+LaTeX Font Warning: Font shape `U/stmry/m/n' in size <10.5> not available
+(Font)              size <10.95> substituted on input line 395.
+
+
+LaTeX Font Warning: Font shape `U/mathx/m/n' in size <10.5> not available
+(Font)              size <10.95> substituted on input line 395.
+
+LaTeX Font Info:    Font shape `OT1/zplTLF/b/n' will be
+(Font)              scaled to size 14.4pt on input line 395.
+LaTeX Font Info:    Font shape `OT1/zplTLF/b/n' will be
+(Font)              scaled to size 10.5pt on input line 395.
+LaTeX Font Info:    Font shape `OT1/zplTLF/b/n' will be
+(Font)              scaled to size 7.9pt on input line 395.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 395.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 395.
+
+[1
 
 {C:/Users/btazu/AppData/Local/MiKTeX/2.9/fonts/map/pdftex/pdftex.map}]
-LaTeX Font Info:    Font shape `T1/zplTLF/m/it' will be
-(Font)              scaled to size 10.95pt on input line 431.
-LaTeX Font Info:    Trying to load font information for T1+zplsups on input lin
-e 434.
+LaTeX Font Info:    Font shape `OT1/zplTLF/b/n' will be
+(Font)              scaled to size 10.95pt on input line 403.
+LaTeX Font Info:    Font shape `OT1/zplTLF/b/n' will be
+(Font)              scaled to size 8.0pt on input line 403.
+LaTeX Font Info:    Font shape `OT1/zplTLF/b/n' will be
+(Font)              scaled to size 6.1pt on input line 403.
 
-(C:\Program Files\MiKTeX 2.9\tex/latex/newpx\t1zplsups.fd
+[2]
+LaTeX Font Info:    Font shape `T1/zplTLF/m/it' will be
+(Font)              scaled to size 10.95pt on input line 441.
+LaTeX Font Info:    Trying to load font information for T1+zplsups on input lin
+e 444.
+ (C:\Program Files\MiKTeX 2.9\tex/latex/newpx\t1zplsups.fd
 File: t1zplsups.fd 2015/01/17 v1.0
 )
 LaTeX Font Info:    Font shape `T1/zplsups/m/it' will be
-(Font)              scaled to size 10.95pt on input line 434.
+(Font)              scaled to size 10.95pt on input line 444.
 LaTeX Font Info:    Font shape `T1/zplTLF/m/n' will be
-(Font)              scaled to size 9.0pt on input line 434.
+(Font)              scaled to size 9.0pt on input line 444.
 LaTeX Font Info:    Font shape `OT1/zplTLF/m/n' will be
-(Font)              scaled to size 9.0pt on input line 434.
+(Font)              scaled to size 9.0pt on input line 444.
 LaTeX Font Info:    Font shape `OT1/zplTLF/m/n' will be
-(Font)              scaled to size 7.3pt on input line 434.
+(Font)              scaled to size 7.3pt on input line 444.
 LaTeX Font Info:    Font shape `OT1/zplTLF/m/n' will be
-(Font)              scaled to size 5.5pt on input line 434.
+(Font)              scaled to size 5.5pt on input line 444.
 LaTeX Font Info:    Font shape `OT1/zplTLF/b/n' will be
-(Font)              scaled to size 9.0pt on input line 434.
+(Font)              scaled to size 9.0pt on input line 444.
 LaTeX Font Info:    Font shape `OT1/zplTLF/b/n' will be
-(Font)              scaled to size 7.3pt on input line 434.
+(Font)              scaled to size 7.3pt on input line 444.
 LaTeX Font Info:    Font shape `OT1/zplTLF/b/n' will be
-(Font)              scaled to size 5.5pt on input line 434.
+(Font)              scaled to size 5.5pt on input line 444.
 
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 434.
+(Font)              size <5> substituted on input line 444.
 
 
 LaTeX Font Warning: Font shape `U/stmry/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 434.
+(Font)              size <5> substituted on input line 444.
 
 
 LaTeX Font Warning: Font shape `U/mathx/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 434.
+(Font)              size <5> substituted on input line 444.
 
 LaTeX Font Info:    Font shape `T1/zplTLF/m/n' will be
-(Font)              scaled to size 7.3pt on input line 434.
-[2]
+(Font)              scaled to size 7.3pt on input line 444.
 
-LaTeX Warning: Empty bibliography on input line 485.
+LaTeX Warning: Empty bibliography on input line 495.
 
 [3] (adaptives.aux)
 
@@ -1914,17 +1915,17 @@ Package logreq Info: Writing requests to 'adaptives.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 44052 strings out of 478548
- 862446 string characters out of 2850969
- 1562966 words of memory out of 3000000
+ 44053 strings out of 478548
+ 862461 string characters out of 2850969
+ 1561940 words of memory out of 3000000
  61508 multiletter control sequences out of 15000+600000
  576414 words of font info for 228 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  100i,15n,104p,1156b,1195s stack positions out of 10000i,1000n,20000p,200000b,80000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/newpx/npxsups_T1.enc}{C:/Program
  Files/MiKTeX 2.9/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}{C:/Program Files/MiKTeX
- 2.9/fonts/enc/dvips/newpx/zpl_TOsF.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/
-dvips/newtx/ntx-ot1-tlf.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/new
+ 2.9/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{C:/Program Files/MiKTeX 2.9/fonts/e
+nc/dvips/newpx/zpl_TOsF.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/new
 px/NewPXMI.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/newpx/npxsups-It
 alic.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/newpx/pxmiaX.pfb><C:/P
 rogram Files/MiKTeX 2.9/fonts/type1/public/newpx/pxsys.pfb><C:/Program Files/Mi
@@ -1932,9 +1933,9 @@ KTeX 2.9/fonts/type1/public/txfonts/txsya.pfb><C:/Program Files/MiKTeX 2.9/font
 s/type1/public/txfonts/txsyb.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
 c/newpx/zplb.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/newpx/zplr.pfb
 ><C:/Program Files/MiKTeX 2.9/fonts/type1/public/newpx/zplri.pfb>
-Output written on adaptives.pdf (3 pages, 156808 bytes).
+Output written on adaptives.pdf (3 pages, 158298 bytes).
 PDF statistics:
- 165 PDF objects out of 1000 (max. 8388607)
- 23 named destinations out of 1000 (max. 500000)
+ 166 PDF objects out of 1000 (max. 8388607)
+ 24 named destinations out of 1000 (max. 500000)
  205 words of extra memory for PDF output out of 10000 (max. 10000000)
 
