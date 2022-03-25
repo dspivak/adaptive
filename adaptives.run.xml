@@ -79,7 +79,7 @@
       <file>adaptives.bcf</file>
     </requires>
     <requires type="editable">
-      <file>Library20220217.bib</file>
+      <file>temp.bib</file>
     </requires>
   </external>
 </requests>
