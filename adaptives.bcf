@@ -2344,16 +2344,25 @@
     <bcf:datasource type="file" datatype="bibtex" glob="false">temp.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">LeinsterEnrichment</bcf:citekey>
-    <bcf:citekey order="2">ShapiroEnrichment</bcf:citekey>
-    <bcf:citekey order="3">LeinsterEnrichment</bcf:citekey>
-    <bcf:citekey order="4">LeinsterEnrichment</bcf:citekey>
-    <bcf:citekey order="5">LeinsterEnrichment</bcf:citekey>
+    <bcf:citekey order="1">Learners</bcf:citekey>
+    <bcf:citekey order="2">Learners</bcf:citekey>
+    <bcf:citekey order="3">Learners</bcf:citekey>
+    <bcf:citekey order="4">Learners</bcf:citekey>
+    <bcf:citekey order="5">Learners</bcf:citekey>
     <bcf:citekey order="6">LeinsterEnrichment</bcf:citekey>
     <bcf:citekey order="7">ShapiroEnrichment</bcf:citekey>
-    <bcf:citekey order="8">ShapiroEnrichment</bcf:citekey>
+    <bcf:citekey order="8">LeinsterEnrichment</bcf:citekey>
     <bcf:citekey order="9">LeinsterEnrichment</bcf:citekey>
-    <bcf:citekey order="10">ShapiroEnrichment</bcf:citekey>
+    <bcf:citekey order="10">LeinsterEnrichment</bcf:citekey>
+    <bcf:citekey order="11">LeinsterEnrichment</bcf:citekey>
+    <bcf:citekey order="12">Collectives</bcf:citekey>
+    <bcf:citekey order="13">ShapiroEnrichment</bcf:citekey>
+    <bcf:citekey order="14">ShapiroEnrichment</bcf:citekey>
+    <bcf:citekey order="15">ShapiroEnrichment</bcf:citekey>
+    <bcf:citekey order="16">Learners</bcf:citekey>
+    <bcf:citekey order="17">LeinsterEnrichment</bcf:citekey>
+    <bcf:citekey order="18">ShapiroEnrichment</bcf:citekey>
+    <bcf:citekey order="19">Collectives</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="anyt">

@@ -47,6 +47,46 @@
       \verb 9901139
       \endverb
     \endentry
+    \entry{Collectives}{misc}{}
+      \name{author}{2}{}{%
+        {{hash=11632aeb00018612b165117f994253a4}{%
+           family={Niu},
+           familyi={N\bibinitperiod},
+           given={Nelson},
+           giveni={N\bibinitperiod}}}%
+        {{hash=7166f43636239436a149410550ca5a32}{%
+           family={Spivak},
+           familyi={S\bibinitperiod},
+           given={David\bibnamedelima I.},
+           giveni={D\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{fca8b0245805c42c8777642cb6d36766}
+      \strng{fullhash}{fca8b0245805c42c8777642cb6d36766}
+      \strng{bibnamehash}{fca8b0245805c42c8777642cb6d36766}
+      \strng{authorbibnamehash}{fca8b0245805c42c8777642cb6d36766}
+      \strng{authornamehash}{fca8b0245805c42c8777642cb6d36766}
+      \strng{authorfullhash}{fca8b0245805c42c8777642cb6d36766}
+      \field{labelalpha}{NS21}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Collectives: Compositional protocols for contributions and returns}
+      \field{year}{2021}
+      \verb{doi}
+      \verb 10.48550/ARXIV.2112.11518
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2112.11518
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2112.11518
+      \endverb
+      \keyw{Category Theory (math.CT),FOS: Mathematics,FOS: Mathematics,18M35,18B20}
+    \endentry
     \entry{ShapiroEnrichment}{misc}{}
       \name{author}{1}{}{%
         {{hash=0a61cf0f620b1cecda93958b1f9dfdc5}{%
@@ -69,6 +109,41 @@
       \field{note}{\emph{In Preparation}}
       \field{title}{Enrichment of Algebraic Higher Categories}
       \field{year}{2022}
+    \endentry
+    \entry{Learners}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=7166f43636239436a149410550ca5a32}{%
+           family={Spivak},
+           familyi={S\bibinitperiod},
+           given={David\bibnamedelima I.},
+           giveni={D\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{7166f43636239436a149410550ca5a32}
+      \strng{fullhash}{7166f43636239436a149410550ca5a32}
+      \strng{bibnamehash}{7166f43636239436a149410550ca5a32}
+      \strng{authorbibnamehash}{7166f43636239436a149410550ca5a32}
+      \strng{authornamehash}{7166f43636239436a149410550ca5a32}
+      \strng{authorfullhash}{7166f43636239436a149410550ca5a32}
+      \field{labelalpha}{Spi21}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Learners' languages}
+      \field{year}{2021}
+      \verb{doi}
+      \verb 10.48550/ARXIV.2103.01189
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2103.01189
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2103.01189
+      \endverb
+      \keyw{Category Theory (math.CT),Machine Learning (cs.LG),FOS: Mathematics,FOS: Mathematics,FOS: Computer and information sciences,FOS: Computer and information sciences,03G30,93A13,18M05,18D15}
     \endentry
   \enddatalist
 \endrefsection
