@@ -717,7 +717,7 @@ These structure maps ensure that whenever two gradient descenders are combined i
 These structure maps are maps of coalgebras and satisfy the coherence equations of an adaptive described in \cref{equations}.
 \end{theorem}
 
-This is proven as \cref{gradientproof} in \cref{coherenceproofs}.
+This is proven in \cref{coherenceproofs}.
 
 
 
@@ -737,9 +737,29 @@ This is proven as \cref{gradientproof} in \cref{coherenceproofs}.
 We now present the equations that must be satisfied by the identitors, compositors, and productors of an adaptive. While we only provide these in the narrow setting of adaptives, the equations governing $\org$-enriched categories, multicategories, and monoidal categories are all quite similarly defined.
 
 \begin{definition}\label{equations}
-The equations governing the structure maps in an adaptive are as follows:
+The equations between the structure maps in an adaptive are as follows:
 \begin{itemize}
-	\item The interchange law
+	\item The identitor interchange law
+\[\hspace{-1.9cm}\begin{tikzcd}[column sep={150,between origins}]
+p^{\otimes n} \otimes p^{\otimes n'} \dar[equals] \rar[slash, ""{name=S, below}]{\id_{p^{\otimes n}} \otimes \id_{p^{\otimes n'}}} & 
+p^{\otimes n} \otimes p^{\otimes n'} \dar[equals] \\
+p^{\otimes n} \otimes p^{\otimes n'} \dar[equals,swap]{\wr} \ar[slash, ""{name=T, above}, ""{name=U, below}]{r}[description]{\S_{n,n} \otimes \S_{n',n'}} & 
+p^{\otimes n} \otimes p^{\otimes n'} \dar[equals,swap]{\wr} \\
+p^{\otimes (n+n')} \rar[slash, ""{name=V, above},swap]{\S_{n+n',n+n'}} & 
+p^{\otimes (n+n')}
+\arrow[Rightarrow,shorten=5,from=S,to=T]
+\arrow[Rightarrow,shorten=5,from=U,to=V]
+\end{tikzcd}\quad = \quad\begin{tikzcd}[column sep={150,between origins}]
+p^{\otimes n} \otimes p^{\otimes n'} \dar[equals,swap]{\wr} \rar[slash, ""{name=S, below}]{\id_{p^{\otimes n}} \otimes \id_{p^{\otimes n'}}} & 
+p^{\otimes n} \otimes p^{\otimes n'} \dar[equals,swap]{\wr} \\
+p^{\otimes (n+n')} \dar[equals] \ar[slash, ""{name=T, above}, ""{name=U, below}]{r}[description]{\id_{p^{\otimes (n+n')}}} & 
+p^{\otimes (n+n')} \dar[equals] \\
+p^{\otimes (n+n')} \rar[slash, ""{name=V, above},swap]{\S_{n+n',n+n'}} & 
+p^{\otimes (n+n')}
+\arrow[equals,shorten=5,from=S,to=T,swap,"\wr"]
+\arrow[Rightarrow,shorten=5,from=U,to=V]
+\end{tikzcd}\]
+	\item The compositor interchange law
 \[\hspace{-4.3cm}\begin{tikzcd}[column sep={110,between origins}]
 p^{\otimes \ell} \otimes p^{\otimes \ell'} \dar[equals,swap]{\wr} \rar[slash, ""{name=S, below}]{\S_{\ell,m} \otimes \S_{\ell',m'}} & 
 p^{\otimes m} \otimes p^{\otimes m'} \dar[equals,swap]{\wr} \rar[slash, ""{name=U, below}]{\S_{m,n} \otimes \S_{m',n'}} & 
@@ -764,7 +784,7 @@ p^{\otimes (n + n')}
 \arrow[Rightarrow,shorten=5,from=T,to=U]
 \end{tikzcd}\]
 	\item The compositor associativity law
-\[\hspace{-1.8cm}\begin{tikzcd}[column sep={60,between origins}]
+\[\hspace{-1.1cm}\begin{tikzcd}%[column sep={60,between origins}]
 p^{\otimes k} \dar[equals] \rar[slash]{\S_{k,\ell}} \ar[phantom,""{name=S, below}]{rr} & 
 p^{\otimes \ell} \rar[slash]{\S_{\ell,m}} & 
 p^{\otimes m} \dar[equals] \rar[slash, ""{name=U, below}]{\S_{m,n}} & 
@@ -775,9 +795,9 @@ p^{\otimes n} \dar[equals] \\
 p^{\otimes k} \ar[slash, ""{name=X, above}]{rrr}[swap]{\S_{k,n}} & & &
 p^{\otimes n}
 \arrow[Rightarrow,shorten=5,from=S,to=T]
-\arrow[Rightarrow,shorten=5,from=U,to=V]
+\arrow[equals,shorten=5,from=U,to=V]
 \arrow[Rightarrow,shorten=5,from=W,to=X]
-\end{tikzcd}\quad = \quad\begin{tikzcd}[column sep={60,between origins}]
+\end{tikzcd}\quad = \quad\begin{tikzcd}%[column sep={60,between origins}]
 p^{\otimes k} \dar[equals] \rar[slash,""{name=S, below}]{\S_{k,\ell}} & 
 p^{\otimes \ell} \dar[equals] \rar[slash]{\S_{\ell,m}} \ar[phantom,""{name=U, below}]{rr} & 
 p^{\otimes m} \rar[slash]{\S_{m,n}} & 
@@ -787,46 +807,74 @@ p^{\otimes \ell} \ar[slash, ""{name=V, above}]{rr}[swap]{\S_{\ell,n}} & &
 p^{\otimes n} \dar[equals] \\
 p^{\otimes k} \ar[slash, ""{name=X, above}]{rrr}[swap]{\S_{k,n}} & & &
 p^{\otimes n}
-\arrow[Rightarrow,shorten=5,from=S,to=T]
+\arrow[equals,shorten=5,from=S,to=T]
 \arrow[Rightarrow,shorten=5,from=U,to=V]
 \arrow[Rightarrow,shorten=5,from=W,to=X]
 \end{tikzcd}\]
-	\item The compositor left unit law
-	\item The compositor right unit law
+	\item The compositor unit laws
+\[\hspace{-1.5cm}\begin{tikzcd}
+p^{\otimes m} \dar[equals] \rar[slash,""{name=S, below}]{\id_{p^{\otimes m}}} & p^{\otimes m} \dar[equals] \rar[slash,""{name=U, below}]{\S_{m,n}} & p^{\otimes n} \dar[equals] \\
+p^{\otimes m} \dar[equals] \rar[slash,""{name=T, above},swap]{\S_{m,m}} \ar[phantom,""{name=W, below}]{rr} & p^{\otimes m} \rar[slash,""{name=V, above},swap]{\S_{m,n}} & p^{\otimes n} \dar[equals] \\
+p^{\otimes m} \ar[slash, ""{name=X, above}]{rr}[swap]{\S_{m,n}} & & p^{\otimes n}
+\arrow[Rightarrow,shorten=5,from=S,to=T]
+\arrow[equals,shorten=5,from=U,to=V]
+\arrow[Rightarrow,shorten=5,from=W,to=X]
+\end{tikzcd}\quad = \quad\begin{tikzcd}
+p^{\otimes m} \dar[equals] \rar[slash,""{name=S, below}]{\S_{m,n}} & p^{\otimes n} \dar[equals] \\
+p^{\otimes m} \rar[slash, ""{name=T, above},swap]{\S_{m,n}} & p^{\otimes n}
+\arrow[equals,shorten=5,from=S,to=T]
+\end{tikzcd}\quad = \quad\begin{tikzcd}
+p^{\otimes m} \dar[equals] \rar[slash,""{name=S, below}]{\S_{m,n}} & p^{\otimes n} \dar[equals] \rar[slash,""{name=U, below}]{\id_{p^{\otimes m}}} & p^{\otimes n} \dar[equals] \\
+p^{\otimes m} \dar[equals] \rar[slash,""{name=T, above},swap]{\S_{m,n}} \ar[phantom,""{name=W, below}]{rr} & p^{\otimes n} \rar[slash,""{name=V, above},swap]{\S_{n,n}} & p^{\otimes n} \dar[equals] \\
+p^{\otimes m} \ar[slash, ""{name=X, above}]{rr}[swap]{\S_{m,n}} & & p^{\otimes n}
+\arrow[equals,shorten=5,from=S,to=T]
+\arrow[Rightarrow,shorten=5,from=U,to=V]
+\arrow[Rightarrow,shorten=5,from=W,to=X]
+\end{tikzcd}\]
 	\item The productor associativity law
 \[\hspace{-4.1cm}\begin{tikzcd}[column sep={180,between origins}]%work on tilted arrow
 p^{\otimes m} \otimes p^{\otimes m'} \otimes p^{\otimes m''}  \dar[equals,swap]{\wr} \rar[slash,""{name=S,below}]{\S_{m,n} \otimes \S_{m',n'} \otimes \S_{m'',n''}} & p^{\otimes n} \otimes p^{\otimes n'} \otimes p^{\otimes n''} \dar[equals,swap]{\wr} \\
 p^{\otimes (m + m')} \otimes p^{\otimes m''} \dar[equals,swap]{\wr} \ar[slash,""{name=T,above},""{name=U,below}]{r}[description]{\S_{m+m',n+n'} \otimes \S_{m'',n''}} & p^{\otimes (n + n')} \otimes p^{\otimes n''} \dar[equals,swap]{\wr} \\
-p^{\otimes (m + m' + m'')} \rar[slash, ""{name=V, above},swap]{\S_{m+m'+m'',n+n'+n''}} & p^{\otimes (m + m' + m'')}
+p^{\otimes (m + m' + m'')} \rar[slash, ""{name=V, above},swap]{\S_{m+m'+m'',n+n'+n''}} & p^{\otimes (n + n' + n'')}
 \arrow[Rightarrow,shorten=5,from=S,to=T]
 \arrow[Rightarrow,shorten=5,from=U,to=V]
 \end{tikzcd}\quad = \quad\begin{tikzcd}[column sep={180,between origins}]
 p^{\otimes m} \otimes p^{\otimes m'} \otimes p^{\otimes m''}  \dar[equals,swap]{\wr} \rar[slash,""{name=S,below}]{\S_{m,n} \otimes \S_{m',n'} \otimes \S_{m'',n''}} & p^{\otimes n} \otimes p^{\otimes n'} \otimes p^{\otimes n''} \dar[equals,swap]{\wr} \\
-p^{\otimes m)} \otimes p^{\otimes (m+m'')} \dar[equals,swap]{\wr} \ar[slash,""{name=T,above},""{name=U,below}]{r}[description]{\S_{m,n} \otimes \S_{m'+m'',n'+n''}} & p^{\otimes n)} \otimes p^{\otimes (n' + n'')} \dar[equals,swap]{\wr} \\
-p^{\otimes (m + m' + m'')} \rar[slash, ""{name=V, above},swap]{\S_{m+m'+m'',n+n'+n''}} & p^{\otimes (m + m' + m'')}
+p^{\otimes m} \otimes p^{\otimes (m+m'')} \dar[equals,swap]{\wr} \ar[slash,""{name=T,above},""{name=U,below}]{r}[description]{\S_{m,n} \otimes \S_{m'+m'',n'+n''}} & p^{\otimes n} \otimes p^{\otimes (n' + n'')} \dar[equals,swap]{\wr} \\
+p^{\otimes (m + m' + m'')} \rar[slash, ""{name=V, above},swap]{\S_{m+m'+m'',n+n'+n''}} & p^{\otimes (n + n' + n'')}
 \arrow[Rightarrow,shorten=5,from=S,to=T]
 \arrow[Rightarrow,shorten=5,from=U,to=V]
 \end{tikzcd}\]
-	\item The productor left unit law
-	\item The productor right unit law
+	\item The productor unit laws
+\[\hspace{-3.0cm}\begin{tikzcd}[column sep={130,between origins}]
+p^{\otimes m} \dar[equals,swap]{\wr} \rar[slash,""{name=Q, below}]{\S_{m,n}} & p^{\otimes n} \dar[equals,swap]{\wr} \\
+p^{\otimes 0} \otimes p^{\otimes m} \dar[equals] \ar[slash, ""{name=S, below}, ""{name=R, above}]{r}[description]{\id_{p^{\otimes 0}} \otimes \S_{m,n}} & 
+p^{\otimes 0} \otimes p^{\otimes n} \dar[equals] \\
+p^{\otimes 0} \otimes p^{\otimes m} \dar[equals,swap]{\wr} \ar[slash, ""{name=T, above}, ""{name=U, below}]{r}[description]{\S_{0,0} \otimes \S_{m,n}} & 
+p^{\otimes 0} \otimes p^{\otimes n} \dar[equals,swap]{\wr} \\
+p^{\otimes m} \rar[slash, ""{name=V, above},swap]{\S_{m,n}} & p^{\otimes n}
+\arrow[equals,shorten=5,from=Q,to=R,swap,"\wr"]
+\arrow[Rightarrow,shorten=5,from=S,to=T]
+\arrow[Rightarrow,shorten=5,from=U,to=V]
+\end{tikzcd}\quad = \quad\begin{tikzcd}
+p^{\otimes m} \dar[equals] \rar[slash,""{name=S, below}]{\S_{m,n}} & p^{\otimes n} \dar[equals] \\
+p^{\otimes m} \rar[slash, ""{name=T, above},swap]{\S_{m,n}} & p^{\otimes n}
+\arrow[equals,shorten=5,from=S,to=T]
+\end{tikzcd}\quad = \quad\begin{tikzcd}[column sep={130,between origins}]
+p^{\otimes m} \dar[equals,swap]{\wr} \rar[slash,""{name=Q, below}]{\S_{m,n}} & p^{\otimes n} \dar[equals,swap]{\wr} \\
+p^{\otimes m} \otimes p^{\otimes 0} \dar[equals] \ar[slash, ""{name=S, below}, ""{name=R, above}]{r}[description]{\S_{m,n} \otimes \id_{p^{\otimes 0}}} & 
+p^{\otimes n} \otimes p^{\otimes 0} \dar[equals] \\
+p^{\otimes m} \otimes p^{\otimes 0} \dar[equals,swap]{\wr} \ar[slash, ""{name=T, above}, ""{name=U, below}]{r}[description]{\S_{m,n} \otimes \S_{0,0}} & 
+p^{\otimes n} \otimes p^{\otimes 0} \dar[equals,swap]{\wr} \\
+p^{\otimes m} \rar[slash, ""{name=V, above},swap]{\S_{m,n}} & p^{\otimes n}
+\arrow[equals,shorten=5,from=Q,to=R,swap,"\wr"]
+\arrow[Rightarrow,shorten=5,from=S,to=T]
+\arrow[Rightarrow,shorten=5,from=U,to=V]
+\end{tikzcd}\]
 \end{itemize}
 \end{definition}
 
-\[\begin{tikzcd}
-p_a \dar[equals] \rar[slash, ""{name=S, below}]{\id_{p_a}} & p_a \dar[equals] \\
-p_a \rar[slash, ""{name=T, above},swap]{\S_{a,a}} & p_a
-\arrow[Rightarrow,shorten=5,from=S,to=T]
-\end{tikzcd}\qquad\begin{tikzcd}[column sep=huge]
-p_a \dar[equals] \rar[slash]{\S_{a,b}} & p_b \rar[slash]{\S_{b,c}} & p_c \dar[equals] \\
-p_a \ar[slash, ""{name=T, above}]{rr}[swap]{\S_{a,c}} & & p_c
-\arrow[Rightarrow,shorten=4,from=1-2,to=T]
-\end{tikzcd}\qquad\begin{tikzcd}[column sep=huge]
-p_a \otimes p_{a'} \dar[equals,swap]{\wr} \rar[slash,""{name=S,below}]{\S_{a,b} \otimes \S_{a',b'}} & p_b \otimes p_{b'} \dar[equals,swap]{\wr} \\
-p_{aa'} \rar[slash, ""{name=T, above},swap]{\S_{aa',bb'}} & p_{bb'}
-\arrow[Rightarrow,shorten=5,from=S,to=T]
-\end{tikzcd}\]
-
-
+We now proceed to show that the adaptives described above for gradient descent and gravitational motion satisfy these equations, and that their structure maps as defined on states are indeed morphisms of coalgebras.
 
 \begin{proof}%of gradientadaptive
 For the identitor the state $(0,\id_{\rr^n},0)$ acts as the identity function on $\rr^n$ and on directions by the transpose of its derivative, which is also the identity. The updates in the coalgebras $\S_{m,n}$ only modify the parameter $p$, so as the parameter here is 0-dimensional this state is never changed by the update function, as is the case in the coalgebra $\id_{t^{\otimes n}}$. Therefore this function is a map of coalgebras.

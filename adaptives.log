@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.3.17)  19 APR 2022 17:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.3.17)  19 APR 2022 22:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1958,53 +1958,56 @@ Overfull \hbox (25.69464pt too wide) detected at line 627
  []
 
 [7] [8] [9]
-
-LaTeX Warning: Reference `gradientproof' on page 1 undefined on input line 720.
-
-
-
-Overfull \hbox (97.35208pt too wide) detected at line 765
+Overfull \hbox (28.47092pt too wide) detected at line 761
  []  \U/npxmia/m/it/10.95 =  []
  []
 
 
-Overfull \hbox (24.77681pt too wide) detected at line 793
+Overfull \hbox (97.35208pt too wide) detected at line 785
  []  \U/npxmia/m/it/10.95 =  []
  []
 
 
-Overfull \hbox (100.96857pt too wide) detected at line 809
+Overfull \hbox (10.24944pt too wide) detected at line 813
  []  \U/npxmia/m/it/10.95 =  []
  []
 
 [10]
-Overfull \hbox (25.69464pt too wide) detected at line 827
-[] [] []
+Overfull \hbox (15.51332pt too wide) detected at line 833
+ []  \U/npxmia/m/it/10.95 =  []  =  []
  []
 
+
+Overfull \hbox (100.96857pt too wide) detected at line 847
+ []  \U/npxmia/m/it/10.95 =  []
+ []
+
+
+Overfull \hbox (71.3785pt too wide) detected at line 873
+ []  \U/npxmia/m/it/10.95 =  []  =  []
+ []
+
+[11]
 LaTeX Font Info:    Trying to load font information for T1+npxtt on input line 
-837.
-(C:\Program Files\MiKTeX 2.9\tex/latex/newpx\t1npxtt.fd
+885.
+ (C:\Program Files\MiKTeX 2.9\tex/latex/newpx\t1npxtt.fd
 File: t1npxtt.fd 2000/12/14 v1.0
 )
 LaTeX Font Info:    Font shape `T1/npxtt/m/n' will be
-(Font)              scaled to size 10.95pt on input line 837.
+(Font)              scaled to size 10.95pt on input line 885.
 
-Overfull \hbox (34.21573pt too wide) in paragraph at lines 838--838
+Overfull \hbox (34.21573pt too wide) in paragraph at lines 886--886
 []\T1/zplTLF/m/n/10.95 Tom Le-in-ster. \T1/zplTLF/m/it/10.95 Gen-er-al-ized en-
 rich-ment for cat-e-gories and mul-ti-cat-e-gories\T1/zplTLF/m/n/10.95 . [][]ar
 Xiv:9901139[][].
  []
 
 LaTeX Font Info:    Font shape `T1/zplTLF/m/sc' will be
-(Font)              scaled to size 10.95pt on input line 837.
-[11] (adaptives.aux)
+(Font)              scaled to size 10.95pt on input line 885.
+[12] (adaptives.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
-
-
-LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `adaptives.out' has not changed.
 (rerunfilecheck)             Checksum: 72FD0C181BA206267326B27065A9B667;2506.
@@ -2013,13 +2016,13 @@ Package logreq Info: Writing requests to 'adaptives.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 45641 strings out of 478548
- 900318 string characters out of 2850969
- 1621732 words of memory out of 3000000
- 63051 multiletter control sequences out of 15000+600000
+ 46067 strings out of 478548
+ 911143 string characters out of 2850969
+ 1669732 words of memory out of 3000000
+ 63476 multiletter control sequences out of 15000+600000
  598580 words of font info for 247 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 100i,15n,104p,1156b,1370s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 100i,15n,104p,1156b,1372s stack positions out of 10000i,1000n,20000p,200000b,80000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/newtx/ntx-ec-tlf-pc.enc}{C:/Prog
 ram Files/MiKTeX 2.9/fonts/enc/dvips/newpx/npxsups_T1.enc}{C:/Program Files/MiK
 TeX 2.9/fonts/enc/dvips/newpx/zpl_TOsF.enc}{C:/Program Files/MiKTeX 2.9/fonts/e
@@ -2036,9 +2039,9 @@ iles/MiKTeX 2.9/fonts/type1/public/txfonts/txsyc.pfb><C:/Program Files/MiKTeX 2
 .9/fonts/type1/public/newpx/zplb.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
 ublic/newpx/zplr.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/newpx/zplr
 i.pfb>
-Output written on adaptives.pdf (11 pages, 253049 bytes).
+Output written on adaptives.pdf (12 pages, 257520 bytes).
 PDF statistics:
- 294 PDF objects out of 1000 (max. 8388607)
- 52 named destinations out of 1000 (max. 500000)
+ 298 PDF objects out of 1000 (max. 8388607)
+ 53 named destinations out of 1000 (max. 500000)
  229 words of extra memory for PDF output out of 10000 (max. 10000000)
 
