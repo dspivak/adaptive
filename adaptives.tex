@@ -42,7 +42,7 @@ citecolor=orange!50!black, urlcolor=orange!50!black, pdfencoding=unicode]{hyperr
 
 
 % biblatex %
-  \addbibresource{temp.bib} 
+  \addbibresource{Library20220421.bib} 
 
 % hyperref %
   \hypersetup{final}
@@ -359,7 +359,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 %--------------- Document ---------------%
 \begin{document}
 
-\title{Adaptives: }
+\title{Adaptives:\\Self-similar hierarchical dynamical systems}
 
 \author{Brandon Shapiro \and David I. Spivak}
 
@@ -368,18 +368,31 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \maketitle
 
 \begin{abstract}
+
 \end{abstract}
 
 %------- Chapter -------%
 \chapter{Introduction}
 
+Organisms don't defy the physics in which they are implemented. But physics should refer to more than simply the fundamental building blocks of reality; its laws may themselves be organized. Indeed, the original concept of physics referred to the totality of how nature is put together---constructed---and not just to any sort of atomic bedrock at a purportedly bottom layer. The concept of \emph{emergence} is often used to rescue a bottom-up interpretation of physics from the experimental data showing that higher-level structures have downward causality on the patterns that arise in lower-level parts \cite{laughlin2005different}.
+
+
+
+Brainstorm:\\
+Self-similarity in nature\\
+Polynomial ecosystem\\
+Collectives\\
+Deep learning, gradient descenders\\
+Open dynamical systems\\
+Hierarchy\\
+Organization doesn't defy physics\\
 
 
 
 %------- Chapter -------%
 \chapter{The Monoidal Double Category $\org$}
 
-In \cite{Learners}, the second author defined a category-enriched multicategory $\org$, whose objects are polynomials and whose morphisms are polynomial coalgebras. In this chapter, we describe how $\org$ in fact more naturally takes the form of a monoidal double category, with coalgebras as horizontal morphisms, maps of polynomials as vertical morphisms, and the Dirichlet tensor product $\otimes$ providing the monoidal structure. 
+In \cite{spivak2021learners}, the second author defined a category-enriched multicategory $\org$, whose objects are polynomials and whose morphisms are polynomial coalgebras. In this chapter, we describe how $\org$ in fact more naturally takes the form of a monoidal double category, with coalgebras as horizontal morphisms, maps of polynomials as vertical morphisms, and the Dirichlet tensor product $\otimes$ providing the monoidal structure. 
 
 
 %--- Section ---%
@@ -395,7 +408,7 @@ their \emph{internal hom} with respect to the tensor product $\otimes$ is the po
 $$[p,q] = \sum_{\phi : p \to q} y^{\sum_{I \in p(1)} q[\phi_1(I)]}.$$
 \end{definition}
 
-Using \cite[Definition 2.10]{Learners} applied to $[p,q]$, we get the following definition of $[p,q]$-coalgebras.
+Using \cite[Definition 2.10]{spivak2021learners} applied to $[p,q]$, we get the following definition of $[p,q]$-coalgebras.
 
 \begin{definition}
 The category $[p,q]\coalg$ has as objects pairs $\S = (S,\beta)$ where $S$ is a set and $\beta : S \to [p,q] \tri S$, and morphisms from $\S$ to $\S'$ given by functions $f : S \to S'$ making the diagram below commute. 
@@ -429,13 +442,13 @@ We now describe how $[p,q]$-coalgebras behave like morphisms from $p$ to $q$.
 The categories $[p,q]\coalg$ form the categories of morphisms in a bicategory $\org$ with polynomials as objects.
 \end{proposition}
 
-It is no accident that $\org$ denotes both this bicategory and the categorical operad in \cite[Definition 2.19]{Learners}, as both are derived from the monoidal double category $\org$ described in the following sections. For now, we merely present the horizontal identities and composites in this bicategory.
+It is no accident that $\org$ denotes both this bicategory and the categorical operad in \cite[Definition 2.19]{spivak2021learners}, as both are derived from the monoidal double category $\org$ described in the following sections. For now, we merely present the horizontal identities and composites in this bicategory.
 
 The identity coalgebra in $[p,p]\coalg$ is given by the one-state coalgebra $\S_{\id_p}$, which we will also denote by $\id_p$ when its status as a coalgebra is clear from context. 
 
 Composites are defined as
 $$[p,q]\coalg \times [q,r]\coalg \to \blp[p,q] \otimes [q,r]\brp\coalg \to [p,r]\coalg,$$
-where the first functor is described in \cite[Proposition 2.13]{Learners}, and the second is given by the fact that $(-)\coalg$ is a functor $\poly \to \smcat$, using a map of polynomials $[p,q] \otimes [q,r] \to [p,r]$. On positions, this map takes the form
+where the first functor is described in \cite[Proposition 2.13]{spivak2021learners}, and the second is given by the fact that $(-)\coalg$ is a functor $\poly \to \smcat$, using a map of polynomials $[p,q] \otimes [q,r] \to [p,r]$. On positions, this map takes the form
 $$\blp[p,q] \otimes [q,r]\brp(1) = \poly(p,q) \times \poly(q,r) \To{\circ} \poly(p,r) = [p,r](1)$$
 and on directions it is given for $\phi : p \to q$ and $\psi : q \to r$ by the function
 $$\blp\sum_{I \in p(1)} q[\phi_1(I)]\brp \times \blp\sum_{J \in q(1)} r[\psi_1(J)]\brp \from \sum_{I \in p(1)} r[\psi_1(\phi_1(I))]$$
@@ -458,7 +471,7 @@ Horizontal composition of morphisms of coalgebras, the 2-cells of the bicategory
 \section{Product of coalgebras}
 
 
-\cite[Proposition 2.13]{Learners} shows that the tensor product $\otimes$ of polynomials extends to make $\org$ a monoidal bicategory. In particular, for polynomials $p,q,p',q'$ there is a functor
+\cite[Proposition 2.13]{spivak2021learners} shows that the tensor product $\otimes$ of polynomials extends to make $\org$ a monoidal bicategory. In particular, for polynomials $p,q,p',q'$ there is a functor
 $$[p,q]\coalg \times [p',q']\coalg \to \blp[p,q] \otimes [p',q']\brp\coalg \to [p \otimes p',q \otimes q']\coalg$$
 derived from the map of polynomials $[p,q] \otimes [p',q'] \to [p \otimes p',q \otimes q']$ given on positions by 
 $$\poly(p,q) \times \poly(p',q') \To{\otimes} \poly(p \otimes p',q \otimes q')$$
@@ -499,15 +512,15 @@ We now proceed to discuss various categorical structures enriched in $\org$, whi
 \chapter{$\org$-Enrichment as Nested Dynamical Structure}
 
 
-A monoidal double category is a viable setting for enriching various categorical structures (using the notions of enrichment in \cite{LeinsterEnrichment} and \cite{ShapiroEnrichment}). Generally speaking, enrichment in $\org$ replaces the usual set of arrows between two objects in a category or similar structure with a $[p,q]$-coalgebra for some choice of polynomials $p,q$. Therefore not only can the arrows be realized as maps of polynomials $p \to q$, but these maps carry dynamics that encode how a position in $p$ and a direction in $q$ determine a transition to one arrow to another.
+A monoidal double category is a viable setting for enriching various categorical structures (using the notions of enrichment in \cite{leinster1999generalized} and \cite{shapiro2022enrichment}). Generally speaking, enrichment in $\org$ replaces the usual set of arrows between two objects in a category or similar structure with a $[p,q]$-coalgebra for some choice of polynomials $p,q$. Therefore not only can the arrows be realized as maps of polynomials $p \to q$, but these maps carry dynamics that encode how a position in $p$ and a direction in $q$ determine a transition to one arrow to another.
 
 
 %--- Section ---%
 \section{$\org$-enriched categories}
 
 
-Enrichment of categories only makes use of the double category structure of $\org$, as any double category forms an $fc$-multicategory (also known as a virtual double category) in the sense of \cite{LeinsterEnrichment}. %cite specifically
-The following definition of enrichment in $\org$ is an unwinded version of \cite{LeinsterEnrichment}, %cite specifically
+Enrichment of categories only makes use of the double category structure of $\org$, as any double category forms an $fc$-multicategory (also known as a virtual double category) in the sense of \cite{leinster1999generalized}. %cite specifically
+The following definition of enrichment in $\org$ is an unwinded version of \cite{leinster1999generalized}, %cite specifically
 which defines categories enriched in any $fc$-multicategory.
 
 \begin{definition}
@@ -540,9 +553,9 @@ In fact, an $\org$-enriched category could be equivalently defined as an ordinar
 \section{$\org$-enriched operads}
 
 
-A monoidal double category also gives rise to an $fm$-multicategory in the sense of \cite{LeinsterEnrichment}, %cite specifically
+A monoidal double category also gives rise to an $fm$-multicategory in the sense of \cite{leinster1999generalized}, %cite specifically
 %where the ``2-cells'' are horizontal arrows of the form $a_1 \otimes \cdots \otimes a_n \slasharrow b$ and the ``3-cells'' are squares from the horizontal composite of a tree-shaped arrangement of these arrows to a horizontal arrow whose domain is a tensor product with arity the number of leaves in the tree.%reword
-so it makes sense to talk about multicategories enriched in $\org$ as in \cite{LeinsterEnrichment}. %cite specifically
+so it makes sense to talk about multicategories enriched in $\org$ as in \cite{leinster1999generalized}. %cite specifically
 
 \begin{definition}
 An $\org$-enriched multicategory $A$ consists of
@@ -570,7 +583,7 @@ There is an underlying multicategory of $A$ given by the sets $S_{a_1,...,a_n;b}
 We will mostly be interested in when $A$ has only one object, in which case we call it an $\org$-enriched operad. An $\org$-enriched operad amounts to precisely a polynomial $p$ and for each $n \in \nn$ a $[p^{\otimes n},p]$-coalgebra $S_n$ equipped with maps $id_p \to S_1$ and $\otimes_i S_{n_i} \to S_{\sum_i n_i}$ satisfying the usual equations.
 
 \begin{example}
-A \emph{collective} (as defined in \cite{Collectives}) is a $\otimes$-monoid in $\poly$, meaning a polynomial $p$ equipped with a monoid structure on its positions $p(1)$ and co-unital co-associative ``distribution'' functions $p[I \cdot J] \to p[I] \times p[J]$ for each $I,J \in p(1)$. This can be viewed as an $\org$-enriched operad where $\S_n$ is given by $\S_{\cdot_n}$, the single-state coalgebra on the $n$-ary monoidal product $\cdot_n : p^{\otimes n} \to p$ and the above maps of coalgebras are isomorphisms deduced from the equations for a monoid.
+A \emph{collective} (as defined in \cite{niu2021collectives}) is a $\otimes$-monoid in $\poly$, meaning a polynomial $p$ equipped with a monoid structure on its positions $p(1)$ and co-unital co-associative ``distribution'' functions $p[I \cdot J] \to p[I] \times p[J]$ for each $I,J \in p(1)$. This can be viewed as an $\org$-enriched operad where $\S_n$ is given by $\S_{\cdot_n}$, the single-state coalgebra on the $n$-ary monoidal product $\cdot_n : p^{\otimes n} \to p$ and the above maps of coalgebras are isomorphisms deduced from the equations for a monoid.
 \end{example}
 
 \begin{example}
@@ -597,8 +610,8 @@ Let $\S$ be any $p$-coalgebra for a polynomial $p$. There is an $\org$-enriched 
 \section{Adaptives}
 
 
-A monoidal double category is precisely a representable $MC$-multicategory in the sense of \cite{ShapiroEnrichment}, %cite specifically
-so we can also enrich strict monoidal categories in $\org$.\footnote{We use throughout the notion \emph{strong} enrichment in a monoidal double category from \cite{ShapiroEnrichment}.} These will be similar to $\org$-enriched multicategories but allow for many-to-many coalgebras rather than just many-to-1.
+A monoidal double category is precisely a representable $MC$-multicategory in the sense of \cite{shapiro2022enrichment}, %cite specifically
+so we can also enrich strict monoidal categories in $\org$.\footnote{We use throughout the notion \emph{strong} enrichment in a monoidal double category from \cite{shapiro2022enrichment}.} These will be similar to $\org$-enriched multicategories but allow for many-to-many coalgebras rather than just many-to-1.
 
 \begin{definition}\label{enriched_monoidal}
 An $\org$-enriched strict monoidal category $A$ consists of
@@ -640,7 +653,7 @@ Concretely, an adaptive consists of a polynomial $p$ (so that in the notation ab
 
 %something about wirings
 
-The definition of morphisms of adaptives comes from morphisms of enriched monoidal categories as defined in \cite{ShapiroEnrichment}. %cite specifically
+The definition of morphisms of adaptives comes from morphisms of enriched monoidal categories as defined in \cite{shapiro2022enrichment}. %cite specifically
 
 \begin{definition}
 A morphism of adaptives from $(p,\S)$ to $(p',\S')$ is given by a map of polynomials $\phi : p \to p'$ and, for each $m,n \in \nn$, ``commutor'' squares as below in $\org$ which commute with the identitor, compositor, and productor squares.
