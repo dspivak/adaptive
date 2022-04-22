@@ -91,7 +91,7 @@ bimr/.tip={Glyph[glyph math command=triangleright, glyph length=.95ex]},
 	slash/.style={postaction={
   	decorate,
     decoration={markings, mark=at position 0.5 with
-    	{\node {\rotatebox{90}{$\sim$}};}}}
+    	{\node[font=\footnotesize] {\rotatebox{90}{$\sim$}};}}}
   }
 } 
 
@@ -126,8 +126,9 @@ bimr/.tip={Glyph[glyph math command=triangleright, glyph length=.95ex]},
 
 \newcommand{\xtickar}[1]{\begin{tikzcd}[baseline=-0.5ex,cramped,sep=small,ampersand 
 replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
+
 \newcommand{\xslashar}[1]{\begin{tikzcd}[baseline=-0.5ex,cramped,sep=small,ampersand 
-replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
+replacement=\&]{}\ar[r,slash, "{#1}"]\&{}\end{tikzcd}}
 
 
 
@@ -344,8 +345,8 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\blp}{\Big{(}}
 \newcommand{\brp}{\Big{)}}
 
-\newcommand{\dnote}[1]{{\color{blue}David says:}~#1\\{\color{blue}$\lozenge$}}
-\newcommand{\bnote}[1]{{\color{red}Brandon says:}~#1\\{\color{red}$\lozenge$}}
+\newcommand{\dnote}[1]{{\color{blue}David says:}~#1.\quad{\color{blue}$\lozenge$}}
+\newcommand{\bnote}[1]{{\color{red}Brandon says:}~#1.\quad{\color{red}$\lozenge$}}
 
 
 % ---- Changeable document parameters ---- %
@@ -413,6 +414,8 @@ In \cite{spivak2021learners}, the second author defined a category-enriched mult
 
 We first recall the definitions of the internal-hom polynomials $[p,q]$ and concretely describe the category of $[p,q]$-coalgebras, which forms the category of morphisms from $p$ to $q$ in the underlying bicategory of $\org$.
 
+\dnote{Introduce the notation $p\slashar q$ in this section?}
+
 \begin{definition}\label{coalgebras}
 For polynomials 
 $$p = \sum_{I \in p(1)} y^{p[I]} \qquad \textrm{and} \qquad q = \sum_{J \in q(1)} y^{q[J]},$$
@@ -451,6 +454,8 @@ A coalgebra is static iff it is the coproduct of one-element coalgebras.
 %--- Section ---%
 \section{Composition of coalgebras}
 \dnote{Let's call these something besides coalgebras; they're special coalgebras, a kind that is possible to "compose".}
+
+
 
 We now describe how $[p,q]$-coalgebras behave like morphisms from $p$ to $q$.
 
@@ -521,33 +526,36 @@ S' \rar[swap]{\beta'} & {[p',q']} \tri S' \rar{\phi^\ast} & {[p,q']} \tri S'
 
 Identities and composites for these squares are determined by the bicategory structure, as this double category is a restriction in the vertical direction of the double category of lax-commuting squares in a bicategory.\footnote{It should be noted however that the vertical arrows in $\org$ are regarded as polynomial maps rather than coalgebras, so that they compose strictly unitally and associatively.}
 
-We now proceed to discuss various categorical structures enriched in $\org$, which describe dynamical systems equipped with extra algebraic structure that allows us to remove abstraction barriers when considering nested layers and complicated arrangements of the components of the system.
+We now proceed to discuss various categorical structures enriched in $\org$, which describe dynamical systems equipped with extra algebraic structure that allows us to remove abstraction barriers when considering nested layers and complex arrangements of the components of the system.
 
 
 %------- Chapter -------%
 \chapter{$\org$-Enrichment as Nested Dynamical Structure}
 
 
-A monoidal double category is a viable setting for enriching various categorical structures (using the notions of enrichment in \cite{leinster1999generalized} and \cite{shapiro2022enrichment}). Generally speaking, enrichment in $\org$ replaces the usual set of arrows between two objects in a category or similar structure with a $[p,q]$-coalgebra for some choice of polynomials $p,q$. Therefore not only can the arrows be realized as maps of polynomials $p \to q$, but these maps carry dynamics that encode how a position in $p$ and a direction in $q$ determine a transition to one arrow to another.
+A monoidal double category is a viable setting for enriching various categorical structures (using the notions of enrichment in \cite{leinster1999generalized} and \cite{shapiro2022enrichment}). Intuitively, enrichment in $\org$ replaces the usual set of arrows between two objects in a category or similar structure with a $[p,q]$-coalgebra for some choice of polynomials $p,q$. Therefore not only can each arrow be realized as a map of polynomials $p \to q$, but this map carries dynamics that encode how a position in $p$ and a direction in $q$ determine a transition from one arrow to another.
+
+In \cref{sec.org_cats}, we explain enrichment of a category; in \cref{sec.org_multicats}, we explain enrichment of a multicategory.
 
 
 %--- Section ---%
-\section{$\org$-enriched categories}
+\section{$\org$-enriched categories}\label{sec.org_cats}
 
 
-Enrichment of categories only makes use of the double category structure of $\org$, as any double category forms an $fc$-multicategory (also known as a virtual double category) in the sense of \cite{leinster1999generalized}. %cite specifically
+Enrichment of categories only makes use of the double category structure of $\org$, as any double category forms an $f\!c$-multicategory (also known as a virtual double category) in the sense of \cite{leinster1999generalized}. %cite specifically
 The following definition of enrichment in $\org$ is an unwinded version of \cite{leinster1999generalized}, %cite specifically
 which defines categories enriched in any $fc$-multicategory.
 
-\begin{definition}
+\begin{definition}\label{def.org_enriched_cat}
 An $\org$-enriched category $A$ consists of
 \begin{itemize}
-	\item A set $A_0$ of objects
-	\item For each $a \in A_0$, a polynomial $p_a$
-	\item For each $a,b \in A_0$, a $[p_a,p_b]$-coalgebra $\S_{a,b}$
-	\item For each $a \in A_0$, an ``identitor'' square in $\org$ as below left
-	\item For each $a,b,c \in A_0$, a ``compositor'' square in $\org$ as below right
-\[\begin{tikzcd}
+	\item a set $A_0$ of objects;
+	\item for each $a \in A_0$, a polynomial $p_a$;
+	\item for each $a,b \in A_0$, a $[p_a,p_b]$-coalgebra $\S_{a,b}$;
+	\item for each $a \in A_0$, an ``identitor'' square in $\org$ as in \eqref{eqn.tors} left; and
+	\item for each $a,b,c \in A_0$, a ``compositor'' square in $\org$ as in \eqref{eqn.tors} right:
+\begin{equation}\label{eqn.tors}
+\begin{tikzcd}
 p_a \dar[equals] \rar[slash, ""{name=S, below}]{\id_{p_a}} & p_a \dar[equals] \\
 p_a \rar[slash, ""{name=T, above},swap]{\S_{a,a}} & p_a
 \arrow[Rightarrow,shorten=5,from=S,to=T]
@@ -555,68 +563,80 @@ p_a \rar[slash, ""{name=T, above},swap]{\S_{a,a}} & p_a
 p_a \dar[equals] \rar[slash]{\S_{a,b}} & p_b \rar[slash]{\S_{b,c}} & p_c \dar[equals] \\
 p_a \ar[slash, ""{name=T, above}]{rr}[swap]{\S_{a,c}} & & p_c
 \arrow[Rightarrow,shorten=4,from=1-2,to=T]
-\end{tikzcd}\]
+\end{tikzcd}
+\end{equation}
 \end{itemize}
 such that these squares satisfy unit and associativity equations.%more on these?
 \end{definition}
 
 The sets $S_{a,b}$ form an underlying ordinary category of $A$. 
-In fact, an $\org$-enriched category could be equivalently defined as an ordinary category such that each object $a$ is equipped with a polynomial $p_a$ and each set of arrows $\Hom(a,b)$ is the set of states for a $[p_a,p_b]$-coalgebra $\S_{a,b}$, with composition and identities respecting the coalgebra structure. This means that the arrow $\id_a$ in $\Hom(a,a)$ acts as the identity map on $p_a$ and is unchanged by updates, while for $f$ in $\Hom(a,b)$ and $g$ in $\Hom(b,c)$ the composite $g \circ f$ acts as the composite $p_a \to p_b \to p_c$ of the actions of $f$ and $g$, and updates as the composite of the updates of $f,g$.
+In fact, an $\org$-enriched category could be equivalently defined as an ordinary category such that each object $a$ is assigned a polynomial $p_a$ and each set of arrows $\Hom(a,b)$ is the set of states for an assigned $[p_a,p_b]$-coalgebra $\S_{a,b}$, with composition and identities respecting the coalgebra structure. This means that the arrow $\id_a$ in $\Hom(a,a)$ acts as the identity map on $p_a$ and is unchanged by updates, while for $f$ in $\Hom(a,b)$ and $g$ in $\Hom(b,c)$ the composite $g \circ f$ acts as the composite $p_a \to p_b \to p_c$ of the actions of $f$ and $g$, and it updates as the composite of the updates of $f,g$.
 
 
 
 %--- Section ---%
-\section{$\org$-enriched operads}
+\section{$\org$-enriched operads}\label{sec.org_multicats}
 
 
-A monoidal double category also gives rise to an $fm$-multicategory in the sense of \cite{leinster1999generalized}, %cite specifically
+A monoidal double category also gives rise to an $f\!m$-multicategory in the sense of \cite{leinster1999generalized}, %cite specifically
 %where the ``2-cells'' are horizontal arrows of the form $a_1 \otimes \cdots \otimes a_n \slasharrow b$ and the ``3-cells'' are squares from the horizontal composite of a tree-shaped arrangement of these arrows to a horizontal arrow whose domain is a tensor product with arity the number of leaves in the tree.%reword
 so it makes sense to talk about multicategories enriched in $\org$ as in \cite{leinster1999generalized}. %cite specifically
 
 \begin{definition}
 An $\org$-enriched multicategory $A$ consists of
 \begin{itemize}
-	\item A set $A_0$ of objects
-	\item For each $a \in A_0$, a polynomial $p_a$
-	\item For each $a_1,...,a_n,b \in A_0$, a $[p_{a_1} \otimes \cdots \otimes p_{a_n},p_b]$-coalgebra $\S_{a_1,...,a_n;b}$
-	\item For each $a \in A_0$, an ``identitor'' square in $\org$ as below left
-	\item For each $a_{1,1},...,a_{1,m_1},a_{2,1},...,a_{n,m_n}, b_1,...,b_n,c \in A_0$, a ``compositor'' square in $\org$ as below right
+	\item a set $A_0$ of objects;
+	\item for each $a \in A_0$, a polynomial $p_a$;
+	\item for each $a_1,...,a_n,b \in A_0$, a $[p_{a_1} \otimes \cdots \otimes p_{a_n},p_b]$-coalgebra $\S_{a_1,...,a_n;b}$;
+	\item for each $a \in A_0$, an ``identitor'' square in $\org$ as in \eqref{eqn.multi_tors} left; and
+	\item for each $a_{1,1},\ldots,a_{1,m_1},\;\ldots,\;a_{n,1},\ldots,a_{n,m_n},\;b_1,\ldots,b_n,$ and $c \in A_0$, a ``compositor'' square in $\org$ as in \eqref{eqn.multi_tors} right
 \end{itemize}
-\[\begin{tikzcd}
-p_a \dar[equals] \rar[slash, ""{name=S, below}]{\id_{p_a}} & p_a \dar[equals] \\
-p_a \rar[slash, ""{name=T, above},swap]{\S_{a;a}} & p_a
-\arrow[Rightarrow,shorten=5,from=S,to=T]
-\end{tikzcd}\qquad\quad\begin{tikzcd}[column sep=huge]
-p_{a_{1,1}} \otimes \cdots \otimes p_{a_{n,m_n}} \dar[equals] \rar[slash]{\otimes_i \S_{a_{i,1},...,a_{i,m_i};b_i}} & p_{b_1} \otimes \cdots \otimes p_{b_n} \rar[slash]{\S_{b_1,...,b_n;c}} & p_c \dar[equals] \\
-p_{a_{1,1}} \otimes \cdots \otimes p_{a_{n,m_n}} \ar[slash, ""{name=T, above}]{rr}[swap]{\S_{a_{1,1},...,a_{n,m_n};c}} & & p_c
-\arrow[Rightarrow,shorten=4,from=1-2,to=T]
-\end{tikzcd}\]
+\begin{equation}\label{eqn.multi_tors}
+  \begin{tikzcd}[ampersand replacement=\&]
+  p_a \dar[equals] \rar[slash, ""{name=S, below}]{\id_{p_a}} \& p_a \dar[equals] \\
+  p_a \rar[slash, ""{name=T, above},swap]{\S_{a;a}} \& p_a
+  \arrow[Rightarrow,shorten=5,from=S,to=T]
+  \end{tikzcd}
+ \qquad\quad
+  \begin{tikzcd}[column sep=huge, ampersand replacement=\&]
+  p_{a_{1,1}} \otimes \cdots \otimes p_{a_{n,m_n}} \dar[equals] \rar[slash]{\otimes_i \S_{a_{i,1},...,a_{i,m_i};b_i}} \& p_{b_1} \otimes \cdots \otimes p_{b_n} \rar[slash]{\S_{b_1,...,b_n;c}} \& p_c \dar[equals] \\
+  p_{a_{1,1}} \otimes \cdots \otimes p_{a_{n,m_n}} \ar[slash, ""{name=T, above}]{rr}[swap]{\S_{a_{1,1},...,a_{n,m_n};c}} \& \& p_c
+  \arrow[Rightarrow,shorten=4,from=1-2,to=T]
+  \end{tikzcd}
+\end{equation}
 such that these squares satisfy unit and associativity equations.%more on these?
 \end{definition}
 
-There is an underlying multicategory of $A$ given by the sets $S_{a_1,...,a_n;b}$. 
+The sets $S_{a,b}$ form an underlying multicategory of $A$, with a description similar to that below \cref{def.org_enriched_cat}. 
 
-We will mostly be interested in when $A$ has only one object, in which case we call it an $\org$-enriched operad. An $\org$-enriched operad amounts to precisely a polynomial $p$ and for each $n \in \nn$ a $[p^{\otimes n},p]$-coalgebra $S_n$ equipped with maps $id_p \to S_1$ and $\otimes_i S_{n_i} \to S_{\sum_i n_i}$ satisfying the usual equations.
+We will mostly be interested in what we call an $\org$-enriched operad, the case when $A$ has only one object. It consists simply of a polynomial $p$ and for each $n \in \nn$ a $[p^{\otimes n},p]$-coalgebra $S_n$ equipped with maps
+\begin{equation}\label{eqn.org_operad}
+\id_p \to S_1
+\qqand
+\bigotimes_i S_{n_i} \to S_{\sum_i n_i}
+\end{equation}
+satisfying the usual equations. \dnote{should we perhaps denote $\id_p$ by $\{\id_p\}$ to emphasize it is a single-state thingy?}
 
-\begin{example}
-A \emph{collective} (as defined in \cite{niu2021collectives}) is a $\otimes$-monoid in $\poly$, meaning a polynomial $p$ equipped with a monoid structure on its positions $p(1)$ and co-unital co-associative ``distribution'' functions $p[I \cdot J] \to p[I] \times p[J]$ for each $I,J \in p(1)$. This can be viewed as an $\org$-enriched operad where $\S_n$ is given by $\S_{\cdot_n}$, the single-state coalgebra on the $n$-ary monoidal product $\cdot_n : p^{\otimes n} \to p$ and the above maps of coalgebras are isomorphisms deduced from the equations for a monoid.
+\begin{example}\label{ex.collective}
+A \emph{collective} (as defined in \cite{niu2021collectives}) is a $\otimes$-monoid in $\poly$, meaning a polynomial $p$ equipped with a monoid structure on its positions $p(1)$ and co-unital co-associative ``distribution'' functions $p[I \cdot J] \to p[I] \times p[J]$ for each $I,J \in p(1)$. This can be viewed as an $\org$-enriched operad where $\S_n$ is given by $\S_{\cdot_n}$, the single-state coalgebra on the $n$-ary monoidal product $\cdot_n : p^{\otimes n} \to p$, and where the maps of coalgebras in \eqref{eqn.org_operad} are isomorphisms deduced from the equations for a monoid.
 \end{example}
 
 \begin{example}
-In the previous example, the coalgebras $\S_n$ are determined by a single map of polynomials, with no possible updates as there is only one state. This can be generalized to an intermediate notion between collectives and $\org$-enriched multicategories, where there are multiple states and maps but still no updates.
+In \cref{ex.collective}, the coalgebras $\S_n$ are determined by a single map of polynomials, with no possible updates as there is only one state. This can be generalized to an intermediate notion between collectives and $\org$-enriched multicategories, where there are multiple states and maps but still no updates.
 
 Given a multicategory $M$ and a multifunctor $F : M \to \poly$, there is an $\org$-enriched multicategory $A_F$ with 
 \begin{itemize}
-	\item object set $\ob(M)$
-	\item for each $a \in \ob(M)$, the polynomial $p_a = F(a)$
-	\item for each tuple $(a_1,...,a_n;b)$ in $\ob(M)$, $S_{a_1,...,a_n;b} = M(a_1,...,a_n;b)$
-	\item the map $\beta_0 : M(a_1,...,a_n;b) \to \poly(p_{a_1} \otimes \cdots \otimes p_{a_n},p_b)$ is given by $F$
-	\item no updates, in that for any state $s$ in $M(a_1,...,a_n;b)$, $\beta_s$ sends every input and output to $s$
+	\item object set $\ob(M)$;
+	\item for each $a \in \ob(M)$, the polynomial $p_a = F(a)$;
+	\item for each tuple $(a_1,...,a_n;b)$ in $\ob(M)$, $S_{a_1,...,a_n;b} = M(a_1,...,a_n;b)$;
+	\item the map $\beta_0 : M(a_1,...,a_n;b) \to \poly(p_{a_1} \otimes \cdots \otimes p_{a_n},p_b)$ is given by $F$; and 
+	\item which is static, in that for any state $s$ in $M(a_1,...,a_n;b)$, the update function $\beta_s$ is the constant function at $s$.
+	\qedhere
 \end{itemize}
 \end{example}
 
 \begin{example}
-Let $\S$ be any $p$-coalgebra for a polynomial $p$. There is an $\org$-enriched operad with the polynomial $p$, $\S_0 = \S$, $\S_1 = \S_{\id_p}$, and all other $\S_n$ the empty coalgebras.
+Let $\S$ be any $p$-coalgebra for a polynomial $p$. There is an $\org$-enriched operad with the polynomial $p$, $\S_0 = \S$, $\S_1 = \S_{\id_p}$, and all other $\S_n=\varnothing$ assigned the empty coalgebra.
 \end{example}
 
 %something about wirings
@@ -632,47 +652,54 @@ so we can also enrich strict monoidal categories in $\org$.\footnote{We use thro
 \begin{definition}\label{enriched_monoidal}
 An $\org$-enriched strict monoidal category $A$ consists of
 \begin{itemize}
-	\item A monoid $A_0$ of objects
-	\item For each $a \in A_0$, a polynomial $p_a$
-	\item An isomorphism of polynomials $y \cong p_e$ for $e$ the unit of $A_0$
-	\item For each $a,a' \in A_0$, an isomorphism of polynomials $p_{a} \otimes p_{a'} \cong p_{a a'}$
-	\item For each $a,b \in A_0$, a $[p_a,p_b]$-coalgebra $\S_{a,b}$
-	\item For each $a \in A_0$, an ``identitor'' square in $\org$ as below left
-	\item For each $a,b,c \in A_0$, a ``compositor'' square in $\org$ as below center
-	\item For each $a,a',b,b' \in A_0$, a ``productor'' square in $\org$ as below right
+	\item a monoid $A_0$ of objects;
+	\item for each $a \in A_0$, a polynomial $p_a$;
+	\item an isomorphism of polynomials $y \cong p_e$ for $e$ the unit of $A_0$;
+	\item for each $a,a' \in A_0$, an isomorphism of polynomials $p_{a} \otimes p_{a'} \cong p_{a a'}$;
+	\item for each $a,b \in A_0$, a $[p_a,p_b]$-coalgebra $\S_{a,b}$;
+	\item for each $a \in A_0$, an ``identitor'' square in $\org$ as in \cref{eqn.adaptive_tor} left;
+	\item for each $a,b,c \in A_0$, a ``compositor'' square in $\org$ as in \cref{eqn.adaptive_tor} center; and
+	\item for each $a,a',b,b' \in A_0$, a ``productor'' square in $\org$ as in \cref{eqn.adaptive_tor} right:
 \end{itemize}
-\[\begin{tikzcd}
+\begin{equation}\label{eqn.adaptive_tor}
+\begin{tikzcd}
 p_a \dar[equals] \rar[slash, ""{name=S, below}]{\id_{p_a}} & p_a \dar[equals] \\
 p_a \rar[slash, ""{name=T, above},swap]{\S_{a,a}} & p_a
 \arrow[Rightarrow,shorten=5,from=S,to=T]
-\end{tikzcd}\qquad\begin{tikzcd}[column sep=huge]
+\end{tikzcd}
+\qquad
+\begin{tikzcd}[column sep=large]
 p_a \dar[equals] \rar[slash]{\S_{a,b}} & p_b \rar[slash]{\S_{b,c}} & p_c \dar[equals] \\
 p_a \ar[slash, ""{name=T, above}]{rr}[swap]{\S_{a,c}} & & p_c
 \arrow[Rightarrow,shorten=4,from=1-2,to=T]
-\end{tikzcd}\qquad\begin{tikzcd}[column sep=huge]
+\end{tikzcd}
+\qquad
+\begin{tikzcd}[column sep=huge]
 p_a \otimes p_{a'} \dar[equals,swap]{\wr} \rar[slash,""{name=S,below}]{\S_{a,b} \otimes \S_{a',b'}} & p_b \otimes p_{b'} \dar[equals,swap]{\wr} \\
 p_{aa'} \rar[slash, ""{name=T, above},swap]{\S_{aa',bb'}} & p_{bb'}
 \arrow[Rightarrow,shorten=5,from=S,to=T]
-\end{tikzcd}\]
+\end{tikzcd}
+\end{equation}
 such that these isomorphisms and squares satisfy unit, associativity, and interchange equations.%more on these?
 \end{definition}
 
-Here the sets $S_{a,b}$ for the arrows in the underlying strict monoidal category of $A$.
+Here the sets $S_{a,b}$ form the arrows in a strict monoidal category underlying $A$.
 
 \begin{definition}
 An \emph{adaptive} is an $\org$-enriched strict monoidal category with object monoid $\nn$.
 \end{definition}
 
-Concretely, an adaptive consists of a polynomial $p$ (so that in the notation above $p_n := p^{\otimes n}$ for $n \in \nn$) along with a $[p^{\otimes m},p^{\otimes n}]$-coalgebra $S_{m,n}$ for each $m,n \in \nn$, equipped with the maps of coalgebras as in the squares above. We denote such an adaptive ``on p'' as $(p,\S)$, where $\S$ now encodes all of the coalgebras $\S_{m,n}$ that constitute the adaptive and the structure maps are implicit.
+Concretely, an adaptive consists of a polynomial $p$ (so that in the notation above $p_n := p^{\otimes n}$ for $n \in \nn$) along with a $[p^{\otimes m},p^{\otimes n}]$-coalgebra $S_{m,n}$ for each $m,n \in \nn$, equipped with the maps of coalgebras as in \eqref{eqn.adaptive_tor}. We denote such an adaptive ``on p'' as $(p,\S)$, where $\S$ now encodes all of the coalgebras $\S_{m,n}$ that constitute the adaptive and the structure maps are implicit.
 
+\dnote{in general, please use labeled equations and references more :)}
 %more on what those maps mean
 
 %something about wirings
 
-The definition of morphisms of adaptives comes from morphisms of enriched monoidal categories as defined in \cite{shapiro2022enrichment}. %cite specifically
+Morphisms of adaptives are special cases of the general notion of morphisms for enriched monoidal categories as defined in \cite{shapiro2022enrichment}. %cite specifically
 
 \begin{definition}
-A morphism of adaptives from $(p,\S)$ to $(p',\S')$ is given by a map of polynomials $\phi : p \to p'$ and, for each $m,n \in \nn$, ``commutor'' squares as below in $\org$ which commute with the identitor, compositor, and productor squares.
+A \emph{morphism} of adaptives from $(p,\S)$ to $(p',\S')$ is given by a map of polynomials $\phi : p \to p'$ and, for each $m,n \in \nn$, ``commutor'' squares as below \dnote{like here: replace "below" by a reference to a labeled equation} in $\org$ which commute with the identitor, compositor, and productor squares.
 \[\begin{tikzcd}
 p^{\otimes m} \rar[slash, ""{name=S, below}]{\S_{m,n}} \dar[swap]{\phi^{\otimes m}} & p^{\otimes n} \dar{\phi^{\otimes n}} \\
 p'^{\otimes m} \rar[slash, ""{name=T, above}, swap]{\S'_{m,n}} & p'^{\otimes n}
@@ -680,22 +707,22 @@ p'^{\otimes m} \rar[slash, ""{name=T, above}, swap]{\S'_{m,n}} & p'^{\otimes n}
 \end{tikzcd}\]
 \end{definition}
 
-This definition of morphism is the direct benefit for the theory of adaptives of treating $\org$ as a monoidal double category rather than a monoidal bicategory. Otherwise morphisms could either only be easily defined between adaptives on the same polynomial, which is rather restrictive, or take the form of a $[p,p']$-coalgebra, which we believe to be too general to be of much use.
+This definition of morphism is the direct benefit for the theory of adaptives of treating $\org$ as a monoidal double category rather than as a monoidal bicategory (as done in \cite{spivak2021learners}). Otherwise morphisms could either only be easily defined between adaptives on the same polynomial, which is rather restrictive, or take the form of a $[p,p']$-coalgebra, which we believe to be too general to be of much use.
 
 %what does these mean
 
 \begin{example}
-For a fixed polynomial $p$, there is a terminal adaptive on $p$ where $\S^!_{m,n}$ is the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra. 
+For a fixed polynomial $p$, there is a terminal adaptive $\S^{p!}$ on $p$ where $\S^{p!}_{m,n}$ is the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra. 
 
-Its states are infinite $[p^{\otimes m},p^{\otimes n}]$-trees: trees inductively defined by a root labeled with a polynomial map $\phi : p^{\otimes m} \to p^{\otimes n}$ and for each pair 
+Its states are (not necessarily finite) $[p^{\otimes m},p^{\otimes n}]$-trees: trees inductively defined by a root labeled with a polynomial map $\phi : p^{\otimes m} \to p^{\otimes n}$ and for each pair 
 $$\blp(I_1,...,I_m) \in p(1)^m, (i_1,...,i_n) \in p[\phi(I_1,...,I_m)_1] \times \cdots \times p[\phi(I_1,...,I_m)_n]\brp$$
-an edge out of the root to another $[p^{\otimes m},p^{\otimes n}]$-tree. The action of such a tree is simply the root map $\phi$, and the update sends a pair as above to the new tree at the end of the corresponding edge. 
+an edge out of the root to another $[p^{\otimes m},p^{\otimes n}]$-tree. The action of such a tree is simply the root map $\phi$, and the update sends a pair as above \dnote{label} to the new tree at the end of the corresponding edge. 
 
-The idea is that the states encode all possible trajectories along different actions, and this coalgebra is terminal because from any other coalgebra there is a map to $\S^!_{m,n}$ sending each state to the tree whose root is labeled by the action of the state and whose edges from the root go to the trees for each of the state's possible updates. This map is (uniquely) a coalgebra map as in order to preserve actions and updates each state must be sent to the tree rooted by its action and branching according to its updates.
+The idea is that the state-set of the terminal adaptive encodes all possible trajectories along different actions, and this coalgebra is terminal because from any other coalgebra there is a map to $\S^{p!}_{m,n}$ sending each state to the tree whose root is labeled by the action of the state and whose edges from the root go to the trees for each of the state's possible updates. This map is (uniquely) a coalgebra map because, in order to preserve actions and updates, each state must be sent to the tree rooted by its action and branching according to its updates.
 
-The adaptive structure on these terminal coalgebras is then each to define, as for any identity, composition, or product $[p^{\otimes m},p^{\otimes n}]$-coalgebra there is a unique map to the terminal one, and this uniqueness automatically ensures all of the equations are satisfied. 
+The adaptive structure on the terminal coalgebra $\S^{p!}$ is then each to define, as for any identity, composition, or product $[p^{\otimes m},p^{\otimes n}]$-coalgebra there is a unique map to the terminal one, and this uniqueness automatically ensures all of the equations are satisfied. 
 
-This is the terminal adaptive on $p$ as for any other adaptive on $p$ there is a morphism of adaptives given by the identity map on $p$ and with commutor squares to $\S^!_{m,n}$ simply the unique map of coalgebras from any $[p^{\otimes m},p^{\otimes n}]$-coalgebra to the terminal one.
+This is the terminal adaptive on $p$ as for any other adaptive on $p$ there is a morphism of adaptives given by the identity map on $p$ and with commutor squares to $\S^{p!}_{m,n}$ simply the unique map of coalgebras from any $[p^{\otimes m},p^{\otimes n}]$-coalgebra to the terminal one.
 \end{example}
 
 
