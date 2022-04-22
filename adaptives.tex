@@ -695,6 +695,9 @@ This is the terminal adaptive on $p$ as for any other adaptive on $p$ there is a
 \chapter{Adaptives in Nature}
 
 
+Our main results are that adaptives describe phenomena in the natural world and human technologies. In this paper, we focus on deep learning and gravity.
+
+
 %------- Section -------%
 \section{The Gradient Descent Adaptive}
 
@@ -702,7 +705,7 @@ Deep learning uses the algorithm of gradient descent to optimize a choice of fun
 
 \begin{definition}
 For the rest of this section, let 
-$$S_{m,n} = \{M \in \nn, f : \rr^{M+m}, p \in \rr^M | f \textrm{ is differentiable}\}.$$
+$$S_{m,n} = \{(M \in \nn, f : \rr^{M+m}, p \in \rr^M) | f \textrm{ is differentiable}\}.$$
 \end{definition}
 
 The idea is that these states are the possible parameters among which a gradient descender is meant to find the optimal choice, while $f$ dictates how the parameter affects the resulting function $f(p,-)$. In the dynamics of these states described below, only the value of the parameter $p$ is updated while the dimension $M$ of the parameter space and the parameterized function $f$ remain fixed, though network composition of descenders will involve combining these data in nontrivial ways.\footnote{Other versions of a gradient descent adaptive might have the states be simply some space of functions from $\rr^m$ to $\rr^n$, but this type of model is more difficult to describe in a computation-friendly manner as the space of functions that can arise from network compositions of the types of functions used in common practice is not finite dimensional.}%more on this?
@@ -895,11 +898,27 @@ p^{\otimes m} \rar[slash, ""{name=V, above},swap]{\S_{m,n}} & p^{\otimes n}
 \end{itemize}
 \end{definition}
 
-We now proceed to show that the adaptives described above for gradient descent and gravitational motion satisfy these equations, and that their structure maps as defined on states are indeed morphisms of coalgebras.
+We now proceed to prove that the coalgebras and structure maps defined above for gradient descent and gravitational motion form adaptives. In each case, it suffices to show that the structure maps on states preserve coalgebra structure, and that the above equations are satisfied.
 
-\begin{proof}%of gradientadaptive
-For the identitor the state $(0,\id_{\rr^n},0)$ acts as the identity function on $\rr^n$ and on directions by the transpose of its derivative, which is also the identity. The updates in the coalgebras $\S_{m,n}$ only modify the parameter $p$, so as the parameter here is 0-dimensional this state is never changed by the update function, as is the case in the coalgebra $\id_{t^{\otimes n}}$. Therefore this function is a map of coalgebras.
+\begin{proof}[Proof of \cref{gradientadaptive}]
+The unit and associativity equations follow immediately from associativity and unitality of addition, cartesian products, and function composition. The interchange equations follow from the preservation of 0 under addition and identity functions under cartesian products, the analogous interchange property of function composition and cartesian products of functions, and the fact that the compositors and productors act the same way on the parameters and their dimension. 
 
+It then remains only to show that the identitors, compositors, and productors are morphisms of coalgebras. This is immediate for the productors, as each component of the action and update functions respects the cartesian products of functions and parameters that define them, so we proceed only for the identitors and compositors.
+
+For the identitors, the state $(0,\id_{\rr^n},0)$ acts as the identity function on $\rr^n$ and on directions by the transpose of its derivative, which is also the identity. The updates in the coalgebras $\S_{n,n}$ only modify the parameter $p$, so as the parameter here is 0-dimensional this state is never changed by the update function, as is the case in the coalgebra $\id_{t^{\otimes n}}$. Therefore this function is a map of coalgebras.
+
+The compositors preserve the component of the action on positions as, for states 
+$$(L \in \nn, f : \rr^{L+\ell}, p \in \rr^L) \quad \textrm{and} \quad (M \in \nn, g : \rr^{M+m}, q \in \rr^M),$$ 
+we have 
+$$g(q,-) \circ f(p,-) = g(-,f(-,-))(q,p,-).$$
+This may seem like a trivial rewriting, but it illustrates how the compositor was defined in order for the action to be preserved, as on the left we have the composite of the actions on positions as in $\S_{\ell,m};\S_{m,n}$, and on the right we apply the compositor and take the action of the resulting state in $\S_{\ell,n}$.
+
+To show that the compositor preserves both the action on directions and the update we note that by the chain rule, for $x \in \rr^\ell$ and $z \in T_{g(q,f(p,x))}$,
+$$D\blp g(-,f(-,-)) \brp^\top z = Df^\top \cdot \pi_m(Dg^\top \cdot z) \in T_{(p,x)}\rr^{L+\ell}.$$
+Applying $\pi_\ell$ to both sides above shows that the compositor preserves the action on directions, as on the left we have the action on directions after applying the compositor and on the right we have the composition of the actions of $(L,f,p)$ and $(M,g,q)$ on directions as in $\S_{\ell,m};\S_{m,n}$.
+
+Finally for updates, we observe by the chain rule that the update rule in $\S_{\ell,n}$ agrees with that in $\S_{\ell,m};\S_{m,n}$ under the compositor, as either way for $x,z$ as above the composite state of $(L,f,p)$ and $(M,g,q)$ updates to 
+$$\blp M+L,g(-,f(-,-)),\blp p + \epsilon \pi_L (Df^\top \cdot \pi_m(Dg^\top \cdot z)),q + \epsilon \pi_M(Dg^\top \cdot z) \brp \brp.$$
 \end{proof}
 
 

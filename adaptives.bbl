@@ -1,0 +1,202 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{anyt/global//global/global}
+    \entry{baez1997quantum}{article}{}
+      \name{author}{2}{}{%
+        {{hash=77c130b1ed4688a565b29481eee08ae3}{%
+           family={Baez},
+           familyi={B\bibinitperiod},
+           given={John\bibnamedelima C.},
+           giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=9b4b17234c0b36cca484e60803290135}{%
+           family={Dolan},
+           familyi={D\bibinitperiod},
+           given={James},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{0e216f5c63a9e417305f6998cd1c996d}
+      \strng{fullhash}{0e216f5c63a9e417305f6998cd1c996d}
+      \strng{bibnamehash}{0e216f5c63a9e417305f6998cd1c996d}
+      \strng{authorbibnamehash}{0e216f5c63a9e417305f6998cd1c996d}
+      \strng{authornamehash}{0e216f5c63a9e417305f6998cd1c996d}
+      \strng{authorfullhash}{0e216f5c63a9e417305f6998cd1c996d}
+      \field{labelalpha}{BD97}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Higher-Dimensional Algebra III: n-Categories and the Algebra of Opetopes}
+      \field{year}{1997}
+      \keyw{Quantum Algebra (math.QA),FOS: Mathematics,FOS: Mathematics}
+    \endentry
+    \entry{laughlin2005different}{book}{}
+      \name{author}{1}{}{%
+        {{hash=bbd903deec1f9de87f532c1db03d4058}{%
+           family={Laughlin},
+           familyi={L\bibinitperiod},
+           given={Robert\bibnamedelima B},
+           giveni={R\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Basic Books (AZ)}%
+      }
+      \strng{namehash}{bbd903deec1f9de87f532c1db03d4058}
+      \strng{fullhash}{bbd903deec1f9de87f532c1db03d4058}
+      \strng{bibnamehash}{bbd903deec1f9de87f532c1db03d4058}
+      \strng{authorbibnamehash}{bbd903deec1f9de87f532c1db03d4058}
+      \strng{authornamehash}{bbd903deec1f9de87f532c1db03d4058}
+      \strng{authorfullhash}{bbd903deec1f9de87f532c1db03d4058}
+      \field{labelalpha}{Lau05}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{A different universe: Reinventing physics from the bottom down}
+      \field{year}{2005}
+    \endentry
+    \entry{leinster1999generalized}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=82417a4f76230e108804a8ce467246af}{%
+           family={Leinster},
+           familyi={L\bibinitperiod},
+           given={Tom},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{82417a4f76230e108804a8ce467246af}
+      \strng{fullhash}{82417a4f76230e108804a8ce467246af}
+      \strng{bibnamehash}{82417a4f76230e108804a8ce467246af}
+      \strng{authorbibnamehash}{82417a4f76230e108804a8ce467246af}
+      \strng{authornamehash}{82417a4f76230e108804a8ce467246af}
+      \strng{authorfullhash}{82417a4f76230e108804a8ce467246af}
+      \field{labelalpha}{Lei99}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{math.CT}
+      \field{eprinttype}{arXiv}
+      \field{note}{\href{https://arxiv.org/abs/9901139}{arXiv:9901139}}
+      \field{title}{Generalized enrichment for categories and multicategories}
+      \field{year}{1999}
+      \verb{eprint}
+      \verb 9901139
+      \endverb
+    \endentry
+    \entry{niu2021collectives}{misc}{}
+      \name{author}{2}{}{%
+        {{hash=11632aeb00018612b165117f994253a4}{%
+           family={Niu},
+           familyi={N\bibinitperiod},
+           given={Nelson},
+           giveni={N\bibinitperiod}}}%
+        {{hash=7166f43636239436a149410550ca5a32}{%
+           family={Spivak},
+           familyi={S\bibinitperiod},
+           given={David\bibnamedelima I.},
+           giveni={D\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{fca8b0245805c42c8777642cb6d36766}
+      \strng{fullhash}{fca8b0245805c42c8777642cb6d36766}
+      \strng{bibnamehash}{fca8b0245805c42c8777642cb6d36766}
+      \strng{authorbibnamehash}{fca8b0245805c42c8777642cb6d36766}
+      \strng{authornamehash}{fca8b0245805c42c8777642cb6d36766}
+      \strng{authorfullhash}{fca8b0245805c42c8777642cb6d36766}
+      \field{labelalpha}{NS21}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Collectives: Compositional protocols for contributions and returns}
+      \field{year}{2021}
+      \verb{doi}
+      \verb 10.48550/ARXIV.2112.11518
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2112.11518
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2112.11518
+      \endverb
+      \keyw{Category Theory (math.CT),FOS: Mathematics,FOS: Mathematics,18M35,18B20}
+    \endentry
+    \entry{shapiro2022enrichment}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=0a61cf0f620b1cecda93958b1f9dfdc5}{%
+           family={Shapiro},
+           familyi={S\bibinitperiod},
+           given={Brandon},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{0a61cf0f620b1cecda93958b1f9dfdc5}
+      \strng{fullhash}{0a61cf0f620b1cecda93958b1f9dfdc5}
+      \strng{bibnamehash}{0a61cf0f620b1cecda93958b1f9dfdc5}
+      \strng{authorbibnamehash}{0a61cf0f620b1cecda93958b1f9dfdc5}
+      \strng{authornamehash}{0a61cf0f620b1cecda93958b1f9dfdc5}
+      \strng{authorfullhash}{0a61cf0f620b1cecda93958b1f9dfdc5}
+      \field{labelalpha}{Sha22}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{\emph{In Preparation}}
+      \field{title}{Enrichment of Algebraic Higher Categories}
+      \field{year}{2022}
+    \endentry
+    \entry{spivak2021learners}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=7166f43636239436a149410550ca5a32}{%
+           family={Spivak},
+           familyi={S\bibinitperiod},
+           given={David\bibnamedelima I.},
+           giveni={D\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Cambridge, UK}%
+      }
+      \list{publisher}{1}{%
+        {EPTCS}%
+      }
+      \strng{namehash}{7166f43636239436a149410550ca5a32}
+      \strng{fullhash}{7166f43636239436a149410550ca5a32}
+      \strng{bibnamehash}{7166f43636239436a149410550ca5a32}
+      \strng{authorbibnamehash}{7166f43636239436a149410550ca5a32}
+      \strng{authornamehash}{7166f43636239436a149410550ca5a32}
+      \strng{authorfullhash}{7166f43636239436a149410550ca5a32}
+      \field{labelalpha}{Spi21}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 4th Annual Conference on Applied Category Theory}
+      \field{series}{ACT}
+      \field{title}{spivak2021learners' languages}
+      \field{year}{2021}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
