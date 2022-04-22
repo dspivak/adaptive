@@ -91,7 +91,7 @@ bimr/.tip={Glyph[glyph math command=triangleright, glyph length=.95ex]},
 	slash/.style={postaction={
   	decorate,
     decoration={markings, mark=at position 0.5 with
-    	{\draw[-] (.3ex,.3ex) -- (-.3ex,-.3ex);}}}
+    	{\node {\rotatebox{90}{$\sim$}};}}}
   }
 } 
 
@@ -344,6 +344,9 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\blp}{\Big{(}}
 \newcommand{\brp}{\Big{)}}
 
+\newcommand{\dnote}[1]{{\color{blue}David says:}~#1\\{\color{blue}$\lozenge$}}
+\newcommand{\bnote}[1]{{\color{red}Brandon says:}~#1\\{\color{red}$\lozenge$}}
+
 
 % ---- Changeable document parameters ---- %
 
@@ -374,15 +377,15 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 %------- Chapter -------%
 \chapter{Introduction}
 
-Organisms don't defy the physics in which they are implemented. But the term \emph{physics} can be used to refer to much more than simply the fundamental building blocks of reality; its laws may themselves be organized. There may be patterns of construction that make sense at all levels, patterns like attraction, entropic ascent, or even birth and death. If patterns exist at all levels, from atoms to stars, then one may say they are even \emph{more real} than patterns that exist at only the smallest levels.
-
-Organized matter can exploit self-similarity in the patterns of nature. One often sees plants with fractal-like symmetries that hold across hierarchical levels. Microcosm principles in mathematics also show that to even display certain structures, a system must be embedded in a world with even higher-level versions of that very structure \cite{baez1997quantum}.
-
-...\\
-
-If organisms are built to depend on  are co-creators of physics.
-
-Indeed the laws of nature referred to the totality of how nature is put together and changes through time, and not just to any sort of atomic bedrock at a purportedly bottom layer. The concept of \emph{emergence} is often used to rescue a bottom-up interpretation of physics from the experimental data showing that higher-level structures have downward causality on the patterns that arise in lower-level parts \cite{laughlin2005different}. Rather than seek the building blocks of reality and then stand with conceptual crutches on them, we propose to seek the construction of reality and forgo the need for a bottom-level foundation.
+%Organisms don't defy the physics in which they are implemented. But the term \emph{physics}---both as it was originally used and as we mean it here---encompasses much more than simply the fundamental building blocks of reality. 
+%
+%Experimental data and various insurmountable obstructions prevent the reductionist approach to physics from having any chance at a descriptive account of the macro-level phenomena we see around us \cite{laughlin2005different}. The comparatively feeble concept of \emph{emergence} is then used to capture the discrepancy. One says ``the whole is more than the sum of its parts'', but what sort of thing \emph{is} just the sum of its parts: sand?
+%
+%Rather than starting from the bottom, failing to arrive at our level of interest, and then adding the discrepancy back as an extra term, we propose that physics should be reconceptualized to include explanations that work at every level simultaneously. Indeed, it may be that the laws of physics are themselves organized. There may be patterns of construction that make sense at all levels, e.g.\ patterns that could be called attraction, entropic ascent, or even birth and death. If one can articulate a mathematical pattern that is subsequently empirically-verified to exist across the spectrum, from atoms to stars, then one may say that such a pattern is \emph{even more real} than a pattern perceivable at only the smallest levels.
+%
+%It appears that organized matter can exploit self-similarity in the patterns of nature. It seems difficult to \emph{derive} this from fundamental physics, and yet it is repeatedly observed and is not merely biology. One often sees plants with fractal-like symmetries that hold across its hierarchical levels. Trees, riverbeds, and circulatory systems follow similar branching profiles \cite{bejan2000shape}. Even in mathematics, microcosm principles show that in order to display certain structures, a system must be embedded in a world equipped with even higher-level versions of that very structure \cite{baez1997quantum}.
+%
+%In this article, we propose a new accounting system---a mathematical language---with which to study self-similar dynamical systems.
 
 
 
@@ -400,23 +403,26 @@ Organization doesn't defy physics\\
 %------- Chapter -------%
 \chapter{The Monoidal Double Category $\org$}
 
-In \cite{spivak2021learners}, the second author defined a category-enriched multicategory $\org$, whose objects are polynomials and whose morphisms are polynomial coalgebras. In this chapter, we describe how $\org$ in fact more naturally takes the form of a monoidal double category, with coalgebras as horizontal morphisms, maps of polynomials as vertical morphisms, and the Dirichlet tensor product $\otimes$ providing the monoidal structure. 
+In \cite{spivak2021learners}, the second author defined a category-enriched multicategory $\org$, whose objects are polynomials and whose morphisms are polynomial coalgebras. In this chapter, we describe how $\org$ in fact more naturally takes the form of a monoidal double category, with coalgebras as horizontal morphisms, maps of polynomials as vertical morphisms, and the Dirichlet tensor product $\otimes$ providing the monoidal structure.%
+\footnote{In fact, $\org$ is a duoidal double double category, with a second monoidal structure given by $\tri$, but we will not use that here.}
 
 
 %--- Section ---%
 \section{$[p,q]$-coalgebras}
 
 
-We first recall the definitions of the internal hom polynomials $[p,q]$ and concretely describe the category of $[p,q]$-coalgebras, which forms the category of morphisms from $p$ to $q$ in the underlying bicategory of $\org$.
+We first recall the definitions of the internal-hom polynomials $[p,q]$ and concretely describe the category of $[p,q]$-coalgebras, which forms the category of morphisms from $p$ to $q$ in the underlying bicategory of $\org$.
 
 \begin{definition}\label{coalgebras}
 For polynomials 
 $$p = \sum_{I \in p(1)} y^{p[I]} \qquad \textrm{and} \qquad q = \sum_{J \in q(1)} y^{q[J]},$$
 their \emph{internal hom} with respect to the tensor product $\otimes$ is the polynomial
-$$[p,q] = \sum_{\phi : p \to q} y^{\sum_{I \in p(1)} q[\phi_1(I)]}.$$
+\[
+[p,q] = \sum_{\phi : p \to q} y^{\sum\limits_{\;I \in p(1)} q[\phi_1(I)]}
+\]
 \end{definition}
 
-Using \cite[Definition 2.10]{spivak2021learners} applied to $[p,q]$, we get the following definition of $[p,q]$-coalgebras.
+For intuition, a $[p,q]$-coalgebra is a machine that outputs maps $p\to q$ and inputs what flows out of $p$ and what flows in to $q$. More precisely, using \cite[Definition 2.10]{spivak2021learners} applied to $[p,q]$, we get the following definition of $[p,q]$-coalgebras. 
 
 \begin{definition}
 The category $[p,q]\coalg$ has as objects pairs $\S = (S,\beta)$ where $S$ is a set and $\beta : S \to [p,q] \tri S$, and morphisms from $\S$ to $\S'$ given by functions $f : S \to S'$ making the diagram below commute. 
@@ -428,26 +434,28 @@ S' \rar[swap]{\beta'} & {[p,q]} \tri S'
 
 Unwinding this definition, we get that $\beta$ is determined by a function 
 $$\beta_0 : S \to \poly(p,q) = [p,q](1)$$
-and for each $s \in S$ a function 
+and for each $s \in S$, a function 
 $$\beta_s : \sum_{I \in p(1)} q[\beta_0(s)_1(I)] \to S.$$ 
 For each $s \in S$, called a \emph{state}, we call $\beta_0(s)$ the \emph{action of $s$} and $\beta_s$ the \emph{update function of $s$}. A coalgebra map is then a function between the state sets that preserves actions and updates. 
 
-When, for each $s \in S$, $\beta_s$ is the constant function sending everything to $s$, we say the coalgebra $\S$ has \emph{no updates}, as no output $I \in p(1)$ nor input from $q[\beta_0(s)_1(I)]$ can produce a different state from $s$.
+When, for each $s \in S$, the update $\beta_s$ is the constant function sending everything to $s$, we say the coalgebra $\S$ is \emph{static}, as it remains constantly at $s$ regardless of the output $I \in p(1)$ and input $j\in q[\beta_0(s)_1(I)]$.
 
-\begin{example}
-A special case of $[p,q]$-coalgebras with no updates are given by maps $\phi \in \poly(p,q)$. For each such $\phi$, there is a coalgebra $\S_\phi$ with a singleton set of states, $\beta_0$ sending the point to $\phi$, and (by necessity) no updates.
+\begin{example}\label{ex.single_state}
+A special case of a static $[p,q]$-coalgebra is given by a map $\phi \in \poly(p,q)$. For each such $\phi$, there is a coalgebra $\S_\phi$ with a singleton set of states, $\beta_0$ sending the point to $\phi$; it is by necessity static. 
+
+A coalgebra is static iff it is the coproduct of one-element coalgebras.
 \end{example}
 
 
 
 %--- Section ---%
 \section{Composition of coalgebras}
-
+\dnote{Let's call these something besides coalgebras; they're special coalgebras, a kind that is possible to "compose".}
 
 We now describe how $[p,q]$-coalgebras behave like morphisms from $p$ to $q$.
 
 \begin{proposition}
-The categories $[p,q]\coalg$ form the categories of morphisms in a bicategory $\org$ with polynomials as objects.
+The categories $[p,q]\coalg$ form the hom-categories in a bicategory $\org$, which has polynomials as objects.
 \end{proposition}
 
 It is no accident that $\org$ denotes both this bicategory and the categorical operad in \cite[Definition 2.19]{spivak2021learners}, as both are derived from the monoidal double category $\org$ described in the following sections. For now, we merely present the horizontal identities and composites in this bicategory.
@@ -462,9 +470,9 @@ and on directions it is given for $\phi : p \to q$ and $\psi : q \to r$ by the f
 $$\blp\sum_{I \in p(1)} q[\phi_1(I)]\brp \times \blp\sum_{J \in q(1)} r[\psi_1(J)]\brp \from \sum_{I \in p(1)} r[\psi_1(\phi_1(I))]$$
 which sends $(I,j)$ to $(I,\psi_{\phi_1(I)}(j),\phi_1(I),j)$. 
 
-Concretely, the composite of a $[p,q]$-coalgebra $\S$ and a $[q,r]$-coalgebra $\S'$ is a $[p,r]$-coalgebra $\S;\S'$ is described as follows:
+Concretely, the composite of a $[p,q]$-coalgebra $\S$ and a $[q,r]$-coalgebra $\S'$ is a $[p,r]$-coalgebra which we denote $\S\then\S'$  and define as follows:
 \begin{itemize}
-	\item its states are given by $S \times S'$
+	\item its state set is given by $S \times S'$
 	\item the action of the pair $(s,s')$ is given by the composite 
 $$p \To{\beta_0(s)} q \To{\beta'_0(s')} r$$
 	\item the update function of $(s,s')$ is induced by the functions
@@ -496,9 +504,9 @@ and update described similarly componentwise. The tensor product of morphisms of
 \section{$\org$ as a double category}
 
 
-While defining $\org$ as a monoidal bicategory is sufficient for most of the constructions of $\org$-enriched structures in the next chapter, distinguishing the maps of polynomials as a special class of coalgebras allows $\org$ to encode all of $\poly$ and also facilitates a good definition of morphism between adaptives. 
+Defining $\org$ as a monoidal bicategory is sufficient for most of the constructions of $\org$-enriched structures in the next chapter. However, using a double category structure to cast morphisms $\phi\colon p\to q$ in $\poly$ as one-state coalgebras $\S_\phi\in[p,q]\coalg$ (see \cref{ex.single_state}) facilitates our eventual definition of adaptives, in particular the maps between them. 
 
-Specifically, the definition of $\org$ as a monoidal bicategory extends to a monoidal (pseudo-)double category with coalgebras as horizontal morphisms, maps in $\poly$ as vertical morphisms, and squares as below given by maps of coalgebras from $\S_\psi;\S$ to $\S';\S_\phi$. 
+Specifically, the definition of $\org$ as a monoidal bicategory extends to a monoidal (pseudo-)double category with coalgebras as horizontal morphisms, maps in $\poly$ as vertical morphisms, and squares as below given by maps of coalgebras from $\S_\psi\then\S$ to $\S'\then\S_\phi$. 
 \[\begin{tikzcd}
 p \rar[slash, ""{name=S, below}]{\S} \dar[swap]{\phi} & q \dar{\psi} \\
 p' \rar[slash, ""{name=T, above},swap]{\S'} & q'
@@ -725,7 +733,7 @@ The action of a state as a map $t^{\otimes m} \to t^{\otimes n}$ is given by app
 Thus far, we have provided the data of the polynomial $t$ and the $[t^{\otimes m},t^{\otimes n}]$-coalgebra $\S_{m,n}$ needed to define an adaptive. We now define the identitor, compositor, and productor morphisms of coalgebras presented by the squares in \cref{enriched_monoidal}.
 \begin{itemize}
 	\item The identitors $\id_{t^{\otimes n}} \to \S_{n,n}$ send the unique state in the domain to the state $(0,\id_{\rr^n},0) \in S_{n,n}$. 
-	\item The compositors $\S_{\ell,m};\S_{m,n} \to \S_{\ell,n}$ send the pair $((L,f,p),(M,g,q))$ to 
+	\item The compositors $\S_{\ell,m}\then\S_{m,n} \to \S_{\ell,n}$ send the pair $((L,f,p),(M,g,q))$ to 
 $$\blp M+L,g(-,f(-,-)) : \rr^{M+L+\ell} \To{\id \times f} \rr^{M+m} \To{g} \rr^n, (q,p) \in \rr^{M+L} \brp.$$
 	\item The productors $\S_{m,n} \otimes \S_{m',n'} \to \S_{m+m',n+n'}$ send the pair $((M,f,p),(M',f',p'))$ to $(M+M',(f,f'),(p,p'))$
 \end{itemize}
