@@ -344,6 +344,7 @@ replacement=\&]{}\ar[r,slash, "{#1}"]\&{}\end{tikzcd}}
 \renewcommand{\S}{{\Cat{S}}}
 \newcommand{\blp}{\Big{(}}
 \newcommand{\brp}{\Big{)}}
+\newcommand{\idcoalg}[1]{{\{\id_{#1}\}}}
 
 \newcommand{\dnote}[1]{{\color{blue}David says:}~#1.\quad{\color{blue}$\lozenge$}}
 \newcommand{\bnote}[1]{{\color{red}Brandon says:}~#1.\quad{\color{red}$\lozenge$}}
@@ -414,25 +415,27 @@ In \cite{spivak2021learners}, the second author defined a category-enriched mult
 
 We first recall the definitions of the internal-hom polynomials $[p,q]$ and concretely describe the category of $[p,q]$-coalgebras, which forms the category of morphisms from $p$ to $q$ in the underlying bicategory of $\org$.
 
-\dnote{Introduce the notation $p\slashar q$ in this section?}
+%\dnote{Introduce the notation $p\slashar q$ in this section?}
 
 \begin{definition}\label{coalgebras}
 For polynomials 
-$$p = \sum_{I \in p(1)} y^{p[I]} \qquad \textrm{and} \qquad q = \sum_{J \in q(1)} y^{q[J]},$$
+$$p = \sum_{I \in p(1)} y^{p[I]} \qqand q = \sum_{J \in q(1)} y^{q[J]},$$
 their \emph{internal hom} with respect to the tensor product $\otimes$ is the polynomial
 \[
 [p,q] = \sum_{\phi : p \to q} y^{\sum\limits_{\;I \in p(1)} q[\phi_1(I)]}
 \]
 \end{definition}
 
-For intuition, a $[p,q]$-coalgebra is a machine that outputs maps $p\to q$ and inputs what flows out of $p$ and what flows in to $q$. More precisely, using \cite[Definition 2.10]{spivak2021learners} applied to $[p,q]$, we get the following definition of $[p,q]$-coalgebras. 
+For intuition, a $[p,q]$-coalgebra (denoted $p \slashar q$) is a machine that outputs maps $p\to q$ and inputs what flows out of $p$ and what flows in to $q$. More precisely, using \cite[Definition 2.10]{spivak2021learners} applied to $[p,q]$, we get the following definition of $[p,q]$-coalgebras. 
 
 \begin{definition}
-The category $[p,q]\coalg$ has as objects pairs $\S = (S,\beta)$ where $S$ is a set and $\beta : S \to [p,q] \tri S$, and morphisms from $\S$ to $\S'$ given by functions $f : S \to S'$ making the diagram below commute. 
-\[\begin{tikzcd}
+The category $[p,q]\coalg$ has as objects pairs $\S = (S,\beta)$ where $S$ is a set and $\beta : S \to [p,q] \tri S$, and morphisms from $\S$ to $\S'$ given by functions $f : S \to S'$ making \eqref{eqn.coalg_map} commute. 
+\begin{equation}\label{eqn.coalg_map}
+\begin{tikzcd}
 S \rar{\beta} \dar[swap]{f} & {[p,q]} \tri S \dar{{[p,q]} \tri f} \\
 S' \rar[swap]{\beta'} & {[p,q]} \tri S'
-\end{tikzcd}\]
+\end{tikzcd}
+\end{equation}
 \end{definition}
 
 Unwinding this definition, we get that $\beta$ is determined by a function 
@@ -444,7 +447,7 @@ For each $s \in S$, called a \emph{state}, we call $\beta_0(s)$ the \emph{action
 When, for each $s \in S$, the update $\beta_s$ is the constant function sending everything to $s$, we say the coalgebra $\S$ is \emph{static}, as it remains constantly at $s$ regardless of the output $I \in p(1)$ and input $j\in q[\beta_0(s)_1(I)]$.
 
 \begin{example}\label{ex.single_state}
-A special case of a static $[p,q]$-coalgebra is given by a map $\phi \in \poly(p,q)$. For each such $\phi$, there is a coalgebra $\S_\phi$ with a singleton set of states, $\beta_0$ sending the point to $\phi$; it is by necessity static. 
+A special case of a static $[p,q]$-coalgebra is given by a map $\phi \in \poly(p,q)$. For each such $\phi$, there is a coalgebra $\{\phi\}$ with a singleton set of states, $\beta_0$ sending the point to $\phi$; it is by necessity static. 
 
 A coalgebra is static iff it is the coproduct of one-element coalgebras.
 \end{example}
@@ -452,8 +455,8 @@ A coalgebra is static iff it is the coproduct of one-element coalgebras.
 
 
 %--- Section ---%
-\section{Composition of coalgebras}
-\dnote{Let's call these something besides coalgebras; they're special coalgebras, a kind that is possible to "compose".}
+\section{Composition of morphism coalgebras}
+%\dnote{Let's call these something besides coalgebras; they're special coalgebras, a kind that is possible to "compose".}
 
 
 
@@ -465,7 +468,7 @@ The categories $[p,q]\coalg$ form the hom-categories in a bicategory $\org$, whi
 
 It is no accident that $\org$ denotes both this bicategory and the categorical operad in \cite[Definition 2.19]{spivak2021learners}, as both are derived from the monoidal double category $\org$ described in the following sections. For now, we merely present the horizontal identities and composites in this bicategory.
 
-The identity coalgebra in $[p,p]\coalg$ is given by the one-state coalgebra $\S_{\id_p}$, which we will also denote by $\id_p$ when its status as a coalgebra is clear from context. 
+The identity coalgebra in $[p,p]\coalg$ is given by the one-state coalgebra $\idcoalg{p}$. 
 
 Composites are defined as
 $$[p,q]\coalg \times [q,r]\coalg \to \blp[p,q] \otimes [q,r]\brp\coalg \to [p,r]\coalg,$$
@@ -511,18 +514,22 @@ and update described similarly componentwise. The tensor product of morphisms of
 
 Defining $\org$ as a monoidal bicategory is sufficient for most of the constructions of $\org$-enriched structures in the next chapter. However, using a double category structure to cast morphisms $\phi\colon p\to q$ in $\poly$ as one-state coalgebras $\S_\phi\in[p,q]\coalg$ (see \cref{ex.single_state}) facilitates our eventual definition of adaptives, in particular the maps between them. 
 
-Specifically, the definition of $\org$ as a monoidal bicategory extends to a monoidal (pseudo-)double category with coalgebras as horizontal morphisms, maps in $\poly$ as vertical morphisms, and squares as below given by maps of coalgebras from $\S_\psi\then\S$ to $\S'\then\S_\phi$. 
-\[\begin{tikzcd}
+Specifically, the definition of $\org$ as a monoidal bicategory extends to a monoidal (pseudo-)double category with coalgebras as horizontal morphisms, maps in $\poly$ as vertical morphisms, and squares as in \eqref{eqn.square} given by maps of coalgebras from $\{\psi\}\then\S$ to $\S'\then\{\phi\}$. 
+\begin{equation}\label{eqn.square}
+\begin{tikzcd}
 p \rar[slash, ""{name=S, below}]{\S} \dar[swap]{\phi} & q \dar{\psi} \\
 p' \rar[slash, ""{name=T, above},swap]{\S'} & q'
 \arrow[Rightarrow,shorten=5,from=S,to=T]
-\end{tikzcd}\]
+\end{tikzcd}
+\end{equation}
 
-As $\S_\phi$ and $\S_\psi$ have only one state and composition of coalgebras acts as the cartesian product on states, such a square amounts to a function $S \to S'$ making the diagram below commute.
-\[\begin{tikzcd}
+As $\{\phi\}$ and $\{\psi\}$ have only one state and composition of coalgebras acts as the cartesian product on states, such a square amounts to a function $S \to S'$ making \eqref{eqn.coalg_square} commute.
+\begin{equation}\label{eqn.coalg_square}
+\begin{tikzcd}
 S \rar{\beta} \dar[swap]{f} & {[p,q]} \tri S \rar{\psi_\ast} & {[p,q']} \tri S \dar{{[p,q']} \tri f} \\
 S' \rar[swap]{\beta'} & {[p',q']} \tri S' \rar{\phi^\ast} & {[p,q']} \tri S'
-\end{tikzcd}\]
+\end{tikzcd}
+\end{equation}
 
 Identities and composites for these squares are determined by the bicategory structure, as this double category is a restriction in the vertical direction of the double category of lax-commuting squares in a bicategory.\footnote{It should be noted however that the vertical arrows in $\org$ are regarded as polynomial maps rather than coalgebras, so that they compose strictly unitally and associatively.}
 
@@ -556,7 +563,7 @@ An $\org$-enriched category $A$ consists of
 	\item for each $a,b,c \in A_0$, a ``compositor'' square in $\org$ as in \eqref{eqn.tors} right:
 \begin{equation}\label{eqn.tors}
 \begin{tikzcd}
-p_a \dar[equals] \rar[slash, ""{name=S, below}]{\id_{p_a}} & p_a \dar[equals] \\
+p_a \dar[equals] \rar[slash, ""{name=S, below}]{\idcoalg{p_a}} & p_a \dar[equals] \\
 p_a \rar[slash, ""{name=T, above},swap]{\S_{a,a}} & p_a
 \arrow[Rightarrow,shorten=5,from=S,to=T]
 \end{tikzcd}\qquad\qquad\begin{tikzcd}
@@ -593,7 +600,7 @@ An $\org$-enriched multicategory $A$ consists of
 \end{itemize}
 \begin{equation}\label{eqn.multi_tors}
   \begin{tikzcd}[ampersand replacement=\&]
-  p_a \dar[equals] \rar[slash, ""{name=S, below}]{\id_{p_a}} \& p_a \dar[equals] \\
+  p_a \dar[equals] \rar[slash, ""{name=S, below}]{\idcoalg{p_a}} \& p_a \dar[equals] \\
   p_a \rar[slash, ""{name=T, above},swap]{\S_{a;a}} \& p_a
   \arrow[Rightarrow,shorten=5,from=S,to=T]
   \end{tikzcd}
@@ -609,20 +616,20 @@ such that these squares satisfy unit and associativity equations.%more on these?
 
 The sets $S_{a,b}$ form an underlying multicategory of $A$, with a description similar to that below \cref{def.org_enriched_cat}. 
 
-We will mostly be interested in what we call an $\org$-enriched operad, the case when $A$ has only one object. It consists simply of a polynomial $p$ and for each $n \in \nn$ a $[p^{\otimes n},p]$-coalgebra $S_n$ equipped with maps
+We will mostly be interested in what we call an $\org$-enriched operad on $p$, the case when $A$ has only one object which is assigned the polynomial $p$. It consists simply of a $[p^{\otimes n},p]$-coalgebra $S_n$ for each $n \in \nn$ equipped with maps
 \begin{equation}\label{eqn.org_operad}
-\id_p \to S_1
+\idcoalg{p} \to S_1
 \qqand
 \bigotimes_i S_{n_i} \to S_{\sum_i n_i}
 \end{equation}
-satisfying the usual equations. \dnote{should we perhaps denote $\id_p$ by $\{\id_p\}$ to emphasize it is a single-state thingy?}
+satisfying the usual equations. %\dnote{should we perhaps denote $\id_p$ by $\{\id_p\}$ to emphasize it is a single-state thingy?}
 
 \begin{example}\label{ex.collective}
-A \emph{collective} (as defined in \cite{niu2021collectives}) is a $\otimes$-monoid in $\poly$, meaning a polynomial $p$ equipped with a monoid structure on its positions $p(1)$ and co-unital co-associative ``distribution'' functions $p[I \cdot J] \to p[I] \times p[J]$ for each $I,J \in p(1)$. This can be viewed as an $\org$-enriched operad where $\S_n$ is given by $\S_{\cdot_n}$, the single-state coalgebra on the $n$-ary monoidal product $\cdot_n : p^{\otimes n} \to p$, and where the maps of coalgebras in \eqref{eqn.org_operad} are isomorphisms deduced from the equations for a monoid.
+A \emph{collective} (as defined in \cite{niu2021collectives}) is a $\otimes$-monoid in $\poly$, meaning a polynomial $p$ equipped with a monoid structure on its positions $p(1)$ and co-unital co-associative ``distribution'' functions $p[I \cdot J] \to p[I] \times p[J]$ for each $I,J \in p(1)$. This can be viewed as an $\org$-enriched operad where $\S_n$ is given by $\{\cdot_n\}$, the one-element coalgebra on the $n$-ary monoidal product $\cdot_n : p^{\otimes n} \to p$, and where the maps of coalgebras in \eqref{eqn.org_operad} are isomorphisms deduced from the equations for a monoid.
 \end{example}
 
 \begin{example}
-In \cref{ex.collective}, the coalgebras $\S_n$ are determined by a single map of polynomials, with no possible updates as there is only one state. This can be generalized to an intermediate notion between collectives and $\org$-enriched multicategories, where there are multiple states and maps but still no updates.
+In \cref{ex.collective}, the coalgebras $\S_n$ are determined by a single map of polynomials, with no possible updates as there is only one state. This can be generalized to an intermediate notion between collectives and $\org$-enriched multicategories, where the coalgebras are still static but may have multiple states.
 
 Given a multicategory $M$ and a multifunctor $F : M \to \poly$, there is an $\org$-enriched multicategory $A_F$ with 
 \begin{itemize}
@@ -630,13 +637,13 @@ Given a multicategory $M$ and a multifunctor $F : M \to \poly$, there is an $\or
 	\item for each $a \in \ob(M)$, the polynomial $p_a = F(a)$;
 	\item for each tuple $(a_1,...,a_n;b)$ in $\ob(M)$, $S_{a_1,...,a_n;b} = M(a_1,...,a_n;b)$;
 	\item the map $\beta_0 : M(a_1,...,a_n;b) \to \poly(p_{a_1} \otimes \cdots \otimes p_{a_n},p_b)$ is given by $F$; and 
-	\item which is static, in that for any state $s$ in $M(a_1,...,a_n;b)$, the update function $\beta_s$ is the constant function at $s$.
+	\item this coalgebra is static, in that for any state $s$ in $M(a_1,...,a_n;b)$, the update function $\beta_s$ is the constant function at $s$.
 	\qedhere
 \end{itemize}
 \end{example}
 
 \begin{example}
-Let $\S$ be any $p$-coalgebra for a polynomial $p$. There is an $\org$-enriched operad with the polynomial $p$, $\S_0 = \S$, $\S_1 = \S_{\id_p}$, and all other $\S_n=\varnothing$ assigned the empty coalgebra.
+Let $\S$ be any $p$-coalgebra for a polynomial $p$. There is an $\org$-enriched operad on $p$ with $\S_0 = \S$, $\S_1 = \idcoalg{p}$, and all other $\S_n=\varnothing$ assigned the empty coalgebra.
 \end{example}
 
 %something about wirings
@@ -663,7 +670,7 @@ An $\org$-enriched strict monoidal category $A$ consists of
 \end{itemize}
 \begin{equation}\label{eqn.adaptive_tor}
 \begin{tikzcd}
-p_a \dar[equals] \rar[slash, ""{name=S, below}]{\id_{p_a}} & p_a \dar[equals] \\
+p_a \dar[equals] \rar[slash, ""{name=S, below}]{\idcoalg{p_a}} & p_a \dar[equals] \\
 p_a \rar[slash, ""{name=T, above},swap]{\S_{a,a}} & p_a
 \arrow[Rightarrow,shorten=5,from=S,to=T]
 \end{tikzcd}
@@ -691,7 +698,8 @@ An \emph{adaptive} is an $\org$-enriched strict monoidal category with object mo
 
 Concretely, an adaptive consists of a polynomial $p$ (so that in the notation above $p_n := p^{\otimes n}$ for $n \in \nn$) along with a $[p^{\otimes m},p^{\otimes n}]$-coalgebra $S_{m,n}$ for each $m,n \in \nn$, equipped with the maps of coalgebras as in \eqref{eqn.adaptive_tor}. We denote such an adaptive ``on p'' as $(p,\S)$, where $\S$ now encodes all of the coalgebras $\S_{m,n}$ that constitute the adaptive and the structure maps are implicit.
 
-\dnote{in general, please use labeled equations and references more :)}
+%\dnote{in general, please use labeled equations and references more :)}
+
 %more on what those maps mean
 
 %something about wirings
@@ -699,12 +707,15 @@ Concretely, an adaptive consists of a polynomial $p$ (so that in the notation ab
 Morphisms of adaptives are special cases of the general notion of morphisms for enriched monoidal categories as defined in \cite{shapiro2022enrichment}. %cite specifically
 
 \begin{definition}
-A \emph{morphism} of adaptives from $(p,\S)$ to $(p',\S')$ is given by a map of polynomials $\phi : p \to p'$ and, for each $m,n \in \nn$, ``commutor'' squares as below \dnote{like here: replace "below" by a reference to a labeled equation} in $\org$ which commute with the identitor, compositor, and productor squares.
-\[\begin{tikzcd}
+A \emph{morphism} of adaptives from $(p,\S)$ to $(p',\S')$ is given by a map of polynomials $\phi : p \to p'$ and, for each $m,n \in \nn$, ``commutor'' squares as in \eqref{eqn.adaptive_map} %\dnote{like here: replace "below" by a reference to a labeled equation} 
+in $\org$ which commute with the identitor, compositor, and productor squares.
+\begin{equation}\label{eqn.adaptive_map}
+\begin{tikzcd}
 p^{\otimes m} \rar[slash, ""{name=S, below}]{\S_{m,n}} \dar[swap]{\phi^{\otimes m}} & p^{\otimes n} \dar{\phi^{\otimes n}} \\
 p'^{\otimes m} \rar[slash, ""{name=T, above}, swap]{\S'_{m,n}} & p'^{\otimes n}
 \arrow[Rightarrow,shorten=5,from=S,to=T]
-\end{tikzcd}\]
+\end{tikzcd}
+\end{equation}
 \end{definition}
 
 This definition of morphism is the direct benefit for the theory of adaptives of treating $\org$ as a monoidal double category rather than as a monoidal bicategory (as done in \cite{spivak2021learners}). Otherwise morphisms could either only be easily defined between adaptives on the same polynomial, which is rather restrictive, or take the form of a $[p,p']$-coalgebra, which we believe to be too general to be of much use.
@@ -715,8 +726,10 @@ This definition of morphism is the direct benefit for the theory of adaptives of
 For a fixed polynomial $p$, there is a terminal adaptive $\S^{p!}$ on $p$ where $\S^{p!}_{m,n}$ is the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra. 
 
 Its states are (not necessarily finite) $[p^{\otimes m},p^{\otimes n}]$-trees: trees inductively defined by a root labeled with a polynomial map $\phi : p^{\otimes m} \to p^{\otimes n}$ and for each pair 
-$$\blp(I_1,...,I_m) \in p(1)^m, (i_1,...,i_n) \in p[\phi(I_1,...,I_m)_1] \times \cdots \times p[\phi(I_1,...,I_m)_n]\brp$$
-an edge out of the root to another $[p^{\otimes m},p^{\otimes n}]$-tree. The action of such a tree is simply the root map $\phi$, and the update sends a pair as above \dnote{label} to the new tree at the end of the corresponding edge. 
+\begin{equation}\label{eqn.pmn_directions}
+\blp(I_1,...,I_m) \in p(1)^m, (i_1,...,i_n) \in p[\phi(I_1,...,I_m)_1] \times \cdots \times p[\phi(I_1,...,I_m)_n]\brp
+\end{equation}
+an edge out of the root to another $[p^{\otimes m},p^{\otimes n}]$-tree. The action of such a tree is simply the root map $\phi$, and the update sends a pair as in \eqref{eqn.pmn_directions} to the new tree at the end of the corresponding edge. 
 
 The idea is that the state-set of the terminal adaptive encodes all possible trajectories along different actions, and this coalgebra is terminal because from any other coalgebra there is a map to $\S^{p!}_{m,n}$ sending each state to the tree whose root is labeled by the action of the state and whose edges from the root go to the trees for each of the state's possible updates. This map is (uniquely) a coalgebra map because, in order to preserve actions and updates, each state must be sent to the tree rooted by its action and branching according to its updates.
 
@@ -762,13 +775,14 @@ The action of a state as a map $t^{\otimes m} \to t^{\otimes n}$ is given by app
 
 Thus far, we have provided the data of the polynomial $t$ and the $[t^{\otimes m},t^{\otimes n}]$-coalgebra $\S_{m,n}$ needed to define an adaptive. We now define the identitor, compositor, and productor morphisms of coalgebras presented by the squares in \cref{enriched_monoidal}.
 \begin{itemize}
-	\item The identitors $\id_{t^{\otimes n}} \to \S_{n,n}$ send the unique state in the domain to the state $(0,\id_{\rr^n},0) \in S_{n,n}$. 
+	\item The identitors $\idcoalg{t^{\otimes n}} \to \S_{n,n}$ send the unique state in the domain to the state $(0,\id_{\rr^n},0) \in S_{n,n}$. 
 	\item The compositors $\S_{\ell,m}\then\S_{m,n} \to \S_{\ell,n}$ send the pair $((L,f,p),(M,g,q))$ to 
 $$\blp M+L,g(-,f(-,-)) : \rr^{M+L+\ell} \To{\id \times f} \rr^{M+m} \To{g} \rr^n, (q,p) \in \rr^{M+L} \brp.$$
 	\item The productors $\S_{m,n} \otimes \S_{m',n'} \to \S_{m+m',n+n'}$ send the pair $((M,f,p),(M',f',p'))$ to $(M+M',(f,f'),(p,p'))$
 \end{itemize}
 
-These structure maps ensure that whenever two gradient descenders are combined in series or parallel, the resulting composite descender retains the parameter spaces of both. Likewise when the input or output of a descender is wired past some other descender in the network as below, it does not contribute any new parameters and its effect is merely to preserve its input/output until plugged into a descender elsewhere in the network.
+These structure maps ensure that whenever two gradient descenders are combined in series or parallel, the resulting composite descender retains the parameter spaces of both. Likewise when the input or output of a descender is wired past some other descender in the network as below, %ref
+it does not contribute any new parameters and its effect is merely to preserve its input/output until plugged into a descender elsewhere in the network.
 
 %figure
 
@@ -799,8 +813,9 @@ We now present the equations that must be satisfied by the identitors, composito
 The equations between the structure maps in an adaptive are as follows:
 \begin{itemize}
 	\item The identitor interchange law
-\[\hspace{-1.9cm}\begin{tikzcd}[column sep={150,between origins}]
-p^{\otimes n} \otimes p^{\otimes n'} \dar[equals] \rar[slash, ""{name=S, below}]{\id_{p^{\otimes n}} \otimes \id_{p^{\otimes n'}}} & 
+\begin{equation}\label{eqn.id_inter}
+\hspace{-1.9cm}\begin{tikzcd}[column sep={150,between origins}]
+p^{\otimes n} \otimes p^{\otimes n'} \dar[equals] \rar[slash, ""{name=S, below}]{\idcoalg{p^{\otimes n}} \otimes \idcoalg{p^{\otimes n'}}} & 
 p^{\otimes n} \otimes p^{\otimes n'} \dar[equals] \\
 p^{\otimes n} \otimes p^{\otimes n'} \dar[equals,swap]{\wr} \ar[slash, ""{name=T, above}, ""{name=U, below}]{r}[description]{\S_{n,n} \otimes \S_{n',n'}} & 
 p^{\otimes n} \otimes p^{\otimes n'} \dar[equals,swap]{\wr} \\
@@ -809,17 +824,19 @@ p^{\otimes (n+n')}
 \arrow[Rightarrow,shorten=5,from=S,to=T]
 \arrow[Rightarrow,shorten=5,from=U,to=V]
 \end{tikzcd}\quad = \quad\begin{tikzcd}[column sep={150,between origins}]
-p^{\otimes n} \otimes p^{\otimes n'} \dar[equals,swap]{\wr} \rar[slash, ""{name=S, below}]{\id_{p^{\otimes n}} \otimes \id_{p^{\otimes n'}}} & 
+p^{\otimes n} \otimes p^{\otimes n'} \dar[equals,swap]{\wr} \rar[slash, ""{name=S, below}]{\idcoalg{p^{\otimes n}} \otimes \idcoalg{p^{\otimes n'}}} & 
 p^{\otimes n} \otimes p^{\otimes n'} \dar[equals,swap]{\wr} \\
-p^{\otimes (n+n')} \dar[equals] \ar[slash, ""{name=T, above}, ""{name=U, below}]{r}[description]{\id_{p^{\otimes (n+n')}}} & 
+p^{\otimes (n+n')} \dar[equals] \ar[slash, ""{name=T, above}, ""{name=U, below}]{r}[description]{\idcoalg{p^{\otimes (n+n')}}} & 
 p^{\otimes (n+n')} \dar[equals] \\
 p^{\otimes (n+n')} \rar[slash, ""{name=V, above},swap]{\S_{n+n',n+n'}} & 
 p^{\otimes (n+n')}
 \arrow[equals,shorten=5,from=S,to=T,swap,"\wr"]
 \arrow[Rightarrow,shorten=5,from=U,to=V]
-\end{tikzcd}\]
+\end{tikzcd}
+\end{equation}
 	\item The compositor interchange law
-\[\hspace{-4.3cm}\begin{tikzcd}[column sep={110,between origins}]
+\begin{equation}\label{eqn.comp_inter}
+\hspace{-4.3cm}\begin{tikzcd}[column sep={110,between origins}]
 p^{\otimes \ell} \otimes p^{\otimes \ell'} \dar[equals,swap]{\wr} \rar[slash, ""{name=S, below}]{\S_{\ell,m} \otimes \S_{\ell',m'}} & 
 p^{\otimes m} \otimes p^{\otimes m'} \dar[equals,swap]{\wr} \rar[slash, ""{name=U, below}]{\S_{m,n} \otimes \S_{m',n'}} & 
 p^{\otimes n} \otimes p^{\otimes n'} \dar[equals,swap]{\wr} \\
@@ -841,9 +858,11 @@ p^{\otimes (\ell + \ell')} \ar[slash, ""{name=U, above}]{rr}[swap]{\S_{\ell+\ell
 p^{\otimes (n + n')}
 \arrow[Rightarrow,shorten=5,from=R,to=S]
 \arrow[Rightarrow,shorten=5,from=T,to=U]
-\end{tikzcd}\]
+\end{tikzcd}
+\end{equation}
 	\item The compositor associativity law
-\[\hspace{-1.1cm}\begin{tikzcd}%[column sep={60,between origins}]
+\begin{equation}\label{eqn.comp_assoc}
+\hspace{-1.1cm}\begin{tikzcd}%[column sep={60,between origins}]
 p^{\otimes k} \dar[equals] \rar[slash]{\S_{k,\ell}} \ar[phantom,""{name=S, below}]{rr} & 
 p^{\otimes \ell} \rar[slash]{\S_{\ell,m}} & 
 p^{\otimes m} \dar[equals] \rar[slash, ""{name=U, below}]{\S_{m,n}} & 
@@ -869,10 +888,12 @@ p^{\otimes n}
 \arrow[equals,shorten=5,from=S,to=T]
 \arrow[Rightarrow,shorten=5,from=U,to=V]
 \arrow[Rightarrow,shorten=5,from=W,to=X]
-\end{tikzcd}\]
+\end{tikzcd}
+\end{equation}
 	\item The compositor unit laws
-\[\hspace{-1.5cm}\begin{tikzcd}
-p^{\otimes m} \dar[equals] \rar[slash,""{name=S, below}]{\id_{p^{\otimes m}}} & p^{\otimes m} \dar[equals] \rar[slash,""{name=U, below}]{\S_{m,n}} & p^{\otimes n} \dar[equals] \\
+\begin{equation}\label{eqn.comp_unit}
+\hspace{-1.5cm}\begin{tikzcd}
+p^{\otimes m} \dar[equals] \rar[slash,""{name=S, below}]{\idcoalg{p^{\otimes m}}} & p^{\otimes m} \dar[equals] \rar[slash,""{name=U, below}]{\S_{m,n}} & p^{\otimes n} \dar[equals] \\
 p^{\otimes m} \dar[equals] \rar[slash,""{name=T, above},swap]{\S_{m,m}} \ar[phantom,""{name=W, below}]{rr} & p^{\otimes m} \rar[slash,""{name=V, above},swap]{\S_{m,n}} & p^{\otimes n} \dar[equals] \\
 p^{\otimes m} \ar[slash, ""{name=X, above}]{rr}[swap]{\S_{m,n}} & & p^{\otimes n}
 \arrow[Rightarrow,shorten=5,from=S,to=T]
@@ -883,15 +904,17 @@ p^{\otimes m} \dar[equals] \rar[slash,""{name=S, below}]{\S_{m,n}} & p^{\otimes 
 p^{\otimes m} \rar[slash, ""{name=T, above},swap]{\S_{m,n}} & p^{\otimes n}
 \arrow[equals,shorten=5,from=S,to=T]
 \end{tikzcd}\quad = \quad\begin{tikzcd}
-p^{\otimes m} \dar[equals] \rar[slash,""{name=S, below}]{\S_{m,n}} & p^{\otimes n} \dar[equals] \rar[slash,""{name=U, below}]{\id_{p^{\otimes m}}} & p^{\otimes n} \dar[equals] \\
+p^{\otimes m} \dar[equals] \rar[slash,""{name=S, below}]{\S_{m,n}} & p^{\otimes n} \dar[equals] \rar[slash,""{name=U, below}]{\idcoalg{p^{\otimes m}}} & p^{\otimes n} \dar[equals] \\
 p^{\otimes m} \dar[equals] \rar[slash,""{name=T, above},swap]{\S_{m,n}} \ar[phantom,""{name=W, below}]{rr} & p^{\otimes n} \rar[slash,""{name=V, above},swap]{\S_{n,n}} & p^{\otimes n} \dar[equals] \\
 p^{\otimes m} \ar[slash, ""{name=X, above}]{rr}[swap]{\S_{m,n}} & & p^{\otimes n}
 \arrow[equals,shorten=5,from=S,to=T]
 \arrow[Rightarrow,shorten=5,from=U,to=V]
 \arrow[Rightarrow,shorten=5,from=W,to=X]
-\end{tikzcd}\]
+\end{tikzcd}
+\end{equation}
 	\item The productor associativity law
-\[\hspace{-4.1cm}\begin{tikzcd}[column sep={180,between origins}]%work on tilted arrow
+\begin{equation}\label{eqn.prod_assoc}
+\hspace{-4.1cm}\begin{tikzcd}[column sep={180,between origins}]%work on tilted arrow
 p^{\otimes m} \otimes p^{\otimes m'} \otimes p^{\otimes m''}  \dar[equals,swap]{\wr} \rar[slash,""{name=S,below}]{\S_{m,n} \otimes \S_{m',n'} \otimes \S_{m'',n''}} & p^{\otimes n} \otimes p^{\otimes n'} \otimes p^{\otimes n''} \dar[equals,swap]{\wr} \\
 p^{\otimes (m + m')} \otimes p^{\otimes m''} \dar[equals,swap]{\wr} \ar[slash,""{name=T,above},""{name=U,below}]{r}[description]{\S_{m+m',n+n'} \otimes \S_{m'',n''}} & p^{\otimes (n + n')} \otimes p^{\otimes n''} \dar[equals,swap]{\wr} \\
 p^{\otimes (m + m' + m'')} \rar[slash, ""{name=V, above},swap]{\S_{m+m'+m'',n+n'+n''}} & p^{\otimes (n + n' + n'')}
@@ -903,11 +926,13 @@ p^{\otimes m} \otimes p^{\otimes (m+m'')} \dar[equals,swap]{\wr} \ar[slash,""{na
 p^{\otimes (m + m' + m'')} \rar[slash, ""{name=V, above},swap]{\S_{m+m'+m'',n+n'+n''}} & p^{\otimes (n + n' + n'')}
 \arrow[Rightarrow,shorten=5,from=S,to=T]
 \arrow[Rightarrow,shorten=5,from=U,to=V]
-\end{tikzcd}\]
+\end{tikzcd}
+\end{equation}
 	\item The productor unit laws
-\[\hspace{-3.0cm}\begin{tikzcd}[column sep={130,between origins}]
+\begin{equation}\label{eqn.prod_unit}
+\hspace{-3.0cm}\begin{tikzcd}[column sep={130,between origins}]
 p^{\otimes m} \dar[equals,swap]{\wr} \rar[slash,""{name=Q, below}]{\S_{m,n}} & p^{\otimes n} \dar[equals,swap]{\wr} \\
-p^{\otimes 0} \otimes p^{\otimes m} \dar[equals] \ar[slash, ""{name=S, below}, ""{name=R, above}]{r}[description]{\id_{p^{\otimes 0}} \otimes \S_{m,n}} & 
+p^{\otimes 0} \otimes p^{\otimes m} \dar[equals] \ar[slash, ""{name=S, below}, ""{name=R, above}]{r}[description]{\idcoalg{p^{\otimes 0}} \otimes \S_{m,n}} & 
 p^{\otimes 0} \otimes p^{\otimes n} \dar[equals] \\
 p^{\otimes 0} \otimes p^{\otimes m} \dar[equals,swap]{\wr} \ar[slash, ""{name=T, above}, ""{name=U, below}]{r}[description]{\S_{0,0} \otimes \S_{m,n}} & 
 p^{\otimes 0} \otimes p^{\otimes n} \dar[equals,swap]{\wr} \\
@@ -921,7 +946,7 @@ p^{\otimes m} \rar[slash, ""{name=T, above},swap]{\S_{m,n}} & p^{\otimes n}
 \arrow[equals,shorten=5,from=S,to=T]
 \end{tikzcd}\quad = \quad\begin{tikzcd}[column sep={130,between origins}]
 p^{\otimes m} \dar[equals,swap]{\wr} \rar[slash,""{name=Q, below}]{\S_{m,n}} & p^{\otimes n} \dar[equals,swap]{\wr} \\
-p^{\otimes m} \otimes p^{\otimes 0} \dar[equals] \ar[slash, ""{name=S, below}, ""{name=R, above}]{r}[description]{\S_{m,n} \otimes \id_{p^{\otimes 0}}} & 
+p^{\otimes m} \otimes p^{\otimes 0} \dar[equals] \ar[slash, ""{name=S, below}, ""{name=R, above}]{r}[description]{\S_{m,n} \otimes \idcoalg{p^{\otimes 0}}} & 
 p^{\otimes n} \otimes p^{\otimes 0} \dar[equals] \\
 p^{\otimes m} \otimes p^{\otimes 0} \dar[equals,swap]{\wr} \ar[slash, ""{name=T, above}, ""{name=U, below}]{r}[description]{\S_{m,n} \otimes \S_{0,0}} & 
 p^{\otimes n} \otimes p^{\otimes 0} \dar[equals,swap]{\wr} \\
@@ -929,18 +954,19 @@ p^{\otimes m} \rar[slash, ""{name=V, above},swap]{\S_{m,n}} & p^{\otimes n}
 \arrow[equals,shorten=5,from=Q,to=R,swap,"\wr"]
 \arrow[Rightarrow,shorten=5,from=S,to=T]
 \arrow[Rightarrow,shorten=5,from=U,to=V]
-\end{tikzcd}\]
+\end{tikzcd}
+\end{equation}
 \end{itemize}
 \end{definition}
 
-We now proceed to prove that the coalgebras and structure maps defined above for gradient descent and gravitational motion form adaptives. In each case, it suffices to show that the structure maps on states preserve coalgebra structure, and that the above equations are satisfied.
+We now proceed to prove that the coalgebras and structure maps defined above for gradient descent and gravitational motion form adaptives. In each case, it suffices to show that the structure maps on states preserve coalgebra structure, and that equations \eqref{eqn.id_inter} through \eqref{eqn.prod_unit} are satisfied.
 
 \begin{proof}[Proof of \cref{gradientadaptive}]
 The unit and associativity equations follow immediately from associativity and unitality of addition, cartesian products, and function composition. The interchange equations follow from the preservation of 0 under addition and identity functions under cartesian products, the analogous interchange property of function composition and cartesian products of functions, and the fact that the compositors and productors act the same way on the parameters and their dimension. 
 
 It then remains only to show that the identitors, compositors, and productors are morphisms of coalgebras. This is immediate for the productors, as each component of the action and update functions respects the cartesian products of functions and parameters that define them, so we proceed only for the identitors and compositors.
 
-For the identitors, the state $(0,\id_{\rr^n},0)$ acts as the identity function on $\rr^n$ and on directions by the transpose of its derivative, which is also the identity. The updates in the coalgebras $\S_{n,n}$ only modify the parameter $p$, so as the parameter here is 0-dimensional this state is never changed by the update function, as is the case in the coalgebra $\id_{t^{\otimes n}}$. Therefore this function is a map of coalgebras.
+For the identitors, the state $(0,\id_{\rr^n},0)$ acts as the identity function on $\rr^n$ and on directions by the transpose of its derivative, which is also the identity. The updates in the coalgebras $\S_{n,n}$ only modify the parameter $p$, so as the parameter here is 0-dimensional this state is never changed by the update function, as is the case in the coalgebra $\idcoalg{t^{\otimes n}}$. Therefore this function is a map of coalgebras.
 
 The compositors preserve the component of the action on positions as, for states 
 $$(L \in \nn, f : \rr^{L+\ell}, p \in \rr^L) \quad \textrm{and} \quad (M \in \nn, g : \rr^{M+m}, q \in \rr^M),$$ 
