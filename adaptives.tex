@@ -745,17 +745,18 @@ This is the terminal adaptive on $p$ as for any other adaptive on $p$ there is a
 \chapter{Adaptives in Nature}
 
 
-Our main results are that adaptives describe phenomena in the natural world and human technologies. In this paper, we focus on deep learning and gravity.
+Our main results are that adaptives describe phenomena in the natural world and human technologies. In this paper, we focus on deep learning and a simplified conception of objects moving under the force of gravity.
 
 
 %------- Section -------%
 \section{The Gradient Descent Adaptive}
 
-Deep learning uses the algorithm of gradient descent to optimize a choice of function based on external feedback on its output. This naturally fits into the paradigm of adaptives, as functions $\rr^m \to \rr^n$ can form the states of a polynomial coalgebra, with the feedback providing the information needed to update the choice of function. These functions can be composed and juxtaposed to provide compositions of networks of such gradient descenders in a way that respects the updates.
+Deep learning uses the algorithm of gradient descent to optimize a choice of function, based on external feedback on its output. This naturally fits into the paradigm of adaptives, as functions $\rr^m \to \rr^n$ can form the states of a polynomial coalgebra, with the feedback providing the information needed to update the choice of function. These functions can be composed and juxtaposed to provide compositions of networks of such gradient descenders in a way that respects the updates.
 
 \begin{definition}
 For the rest of this section, let 
-$$S_{m,n} = \{(M \in \nn, f : \rr^{M+m}, p \in \rr^M) | f \textrm{ is differentiable}\}.$$
+\[S_{m,n} = \left\{(M \in \nn, f : \rr^{M+m}, p \in \rr^M) | f \textrm{ is differentiable}\right\}.
+\]
 \end{definition}
 
 The idea is that these states are the possible parameters among which a gradient descender is meant to find the optimal choice, while $f$ dictates how the parameter affects the resulting function $f(p,-)$. In the dynamics of these states described below, only the value of the parameter $p$ is updated while the dimension $M$ of the parameter space and the parameterized function $f$ remain fixed, though network composition of descenders will involve combining these data in nontrivial ways.\footnote{Other versions of a gradient descent adaptive might have the states be simply some space of functions from $\rr^m$ to $\rr^n$, but this type of model is more difficult to describe in a computation-friendly manner as the space of functions that can arise from network compositions of the types of functions used in common practice is not finite dimensional.}%more on this?
