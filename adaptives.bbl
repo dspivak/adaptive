@@ -19,62 +19,6 @@
 
 \refsection{0}
   \datalist[entry]{anyt/global//global/global}
-    \entry{baez1997quantum}{article}{}
-      \name{author}{2}{}{%
-        {{hash=77c130b1ed4688a565b29481eee08ae3}{%
-           family={Baez},
-           familyi={B\bibinitperiod},
-           given={John\bibnamedelima C.},
-           giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
-        {{hash=9b4b17234c0b36cca484e60803290135}{%
-           family={Dolan},
-           familyi={D\bibinitperiod},
-           given={James},
-           giveni={J\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {arXiv}%
-      }
-      \strng{namehash}{0e216f5c63a9e417305f6998cd1c996d}
-      \strng{fullhash}{0e216f5c63a9e417305f6998cd1c996d}
-      \strng{bibnamehash}{0e216f5c63a9e417305f6998cd1c996d}
-      \strng{authorbibnamehash}{0e216f5c63a9e417305f6998cd1c996d}
-      \strng{authornamehash}{0e216f5c63a9e417305f6998cd1c996d}
-      \strng{authorfullhash}{0e216f5c63a9e417305f6998cd1c996d}
-      \field{labelalpha}{BD97}
-      \field{sortinit}{B}
-      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Higher-Dimensional Algebra III: n-Categories and the Algebra of Opetopes}
-      \field{year}{1997}
-      \keyw{Quantum Algebra (math.QA),FOS: Mathematics,FOS: Mathematics}
-    \endentry
-    \entry{laughlin2005different}{book}{}
-      \name{author}{1}{}{%
-        {{hash=bbd903deec1f9de87f532c1db03d4058}{%
-           family={Laughlin},
-           familyi={L\bibinitperiod},
-           given={Robert\bibnamedelima B},
-           giveni={R\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Basic Books (AZ)}%
-      }
-      \strng{namehash}{bbd903deec1f9de87f532c1db03d4058}
-      \strng{fullhash}{bbd903deec1f9de87f532c1db03d4058}
-      \strng{bibnamehash}{bbd903deec1f9de87f532c1db03d4058}
-      \strng{authorbibnamehash}{bbd903deec1f9de87f532c1db03d4058}
-      \strng{authornamehash}{bbd903deec1f9de87f532c1db03d4058}
-      \strng{authorfullhash}{bbd903deec1f9de87f532c1db03d4058}
-      \field{labelalpha}{Lau05}
-      \field{sortinit}{L}
-      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{A different universe: Reinventing physics from the bottom down}
-      \field{year}{2005}
-    \endentry
     \entry{leinster1999generalized}{misc}{}
       \name{author}{1}{}{%
         {{hash=82417a4f76230e108804a8ce467246af}{%
@@ -193,7 +137,7 @@
       \field{labeltitlesource}{title}
       \field{booktitle}{Proceedings of the 4th Annual Conference on Applied Category Theory}
       \field{series}{ACT}
-      \field{title}{spivak2021learners' languages}
+      \field{title}{Learners' languages}
       \field{year}{2021}
     \endentry
   \enddatalist

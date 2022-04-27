@@ -345,6 +345,8 @@ replacement=\&]{}\ar[r,slash, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\blp}{\Big{(}}
 \newcommand{\brp}{\Big{)}}
 \newcommand{\idcoalg}[1]{{\{\id_{#1}\}}}
+\newcommand{\rrp}{\rr_{>0}}
+\newcommand{\rrnn}{\rr_{\ge 0}}
 
 \newcommand{\dnote}[1]{{\color{blue}David says:}~#1.\quad{\color{blue}$\lozenge$}}
 \newcommand{\bnote}[1]{{\color{red}Brandon says:}~#1.\quad{\color{red}$\lozenge$}}
@@ -766,8 +768,8 @@ Let $t = \sum_{x \in \rr} y^{T_x \rr}$.  Of course for all practical purposes $T
 The $[t^{\otimes m},t^{\otimes n}]$-coalgebra structure on $S_{m,n}$ is given by 
 \begin{itemize}
 	\item $\beta_0(M,f,p)_1 : \rr^m \to \rr^n$ given by $f(p,-)$
-	\item For $x \in \rr^m$, $\beta_0(M,f,p)_x : T_{f(p,x)} \to T_x$ sends $y$ to $\pi_m Df^\top y$
-	\item The update function $\beta_{M,f,p}$ sends $x \in \rr^m$ and $y \in T_{f(p,x)}$ to $(M,f,p+\epsilon \pi_M Df^\top y)$ for some fixed value of $\epsilon$
+	\item For $x \in \rr^m$, $\beta_0(M,f,p)_x : T_{f(p,x)} \rr^n \to T_x \rr^m$ sends $y$ to $\pi_m Df^\top \cdot y$
+	\item The update function $\beta_{M,f,p}$ sends $x \in \rr^m$ and $y \in T_{f(p,x)}$ to $(M,f,p+\epsilon \pi_M Df^\top \cdot y)$ for some fixed value of $\epsilon$
 \end{itemize}
 \end{definition}
 
@@ -798,6 +800,61 @@ This is proven in \cref{coherenceproofs}.
 %------- Section -------%
 \section{The Gravity Adaptive}
 
+
+In pursuit of the idea of using adaptives to describe the dynamics of the world, we describe an adaptive that models how bodies move through space under the force of gravity. For simplicity, however, these bodies will not be prevented from overlapping so as to avoid encoding the complicated dynamics of potential collisions. This adaptive will be modeled as an $\org$-enriched operad. %sync up new terminology
+
+\begin{definition}
+For the rest of this section, let $C$ denote the unit cube in $\rr^3$ and
+$$S_1 = \{(s : C \to C, v \in T_0 C) | \textrm{ s is a rectilinear embedding}\}.$$ 
+An embedding $s : C \to C$ can be interpreted as a rectangular prism inside the unit cube with faces parallel to those of the outer cube. Let $S_n = S_1^n$, whose elements are made up of $n$ such prisms $\vec s = (s_1,...,s_n)$ and velocities $\vec v = (v_1,...,v_n)$.
+\end{definition}
+
+These prisms inside the unit cube are meant to describe the positions and sizes of $n$ bodies moving through space. In physical models they typically wouldn't be allowed to overlap, but for simplicity we will in effect only consider their centers of mass when computing gravitational effects. %something about boundaries. Is there an easy way out of that?
+
+Consider the polynomial 
+$$g = \sum_{m \in \rrp \\ c \in C} y^{t \in \rrnn},$$
+whose positions we interpret as the mass $m$ of a body and its center of mass $c$, and whose directions we interpret as lengths of time $t$. We now describe an adaptive on $g$ with state sets $S_n$, where the action of a state computes its center of mass and the update modifies the positions and velocities of the bodies according to their current velocities and the force of gravity.
+
+\begin{definition}
+For $m_1,...,m_n \in \rrp$ and $c_1,...,c_n \in C$, representing $n$ positions in the unit cube $C$ and their masses, the vector pointing from the $i$th body to the center of mass of the others is given by
+$$\Delta c_i = \frac{m_1c_1 + \cdots + \hat{m_ic_i} + \cdots m_nc_n}{m_1 + \cdots + \hat{m_i} + \cdots + m_n} - c_i.$$
+The gravitational pull of the $i$th body in the system is given by
+$$G_i(\vec m,\vec c) = \frac{m_i(m_1 + \cdots + \hat m_i + \cdots m_n)G}{|\Delta c_i|^3}\Delta c_i,$$
+where $G$ is the gravitational constant. We will write $\vec G(\vec m, \vec c)$ for the tuple of these $n$ different vectors.
+\end{definition}
+
+\begin{definition}
+The $[g^{\otimes n},g]$-coalgebra structure on $S_n$ is given by 
+\begin{itemize}
+	\item $\beta_0(\vec s,\vec v)_1 : \rrp^n C^n \to C$ sends $(m_1,...,m_n,c_1,...,c_n)$ to 
+$$c_{\vec s,\vec m} = \frac{m_1s_1(c_1) + \cdots + m_ns_n(c_n)}{m_1 + \cdots + m_n}$$
+	\item $\beta_0(\vec s,\vec v)_{\vec m,\vec c} : \rrnn \to \rrnn^n$ sends $t$ to $(t,...,t)$\footnote{This simply says that when the entire system is observed for a length of time $t$, so is each component. Perhaps this could be varied to incorporate some version of relativity.} 
+	\item The update function $\beta_{\vec s,\vec v}$ sends $(\vec m \in \rrp^n,\vec c \in C^n)$ and $t \in \rrnn$ to 
+$$\blp \vec s + t\vec v + \frac{t^2}{2} \vec G(\vec m, \vec s(\vec c)),\vec v + t\vec G(\vec m, \vec s(\vec c)) \brp$$
+\end{itemize}
+\end{definition}
+
+This coalgebra structure is designed so that $n$ moving bodies are agglomerated into a single body by juxtaposition, with the center of mass of the new body computed as the center of mass of those that constitute it. Then for a given length of time, the positions and velocities of the original bodies are updated appropriately according to their original velocities and the force of gravity. The operadic composition of these states describe how to rescale these velocities according to the perspective of fitting their outer cube frame into a prism inside yet another outer cube.
+
+\begin{itemize}
+	\item The identitor state in $S_1$ is given by $(\id_C,0)$
+	\item The operadic compositor sends 
+$$(\vec s,\vec v) \in S_n, (\vec s^1,\vec v^1) \in S_{\ell_1},...,(\vec s^n,\vec v^n) \in S_{\ell_n}$$
+to
+$$\hspace{-1cm}\blp s_1 \circ s^1_1,...,s_1 \circ s^1_{\ell_1},s_2 \circ s^2_1,...,s_n \circ s^n_{\ell_n},v_1 + Ds_1 \cdot v^1_1,...,v_1 + Ds_1 \cdot v^1_{\ell_1},v_2 + Ds_2 \cdot v^2_1,...,v_n + Ds_n \cdot v^n_{\ell_n} \brp$$
+\end{itemize}
+
+Intuitively, the identitor describes a body filling the entire cube and not moving, while the operadic compositor describes plugging in $n$ systems into the prisms of another system. When doing so, the resulting prisms are precisely the composite embeddings of a prism of an inner system into the cube that is then again embedded into the cube as a prism in the outer system. The resulting velocities combine the velocity of the inner body in the cube of the inner system, scaled according to how that cube embeds into the cube of the outer system, then added to the velocity of the entire prism in the outer system. In other words, it is the velocity of a body moving inside a box which is itself moving.
+
+\begin{theorem}\label{gravityadaptive}
+These structure maps are maps of coalgebras and satisfy the coherence equations of an adaptive described in \cref{equations}.
+\end{theorem}
+
+This is discussed in more detail in \cref{coherenceproofs}, though the main thrust of the proof is entirely given by physical principles. The identitor picks out a static state in $S_1$, as it has zero velocity, and hence is a coalgebra morphism. It also clearly acts as an identity with respect to the compositor, as plugging an inner system into an outer system which is just one prism occupying the entire cube recovers the inner system. 
+
+The compositor is a coalgebra because the center of mass construction is ``associative'' in the sense of being computable in stages according to any (even nested) partition of the contributing masses, and the update is the physical evolution of the bodies in the system under their velocities and gravity, which is not affected by abstraction barriers such as drawing or removing boxes around some of the masses. 
+
+\bnote{Is this true? when the systems are rescaled it will change the distances and hence the force. This could be fine if the scaling of the velocities and distance traveled depends in the same way as the force does... but applying s on the outside scales G(m,c) once whereas applying s on the inside scales distances quadratically... this seems worrying}
 
 
 
