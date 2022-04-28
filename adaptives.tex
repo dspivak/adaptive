@@ -539,12 +539,26 @@ We now proceed to discuss various categorical structures enriched in $\org$, whi
 
 
 %------- Chapter -------%
-\chapter{$\org$-Enrichment as Nested Dynamical Structure}
+\chapter{Adaptives as $\org$-Enrichment}
 
 
-A monoidal double category is a viable setting for enriching various categorical structures (using the notions of enrichment in \cite{leinster1999generalized} and \cite{shapiro2022enrichment}). Intuitively, enrichment in $\org$ replaces the usual set of arrows between two objects in a category or similar structure with a $[p,q]$-coalgebra for some choice of polynomials $p,q$. Therefore not only can each arrow be realized as a map of polynomials $p \to q$, but this map carries dynamics that encode how a position in $p$ and a direction in $q$ determine a transition from one arrow to another.
+A monoidal double category is a viable setting for enriching various categorical structures. Intuitively, enrichment in $\org$ replaces the usual set of arrows between two objects in a category or similar structure with a $[p,q]$-coalgebra for some choice of polynomials $p,q$. Therefore not only can each arrow be realized as a map of polynomials $p \to q$, but this map carries dynamics that encode how a position in $p$ and a direction in $q$ determine a transition from one arrow to another.
 
-In \cref{sec.org_cats}, we explain enrichment of a category; in \cref{sec.org_multicats}, we explain enrichment of a multicategory.
+Different situations call for different categorical structures to model their dynamics: some systems primarily involve many-to-one arrangements such as the wiring diagrams in , %ref
+others such as gradient descent fit naturally into a many-to-many arrow framework, and we expect in future work to consider evolving systems in which different components operate at differing time scales. Rather than choose one such categorical form to favor and go through the tedious exercise of forcing all of the others to conform to it, we take the approach of including a choice of categorical structure in our main definition.
+
+\begin{definition}
+An adaptive consists of:
+\begin{itemize}
+	\item A type $T$ of categorical structure
+	\item A functor from monoidal double categories to $T$-multicategories
+	\item A structure of type $T$ enriched in $\org$
+\end{itemize}
+\end{definition}
+
+This definition is intentionally imprecise, so as to be maximally inclusive of different notions of categorical structures and theories of enrichment. However, our intuition and examples come from the theories of enrichment described in \cite{leinster1999generalized} and \cite{shapiro2022enrichment}. In the former, $T$ can be any suitable type of generalized multicategory, while in the latter $T$ can be any structure defined as an algebra for a familial monad on a presheaf category equipped with a choice of ``higher'' and ``lower'' dimensional cell shapes. In both cases, $T$ can be identified with a cartesian monad and $T$-algebras (our ``categorical structures'') admit an ``enriched'' analogue with respect to any $T$-multicategory. To define $T$-algebras enriched in $\org$ is then to identify $\org$ with a $T$-multicategory, and in all of our examples this identification arises naturally from the observation that monoidal double categories contain the structure of $T$-multicategories.
+
+We make this precise in \cref{sec.org_cats} for $\org$-enriched categories, in \cref{sec.org_multicats} for $\org$-enriched multicategories, and in \cref{sec:org_monoidalcats} for $\org$-enriched monoidal categories. We are also interested in using $\org$-enriched duoidal categories to describe dynamical systems in which different contributors to a system operate at different rates, using the duoidal structure on $\org$ based on $\tri$, but that is beyond the scope of this paper.
 
 
 %--- Section ---%
@@ -652,7 +666,7 @@ Let $\S$ be any $p$-coalgebra for a polynomial $p$. There is an $\org$-enriched 
 
 
 %--- Section ---%
-\section{Adaptives}
+\section{$\org$-enriched monoidal categories}\label{sec:org_monoidalcats}
 
 
 A monoidal double category is precisely a representable $MC$-multicategory in the sense of \cite{shapiro2022enrichment}, %cite specifically
@@ -692,13 +706,9 @@ p_{aa'} \rar[slash, ""{name=T, above},swap]{\S_{aa',bb'}} & p_{bb'}
 such that these isomorphisms and squares satisfy unit, associativity, and interchange equations.%more on these?
 \end{definition}
 
-Here the sets $S_{a,b}$ form the arrows in a strict monoidal category underlying $A$.
+Here the sets $S_{a,b}$ form the arrows in a strict monoidal category underlying $A$. 
 
-\begin{definition}
-An \emph{adaptive} is an $\org$-enriched strict monoidal category with object monoid $\nn$.
-\end{definition}
-
-Concretely, an adaptive consists of a polynomial $p$ (so that in the notation above $p_n := p^{\otimes n}$ for $n \in \nn$) along with a $[p^{\otimes m},p^{\otimes n}]$-coalgebra $S_{m,n}$ for each $m,n \in \nn$, equipped with the maps of coalgebras as in \eqref{eqn.adaptive_tor}. We denote such an adaptive ``on p'' as $(p,\S)$, where $\S$ now encodes all of the coalgebras $\S_{m,n}$ that constitute the adaptive and the structure maps are implicit.
+For the rest of this paper, we will only consider the restricted case of an $\org$-enriched strict monoidal category with object monoid $\nn$. Concretely, an adaptive of this form consists of a polynomial $p$ (so that in the notation above $p_n := p^{\otimes n}$ for $n \in \nn$) along with a $[p^{\otimes m},p^{\otimes n}]$-coalgebra $S_{m,n}$ for each $m,n \in \nn$, equipped with the maps of coalgebras as in \eqref{eqn.adaptive_tor}. We denote such an adaptive ``on p'' as $(p,\S)$, where $\S$ now encodes all of the coalgebras $\S_{m,n}$ that constitute the adaptive and the structure maps are implicit.
 
 %\dnote{in general, please use labeled equations and references more :)}
 
@@ -722,7 +732,7 @@ p'^{\otimes m} \rar[slash, ""{name=T, above}, swap]{\S'_{m,n}} & p'^{\otimes n}
 
 This definition of morphism is the direct benefit for the theory of adaptives of treating $\org$ as a monoidal double category rather than as a monoidal bicategory (as done in \cite{spivak2021learners}). Otherwise morphisms could either only be easily defined between adaptives on the same polynomial, which is rather restrictive, or take the form of a $[p,p']$-coalgebra, which we believe to be too general to be of much use.
 
-%what does these mean
+%what do these mean
 
 \begin{example}
 For a fixed polynomial $p$, there is a terminal adaptive $\S^{p!}$ on $p$ where $\S^{p!}_{m,n}$ is the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra. 
@@ -739,6 +749,7 @@ The adaptive structure on the terminal coalgebra $\S^{p!}$ is then each to defin
 
 This is the terminal adaptive on $p$ as for any other adaptive on $p$ there is a morphism of adaptives given by the identity map on $p$ and with commutor squares to $\S^{p!}_{m,n}$ simply the unique map of coalgebras from any $[p^{\otimes m},p^{\otimes n}]$-coalgebra to the terminal one.
 \end{example}
+
 
 
 %------- Chapter -------%

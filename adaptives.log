@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.3.17)  26 APR 2022 17:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.3.17)  27 APR 2022 19:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1937,28 +1937,36 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 542.
 
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 551.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 551.
-
 [5]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 587.
+(hyperref)                removing `math shift' on input line 565.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 587.
+(hyperref)                removing `math shift' on input line 565.
 
-[6]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 601.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 601.
+
+[6] [7]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 669.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 669.
+
 LaTeX Font Info:    Font shape `T1/zplTLF/m/it' will be
-(Font)              scaled to size 9.0pt on input line 659.
- [7] [8] [9] [10] [11]
-Overfull \hbox (13.97438pt too wide) detected at line 844
+(Font)              scaled to size 9.0pt on input line 673.
+[8] [9] [10] [11]
+Overfull \hbox (13.97438pt too wide) detected at line 856
  []\OML/npxmi/m/it/10.95 s[] \LMS/npxsy/m/n/10.95 ^^N \OML/npxmi/m/it/10.95 s[]
 ; :::; s[] \LMS/npxsy/m/n/10.95 ^^N \OML/npxmi/m/it/10.95 s[]; s[] \LMS/npxsy/m
 /n/10.95 ^^N \OML/npxmi/m/it/10.95 s[]; :::; s[] \LMS/npxsy/m/n/10.95 ^^N \OML/
@@ -1971,69 +1979,68 @@ A \OML/npxmi/m/it/10.95 v[]; :::; v[] \LMS/npxsy/m/n/10.95 Ï \OML/npxmi/m/it/10
  []
 
 [12]
-Overfull \hbox (28.47092pt too wide) detected at line 893
-[][][] []  \U/npxmia/m/it/10.95 =  []
- []
-
-
-Overfull \hbox (97.35208pt too wide) detected at line 919
-[][][] []  \U/npxmia/m/it/10.95 =  []
- []
-
-
-Overfull \hbox (10.24944pt too wide) detected at line 949
+Overfull \hbox (28.47092pt too wide) detected at line 905
 [][][] []  \U/npxmia/m/it/10.95 =  []
  []
 
 [13]
-Overfull \hbox (15.51332pt too wide) detected at line 971
-[][][] []  \U/npxmia/m/it/10.95 =  []  =  []
- []
-
-
-Overfull \hbox (100.96857pt too wide) detected at line 987
+Overfull \hbox (97.35208pt too wide) detected at line 931
 [][][] []  \U/npxmia/m/it/10.95 =  []
  []
 
 
-Overfull \hbox (71.3785pt too wide) detected at line 1015
+Overfull \hbox (10.24944pt too wide) detected at line 961
+[][][] []  \U/npxmia/m/it/10.95 =  []
+ []
+
+
+Overfull \hbox (15.51332pt too wide) detected at line 983
 [][][] []  \U/npxmia/m/it/10.95 =  []  =  []
  []
 
+
+Overfull \hbox (100.96857pt too wide) detected at line 999
+[][][] []  \U/npxmia/m/it/10.95 =  []
+ []
+
 [14]
+Overfull \hbox (71.3785pt too wide) detected at line 1027
+[][][] []  \U/npxmia/m/it/10.95 =  []  =  []
+ []
+
+[15]
 LaTeX Font Info:    Trying to load font information for T1+npxtt on input line 
-1043.
+1055.
  (C:\Program Files\MiKTeX 2.9\tex/latex/newpx\t1npxtt.fd
 File: t1npxtt.fd 2000/12/14 v1.0
 )
 LaTeX Font Info:    Font shape `T1/npxtt/m/n' will be
-(Font)              scaled to size 10.95pt on input line 1043.
+(Font)              scaled to size 10.95pt on input line 1055.
 
-Overfull \hbox (34.21573pt too wide) in paragraph at lines 1044--1044
+Overfull \hbox (34.21573pt too wide) in paragraph at lines 1056--1056
 []\T1/zplTLF/m/n/10.95 Tom Le-in-ster. \T1/zplTLF/m/it/10.95 Gen-er-al-ized en-
 rich-ment for cat-e-gories and mul-ti-cat-e-gories\T1/zplTLF/m/n/10.95 . [][]ar
 Xiv:9901139[][].
  []
 
-[15]
 LaTeX Font Info:    Font shape `T1/zplTLF/m/sc' will be
-(Font)              scaled to size 10.95pt on input line 1043.
- [16] (adaptives.aux)
+(Font)              scaled to size 10.95pt on input line 1055.
+[16] (adaptives.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
 Package rerunfilecheck Info: File `adaptives.out' has not changed.
-(rerunfilecheck)             Checksum: B80FD29484B9FCD5B71262794ED92D9F;2554.
+(rerunfilecheck)             Checksum: 6266669EA66D10F83E689CEC59DA2F34;2584.
 Package logreq Info: Writing requests to 'adaptives.run.xml'.
 \openout1 = `adaptives.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 46168 strings out of 478548
- 913188 string characters out of 2850969
- 1689049 words of memory out of 3000000
- 63547 multiletter control sequences out of 15000+600000
+ 46170 strings out of 478548
+ 913237 string characters out of 2850969
+ 1686320 words of memory out of 3000000
+ 63549 multiletter control sequences out of 15000+600000
  600017 words of font info for 252 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  100i,16n,104p,1156b,1487s stack positions out of 10000i,1000n,20000p,200000b,80000s
@@ -2053,7 +2060,7 @@ ram Files/MiKTeX 2.9/fonts/type1/public/txfonts/txsyb.pfb><C:/Program Files/MiK
 TeX 2.9/fonts/type1/public/txfonts/txsyc.pfb><C:/Program Files/MiKTeX 2.9/fonts
 /type1/public/newpx/zplb.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ne
 wpx/zplr.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/newpx/zplri.pfb>
-Output written on adaptives.pdf (16 pages, 289959 bytes).
+Output written on adaptives.pdf (16 pages, 293493 bytes).
 PDF statistics:
  373 PDF objects out of 1000 (max. 8388607)
  78 named destinations out of 1000 (max. 500000)
