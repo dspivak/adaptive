@@ -2349,21 +2349,23 @@
     <bcf:citekey order="3">spivak2021learners</bcf:citekey>
     <bcf:citekey order="4">spivak2021learners</bcf:citekey>
     <bcf:citekey order="5">spivak2021learners</bcf:citekey>
-    <bcf:citekey order="6">leinster1999generalized</bcf:citekey>
-    <bcf:citekey order="7">shapiro2022enrichment</bcf:citekey>
+    <bcf:citekey order="6">spivak2021learners</bcf:citekey>
+    <bcf:citekey order="7">spivak2021learners</bcf:citekey>
     <bcf:citekey order="8">leinster1999generalized</bcf:citekey>
-    <bcf:citekey order="9">leinster1999generalized</bcf:citekey>
+    <bcf:citekey order="9">shapiro2022enrichment</bcf:citekey>
     <bcf:citekey order="10">leinster1999generalized</bcf:citekey>
     <bcf:citekey order="11">leinster1999generalized</bcf:citekey>
-    <bcf:citekey order="12">niu2021collectives</bcf:citekey>
-    <bcf:citekey order="13">shapiro2022enrichment</bcf:citekey>
-    <bcf:citekey order="14">shapiro2022enrichment</bcf:citekey>
+    <bcf:citekey order="12">leinster1999generalized</bcf:citekey>
+    <bcf:citekey order="13">leinster1999generalized</bcf:citekey>
+    <bcf:citekey order="14">niu2021collectives</bcf:citekey>
     <bcf:citekey order="15">shapiro2022enrichment</bcf:citekey>
-    <bcf:citekey order="16">spivak2021learners</bcf:citekey>
-    <bcf:citekey order="17">spivak2021learners</bcf:citekey>
-    <bcf:citekey order="18">leinster1999generalized</bcf:citekey>
-    <bcf:citekey order="19">shapiro2022enrichment</bcf:citekey>
-    <bcf:citekey order="20">niu2021collectives</bcf:citekey>
+    <bcf:citekey order="16">shapiro2022enrichment</bcf:citekey>
+    <bcf:citekey order="17">shapiro2022enrichment</bcf:citekey>
+    <bcf:citekey order="18">spivak2021learners</bcf:citekey>
+    <bcf:citekey order="19">spivak2021learners</bcf:citekey>
+    <bcf:citekey order="20">leinster1999generalized</bcf:citekey>
+    <bcf:citekey order="21">shapiro2022enrichment</bcf:citekey>
+    <bcf:citekey order="22">niu2021collectives</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="anyt">
