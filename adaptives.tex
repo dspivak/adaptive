@@ -130,7 +130,137 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\xslashar}[1]{\begin{tikzcd}[baseline=-0.5ex,cramped,sep=small,ampersand 
 replacement=\&]{}\ar[r,slash, "{#1}"]\&{}\end{tikzcd}}
 
+\tikzset{
+	oriented WD/.style={%everything after equals replaces "oriented WD" in key.
+		every to/.style={out=0,in=180,draw},
+    label/.style={
+    	font=\everymath\expandafter{\the\everymath\scriptstyle},
+      inner sep=0pt,
+      node distance=2pt and -2pt},
+    semithick,
+    node distance=1 and 1,
+    decoration={markings, mark=at position \stringdecpos with \stringdec},
+    ar/.style={postaction={decorate}},
+    execute at begin picture={\tikzset{
+    	x=\bbx, y=\bby,
+      every fit/.style={inner xsep=\bbx, inner ysep=\bby}}}
+    },
+    string decoration/.store in=\stringdec,
+    string decoration={\arrow{stealth};},
+    string decoration pos/.store in=\stringdecpos,
+    string decoration pos=.7,
+    bbx/.store in=\bbx,
+    bbx = 1.5cm,
+    bby/.store in=\bby,
+    bby = 1.5ex,
+    bb port sep/.store in=\bbportsep,
+    bb port sep=1.5,
+    % bb wire sep/.store in=\bbwiresep,
+    % bb wire sep=1.75ex,
+    bb port length/.store in=\bbportlen,
+    bb port length=4pt,
+    bb penetrate/.store in=\bbpenetrate,
+    bb penetrate=0,
+    bb min width/.store in=\bbminwidth,
+    bb min width=1cm,
+    bb rounded corners/.store in=\bbcorners,
+    bb rounded corners=2pt,
+    bb spider/.style={
+    	bb port sep=1, bb port length=10pt, bbx=.4cm, bb min width=.4cm, bby=.8ex},
+    bb small/.style={
+    	bb port sep=1, bb port length=2.5pt, bbx=.4cm, bb min width=.4cm, bby=.7ex},
+		bb medium/.style={
+			bb port sep=1, bb port length=2.5pt, bbx=.4cm, bb min width=.4cm, bby=.9ex},
+    bb/.code 2 args={%When you see this key, run the code below:
+    	\pgfmathsetlengthmacro{\bbheight}{\bbportsep * (max(#1,#2)+1) * \bby}
+      \pgfkeysalso{draw,minimum height=\bbheight,minimum
+       width=\bbminwidth,outer sep=0pt,
+         rounded corners=\bbcorners,thick,
+         prefix after command={\pgfextra{\let\fixname\tikzlastnode}},
+         append after command={\pgfextra{\draw
+            \ifnum #1=0{} \else foreach \i in {1,...,#1} {
+            	($(\fixname.north west)!{\i/(#1+1)}!(\fixname.south west)$) +(-\bbportlen,0) coordinate (\fixname_in\i) -- +(\bbpenetrate,0) coordinate (\fixname_in\i')}\fi 
+  					%Define the endpoints of tickmarks
+            \ifnum #2=0{} \else foreach \i in {1,...,#2} {
+            	($(\fixname.north east)!{\i/(#2+1)}!(\fixname.south east)$) +(-
+\bbpenetrate,0) coordinate (\fixname_out\i') -- +(\bbportlen,0) coordinate (\fixname_out\i)}\fi;
+           }}}
+		},
+			bb name/.style={
+     	append after command={
+				\pgfextra{\node[anchor=north] at (\fixname.north) {#1};}
+			}
+		}
+  }
 
+
+
+\tikzset{Yonepart/.pic={
+	\node[bb={1}{2},bb name = {\tiny$X_{11}$}] (X11) {};
+	\node[bb={2}{2},below right=of X11,bb name = {\tiny$X_{12}$}] (X12) {};
+	\node[bb={2}{1}, above right=of X12,bb name = {\tiny$X_{13}$}] (X13) {};
+	\node[bb={0}{0}, inner xsep=10pt, fit={($(X11.north west)+(.3,1.5)$) (X12)  ($(X13.east)+(-.3,0)$)},bb name = {\scriptsize $Y_1$}] (Y1) {};
+	\coordinate (Y1_in1') at (X11_in1-|Y1.west);
+	\coordinate (Y1_in1) at (X11_in1-|Y1.west);
+	\coordinate (Y1_in2') at (X12_in2-|Y1.west);
+	\coordinate (Y1_in2) at (X12_in2-|Y1.west);
+	\coordinate (Y1_out1') at (X13_out1-|Y1.east);
+	\coordinate (Y1_out1) at (X13_out1-|Y1.east);
+	\coordinate (Y1_out2') at (X12_out2-|Y1.east);
+	\coordinate (Y1_out2) at (X12_out2-|Y1.east);
+	\draw (Y1_in1') to (X11_in1);	
+	\draw (Y1_in2') to (X12_in2);
+	\draw (X11_out1) to (X13_in1);
+	\draw (X11_out2) to (X12_in1);
+	\draw (X12_out1) to (X13_in2);
+	\draw (X12_out2) to (Y1_out2');
+	\draw (X13_out1) to (Y1_out1');
+	\coordinate (bottombox) at ($(X12.south)$);
+	\coordinate (rightbox) at ($(X13.east)$);
+	\coordinate (Y1northwest) at ($(Y1.north west)$);
+	}
+}
+  \tikzset{Ytwopart/.pic={
+	\node[bb={2}{2}, bb name = {\tiny$X_{21}$}] (X21) {};
+	\node[bb={1}{2},above right=-1 and 1 of X21,bb name = {\tiny$X_{22}$}] (X22) {};
+	\node[bb={0}{0}, inner xsep=10pt, fit={($(X21.south west)+(-.25,0)$) ($(X22.north east)+(.25,3.5)$)},bb name = {\scriptsize$Y_2$}] (Y2){};
+	\coordinate (Y2_in1') at (X21_in2-|Y2.west);
+	\coordinate (Y2_in1) at (X21_in2-|Y2.west);
+	\coordinate (Y2_out1') at (X22_out2-|Y2.east);
+	\coordinate (Y2_out1) at (X22_out2-|Y2.east);
+	\coordinate (Y2_out2') at (X21_out2-|Y2.east);
+	\coordinate (Y2_out2) at (X21_out2-|Y2.east);	
+	\draw (Y2_in1') to (X21_in2);
+	\draw (X21_out1) to (X22_in1);
+	\draw (X22_out2) to (Y2_out1');
+	\draw let \p1=(X22.south east), \p2=($(Y2_out2)$), \n1={\y1-\bby}, \n2=\bbportlen in
+	  (X21_out2) to (\x1+\n2,\n1) -- (\x1+\n2,\n1) to (Y2_out2');
+	\draw let \p1=(X22.north east), \p2=(X21.north west), \n1={\y1+\bby}, \n2=\bbportlen in
+          (X22_out1) to[in=0] (\x1+\n2,\n1) -- (\x2-\n2,\n1) to[out=180] (X21_in1);
+          }
+}
+
+\tikzset{SmallNestingPic/.pic={
+  \path (0,0) pic [purple] {Yonepart};
+  \path ($(rightbox)+(4,-5)$) pic [orange] {Ytwopart};
+  
+  \node[bb={0}{0}, fit={($(Y1northwest)+(-.5,4)$) ($(Y2.south east)+(1,0)$)}, bb name={\small $Z$}] (Z) {};
+  \coordinate[above=\bby] (helper) at (Y2.north west);
+	\coordinate (Z_in1') at (Y1_in2-|Z.west);
+	\coordinate (Z_in1) at (Y1_in2-|Z.west);
+	\coordinate (Z_out1') at (helper-|Z.east);
+	\coordinate (Z_out1) at (helper-|Z.east);
+	\coordinate (Z_out2') at (Y2_out2-|Z.east);
+	\coordinate (Z_out2) at (Y2_out2-|Z.east);	  
+  \draw (Z_in1') to (Y1_in2);
+  \draw let \p1=(Y2.north west),\p2=(Y2.north east),\n1={\y2+\bby},\n2=\bbportlen in
+  (Y1_out1) to (\x1+\n2,\n1)--(\x2+\n2,\n1) to (Z_out1');
+  \draw (Y1_out2) to (Y2_in1);
+  \draw (Y2_out2) to (Z_out2');
+  \draw let \p1=(Y2.north east), \p2=(Y1.north west), \n1={\y2+\bby}, \n2=\bbportlen in
+          (Y2_out1) to[in=0] (\x1+\n2,\n1) -- (\x2-\n2,\n1) to[out=180] (Y1_in1);
+          }
+}
 
   
   % amsthm %
@@ -383,29 +513,13 @@ Organized systems adapt to internal and external pressures, and this happens all
 %------- Chapter -------%
 \chapter{Introduction}
 
-%Organisms don't defy the physics in which they are implemented. But the term \emph{physics}---both as it was originally used and as we mean it here---encompasses much more than simply the fundamental building blocks of reality. 
-%
-%Experimental data and various insurmountable obstructions prevent the reductionist approach to physics from having any chance at a descriptive account of the macro-level phenomena we see around us \cite{laughlin2005different}. The comparatively feeble concept of \emph{emergence} is then used to capture the discrepancy. One says ``the whole is more than the sum of its parts'', but what sort of thing \emph{is} just the sum of its parts: sand?
-%
-%Rather than starting from the bottom, failing to arrive at our level of interest, and then adding the discrepancy back as an extra term, we propose that physics should be reconceptualized to include explanations that work at every level simultaneously. Indeed, it may be that the laws of physics are themselves organized. There may be patterns of construction that make sense at all levels, e.g.\ patterns that could be called attraction, entropic ascent, or even birth and death. If one can articulate a mathematical pattern that is subsequently empirically-verified to exist across the spectrum, from atoms to stars, then one may say that such a pattern is \emph{even more real} than a pattern perceivable at only the smallest levels.
-%
-%It appears that organized matter can exploit self-similarity in the patterns of nature. It seems difficult to \emph{derive} this from fundamental physics, and yet it is repeatedly observed and is not merely biology. One often sees plants with fractal-like symmetries that hold across its hierarchical levels. Trees, riverbeds, and circulatory systems follow similar branching profiles \cite{bejan2000shape}. Even in mathematics, microcosm principles show that in order to display certain structures, a system must be embedded in a world equipped with even higher-level versions of that very structure \cite{baez1997quantum}.
-%
-%In this article, we propose a new accounting system---a mathematical language---with which to study self-similar dynamical systems.
-
-
-
-%
-%Brainstorm:\\
-%Self-similarity in nature\\
-%Polynomial ecosystem\\
-%Collectives\\
-%Deep learning, gradient descenders\\
-%Open dynamical systems\\
-%Hierarchy\\
-%Organization doesn't defy physics\\
-
-Intuitively, an open dynamical system is a machine or worker with an interface by which to interact with whatever else is out there. Open dynamical systems can be organized as circuits or control loops, so that they affect each other by their outward expressions of internal work, and thereby possibly form a more complex worker. The framework here is fractal---or more precisely \emph{operadic}---in its structure: organizations of workers can be nested into arbitrary hierarchies of abstraction, without changing the activity of these workers as they interact together.
+Intuitively, an open dynamical system is a machine or worker with an interface by which to interact with whatever else is out there. Open dynamical systems can be organized as circuits or control loops, so that they affect each other by their outward expressions of internal work, and thereby possibly form a more complex worker.
+\[
+\begin{tikzpicture}[oriented WD, bb min width =.5cm, bbx=.5cm, bb port sep =1,bb port length=.08cm, bby=.14cm]
+\path (0,0) pic {SmallNestingPic};
+\end{tikzpicture}
+\]
+The framework here is fractal---or more precisely \emph{operadic}---in its structure: organizations of workers can be nested into arbitrary hierarchies of abstraction, without changing the activity of these workers as they interact together.
 
 But if we think about some things that interact to do work in the real world, we often notice that often the organization itself---the connections themselves---change. The way we connect this hour may be different from the way we connect next hour; in particular, our interfaces go in and out of contact. At the end of this paragraph, look away from the page for a few seconds, think about some things you know that interact together or influence each other, and ask yourself three questions about them: Do these things ever stop interacting? If so, do they ever start interacting again? And how is it decided? 
 
