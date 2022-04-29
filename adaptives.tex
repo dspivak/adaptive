@@ -866,7 +866,25 @@ We define our polynomial interface $p_X\in\poly$ to be:
 \[
 p_X\coloneqq \bet_X\,\yon^X
 \]
-and use the $\Delta_N$ as our state spaces. The idea is that \dnote{fill with appropriate language, explain $\mu_i(1+\beta_i(x))$}.
+and use the $\Delta_N$ as our state spaces. The idea is that a state $\mu\in\Delta_N$ says how much the organization trusts each of its $N$-many members relative to each other. A member's position at a given moment is a report of how much confidence it has in each of the $X$-many possibilities, how its balance is distributed among them.
+
+The most interesting part of the adaptive structure is how the trust distribution is updated once bets are made and a result $x\in X$ is returned. For membership $N\geq 1$, trust distribution $\mu\in\Delta_N$, bet $\beta\in\bet_X$, and return $x\in X$, we want to define the updated trust distribution $U(\mu,\beta,x)\in\dist(X)$. To do so, consider the number
+\[
+	\mu_i(1+\beta_i(x)) \in [0,2\mu_i]
+\]
+which is $0$ if member $i$ bet fully against $\beta_i(x)=-1$, is $2\mu_i$ if member $i$ bet fully in favor $\beta_i(x)=1$, and is $\mu_i$ if member $i$ bet nothing $\beta_i(x)=0$. Now for computing the updated distribution, there are two cases: the catastrophic and the normal. In  the \emph{catastrophic} scenario $\beta_i(x)=0$ for all $j\in N$; in the \emph{normal} scenario $\beta_j(x)>-1$ for some $j\in N$, and the following fraction makes sense:
+\[
+	U^{\tn{normal}}(\mu,\beta,x)_i\coloneqq\frac{\mu_i(1+\beta_i(x))}{\sum_{j\in N}\mu_j(1+\beta_j(x))}
+\]
+We now define $U(\mu,\beta,x)$ by cases:
+\[
+	U(\mu,\beta,x)\coloneqq
+	\begin{cases}
+		U^{\tn{normal}}(\mu,\beta,x)&\tn{ if $\beta_j>-1$ for some $j\in N$}\\
+		U^N&\tn{ if $\beta_j=-1$ for all $j\in N$}
+	\end{cases}
+\]
+where $(U^N)_i\coloneqq 1/N$, for all $i\in N$, is the uniform distribution on $N$.
 
 $\Delta_N\to[p_X^{\otimes N},p_X]\tri\Delta_N$ by
 
@@ -874,11 +892,10 @@ $\Delta_N\to[p_X^{\otimes N},p_X]\tri\Delta_N$ by
 	\mu\mapsto\Bigg(
 		\beta\mapsto\bigg(
 			\mu\cdot\beta,\,
-			x\mapsto\Big(
-				i\mapsto \big(
+			x\mapsto
+				i\mapsto \Big(
 					x,
 					\frac{\mu_i(1+\beta_i(x))}{\sum_{j\in N}\mu_j(1+\beta_j(x))}
-				\big)
 			\Big)
 		\bigg)
 	\Bigg)
