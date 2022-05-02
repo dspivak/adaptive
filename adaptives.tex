@@ -978,7 +978,7 @@ Then $\bet_X$ is an algebra for it: for any $\mu\in\Delta_N$ and $\beta \in (\be
 \]
 and it is easy to check that $(\mu\cdot\beta)\in\bet_X$, i.e.\ its components are in bounds $(\mu\cdot\beta)(x)\in (0,1]$ and $\sum_x(\mu\cdot\beta)(x)=1$.
 
-We define our polynomial interface $p_X\in\poly$ to be:
+We now construct an operad-adaptive with interface $p_X$ defined as:
 \[
 p_X\coloneqq \bet_X\,\yon^X
 \]
@@ -991,8 +991,16 @@ The most interesting part of the adaptive structure is how the trust distributio
 \beta(x) * \mu \coloneqq \left( i \mapsto \frac{\beta_i(x)\mu_i}{\sum_j \beta_j(x)\mu_j}\right).
 \]
 
+Finally, we describe the structure maps of the adaptive. As $\Delta^+_1$ is a singleton set whose action is the identity on $p_X$, the identitor $\{\id_{p_X}\} \to \Delta^+_1$ is an isomorphism. The operadic compositor is given by the usual operad structure on (nowhere-zero) distributions:
+\[
+\Delta^+_N \times \Delta^+_{M_1} \times \cdots \times \Delta^+_{M_N} \to \Delta^+_{\sum_i M_i} \qquad\qquad (\mu,\nu_1,...,\nu_N) \mapsto \mu \circ \nu \coloneqq \left( (i,j) \mapsto \mu_i\nu_j \right).
+\]
 
+\begin{theorem}\label{predictionadaptive}%change equations reference as needed
+These structure maps are maps of coalgebras and satisfy the coherence equations of an adaptive described in \cref{equations}.
+\end{theorem}
 
+This is proven in \cref{coherenceproofs}.
 
 %To do so, consider the number
 %\[
