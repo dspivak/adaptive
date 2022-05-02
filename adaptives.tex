@@ -474,8 +474,8 @@ replacement=\&]{}\ar[r,slash, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\D}{{\Cat{D}}}
 \newcommand{\org}{{\mathbb{O}\Cat{rg}}}
 \renewcommand{\S}{{\Cat{S}}}
-\newcommand{\blp}{\Big{(}}
-\newcommand{\brp}{\Big{)}}
+%\newcommand{\blp}{\Big{(}}
+%\newcommand{\brp}{\Big{)}}
 \newcommand{\idcoalg}[1]{{\{\id_{#1}\}}}
 \newcommand{\rrp}{\rr_{>0}}
 \newcommand{\rrnn}{\rr_{\ge 0}}
@@ -622,11 +622,11 @@ It is no accident that $\org$ denotes both this bicategory and the categorical o
 The identity coalgebra in $[p,p]\coalg$ is given by the one-state coalgebra $\idcoalg{p}$. 
 
 Composites are defined as
-$$[p,q]\coalg \times [q,r]\coalg \to \blp[p,q] \otimes [q,r]\brp\coalg \to [p,r]\coalg,$$
+$$[p,q]\coalg \times [q,r]\coalg \to \left([p,q] \otimes [q,r]\right)\coalg \to [p,r]\coalg,$$
 where the first functor is described in \cite[Proposition 2.13]{spivak2021learners}, and the second is given by the fact that $(-)\coalg$ is a functor $\poly \to \smcat$, using a map of polynomials $[p,q] \otimes [q,r] \to [p,r]$. On positions, this map takes the form
-$$\blp[p,q] \otimes [q,r]\brp(1) = \poly(p,q) \times \poly(q,r) \To{\circ} \poly(p,r) = [p,r](1)$$
+$$\left([p,q] \otimes [q,r]\right)(1) = \poly(p,q) \times \poly(q,r) \To{\circ} \poly(p,r) = [p,r](1)$$
 and on directions it is given for $\phi : p \to q$ and $\psi : q \to r$ by the function
-$$\blp\sum_{I \in p(1)} q[\phi_1(I)]\brp \times \blp\sum_{J \in q(1)} r[\psi_1(J)]\brp \from \sum_{I \in p(1)} r[\psi_1(\phi_1(I))]$$
+$$\left(\sum_{I \in p(1)} q[\phi_1(I)]\right) \times \left(\sum_{J \in q(1)} r[\psi_1(J)]\right) \from \sum_{I \in p(1)} r[\psi_1(\phi_1(I))]$$
 which sends $(I,j)$ to $(I,\psi_{\phi_1(I)}(j),\phi_1(I),j)$. 
 
 Concretely, the composite of a $[p,q]$-coalgebra $\S$ and a $[q,r]$-coalgebra $\S'$ is a $[p,r]$-coalgebra which we denote $\S\then\S'$  and define as follows:
@@ -647,11 +647,11 @@ Horizontal composition of morphisms of coalgebras, the 2-cells of the bicategory
 
 
 \cite[Proposition 2.13]{spivak2021learners} shows that the tensor product $\otimes$ of polynomials extends to make $\org$ a monoidal bicategory. In particular, for polynomials $p,q,p',q'$ there is a functor
-$$[p,q]\coalg \times [p',q']\coalg \to \blp[p,q] \otimes [p',q']\brp\coalg \to [p \otimes p',q \otimes q']\coalg$$
+$$[p,q]\coalg \times [p',q']\coalg \to \left([p,q] \otimes [p',q']\right)\coalg \to [p \otimes p',q \otimes q']\coalg$$
 derived from the map of polynomials $[p,q] \otimes [p',q'] \to [p \otimes p',q \otimes q']$ given on positions by 
 $$\poly(p,q) \times \poly(p',q') \To{\otimes} \poly(p \otimes p',q \otimes q')$$
 and on directions by, for $\phi : p \to q$ and $\phi' : p' \to q'$,
-$$\blp\sum_{I \in p(1)} q[\phi_1(I)]\brp \times \blp\sum_{I' \in p'(1)} q'[\phi'_1(I')]\brp \from \sum_{(I,I') \in p(1) \times p'(1)} q[\phi_1(I)] \times q'[\phi'_1(I')]$$
+$$\left(\sum_{I \in p(1)} q[\phi_1(I)]\right) \times \left(\sum_{I' \in p'(1)} q'[\phi'_1(I')]\right) \from \sum_{(I,I') \in p(1) \times p'(1)} q[\phi_1(I)] \times q'[\phi'_1(I')]$$
 sending $(I,I',j,j')$ to $(I,j,I',j')$.
 
 Concretely, this tensor product takes a $[p,q]$-coalgebra $\S$ and a $[p',q']$-coalgebra $\S'$ to the $[p \otimes p',q \otimes q']$-coalgebra with states $S \times S'$, action
@@ -891,7 +891,7 @@ For a fixed polynomial $p$, there is a terminal adaptive $\S^{p!}$ with interfac
 
 Its states are (not necessarily finite) $[p^{\otimes m},p^{\otimes n}]$-trees: trees inductively defined by a root labeled with a polynomial map $\phi : p^{\otimes m} \to p^{\otimes n}$ and for each pair 
 \begin{equation}\label{eqn.pmn_directions}
-\blp(I_1,...,I_m) \in p(1)^m, (i_1,...,i_n) \in p[\phi(I_1,...,I_m)_1] \times \cdots \times p[\phi(I_1,...,I_m)_n]\brp
+\left((I_1,...,I_m) \in p(1)^m, (i_1,...,i_n) \in p[\phi(I_1,...,I_m)_1] \times \cdots \times p[\phi(I_1,...,I_m)_n]\right)
 \end{equation}
 an edge out of the root to another $[p^{\otimes m},p^{\otimes n}]$-tree. The action of such a tree is simply the root map $\phi$, and the update sends a pair as in \eqref{eqn.pmn_directions} to the new tree at the end of the corresponding edge. 
 
@@ -941,7 +941,7 @@ Thus far, we have provided the data of the polynomial $t$ and the $[t^{\otimes m
 \begin{itemize}
 	\item The identitors $\idcoalg{t^{\otimes n}} \to \S_{n,n}$ send the unique state in the domain to the state $(0,\id_{\rr^n},0) \in S_{n,n}$. 
 	\item The compositors $\S_{\ell,m}\then\S_{m,n} \to \S_{\ell,n}$ send the pair $((L,f,p),(M,g,q))$ to 
-$$\blp M+L,g(-,f(-,-)) : \rr^{M+L+\ell} \To{\id \times f} \rr^{M+m} \To{g} \rr^n, (q,p) \in \rr^{M+L} \brp.$$
+$$\left( M+L,g(-,f(-,-)) : \rr^{M+L+\ell} \To{\id \times f} \rr^{M+m} \To{g} \rr^n, (q,p) \in \rr^{M+L} \right).$$
 	\item The productors $\S_{m,n} \otimes \S_{m',n'} \to \S_{m+m',n+n'}$ send the pair $((M,f,p),(M',f',p'))$ to $(M+M',(f,f'),(p,p'))$
 \end{itemize}
 
@@ -958,67 +958,74 @@ This is proven in \cref{coherenceproofs}.
 
 
 %------- Section -------%
-\section{The Kelley-betting adaptive}\label{sec.kelley}
+\section{The prediction market adaptive}\label{sec.kelley}
 
 
-Fix a finite set $X$, elements of which we call \emph{outcomes} and intuit to be ``all equally likely'', and define the set $\bet_X$ of \emph{guesses on $X$} as
+Fix a finite set $X$, elements of which we call \emph{outcomes} and intuit to be ``all equally likely'', define the set $\bet_X$ of \emph{guesses on $X$} as\footnote{The assumption that every possible outcome is given some nonzero probability in each guess could be interpreted either as humility of the guess-makers or a strategic decision to avoid permanent loss of all trust. It also lets us avoid dividing by zero when updating.}
 \[
-	\bet_X\coloneqq\left\{\beta\colon X\to[0,1]\;\;\middle|\;\;1=\sum_x\beta(x), \;\; \forall x, \; \beta(x) \neq 0 \right\}
+	\bet_X\coloneqq\left\{\beta\colon X\to[0,1]\;\;\middle|\;\;1=\sum_x\beta(x), \;\; \forall x\colon \beta(x) \neq 0 \right\}
 \]
-The monoid $([0,1],1,*)$ of subunital reals acts on $\bet_X$ by scalar multiplication, i.e. for any $0\leq m\leq 1$ and $\beta\in\bet_X$, we can define
+The monoid $((0,1],1,*)$ of nonzero subunital reals acts on $\bet_X$ by scalar multiplication, i.e. for any $0 < m\leq 1$ and $\beta\in\bet_X$, we can define
 \[
 	m\cdot \beta\coloneqq \big(x\mapsto m\beta (x)\big)
 \]
 and have $m\cdot\beta\in\bet_X$. 
 
-Let $\Delta$ denote the operad of finite probability distributions, 
-\[
-	\Delta_N\coloneqq\left\{\mu\colon N\to[0,1]\;\middle|\;1=\sum_{i\in N}\mu_i\right\}
-\]
-Then $\bet_X$ is an algebra for it: for any $\mu\in\Delta_N$ and $\beta\colon N\to\bet_X$, we define 
+Let $\Delta^+$ denote the operad of finite nowhere-zero probability distributions, where $\Delta^+_N$ is defined as above with the natural number $N$ regarded as the $N$-element set. %\coloneqq\left\{\mu\colon N\to[0,1]\;\middle|\;1=\sum_{i\in N}\mu_i\right\}
+Then $\bet_X$ is an algebra for it: for any $\mu\in\Delta_N$ and $\beta \in (\bet_X)^N$, we define 
 \[
 	\mu\cdot\beta\coloneqq\left(x\mapsto\sum_{i\in N}(\mu_i\cdot\beta_i)(x)\right)
 \]
-and it is easy to check that $(\mu\cdot\beta)\in\bet_X$, i.e.\ its components are in bounds $(\mu\cdot\beta)(x)\in [-1,1]$ and sum to $\sum_x(\mu\cdot\beta)(x)=0$.
+and it is easy to check that $(\mu\cdot\beta)\in\bet_X$, i.e.\ its components are in bounds $(\mu\cdot\beta)(x)\in (0,1]$ and $\sum_x(\mu\cdot\beta)(x)=1$.
 
 We define our polynomial interface $p_X\in\poly$ to be:
 \[
 p_X\coloneqq \bet_X\,\yon^X
 \]
-and use the $\Delta_N$ as our state spaces. The idea is that a state $\mu\in\Delta_N$ says how much the organization trusts each of its $N$-many members relative to each other. A member's position at a given moment is a report of how much confidence it has in each of the $X$-many possibilities, how its balance is distributed among them.
+and use the $\Delta^+_N$ as our state spaces. The idea is that a state $\mu\in\Delta_N$ says how much the organization trusts each of its $N$-many members (guess-makers) relative to each other. A member's position at a given moment is a report of how much confidence it has in each of the $X$-many possibilities, represented by how its balance is distributed among them.
 
-The most interesting part of the adaptive structure is how the trust distribution is updated once bets are made and a result $x\in X$ is returned. For membership $N\geq 1$, trust distribution $\mu\in\Delta_N$, bet $\beta\in\bet_X$, and return $x\in X$, we want to define the updated trust distribution $U(\mu,\beta,x)\in\dist(X)$. To do so, consider the number
-\[
-	\mu_i(1+\beta_i(x)) \in [0,2\mu_i]
-\]
-which is $0$ if member $i$ bet fully against $\beta_i(x)=-1$, is $2\mu_i$ if member $i$ bet fully in favor $\beta_i(x)=1$, and is $\mu_i$ if member $i$ bet nothing $\beta_i(x)=0$. Now for computing the updated distribution, there are two cases: the catastrophic and the normal. In  the \emph{catastrophic} scenario $\beta_i(x)=0$ for all $j\in N$; in the \emph{normal} scenario $\beta_j(x)>-1$ for some $j\in N$, and the following fraction makes sense:
-\[
-	U^{\tn{normal}}(\mu,\beta,x)_i\coloneqq\frac{\mu_i(1+\beta_i(x))}{\sum_{j\in N}\mu_j(1+\beta_j(x))}
-\]
-We now define $U(\mu,\beta,x)$ by cases:
-\[
-	U(\mu,\beta,x)\coloneqq
-	\begin{cases}
-		U^{\tn{normal}}(\mu,\beta,x)&\tn{ if $\beta_j>-1$ for some $j\in N$}\\
-		U^N&\tn{ if $\beta_j=-1$ for all $j\in N$}
-	\end{cases}
-\]
-where $(U^N)_i\coloneqq 1/N$, for all $i\in N$, is the uniform distribution on $N$.
+The action of a trust distribution $\mu \in \Delta^+_N$ is the map of polynomials $p_X^{\otimes N} \to p_X$ which on positions sends $\beta \in (\bet_X)^N$ to $\mu \cdot \beta$ and on directions sends $x \in X$ to $(x,...,x) \in X^N$. The idea is that the organization aggregates the predictions of its members according to their trust, and the outcome is accurately communicated back to each member.
 
-$\Delta_N\to[p_X^{\otimes N},p_X]\tri\Delta_N$ by
-
+The most interesting part of the adaptive structure is how the trust distribution is updated once predictions are made and a result $x\in X$ is returned. For membership $N\geq 1$, trust distribution $\mu\in\Delta^+_N$, guess $\beta\in(\bet_X)^N$, and outcome $x\in X$, we define the updated trust distribution as $\beta(x) * \mu \in\dist(X)$, where
 \[
-	\mu\mapsto\Bigg(
-		\beta\mapsto\bigg(
-			\mu\cdot\beta,\,
-			x\mapsto
-				i\mapsto \Big(
-					x,
-					\frac{\mu_i(1+\beta_i(x))}{\sum_{j\in N}\mu_j(1+\beta_j(x))}
-			\Big)
-		\bigg)
-	\Bigg)
+\beta(x) * \mu \coloneqq \left( i \mapsto \frac{\beta_i(x)\mu_i}{\sum_j \beta_j(x)\mu_j}\right).
 \]
+
+
+
+
+%To do so, consider the number
+%\[
+%	\mu_i(1+\beta_i(x)) \in [0,2\mu_i]
+%\]
+%which is $0$ if member $i$ bet fully against $\beta_i(x)=-1$, is $2\mu_i$ if member $i$ bet fully in favor $\beta_i(x)=1$, and is $\mu_i$ if member $i$ bet nothing $\beta_i(x)=0$. Now for computing the updated distribution, there are two cases: the catastrophic and the normal. In  the \emph{catastrophic} scenario $\beta_i(x)=0$ for all $j\in N$; in the \emph{normal} scenario $\beta_j(x)>-1$ for some $j\in N$, and the following fraction makes sense:
+%\[
+%	U^{\tn{normal}}(\mu,\beta,x)_i\coloneqq\frac{\mu_i(1+\beta_i(x))}{\sum_{j\in N}\mu_j(1+\beta_j(x))}
+%\]
+%We now define $U(\mu,\beta,x)$ by cases:
+%\[
+%	U(\mu,\beta,x)\coloneqq
+%	\begin{cases}
+%		U^{\tn{normal}}(\mu,\beta,x)&\tn{ if $\beta_j>-1$ for some $j\in N$}\\
+%		U^N&\tn{ if $\beta_j=-1$ for all $j\in N$}
+%	\end{cases}
+%\]
+%where $(U^N)_i\coloneqq 1/N$, for all $i\in N$, is the uniform distribution on $N$.
+%
+%$\Delta_N\to[p_X^{\otimes N},p_X]\tri\Delta_N$ by
+%
+%\[
+%	\mu\mapsto\Bigg(
+%		\beta\mapsto\bigg(
+%			\mu\cdot\beta,\,
+%			x\mapsto
+%				i\mapsto \Big(
+%					x,
+%					\frac{\mu_i(1+\beta_i(x))}{\sum_{j\in N}\mu_j(1+\beta_j(x))}
+%			\Big)
+%		\bigg)
+%	\Bigg)
+%\]
 
 
 
@@ -1056,7 +1063,7 @@ $\Delta_N\to[p_X^{\otimes N},p_X]\tri\Delta_N$ by
 %$$c_{\vec s,\vec m} = \frac{m_1s_1(c_1) + \cdots + m_ns_n(c_n)}{m_1 + \cdots + m_n}$$
 %	\item $\beta_0(\vec s,\vec v)_{\vec m,\vec c} : \rrnn \to \rrnn^n$ sends $t$ to $(t,...,t)$\footnote{This simply says that when the entire system is observed for a length of time $t$, so is each component. Perhaps this could be varied to incorporate some version of relativity.} 
 %	\item The update function $\beta_{\vec s,\vec v}$ sends $(\vec m \in \rrp^n,\vec c \in C^n)$ and $t \in \rrnn$ to 
-%$$\blp \vec s + t\vec v + \frac{t^2}{2} \vec G(\vec m, \vec s(\vec c)),\vec v + t\vec G(\vec m, \vec s(\vec c)) \brp$$
+%$$\left( \vec s + t\vec v + \frac{t^2}{2} \vec G(\vec m, \vec s(\vec c)),\vec v + t\vec G(\vec m, \vec s(\vec c)) \right)$$
 %\end{itemize}
 %\end{definition}
 %
@@ -1067,7 +1074,7 @@ $\Delta_N\to[p_X^{\otimes N},p_X]\tri\Delta_N$ by
 %	\item The operadic compositor sends 
 %$$(\vec s,\vec v) \in S_n, (\vec s^1,\vec v^1) \in S_{\ell_1},...,(\vec s^n,\vec v^n) \in S_{\ell_n}$$
 %to
-%$$\hspace{-1cm}\blp s_1 \circ s^1_1,...,s_1 \circ s^1_{\ell_1},s_2 \circ s^2_1,...,s_n \circ s^n_{\ell_n},v_1 + Ds_1 \cdot v^1_1,...,v_1 + Ds_1 \cdot v^1_{\ell_1},v_2 + Ds_2 \cdot v^2_1,...,v_n + Ds_n \cdot v^n_{\ell_n} \brp$$
+%$$\hspace{-1cm}\left( s_1 \circ s^1_1,...,s_1 \circ s^1_{\ell_1},s_2 \circ s^2_1,...,s_n \circ s^n_{\ell_n},v_1 + Ds_1 \cdot v^1_1,...,v_1 + Ds_1 \cdot v^1_{\ell_1},v_2 + Ds_2 \cdot v^2_1,...,v_n + Ds_n \cdot v^n_{\ell_n} \right)$$
 %\end{itemize}
 %
 %Intuitively, the identitor describes a body filling the entire cube and not moving, while the operadic compositor describes plugging in $n$ systems into the prisms of another system. When doing so, the resulting prisms are precisely the composite embeddings of a prism of an inner system into the cube that is then again embedded into the cube as a prism in the outer system. The resulting velocities combine the velocity of the inner body in the cube of the inner system, scaled according to how that cube embeds into the cube of the outer system, then added to the velocity of the entire prism in the outer system. In other words, it is the velocity of a body moving inside a box which is itself moving.
@@ -1258,11 +1265,11 @@ $$g(q,-) \circ f(p,-) = g(-,f(-,-))(q,p,-).$$
 This may seem like a trivial rewriting, but it illustrates how the compositor was defined in order for the action to be preserved, as on the left we have the composite of the actions on positions as in $\S_{\ell,m};\S_{m,n}$, and on the right we apply the compositor and take the action of the resulting state in $\S_{\ell,n}$.
 
 To show that the compositor preserves both the action on directions and the update we note that by the chain rule, for $x \in \rr^\ell$ and $z \in T_{g(q,f(p,x))}$,
-$$D\blp g(-,f(-,-)) \brp^\top z = Df^\top \cdot \pi_m(Dg^\top \cdot z) \in T_{(p,x)}\rr^{L+\ell}.$$
+$$D\left( g(-,f(-,-)) \right)^\top z = Df^\top \cdot \pi_m(Dg^\top \cdot z) \in T_{(p,x)}\rr^{L+\ell}.$$
 Applying $\pi_\ell$ to both sides above shows that the compositor preserves the action on directions, as on the left we have the action on directions after applying the compositor and on the right we have the composition of the actions of $(L,f,p)$ and $(M,g,q)$ on directions as in $\S_{\ell,m};\S_{m,n}$.
 
 Finally for updates, we observe by the chain rule that the update rule in $\S_{\ell,n}$ agrees with that in $\S_{\ell,m};\S_{m,n}$ under the compositor, as either way for $x,z$ as above the composite state of $(L,f,p)$ and $(M,g,q)$ updates to 
-$$\blp M+L,g(-,f(-,-)),\blp p + \epsilon \pi_L (Df^\top \cdot \pi_m(Dg^\top \cdot z)),q + \epsilon \pi_M(Dg^\top \cdot z) \brp \brp.$$
+$$\left( M+L,g(-,f(-,-)),\left( p + \epsilon \pi_L (Df^\top \cdot \pi_m(Dg^\top \cdot z)),q + \epsilon \pi_M(Dg^\top \cdot z) \right) \right).$$
 \end{proof}
 
 
