@@ -439,7 +439,7 @@ replacement=\&]{}\ar[r,slash, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\R}{R}
 \newcommand{\T}{T}
 \newcommand{\dist}{\Set{Dist}}
-\newcommand{\bet}{\Set{Bet}}
+\newcommand{\bet}{\Delta^+}
 
 % lenses
 \newcommand{\biglens}[2]{
@@ -520,7 +520,7 @@ Intuitively, an open dynamical system is a machine or worker with an interface b
 \path (0,0) pic {SmallNestingPic};
 \end{tikzpicture}
 \]
-\caption{hi}\label
+\caption{}\label{fig.nesting}
 \end{figure}
 The framework here is fractal---or more precisely \emph{operadic}---in its structure: organizations of workers can be nested into arbitrary hierarchies of abstraction, without changing the activity of these workers as they interact together.
 
@@ -781,7 +781,7 @@ such that these squares satisfy unit and associativity equations.%more on these?
 
 The sets $S_{a,b}$ form an underlying multicategory of $A$, with a description similar to that below \cref{def.org_enriched_cat}. 
 
-We will mostly be interested in what we call an $\org$-enriched operad on $p$, the case when $A$ has only one object which is assigned the polynomial $p$. It consists simply of a $[p^{\otimes n},p]$-coalgebra $S_n$ for each $n \in \nn$ equipped with maps
+We will mostly be interested in what we call an $\org$-enriched operad on $p$, the case when $A$ has only one object which is assigned the polynomial ``interface'' $p$. It consists simply of a $[p^{\otimes n},p]$-coalgebra $S_n$ for each $n \in \nn$ equipped with maps
 \begin{equation}\label{eqn.org_operad}
 \idcoalg{p} \to S_1
 \qqand
@@ -861,7 +861,7 @@ such that these isomorphisms and squares satisfy unit, associativity, and interc
 
 Here the sets $S_{a,b}$ form the arrows in a strict monoidal category underlying $A$. 
 
-For the rest of this paper, we will only consider the restricted case of an $\org$-enriched strict monoidal category with object monoid $\nn$. Concretely, an adaptive of this form consists of a polynomial $p$ (so that in the notation above $p_n := p^{\otimes n}$ for $n \in \nn$) along with a $[p^{\otimes m},p^{\otimes n}]$-coalgebra $S_{m,n}$ for each $m,n \in \nn$, equipped with the maps of coalgebras as in \eqref{eqn.adaptive_tor}. We denote such an adaptive ``on p'' as $(p,\S)$, where $\S$ now encodes all of the coalgebras $\S_{m,n}$ that constitute the adaptive and the structure maps are implicit.
+For the rest of this paper, we will only be interested in the restricted case of an $\org$-enriched strict monoidal category with object monoid $\nn$. Concretely, an adaptive of this form consists of a polynomial interface $p$ (so that in the notation above $p_n := p^{\otimes n}$ for $n \in \nn$) along with a $[p^{\otimes m},p^{\otimes n}]$-coalgebra $S_{m,n}$ for each $m,n \in \nn$, equipped with the maps of coalgebras as in \eqref{eqn.adaptive_tor}. We denote such an adaptive as $(p,\S)$, where $\S$ now encodes all of the coalgebras $\S_{m,n}$ that constitute the adaptive and the structure maps are implicit.
 
 %\dnote{in general, please use labeled equations and references more :)}
 
@@ -872,8 +872,7 @@ For the rest of this paper, we will only consider the restricted case of an $\or
 Morphisms of adaptives are special cases of the general notion of morphisms for enriched monoidal categories as defined in \cite{shapiro2022enrichment}. %cite specifically
 
 \begin{definition}
-A \emph{morphism} of adaptives from $(p,\S)$ to $(p',\S')$ is given by a map of polynomials $\phi : p \to p'$ and, for each $m,n \in \nn$, ``commutor'' squares as in \eqref{eqn.adaptive_map} %\dnote{like here: replace "below" by a reference to a labeled equation} 
-in $\org$ which commute with the identitor, compositor, and productor squares.
+A \emph{morphism} of adaptives from $(p,\S)$ to $(p',\S')$ is given by a map of polynomials $\phi : p \to p'$ and, for each $m,n \in \nn$, ``commutor'' squares as in \eqref{eqn.adaptive_map} in $\org$ which commute with the identitor, compositor, and productor squares.
 \begin{equation}\label{eqn.adaptive_map}
 \begin{tikzcd}
 p^{\otimes m} \rar[slash, ""{name=S, below}]{\S_{m,n}} \dar[swap]{\phi^{\otimes m}} & p^{\otimes n} \dar{\phi^{\otimes n}} \\
@@ -885,10 +884,10 @@ p'^{\otimes m} \rar[slash, ""{name=T, above}, swap]{\S'_{m,n}} & p'^{\otimes n}
 
 This definition of morphism is the direct benefit for the theory of adaptives of treating $\org$ as a monoidal double category rather than as a monoidal bicategory (as done in \cite{spivak2021learners}). Otherwise morphisms could either only be easily defined between adaptives on the same polynomial, which is rather restrictive, or take the form of a $[p,p']$-coalgebra, which we believe to be too general to be of much use.
 
-%what do these mean
+A morphism of adaptives $(p,\S) \to (p',\S')$ can be interpreted as a way of telling the codomain how to run the domain. The map of polynomials $p \to p'$ specifies how the positions of $p$ can be modeled by those of $p'$ and how the directions of $p'$ act on the positions of $p$, while the commutor squares describe how the states of $\S_{m,n}$ can be modeled by those of $\S'_{m,n}$ in a way that respects this change of interface. A type of theorem that we hope to find instances of in future work is of the form ``this adaptive that we're interested in can be run by this other adaptive that we already understand well.''
 
 \begin{example}
-For a fixed polynomial $p$, there is a terminal adaptive $\S^{p!}$ on $p$ where $\S^{p!}_{m,n}$ is the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra. 
+For a fixed polynomial $p$, there is a terminal adaptive $\S^{p!}$ with interface $p$ where $\S^{p!}_{m,n}$ is the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra. 
 
 Its states are (not necessarily finite) $[p^{\otimes m},p^{\otimes n}]$-trees: trees inductively defined by a root labeled with a polynomial map $\phi : p^{\otimes m} \to p^{\otimes n}$ and for each pair 
 \begin{equation}\label{eqn.pmn_directions}
@@ -898,9 +897,7 @@ an edge out of the root to another $[p^{\otimes m},p^{\otimes n}]$-tree. The act
 
 The idea is that the state-set of the terminal adaptive encodes all possible trajectories along different actions, and this coalgebra is terminal because from any other coalgebra there is a map to $\S^{p!}_{m,n}$ sending each state to the tree whose root is labeled by the action of the state and whose edges from the root go to the trees for each of the state's possible updates. This map is (uniquely) a coalgebra map because, in order to preserve actions and updates, each state must be sent to the tree rooted by its action and branching according to its updates.
 
-The adaptive structure on the terminal coalgebra $\S^{p!}$ is then each to define, as for any identity, composition, or product $[p^{\otimes m},p^{\otimes n}]$-coalgebra there is a unique map to the terminal one, and this uniqueness automatically ensures all of the equations are satisfied. 
-
-This is the terminal adaptive on $p$ as for any other adaptive on $p$ there is a morphism of adaptives given by the identity map on $p$ and with commutor squares to $\S^{p!}_{m,n}$ simply the unique map of coalgebras from any $[p^{\otimes m},p^{\otimes n}]$-coalgebra to the terminal one.
+The adaptive structure on the terminal coalgebra $\S^{p!}$ is then defined as the unique map to the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra from any identity, composite, or product of coalgebras, which makes the equations hold automatically. This is the terminal adaptive with interface $p$ as for any other such adaptive there is a morphism given by the identity map on $p$ and with commutor squares to $\S^{p!}_{m,n}$ the unique map to the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra.
 \end{example}
 
 
@@ -909,7 +906,7 @@ This is the terminal adaptive on $p$ as for any other adaptive on $p$ there is a
 \chapter{Adaptives in Nature}
 
 
-Our main results are that adaptives describe phenomena in the natural world and human technologies. In this paper, we focus on deep learning and a simplified conception of objects moving under the force of gravity.
+Our main results are that adaptives describe phenomena in the natural world and human technologies. In this paper, we focus on deep learning and a prediction market in which the reputations of various guess-makers evolve based on how successful they are.
 
 
 %------- Section -------%
@@ -963,9 +960,10 @@ This is proven in \cref{coherenceproofs}.
 %------- Section -------%
 \section{The Kelley-betting adaptive}\label{sec.kelley}
 
-Fix a finite set $X$, elements of which we call \emph{outcomes} and intuit to be ``all equally likely'', and define the set $\bet_X$ of \emph{bets on $X$} as
+
+Fix a finite set $X$, elements of which we call \emph{outcomes} and intuit to be ``all equally likely'', and define the set $\bet_X$ of \emph{guesses on $X$} as
 \[
-	\bet_X\coloneqq\left\{\beta\colon X\to[-1,1]\;\;\middle|\;\;0=\sum_x\beta(x)\right\}
+	\bet_X\coloneqq\left\{\beta\colon X\to[0,1]\;\;\middle|\;\;1=\sum_x\beta(x), \;\; \forall x, \; \beta(x) \neq 0 \right\}
 \]
 The monoid $([0,1],1,*)$ of subunital reals acts on $\bet_X$ by scalar multiplication, i.e. for any $0\leq m\leq 1$ and $\beta\in\bet_X$, we can define
 \[
@@ -1025,64 +1023,64 @@ $\Delta_N\to[p_X^{\otimes N},p_X]\tri\Delta_N$ by
 
 
 
-%------- Section -------%
-\section{The Gravity Adaptive}
-
-
-In pursuit of the idea of using adaptives to describe the dynamics of the world, we describe an adaptive that models how bodies move through space under the force of gravity. For simplicity, however, these bodies will not be prevented from overlapping so as to avoid encoding the complicated dynamics of potential collisions. This adaptive will be modeled as an $\org$-enriched operad. %sync up new terminology
-
-\begin{definition}
-For the rest of this section, let $C$ denote the unit cube in $\rr^3$ and
-$$S_1 = \{(s : C \to C, v \in T_0 C) | \textrm{ s is a rectilinear embedding}\}.$$ 
-An embedding $s : C \to C$ can be interpreted as a rectangular prism inside the unit cube with faces parallel to those of the outer cube. Let $S_n = S_1^n$, whose elements are made up of $n$ such prisms $\vec s = (s_1,...,s_n)$ and velocities $\vec v = (v_1,...,v_n)$.
-\end{definition}
-
-These prisms inside the unit cube are meant to describe the positions and sizes of $n$ bodies moving through space. In physical models they typically wouldn't be allowed to overlap, but for simplicity we will in effect only consider their centers of mass when computing gravitational effects. %something about boundaries. Is there an easy way out of that?
-
-Consider the polynomial 
-$$g = \sum_{m \in \rrp \\ c \in C} y^{t \in \rrnn},$$
-whose positions we interpret as the mass $m$ of a body and its center of mass $c$, and whose directions we interpret as lengths of time $t$. We now describe an adaptive on $g$ with state sets $S_n$, where the action of a state computes its center of mass and the update modifies the positions and velocities of the bodies according to their current velocities and the force of gravity.
-
-\begin{definition}
-For $m_1,...,m_n \in \rrp$ and $c_1,...,c_n \in C$, representing $n$ positions in the unit cube $C$ and their masses, the vector pointing from the $i$th body to the center of mass of the others is given by
-$$\Delta c_i = \frac{m_1c_1 + \cdots + \hat{m_ic_i} + \cdots m_nc_n}{m_1 + \cdots + \hat{m_i} + \cdots + m_n} - c_i.$$
-The gravitational pull of the $i$th body in the system is given by
-$$G_i(\vec m,\vec c) = \frac{m_i(m_1 + \cdots + \hat m_i + \cdots m_n)G}{|\Delta c_i|^3}\Delta c_i,$$
-where $G$ is the gravitational constant. We will write $\vec G(\vec m, \vec c)$ for the tuple of these $n$ different vectors.
-\end{definition}
-
-\begin{definition}
-The $[g^{\otimes n},g]$-coalgebra structure on $S_n$ is given by 
-\begin{itemize}
-	\item $\beta_0(\vec s,\vec v)_1 : \rrp^n C^n \to C$ sends $(m_1,...,m_n,c_1,...,c_n)$ to 
-$$c_{\vec s,\vec m} = \frac{m_1s_1(c_1) + \cdots + m_ns_n(c_n)}{m_1 + \cdots + m_n}$$
-	\item $\beta_0(\vec s,\vec v)_{\vec m,\vec c} : \rrnn \to \rrnn^n$ sends $t$ to $(t,...,t)$\footnote{This simply says that when the entire system is observed for a length of time $t$, so is each component. Perhaps this could be varied to incorporate some version of relativity.} 
-	\item The update function $\beta_{\vec s,\vec v}$ sends $(\vec m \in \rrp^n,\vec c \in C^n)$ and $t \in \rrnn$ to 
-$$\blp \vec s + t\vec v + \frac{t^2}{2} \vec G(\vec m, \vec s(\vec c)),\vec v + t\vec G(\vec m, \vec s(\vec c)) \brp$$
-\end{itemize}
-\end{definition}
-
-This coalgebra structure is designed so that $n$ moving bodies are agglomerated into a single body by juxtaposition, with the center of mass of the new body computed as the center of mass of those that constitute it. Then for a given length of time, the positions and velocities of the original bodies are updated appropriately according to their original velocities and the force of gravity. The operadic composition of these states describe how to rescale these velocities according to the perspective of fitting their outer cube frame into a prism inside yet another outer cube.
-
-\begin{itemize}
-	\item The identitor state in $S_1$ is given by $(\id_C,0)$
-	\item The operadic compositor sends 
-$$(\vec s,\vec v) \in S_n, (\vec s^1,\vec v^1) \in S_{\ell_1},...,(\vec s^n,\vec v^n) \in S_{\ell_n}$$
-to
-$$\hspace{-1cm}\blp s_1 \circ s^1_1,...,s_1 \circ s^1_{\ell_1},s_2 \circ s^2_1,...,s_n \circ s^n_{\ell_n},v_1 + Ds_1 \cdot v^1_1,...,v_1 + Ds_1 \cdot v^1_{\ell_1},v_2 + Ds_2 \cdot v^2_1,...,v_n + Ds_n \cdot v^n_{\ell_n} \brp$$
-\end{itemize}
-
-Intuitively, the identitor describes a body filling the entire cube and not moving, while the operadic compositor describes plugging in $n$ systems into the prisms of another system. When doing so, the resulting prisms are precisely the composite embeddings of a prism of an inner system into the cube that is then again embedded into the cube as a prism in the outer system. The resulting velocities combine the velocity of the inner body in the cube of the inner system, scaled according to how that cube embeds into the cube of the outer system, then added to the velocity of the entire prism in the outer system. In other words, it is the velocity of a body moving inside a box which is itself moving.
-
-\begin{theorem}\label{gravityadaptive}
-These structure maps are maps of coalgebras and satisfy the coherence equations of an adaptive described in \cref{equations}.
-\end{theorem}
-
-This is discussed in more detail in \cref{coherenceproofs}, though the main thrust of the proof is entirely given by physical principles. The identitor picks out a static state in $S_1$, as it has zero velocity, and hence is a coalgebra morphism. It also clearly acts as an identity with respect to the compositor, as plugging an inner system into an outer system which is just one prism occupying the entire cube recovers the inner system. 
-
-The compositor is a coalgebra because the center of mass construction is ``associative'' in the sense of being computable in stages according to any (even nested) partition of the contributing masses, and the update is the physical evolution of the bodies in the system under their velocities and gravity, which is not affected by abstraction barriers such as drawing or removing boxes around some of the masses. 
-
-\bnote{Is this true? when the systems are rescaled it will change the distances and hence the force. This could be fine if the scaling of the velocities and distance traveled depends in the same way as the force does... but applying s on the outside scales G(m,c) once whereas applying s on the inside scales distances quadratically... this seems worrying}
+%%------- Section -------%
+%\section{The Gravity Adaptive}
+%
+%
+%In pursuit of the idea of using adaptives to describe the dynamics of the world, we describe an adaptive that models how bodies move through space under the force of gravity. For simplicity, however, these bodies will not be prevented from overlapping so as to avoid encoding the complicated dynamics of potential collisions. This adaptive will be modeled as an $\org$-enriched operad. %sync up new terminology
+%
+%\begin{definition}
+%For the rest of this section, let $C$ denote the unit cube in $\rr^3$ and
+%$$S_1 = \{(s : C \to C, v \in T_0 C) | \textrm{ s is a rectilinear embedding}\}.$$ 
+%An embedding $s : C \to C$ can be interpreted as a rectangular prism inside the unit cube with faces parallel to those of the outer cube. Let $S_n = S_1^n$, whose elements are made up of $n$ such prisms $\vec s = (s_1,...,s_n)$ and velocities $\vec v = (v_1,...,v_n)$.
+%\end{definition}
+%
+%These prisms inside the unit cube are meant to describe the positions and sizes of $n$ bodies moving through space. In physical models they typically wouldn't be allowed to overlap, but for simplicity we will in effect only consider their centers of mass when computing gravitational effects. %something about boundaries. Is there an easy way out of that?
+%
+%Consider the polynomial 
+%$$g = \sum_{m \in \rrp \\ c \in C} y^{t \in \rrnn},$$
+%whose positions we interpret as the mass $m$ of a body and its center of mass $c$, and whose directions we interpret as lengths of time $t$. We now describe an adaptive on $g$ with state sets $S_n$, where the action of a state computes its center of mass and the update modifies the positions and velocities of the bodies according to their current velocities and the force of gravity.
+%
+%\begin{definition}
+%For $m_1,...,m_n \in \rrp$ and $c_1,...,c_n \in C$, representing $n$ positions in the unit cube $C$ and their masses, the vector pointing from the $i$th body to the center of mass of the others is given by
+%$$\Delta c_i = \frac{m_1c_1 + \cdots + \hat{m_ic_i} + \cdots m_nc_n}{m_1 + \cdots + \hat{m_i} + \cdots + m_n} - c_i.$$
+%The gravitational pull of the $i$th body in the system is given by
+%$$G_i(\vec m,\vec c) = \frac{m_i(m_1 + \cdots + \hat m_i + \cdots m_n)G}{|\Delta c_i|^3}\Delta c_i,$$
+%where $G$ is the gravitational constant. We will write $\vec G(\vec m, \vec c)$ for the tuple of these $n$ different vectors.
+%\end{definition}
+%
+%\begin{definition}
+%The $[g^{\otimes n},g]$-coalgebra structure on $S_n$ is given by 
+%\begin{itemize}
+%	\item $\beta_0(\vec s,\vec v)_1 : \rrp^n C^n \to C$ sends $(m_1,...,m_n,c_1,...,c_n)$ to 
+%$$c_{\vec s,\vec m} = \frac{m_1s_1(c_1) + \cdots + m_ns_n(c_n)}{m_1 + \cdots + m_n}$$
+%	\item $\beta_0(\vec s,\vec v)_{\vec m,\vec c} : \rrnn \to \rrnn^n$ sends $t$ to $(t,...,t)$\footnote{This simply says that when the entire system is observed for a length of time $t$, so is each component. Perhaps this could be varied to incorporate some version of relativity.} 
+%	\item The update function $\beta_{\vec s,\vec v}$ sends $(\vec m \in \rrp^n,\vec c \in C^n)$ and $t \in \rrnn$ to 
+%$$\blp \vec s + t\vec v + \frac{t^2}{2} \vec G(\vec m, \vec s(\vec c)),\vec v + t\vec G(\vec m, \vec s(\vec c)) \brp$$
+%\end{itemize}
+%\end{definition}
+%
+%This coalgebra structure is designed so that $n$ moving bodies are agglomerated into a single body by juxtaposition, with the center of mass of the new body computed as the center of mass of those that constitute it. Then for a given length of time, the positions and velocities of the original bodies are updated appropriately according to their original velocities and the force of gravity. The operadic composition of these states describe how to rescale these velocities according to the perspective of fitting their outer cube frame into a prism inside yet another outer cube.
+%
+%\begin{itemize}
+%	\item The identitor state in $S_1$ is given by $(\id_C,0)$
+%	\item The operadic compositor sends 
+%$$(\vec s,\vec v) \in S_n, (\vec s^1,\vec v^1) \in S_{\ell_1},...,(\vec s^n,\vec v^n) \in S_{\ell_n}$$
+%to
+%$$\hspace{-1cm}\blp s_1 \circ s^1_1,...,s_1 \circ s^1_{\ell_1},s_2 \circ s^2_1,...,s_n \circ s^n_{\ell_n},v_1 + Ds_1 \cdot v^1_1,...,v_1 + Ds_1 \cdot v^1_{\ell_1},v_2 + Ds_2 \cdot v^2_1,...,v_n + Ds_n \cdot v^n_{\ell_n} \brp$$
+%\end{itemize}
+%
+%Intuitively, the identitor describes a body filling the entire cube and not moving, while the operadic compositor describes plugging in $n$ systems into the prisms of another system. When doing so, the resulting prisms are precisely the composite embeddings of a prism of an inner system into the cube that is then again embedded into the cube as a prism in the outer system. The resulting velocities combine the velocity of the inner body in the cube of the inner system, scaled according to how that cube embeds into the cube of the outer system, then added to the velocity of the entire prism in the outer system. In other words, it is the velocity of a body moving inside a box which is itself moving.
+%
+%\begin{theorem}\label{gravityadaptive}
+%These structure maps are maps of coalgebras and satisfy the coherence equations of an adaptive described in \cref{equations}.
+%\end{theorem}
+%
+%This is discussed in more detail in \cref{coherenceproofs}, though the main thrust of the proof is entirely given by physical principles. The identitor picks out a static state in $S_1$, as it has zero velocity, and hence is a coalgebra morphism. It also clearly acts as an identity with respect to the compositor, as plugging an inner system into an outer system which is just one prism occupying the entire cube recovers the inner system. 
+%
+%The compositor is a coalgebra because the center of mass construction is ``associative'' in the sense of being computable in stages according to any (even nested) partition of the contributing masses, and the update is the physical evolution of the bodies in the system under their velocities and gravity, which is not affected by abstraction barriers such as drawing or removing boxes around some of the masses. 
+%
+%\bnote{Is this true? when the systems are rescaled it will change the distances and hence the force. This could be fine if the scaling of the velocities and distance traveled depends in the same way as the force does... but applying s on the outside scales G(m,c) once whereas applying s on the inside scales distances quadratically... this seems worrying}
 
 
 
