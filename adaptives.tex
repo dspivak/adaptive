@@ -2,7 +2,7 @@
 
 
 \settrims{0pt}{0pt} % page and stock same size
-\settypeblocksize{*}{33.5pc}{*} % {height}{width}{ratio}
+\settypeblocksize{*}{35pc}{*} % {height}{width}{ratio}
 \setlrmargins{*}{*}{1} % {spine}{edge}{ratio}
 \setulmarginsandblock{.98in}{.98in}{*} % height of typeblock computed
 \setheadfoot{\onelineskip}{2\onelineskip} % {headheight}{footskip}
@@ -33,7 +33,7 @@ citecolor=orange!50!black, urlcolor=orange!50!black, pdfencoding=unicode]{hyperr
 \usepackage{fontawesome}
 \usepackage{ebproof}
 \usepackage{stmaryrd}
-
+\usepackage{float}
 
 % cleveref %
   \newcommand{\creflastconjunction}{, and\nobreakspace} % serial comma
@@ -515,14 +515,14 @@ It seems that organized systems adapt to internal and external pressures and tha
 \chapter{Introduction}
 
 Intuitively, an \emph{open dynamical system} is a machine or worker with an interface by which to interact with whatever else is out there. Open dynamical systems can be organized as circuits or control loops, so that they affect each other by their outward expressions of internal work, and thereby possibly form a more complex worker. The framework here is fractal---or more precisely \emph{operadic}---in its structure: organizations of workers can be nested into arbitrary hierarchies of abstraction, without changing the activity of these workers as they interact together.
-\begin{figure}[h]
+\begin{figure}[H]
 \[
 \begin{tikzpicture}[oriented WD, bb min width =.5cm, bbx=.5cm, bb port sep =1,bb port length=.08cm, bby=.14cm]
 \path (0,0) pic {SmallNestingPic};
 \end{tikzpicture}
 \]
 \caption{
-A nesting of organized open dynamical systems: the $X_{i,j}$ are wired together to form the $Y_i$, which are wired together to form $Z$; often these groupings are chosen to create new abstractions, e.g.\ in logical circuits. The permanence of the displayed wiring pattern is exactly what is relaxed in this paper; a dynamic organization is one in which interactions that change based on what flows within the system.
+A nesting of interacting open dynamical systems: the $X_{i,j}$ are wired together to form the $Y_i$, which are wired together to form $Z$; often these groupings are chosen to create new abstractions, e.g.\ in logical circuits or control systems. The permanence of the displayed wiring pattern is exactly what is relaxed in this paper; a dynamic organization is one in which interactions may change dynamically based on what flows within the system.
 }\label{fig.nesting}
 \end{figure}
 
@@ -532,19 +532,19 @@ But if we think about some things that interact to do work in the real world, we
 
 We propose that the metaphysical nature and scope of these questions should be complemented by some sort of guard rails to keep our contemplation on track. This is the role of mathematics in our work. It provides a symbolic tracking system which is articulate enough to facilitate one in explicating an example and another in asking questions about it.
 
-The category $\poly$ of polynomial functors in one variable is an ergonomic mathematical structure with many applications and spin-off categorical gadgets. We will begin in \cref{chap.org} by recalling one such gadget from \cite{spivak2021learners}: a category-enriched multicategory $\org$ that will be the conceptual centerpiece of our accounting system. Its objects are polynomial functors in one variable, and its morphisms are polynomial coalgebras related to a certain monoidal closed structure on $\poly$. We will see that the morphisms in $\org$ are intuitively ``collective organizational patterns that change through time''.
+The category $\poly$ of polynomial functors in one variable is an ergonomic mathematical structure with many applications and spin-off categorical gadgets. We will begin in \cref{chap.org} by recalling one such gadget from \cite{spivak2021learners}: a category-enriched multicategory $\org$ that will be the conceptual centerpiece of our accounting system. Its objects are polynomial functors in one variable, and its morphisms are polynomial coalgebras related to a certain monoidal closed structure on $\poly$. We will see that the morphisms in $\org$ are intuitively ``collective organizational patterns that change dynamically''.
 
-Leaving the mathematics aside until the next section begins---at which point we will have little more to say about the background philosophy---let's return to the question of how the organizational pattern between various systems is decided, moment-by-moment. Let's mesh this question with the idea that the so-organized systems can be nested into arbitrary hierarchies of abstraction. And let's think about all this in the frame of a certain worldview which we invite you the reader to engage with like a fictional movie, not intended to convince you of fact but instead simply to convey an experience. Here goes.
+Leaving the mathematics aside until \cref{chap.org}---at which point we will have little more to say about the background philosophy---let's return to the question ``how is the organizational pattern between various systems is decided, moment-by-moment?'' Let's mesh this question with the idea that the so-organized systems can be nested into arbitrary hierarchies of abstraction. And let's think about all this in the frame of a certain worldview which we invite you the reader to engage with like a fictional movie, not intended to convince you of fact but instead simply to convey an experience. Here goes.
 
-In this worldview, we notice that everything that makes any sense to us happens to be a collective. A cell body, a human body, an antibody, Topos Institute, an idea, an airport, a sentence, a mathematical definition, a grain of sand, ... each of these is a collective of interacting parts that may themselves be collectives. Stay with an example or two for now, not the counterexamples or counterpoints yet, because there are plenty of examples and they point more toward the subject-matter of this paper.
+In this worldview, we notice that everything that makes any sense to us happens to be a collective. A cell body, a human body, an antibody, Topos Institute, an idea, an airport, a sentence, a mathematical definition, a grain of sand, ... each of these is a collective of interacting parts that may themselves be collectives. Stay with an example or two---e.g.\ any of the above---for now, not the counterexamples or counterpoints yet, because there are plenty of examples and they point more toward the subject-matter of this paper.
 
-It's quite often the case that these collectives, like the ship of theseus, are not permanent organizations that are fixed for all time; they are adapting to forces from within and without the system. Even a grain of sand can break or melt; even a mathematical definition can be refactored. So then what's outside the system, generating these forces that influence it? We imagine that in fact what's outside is in fact more of the same kind of stuff as what's inside, just not as cohesive perhaps. Let's go full-on woo: if the universe is a big system, then maybe the sort of thing that happens in our head is---in some way---just like what happens outside of it. Maybe the thing that organizes Brandon and David into a collaborative thinking and paper-writing unit is, in the proper accounting system, the same thing that organizes each one of them into a body. 
+It's quite often the case that these collectives, like the ship of theseus, are not permanent organizations that are fixed for all time; they are adapting to forces from within and without the system. Even a grain of sand can break or melt; even a mathematical definition can be refactored. So then what's outside the system, generating these forces that influence it? We imagine that what's outside is in fact more of the same kind of stuff as what's inside, just not as cohesive perhaps. Let's go full-on woo: if the universe is a big system, then maybe the sort of thing that happens in our head is---in some way---just like what happens outside of it. Maybe the motives that organize Brandon and David into a collaborative thinking and paper-writing unit are, in the proper accounting system, of the same nature as the motives that organize each one of them into a body. 
 
 But is this right? How could you check such a claim? One would need to give a proper account, and since we as authors can't give such an account, we don't make this claim. Instead, what we present here is an accounting system in which the woo-person, (or would it instead be the reductive materialist?) who thought that what went on inside the head was somehow the same as what went on outside, could endeavor to provide a plausible account of their thinking.
 
 \section{Adaptives}
 
-Our main definition in this paper is what we call an \emph{adaptive}. We might poetically say that an \emph{adaptive} is a structure that is self-similarly self-organizing its interactions with itself. To define it, we first refactor the definition of $\org$ from \cite{spivak2021learners}. Once defined, we give a couple examples of this structure, one of which is a claimed-to-be-accurate account of \emph{deep learning by gradient descent} and the other of which is a toy account of objects influenced by gravity. One might say these are adaptives because ``any organized composite of gradient descenders is a gradient descender'' and because ``any organized composite of gravitational frames is a gravitational frame''. \dnote{Why did the poem not quite fit the examples?}
+Our main definition in this paper is what we call an \emph{dynamic categorical structure}. ***EDIT HERE***We might poetically say that an \emph{adaptive} is a structure that is self-similarly self-organizing its interactions with itself. To define it, we first refactor the definition of $\org$ from \cite{spivak2021learners}. Once defined, we give a couple examples of this structure, one of which is a claimed-to-be-accurate account of \emph{deep learning by gradient descent} and the other of which is a toy account of objects influenced by gravity. One might say these are adaptives because ``any organized composite of gradient descenders is a gradient descender'' and because ``any organized composite of gravitational frames is a gravitational frame''. \dnote{Why did the poem not quite fit the examples?}
 
 We thank you the reader for having postponed your counterpoints and counterexamples, and we ask you to reengage both skepticism and interest as you see fit. We invite you to ask openly: what's not a collective of interacting parts that are themselves collectives? Nature, love, or experience perhaps? It all depends on how you look. What we present here is an accounting system for making sense of a certain sort of experiential pattern; the matter itself is whatever it is.
 
