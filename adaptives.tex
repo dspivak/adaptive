@@ -242,7 +242,7 @@ replacement=\&]{}\ar[r,slash, "{#1}"]\&{}\end{tikzcd}}
 
 \tikzset{SmallNestingPic/.pic={
   \path (0,0) pic [purple] {Yonepart};
-  \path ($(rightbox)+(4,-5)$) pic [orange] {Ytwopart};
+  \path ($(rightbox)+(4,-5)$) pic [blue!40!black] {Ytwopart};
   
   \node[bb={0}{0}, fit={($(Y1northwest)+(-.5,4)$) ($(Y2.south east)+(1,0)$)}, bb name={\small $Z$}] (Z) {};
   \coordinate[above=\bby] (helper) at (Y2.north west);
@@ -457,6 +457,7 @@ replacement=\&]{}\ar[r,slash, "{#1}"]\&{}\end{tikzcd}}
 }
 
 
+\newcommand{\slogan}[1]{\begin{center}\textit{#1}\end{center}}
 
 \newcommand{\qand}{\quad\text{and}\quad}
 \newcommand{\qqand}{\qquad\text{and}\qquad}
@@ -498,7 +499,7 @@ replacement=\&]{}\ar[r,slash, "{#1}"]\&{}\end{tikzcd}}
 %--------------- Document ---------------%
 \begin{document}
 
-\title{Adaptives:\\Self-similar hierarchical dynamical systems}
+\title{Dynamic Categorical Structures:\\From deep learning to prediction markets}
 
 \author{Brandon Shapiro \and David I. Spivak}
 
@@ -507,22 +508,23 @@ replacement=\&]{}\ar[r,slash, "{#1}"]\&{}\end{tikzcd}}
 \maketitle
 
 \begin{abstract}
-Organized systems adapt to internal and external pressures, and this happens all the way down. Being able to think clearly about this idea motivates our paper, and so it is elaborated extensively in the introduction, which should be broadly accessible to a philosophically-interested audience. In the remaining sections, we turn to more compressed category theory. We define the monoidal double category $\org$ and spell out how to think about $\org$-enriched categories, operads, and monoidal categories, in particular how they exemplify these philosophical ideas.
+It seems that organized systems adapt to internal and external pressures and that this happens all the way down. Wanting to think clearly about this idea motivates our paper, and so the idea is elaborated extensively in the introduction, which should be broadly accessible to a philosophically-interested audience. In the remaining sections, we turn to more compressed category theory. We define the monoidal double category $\org$ of dynamic organizations, and we spell out how to think about $\org$-enriched, or \emph{dynamic} categorical structures---e.g.\ dynamic categories, operads, and monoidal categories---instantiate the motivating philosophical ideas. We give two examples of dynamic categorical structures: prediction markets as a dynamic operad and deep learning as a dynamic monoidal category.
 \end{abstract}
 
 %------- Chapter -------%
 \chapter{Introduction}
 
-Intuitively, an open dynamical system is a machine or worker with an interface by which to interact with whatever else is out there. Open dynamical systems can be organized as circuits or control loops, so that they affect each other by their outward expressions of internal work, and thereby possibly form a more complex worker.
+Intuitively, an \emph{open dynamical system} is a machine or worker with an interface by which to interact with whatever else is out there. Open dynamical systems can be organized as circuits or control loops, so that they affect each other by their outward expressions of internal work, and thereby possibly form a more complex worker. The framework here is fractal---or more precisely \emph{operadic}---in its structure: organizations of workers can be nested into arbitrary hierarchies of abstraction, without changing the activity of these workers as they interact together.
 \begin{figure}[h]
 \[
 \begin{tikzpicture}[oriented WD, bb min width =.5cm, bbx=.5cm, bb port sep =1,bb port length=.08cm, bby=.14cm]
 \path (0,0) pic {SmallNestingPic};
 \end{tikzpicture}
 \]
-\caption{}\label{fig.nesting}
+\caption{
+A nesting of organized open dynamical systems: the $X_{i,j}$ are wired together to form the $Y_i$, which are wired together to form $Z$; often these groupings are chosen to create new abstractions, e.g.\ in logical circuits. The permanence of the displayed wiring pattern is exactly what is relaxed in this paper; a dynamic organization is one in which interactions that change based on what flows within the system.
+}\label{fig.nesting}
 \end{figure}
-The framework here is fractal---or more precisely \emph{operadic}---in its structure: organizations of workers can be nested into arbitrary hierarchies of abstraction, without changing the activity of these workers as they interact together.
 
 But if we think about some things that interact to do work in the real world, we often notice that often the organization itself---the connections themselves---change. The way we connect this hour may be different from the way we connect next hour; in particular, our interfaces go in and out of contact. At the end of this paragraph, look away from the page for a few seconds, think about some things you know that interact together or influence each other, and ask yourself three questions about them: Do these things ever stop interacting? If so, do they ever start interacting again? And how is it decided? 
 
