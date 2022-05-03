@@ -542,15 +542,15 @@ It's quite often the case that these collectives, like the ship of theseus, are 
 
 But is this right? How could you check such a claim? One would need to give a proper account, and since we as authors can't give such an account, we don't make this claim. Instead, what we present here is an accounting system in which the woo-person, (or would it instead be the reductive materialist?) who thought that what went on inside the head was somehow the same as what went on outside, could endeavor to provide a plausible account of their thinking.
 
-\section{Adaptives}
+\section{Dynamic categorical structures}
 
-Our main definition in this paper is what we call an \emph{dynamic categorical structure}. ***EDIT HERE***We might poetically say that an \emph{adaptive} is a structure that is self-similarly self-organizing its interactions with itself. To define it, we first refactor the definition of $\org$ from \cite{spivak2021learners}. Once defined, we give a couple examples of this structure, one of which is a claimed-to-be-accurate account of \emph{deep learning by gradient descent} and the other of which is a toy account of objects influenced by gravity. One might say these are adaptives because ``any organized composite of gradient descenders is a gradient descender'' and because ``any organized composite of gravitational frames is a gravitational frame''. \dnote{Why did the poem not quite fit the examples?}
+Our main definition in this paper is what we call an \emph{dynamic categorical structure}. We might poetically say that an \emph{dynamic} category is one where the morphisms change in response to what flows in to and out of the objects it connects. To define it, we first refactor the definition of $\org$ from \cite{spivak2021learners}. Once defined, we give a couple examples of this structure: a \emph{prediction market} operad and a \emph{deep learning} monoidal category. In the prediction market, a population $Y$ predicts a distribution based on the predictions of its member populations $X_i$ weighted by their reputations, and the reputations change dynamically based on the returned outcome. A similar story holds with deep learning.
 
 We thank you the reader for having postponed your counterpoints and counterexamples, and we ask you to reengage both skepticism and interest as you see fit. We invite you to ask openly: what's not a collective of interacting parts that are themselves collectives? Nature, love, or experience perhaps? It all depends on how you look. What we present here is an accounting system for making sense of a certain sort of experiential pattern; the matter itself is whatever it is.
 
 \section{Acknowledgments}
 
-The influences on this paper are too numerous and unranked to name, but in particular we thank Sophie Libkind for stimulating conversations, and we thank Scott Garrabrant for teaching us about Kelley betting, our interpretation of which is \cref{sec.Kelley}.
+The influences on this paper are too numerous and unranked to name, but in particular we thank Sophie Libkind for stimulating conversations, and we thank Scott Garrabrant for teaching us about Kelley betting, our interpretation of which has become \cref{sec.kelley}.
 
 This material is based upon work supported by the Air Force Office of Scientific Research under award number FA9550-20-1-0348.
 
@@ -571,18 +571,21 @@ We first recall the definitions of the internal-hom polynomials $[p,q]$ and conc
 %\dnote{Introduce the notation $p\slashar q$ in this section?}
 
 \begin{definition}\label{coalgebras}
-For polynomials 
-$$p = \sum_{I \in p(1)} y^{p[I]} \qqand q = \sum_{J \in q(1)} y^{q[J]},$$
+For polynomials $p,q\in\poly$ given by
+\[
+p = \sum_{I \in p(1)} y^{p[I]} \qqand q = \sum_{J \in q(1)} y^{q[J]},
+\]
 their \emph{internal hom} with respect to the tensor product $\otimes$ is the polynomial
 \[
-[p,q] = \sum_{\phi : p \to q} y^{\sum\limits_{\;I \in p(1)} q[\phi_1(I)]}
+[p,q]\coloneqq \sum_{\phi\colon p \to q} y^{\sum\limits_{\;I \in p(1)} q[\phi_1(I)]}
+\qedhere
 \]
 \end{definition}
 
-For intuition, a $[p,q]$-coalgebra (denoted $p \slashar q$) is a machine that outputs maps $p\to q$ and inputs what flows out of $p$ and what flows in to $q$. More precisely, using \cite[Definition 2.10]{spivak2021learners} applied to $[p,q]$, we get the following definition of $[p,q]$-coalgebras. 
+For intuition, a $[p,q]$-coalgebra (denoted $p \slashar q$) is a machine that outputs maps $p\to q$ and that inputs two things: what flows out of $p$ and what flows in to $q$. More precisely, using \cite[Definition 2.10]{spivak2021learners} applied to $[p,q]$, we get the following definition of $[p,q]$-coalgebras. 
 
 \begin{definition}
-The category $[p,q]\coalg$ has as objects pairs $\S = (S,\beta)$ where $S$ is a set and $\beta : S \to [p,q] \tri S$, and morphisms from $\S$ to $\S'$ given by functions $f : S \to S'$ making \eqref{eqn.coalg_map} commute. 
+The category $[p,q]\coalg$ has as objects pairs $\S = (S,\beta)$ where $S$ is a set and $\beta\colon S \to [p,q] \tri S$ is a function, and where a morphism from $\S$ to $\S'$ is a function $f\colon S \to S'$ making \eqref{eqn.coalg_map} commute. 
 \begin{equation}\label{eqn.coalg_map}
 \begin{tikzcd}
 S \rar{\beta} \dar[swap]{f} & {[p,q]} \tri S \dar{{[p,q]} \tri f} \\
@@ -592,9 +595,9 @@ S' \rar[swap]{\beta'} & {[p,q]} \tri S'
 \end{definition}
 
 Unwinding this definition, we get that $\beta$ is determined by a function 
-$$\beta_0 : S \to \poly(p,q) = [p,q](1)$$
+$$\beta_0\colon S \to \poly(p,q) = [p,q](1)$$
 and for each $s \in S$, a function 
-$$\beta_s : \sum_{I \in p(1)} q[\beta_0(s)_1(I)] \to S.$$ 
+$$\beta_s\colon \sum_{I \in p(1)} q[\beta_0(s)_1(I)] \to S.$$ 
 For each $s \in S$, called a \emph{state}, we call $\beta_0(s)$ the \emph{action of $s$} and $\beta_s$ the \emph{update function of $s$}. A coalgebra map is then a function between the state sets that preserves actions and updates. 
 
 When, for each $s \in S$, the update $\beta_s$ is the constant function sending everything to $s$, we say the coalgebra $\S$ is \emph{static}, as it remains constantly at $s$ regardless of the output $I \in p(1)$ and input $j\in q[\beta_0(s)_1(I)]$.
@@ -627,7 +630,7 @@ Composites are defined as
 $$[p,q]\coalg \times [q,r]\coalg \to \left([p,q] \otimes [q,r]\right)\coalg \to [p,r]\coalg,$$
 where the first functor is described in \cite[Proposition 2.13]{spivak2021learners}, and the second is given by the fact that $(-)\coalg$ is a functor $\poly \to \smcat$, using a map of polynomials $[p,q] \otimes [q,r] \to [p,r]$. On positions, this map takes the form
 $$\left([p,q] \otimes [q,r]\right)(1) = \poly(p,q) \times \poly(q,r) \To{\circ} \poly(p,r) = [p,r](1)$$
-and on directions it is given for $\phi : p \to q$ and $\psi : q \to r$ by the function
+and on directions it is given for $\phi\colon p \to q$ and $\psi\colon q \to r$ by the function
 $$\left(\sum_{I \in p(1)} q[\phi_1(I)]\right) \times \left(\sum_{J \in q(1)} r[\psi_1(J)]\right) \from \sum_{I \in p(1)} r[\psi_1(\phi_1(I))]$$
 which sends $(I,j)$ to $(I,\psi_{\phi_1(I)}(j),\phi_1(I),j)$. 
 
@@ -652,7 +655,7 @@ Horizontal composition of morphisms of coalgebras, the 2-cells of the bicategory
 $$[p,q]\coalg \times [p',q']\coalg \to \left([p,q] \otimes [p',q']\right)\coalg \to [p \otimes p',q \otimes q']\coalg$$
 derived from the map of polynomials $[p,q] \otimes [p',q'] \to [p \otimes p',q \otimes q']$ given on positions by 
 $$\poly(p,q) \times \poly(p',q') \To{\otimes} \poly(p \otimes p',q \otimes q')$$
-and on directions by, for $\phi : p \to q$ and $\phi' : p' \to q'$,
+and on directions by, for $\phi\colon p \to q$ and $\phi'\colon p' \to q'$,
 $$\left(\sum_{I \in p(1)} q[\phi_1(I)]\right) \times \left(\sum_{I' \in p'(1)} q'[\phi'_1(I')]\right) \from \sum_{(I,I') \in p(1) \times p'(1)} q[\phi_1(I)] \times q'[\phi'_1(I')]$$
 sending $(I,I',j,j')$ to $(I,j,I',j')$.
 
@@ -784,18 +787,18 @@ We will mostly be interested in what we call a dynamical operad on $p$, the case
 satisfying the usual equations. %\dnote{should we perhaps denote $\id_p$ by $\{\id_p\}$ to emphasize it is a single-state thingy?}
 
 \begin{example}\label{ex.collective}
-A \emph{collective} (as defined in \cite{niu2021collectives}) is a $\otimes$-monoid in $\poly$, meaning a polynomial $p$ equipped with a monoid structure on its positions $p(1)$ and co-unital co-associative ``distribution'' functions $p[I \cdot J] \to p[I] \times p[J]$ for each $I,J \in p(1)$. This can be viewed as a dynamical operad where $\S_n$ is given by $\{\cdot_n\}$, the one-element coalgebra on the $n$-ary monoidal product $\cdot_n : p^{\otimes n} \to p$, and where the maps of coalgebras in \eqref{eqn.org_operad} are isomorphisms deduced from the equations for a monoid.
+A \emph{collective} (as defined in \cite{niu2021collectives}) is a $\otimes$-monoid in $\poly$, meaning a polynomial $p$ equipped with a monoid structure on its positions $p(1)$ and co-unital co-associative ``distribution'' functions $p[I \cdot J] \to p[I] \times p[J]$ for each $I,J \in p(1)$. This can be viewed as a dynamical operad where $\S_n$ is given by $\{\cdot_n\}$, the one-element coalgebra on the $n$-ary monoidal product $\cdot_n\colon p^{\otimes n} \to p$, and where the maps of coalgebras in \eqref{eqn.org_operad} are isomorphisms deduced from the equations for a monoid.
 \end{example}
 
 \begin{example}
 In \cref{ex.collective}, the coalgebras $\S_n$ are determined by a single map of polynomials, with no possible updates as there is only one state. This can be generalized to an intermediate notion between collectives and dynamical multicategories, where the coalgebras are still static but may have multiple states.
 
-Given a multicategory $M$ and a multifunctor $F : M \to \poly$, there is a dynamical multicategory $A_F$ with 
+Given a multicategory $M$ and a multifunctor $F\colon M \to \poly$, there is a dynamical multicategory $A_F$ with 
 \begin{itemize}
 	\item object set $\ob(M)$;
 	\item for each $a \in \ob(M)$, the polynomial $p_a = F(a)$;
 	\item for each tuple $(a_1,...,a_n;b)$ in $\ob(M)$, $S_{a_1,...,a_n;b} = M(a_1,...,a_n;b)$;
-	\item the map $\beta_0 : M(a_1,...,a_n;b) \to \poly(p_{a_1} \otimes \cdots \otimes p_{a_n},p_b)$ is given by $F$; and 
+	\item the map $\beta_0\colon M(a_1,...,a_n;b) \to \poly(p_{a_1} \otimes \cdots \otimes p_{a_n},p_b)$ is given by $F$; and 
 	\item this coalgebra is static, in that for any state $s$ in $M(a_1,...,a_n;b)$, the update function $\beta_s$ is the constant function at $s$.
 	\qedhere
 \end{itemize}
@@ -861,7 +864,7 @@ For the rest of this paper, we will only be interested in the restricted case of
 Morphisms of dynamical structures are a special case of the general notion of morphisms between enriched structures as defined in \cite{shapiro2022enrichment}. %cite specifically
 
 \begin{definition}
-A \emph{morphism} of dynamical PROs from $(p,\S)$ to $(p',\S')$ is given by a map of polynomials $\phi : p \to p'$ and, for each $m,n \in \nn$, ``commutor'' squares as in \eqref{eqn.adaptive_map} in $\org$ which commute with the identitor, compositor, and productor squares.
+A \emph{morphism} of dynamical PROs from $(p,\S)$ to $(p',\S')$ is given by a map of polynomials $\phi\colon p \to p'$ and, for each $m,n \in \nn$, ``commutor'' squares as in \eqref{eqn.adaptive_map} in $\org$ which commute with the identitor, compositor, and productor squares.
 \begin{equation}\label{eqn.adaptive_map}
 \begin{tikzcd}
 p^{\otimes m} \rar[slash, ""{name=S, below}]{\S_{m,n}} \dar[swap]{\phi^{\otimes m}} & p^{\otimes n} \dar{\phi^{\otimes n}} \\
@@ -878,7 +881,7 @@ A morphism $(p,\S) \to (p',\S')$ can be interpreted as a way of telling the codo
 \begin{example}
 For a fixed polynomial $p$, there is a terminal dynamical PRO $\S^{p!}$ with interface $p$ where $\S^{p!}_{m,n}$ is the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra. 
 
-Its states are (not necessarily finite) $[p^{\otimes m},p^{\otimes n}]$-trees: trees inductively defined by a root labeled with a polynomial map $\phi : p^{\otimes m} \to p^{\otimes n}$ and for each pair 
+Its states are (not necessarily finite) $[p^{\otimes m},p^{\otimes n}]$-trees: trees inductively defined by a root labeled with a polynomial map $\phi\colon p^{\otimes m} \to p^{\otimes n}$ and for each pair 
 \begin{equation}\label{eqn.pmn_directions}
 \left((I_1,...,I_m) \in p(1)^m, (i_1,...,i_n) \in p[\phi(I_1,...,I_m)_1] \times \cdots \times p[\phi(I_1,...,I_m)_n]\right)
 \end{equation}
@@ -905,7 +908,7 @@ Deep learning uses the algorithm of gradient descent to optimize a choice of fun
 
 \begin{definition}
 For the rest of this section, let 
-\[S_{m,n} = \left\{(M \in \nn, f : \rr^{M+m}, p \in \rr^M) | f \textrm{ is differentiable}\right\}.
+\[S_{m,n} = \left\{(M \in \nn, f\colon \rr^{M+m}, p \in \rr^M) | f \textrm{ is differentiable}\right\}.
 \]
 \end{definition}
 
@@ -918,8 +921,8 @@ Let $t = \sum_{x \in \rr} y^{T_x \rr}$.  Of course for all practical purposes $T
 \begin{definition}
 The $[t^{\otimes m},t^{\otimes n}]$-coalgebra structure on $S_{m,n}$ is given by 
 \begin{itemize}
-	\item $\beta_0(M,f,p)_1 : \rr^m \to \rr^n$ given by $f(p,-)$
-	\item For $x \in \rr^m$, $\beta_0(M,f,p)_x : T_{f(p,x)} \rr^n \to T_x \rr^m$ sends $y$ to $\pi_m Df^\top \cdot y$
+	\item $\beta_0(M,f,p)_1\colon \rr^m \to \rr^n$ given by $f(p,-)$
+	\item For $x \in \rr^m$, $\beta_0(M,f,p)_x\colon T_{f(p,x)} \rr^n \to T_x \rr^m$ sends $y$ to $\pi_m Df^\top \cdot y$
 	\item The update function $\beta_{M,f,p}$ sends $x \in \rr^m$ and $y \in T_{f(p,x)}$ to $(M,f,p+\epsilon \pi_M Df^\top \cdot y)$ for some fixed value of $\epsilon$
 \end{itemize}
 \end{definition}
@@ -930,7 +933,7 @@ Thus far, we have provided the data of the polynomial $t$ and the $[t^{\otimes m
 \begin{itemize}
 	\item The identitors $\idcoalg{t^{\otimes n}} \to \S_{n,n}$ send the unique state in the domain to the state $(0,\id_{\rr^n},0) \in S_{n,n}$. 
 	\item The compositors $\S_{\ell,m}\then\S_{m,n} \to \S_{\ell,n}$ send the pair $((L,f,p),(M,g,q))$ to 
-$$\left( M+L,g(-,f(-,-)) : \rr^{M+L+\ell} \To{\id \times f} \rr^{M+m} \To{g} \rr^n, (q,p) \in \rr^{M+L} \right).$$
+$$\left( M+L,g(-,f(-,-))\colon \rr^{M+L+\ell} \To{\id \times f} \rr^{M+m} \To{g} \rr^n, (q,p) \in \rr^{M+L} \right).$$
 	\item The productors $\S_{m,n} \otimes \S_{m',n'} \to \S_{m+m',n+n'}$ send the pair $((M,f,p),(M',f',p'))$ to $(M+M',(f,f'),(p,p'))$
 \end{itemize}
 
@@ -1035,8 +1038,8 @@ This is proven in \cref{coherenceproofs}.
 %
 %\begin{definition}
 %For the rest of this section, let $C$ denote the unit cube in $\rr^3$ and
-%$$S_1 = \{(s : C \to C, v \in T_0 C) | \textrm{ s is a rectilinear embedding}\}.$$ 
-%An embedding $s : C \to C$ can be interpreted as a rectangular prism inside the unit cube with faces parallel to those of the outer cube. Let $S_n = S_1^n$, whose elements are made up of $n$ such prisms $\vec s = (s_1,...,s_n)$ and velocities $\vec v = (v_1,...,v_n)$.
+%$$S_1 = \{(s\colon C \to C, v \in T_0 C) | \textrm{ s is a rectilinear embedding}\}.$$ 
+%An embedding $s\colon C \to C$ can be interpreted as a rectangular prism inside the unit cube with faces parallel to those of the outer cube. Let $S_n = S_1^n$, whose elements are made up of $n$ such prisms $\vec s = (s_1,...,s_n)$ and velocities $\vec v = (v_1,...,v_n)$.
 %\end{definition}
 %
 %These prisms inside the unit cube are meant to describe the positions and sizes of $n$ bodies moving through space. In physical models they typically wouldn't be allowed to overlap, but for simplicity we will in effect only consider their centers of mass when computing gravitational effects. %something about boundaries. Is there an easy way out of that?
@@ -1056,9 +1059,9 @@ This is proven in \cref{coherenceproofs}.
 %\begin{definition}
 %The $[g^{\otimes n},g]$-coalgebra structure on $S_n$ is given by 
 %\begin{itemize}
-%	\item $\beta_0(\vec s,\vec v)_1 : \rrp^n C^n \to C$ sends $(m_1,...,m_n,c_1,...,c_n)$ to 
+%	\item $\beta_0(\vec s,\vec v)_1\colon \rrp^n C^n \to C$ sends $(m_1,...,m_n,c_1,...,c_n)$ to 
 %$$c_{\vec s,\vec m} = \frac{m_1s_1(c_1) + \cdots + m_ns_n(c_n)}{m_1 + \cdots + m_n}$$
-%	\item $\beta_0(\vec s,\vec v)_{\vec m,\vec c} : \rrnn \to \rrnn^n$ sends $t$ to $(t,...,t)$\footnote{This simply says that when the entire system is observed for a length of time $t$, so is each component. Perhaps this could be varied to incorporate some version of relativity.} 
+%	\item $\beta_0(\vec s,\vec v)_{\vec m,\vec c}\colon \rrnn \to \rrnn^n$ sends $t$ to $(t,...,t)$\footnote{This simply says that when the entire system is observed for a length of time $t$, so is each component. Perhaps this could be varied to incorporate some version of relativity.} 
 %	\item The update function $\beta_{\vec s,\vec v}$ sends $(\vec m \in \rrp^n,\vec c \in C^n)$ and $t \in \rrnn$ to 
 %$$\left( \vec s + t\vec v + \frac{t^2}{2} \vec G(\vec m, \vec s(\vec c)),\vec v + t\vec G(\vec m, \vec s(\vec c)) \right)$$
 %\end{itemize}
@@ -1256,7 +1259,7 @@ It then remains only to show that the identitors, compositors, and productors ar
 For the identitors, the state $(0,\id_{\rr^n},0)$ acts as the identity function on $\rr^n$ and on directions by the transpose of its derivative, which is also the identity. The updates in the coalgebras $\S_{n,n}$ only modify the parameter $p$, so as the parameter here is 0-dimensional this state is never changed by the update function, as is the case in the coalgebra $\idcoalg{t^{\otimes n}}$. Therefore this function is a map of coalgebras.
 
 The compositors preserve the component of the action on positions as, for states 
-$$(L \in \nn, f : \rr^{L+\ell}, p \in \rr^L) \quad \textrm{and} \quad (M \in \nn, g : \rr^{M+m}, q \in \rr^M),$$ 
+$$(L \in \nn, f\colon \rr^{L+\ell}, p \in \rr^L) \quad \textrm{and} \quad (M \in \nn, g\colon \rr^{M+m}, q \in \rr^M),$$ 
 we have 
 $$g(q,-) \circ f(p,-) = g(-,f(-,-))(q,p,-).$$
 This may seem like a trivial rewriting, but it illustrates how the compositor was defined in order for the action to be preserved, as on the left we have the composite of the actions on positions as in $\S_{\ell,m};\S_{m,n}$, and on the right we apply the compositor and take the action of the resulting state in $\S_{\ell,n}$.
@@ -1298,32 +1301,32 @@ $$\left( M+L,g(-,f(-,-)),\left( p + \epsilon \pi_L (Df^\top \cdot \pi_m(Dg^\top 
 %In order to state the definition of an adaptive, we recall various notions of lax functors out of monoidal categories.
 %
 %\begin{definition}%cite?
-%For $\C$ a category and $\D$ a bicategory, a lax functor $F : \C \to \D$ consists of
+%For $\C$ a category and $\D$ a bicategory, a lax functor $F\colon \C \to \D$ consists of
 %\begin{itemize}
-%	\item an assignment $F : \ob(\C) \to \ob(\D)$
+%	\item an assignment $F\colon \ob(\C) \to \ob(\D)$
 %	\item for each $c,c' \in \ob(\C)$, functions 
-%$$F : \Hom_\C(c,c') \to \ob(\D(F(c),F(c')))$$
+%$$F\colon \Hom_\C(c,c') \to \ob(\D(F(c),F(c')))$$
 %	\item for each $c \in \ob(\C)$, an ``identitor'' 2-cell in $\D(F(c),F(c))$ 
-%$$F_{\id_c} : \id_{F(c)} \Rightarrow F(\id_c)$$
-%	\item for each $f : c \to c'$ and $f' : c' \to c''$ in $\C$, a ``compositor'' 2-cell  in $\D(F(c),F(c''))$
-%$$F_{f \circ f'} : F(f') \circ F(f) \Rightarrow F(f' \circ f)$$
+%$$F_{\id_c}\colon \id_{F(c)} \Rightarrow F(\id_c)$$
+%	\item for each $f\colon c \to c'$ and $f'\colon c' \to c''$ in $\C$, a ``compositor'' 2-cell  in $\D(F(c),F(c''))$
+%$$F_{f \circ f'}\colon F(f') \circ F(f) \Rightarrow F(f' \circ f)$$
 %\end{itemize}
 %such that the identitors and compositors satisfy unit and associativity equations. 
 %\end{definition}
 %
 %The equations here ensure a unique lax structure map 
-%$$F_{f_1 \circ \cdots \circ f_n} : F(f_n) \circ \cdots \circ F(f_1) \Rightarrow F(f_n \circ \cdots \circ f_1)$$
+%$$F_{f_1 \circ \cdots \circ f_n}\colon F(f_n) \circ \cdots \circ F(f_1) \Rightarrow F(f_n \circ \cdots \circ f_1)$$
 %built out of composites of whiskerings of the identitors and compositors, for all $n \ge 0$ and composable morphisms $f_1,...,f_n$.
 %
 %\begin{definition}%cite? Gurski's thesis mentions lax functors of tricategories which should give a similar notion aside from the strict monoidality on objects and iso-ness of the monoidality equations
-%For $\C$ a monoidal category and $\D$ a monoidal double category, a lax monoidal lax functor $F : \C \to \D$ consists of
+%For $\C$ a monoidal category and $\D$ a monoidal double category, a lax monoidal lax functor $F\colon \C \to \D$ consists of
 %\begin{itemize}
-%	\item a lax functor $F : \C \to \D$
+%	\item a lax functor $F\colon \C \to \D$
 %	\item an ``identitor'' vertical morphism in $\D$ %is this ok? it's a 1-cell not a 2-cell like the other...
-%$$F_I : I_\D \to F(I_\C)$$
+%$$F_I\colon I_\D \to F(I_\C)$$
 %	\item for each $c_1,c_2 \in \ob(\C)$, a ``productor'' vertical morphism in $\D$ 
-%$$F_{c_1,c_2} : F(c_1) \otimes F(c_2) \to F(c_1 \otimes c_2)$$
-%	\item for each $f_1 : c_1 \to c_1'$ and $f_2 : c_2 \to c_2'$ in $\C$, a ``productor'' square $F_{f_1 \otimes f_2}$ in $\D$
+%$$F_{c_1,c_2}\colon F(c_1) \otimes F(c_2) \to F(c_1 \otimes c_2)$$
+%	\item for each $f_1\colon c_1 \to c_1'$ and $f_2\colon c_2 \to c_2'$ in $\C$, a ``productor'' square $F_{f_1 \otimes f_2}$ in $\D$
 %\[\begin{tikzcd}
 %F(c_1) \otimes F(c_2) \dar[swap]{F(f_1) \otimes F(f_2)} \ar[""{name=S, below}]{r}{F_{c_1,c_2}} & F(c_1 \otimes c_2) \dar{F(f_1 \otimes f_2)} \\
 %F(c_1') \otimes F(c_2') \ar[""{name=T, above}]{r}[swap]{F_{c_1',c_2'}} & F(c_1' \otimes c_2')
@@ -1339,7 +1342,7 @@ $$\left( M+L,g(-,f(-,-)),\left( p + \epsilon \pi_L (Df^\top \cdot \pi_m(Dg^\top 
 %\begin{proposition}
 %For $\C$ a monoidal category and $\D$ a monoidal double category, the following are equivalent.
 %\begin{enumerate}%be more specific about strictness
-%	\item A lax monoidal lax functor $F : \C \to \D$ such that $F_{c_1,c_2}$ is the identity for all $c_1,c_2 \in \ob(\C)$\footnote{Note that this strict monoidality condition is not assumed for the squares $F_{f_1 \otimes f_2}$}
+%	\item A lax monoidal lax functor $F\colon \C \to \D$ such that $F_{c_1,c_2}$ is the identity for all $c_1,c_2 \in \ob(\C)$\footnote{Note that this strict monoidality condition is not assumed for the squares $F_{f_1 \otimes f_2}$}
 %	\item A lax functor $F$ from $\C$ to the horizontal bicategory of $\D$ such that $F(c_1 \otimes c_2) = F(c_1) \otimes F(c_2)$ for all $c_1,c_2 \in \ob(\C)$, and the following diagram commutes for all
 %
 %\end{enumerate}
