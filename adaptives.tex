@@ -2,7 +2,7 @@
 
 
 \settrims{0pt}{0pt} % page and stock same size
-\settypeblocksize{*}{35pc}{*} % {height}{width}{ratio}
+\settypeblocksize{*}{36pc}{*} % {height}{width}{ratio}
 \setlrmargins{*}{*}{1} % {spine}{edge}{ratio}
 \setulmarginsandblock{.98in}{.98in}{*} % height of typeblock computed
 \setheadfoot{\onelineskip}{2\onelineskip} % {headheight}{footskip}
@@ -370,6 +370,7 @@ replacement=\&]{}\ar[r,slash, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\Tto}[3][13pt]{\begin{tikzcd}[sep=#1, cramped, ampersand replacement=\&, text height=1ex, text depth=.3ex]\ar[r, shift left=2pt, "#2"]\ar[r, shift right=2pt, "#3"']\&{}\end{tikzcd}}
 \newcommand{\Too}[1]{\xrightarrow{\;\;#1\;\;}}
 \newcommand{\from}{\leftarrow}
+\newcommand{\fromm}{\longleftarrow}
 \newcommand{\ffrom}{\leftleftarrows}
 \newcommand{\From}[1]{\xleftarrow{#1}}
 \newcommand{\Fromm}[1]{\xleftarrow{\;\;#1\;\;}}
@@ -628,10 +629,10 @@ We use $\org$ to denote both the bicategory from \cref{prop.def_org} and the cat
 
 The composition functor $\org(p,q)\times\org(q,r)\too\org(p,r)$ is defined as follows:
 \[[p,q]\coalg \times [q,r]\coalg \to \left([p,q] \otimes [q,r]\right)\coalg \too [p,r]\coalg,\]
-where the first functor is the lax monoidality of $(-)\coalg$, as described in \cite[Proposition 2.13]{spivak2021learners}, and the second is given by applying the $(-)\coalg$ functor $\poly \to \smcat$ to the usual ``composition'' map of internal-homs $[p,q] \otimes [q,r] \to [p,r]$ in $\poly$. Using \eqref{eqn.internal_hom} we see that on positions, this map takes the form
+where the first functor is the lax monoidality of $(-)\coalg\colon\poly \to \smcat$, as described in \cite[Proposition 2.13]{spivak2021learners}, and the second is given by applying $(-)\coalg$ to the usual ``composition'' map of internal-homs $[p,q] \otimes [q,r] \to [p,r]$ in $\poly$. Using \eqref{eqn.internal_hom} we see that on positions, this map takes the form\vspace{-.1cm}
 \[\left([p,q] \otimes [q,r]\right)(1) = \poly(p,q) \times \poly(q,r) \To{\then} \poly(p,r) = [p,r](1)\]
 and on directions it is given for $\phi\colon p \to q$ and $\psi\colon q \to r$ by the function
-\[\left(\sum_{I \in p(1)} q[\phi_1(I)]\right) \times \left(\sum_{J \in q(1)} r[\psi_1(J)]\right) \from \sum_{I \in p(1)} r[\psi_1(\phi_1(I))]\]
+\[\bigg(\sum_{I \in p(1)} q[\phi_1(I)]\bigg) \times \bigg(\sum_{J \in q(1)} r[\psi_1(J)]\bigg) \from \sum_{I \in p(1)} r[\psi_1(\phi_1(I))]\]
 which sends $(I,j)$ to $(I,\psi_{\phi_1(I)}(j),\phi_1(I),j)$. 
 
 Concretely, the composite of a $[p,q]$-coalgebra $\S$ and a $[q,r]$-coalgebra $\S'$ is a $[p,r]$-coalgebra which we denote $\S\then\S'$  and define as follows:
@@ -643,7 +644,7 @@ Concretely, the composite of a $[p,q]$-coalgebra $\S$ and a $[q,r]$-coalgebra $\
 \[\sum_{I \in p(1)} r[\beta'_0(s')_1(\beta_0(s)_1(I))] \To{\beta_0(s)_1} \sum_{J \in q(1)} r[\beta'_0(s')_1(J)] \To{\beta'_{s'}} S',\]
 \[\sum_{I \in p(1)} r[\beta'_0(s')_1(\beta_0(s)_1(I))] \To{\beta'_0(s')_{\beta_0(s)_1(I)}} \sum_{I \in p(1)} q[\beta_0(s)_1(I)] \To{\beta_s} S.\]%check notation for map on positions
 \end{itemize}
-Horizontal composition of morphisms of coalgebras, the 2-cells of the bicategory, is given simply by the cartesian product. The coherence isomorphisms and axioms for a bicategory then follow from the essential uniqueness of finite products of sets, and the unitality and associativity of composition of polynomial maps.%this may be a bit presumptuous, but I do think it's true
+Horizontal composition of coalgebra-morphisms---the 2-cells of the bicategory---is given simply by the cartesian product. The coherence isomorphisms and axioms for a bicategory then follow from the essential uniqueness of finite products of sets, and the unitality and associativity of composition for polynomial maps.%this may be a bit presumptuous, but I do think it's true
 
 
 
@@ -651,24 +652,24 @@ Horizontal composition of morphisms of coalgebras, the 2-cells of the bicategory
 \section{Product of coalgebras}
 
 
-\cite[Proposition 2.13]{spivak2021learners} shows that the tensor product $\otimes$ of polynomials extends to make $\org$ a monoidal bicategory. In particular, for polynomials $p,q,p',q'$ there is a functor
+It is shown in \cite[Proposition 2.13]{spivak2021learners} that the tensor product $\otimes$ of polynomials extends to make $\org$ a monoidal bicategory. In particular, for polynomials $p,q,p',q'$ there is a functor
 \[[p,q]\coalg \times [p',q']\coalg \to \left([p,q] \otimes [p',q']\right)\coalg \to [p \otimes p',q \otimes q']\coalg\]
-derived from the map of polynomials $[p,q] \otimes [p',q'] \to [p \otimes p',q \otimes q']$ given on positions by 
+derived from the map of polynomials $[p,q] \otimes [p',q'] \to [p {\otimes} p',q {\otimes} q']$ given on positions by 
 \[\poly(p,q) \times \poly(p',q') \To{\otimes} \poly(p \otimes p',q \otimes q')\]
 and on directions by, for $\phi\colon p \to q$ and $\phi'\colon p' \to q'$,
-\[\left(\sum_{I \in p(1)} q[\phi_1(I)]\right) \times \left(\sum_{I' \in p'(1)} q'[\phi'_1(I')]\right) \from \sum_{(I,I') \in p(1) \times p'(1)} q[\phi_1(I)] \times q'[\phi'_1(I')]\]
+\[\bigg(\sum_{I \in p(1)} q[\phi_1(I)]\bigg) \times \bigg(\sum_{I' \in p'(1)} q'[\phi'_1(I')]\bigg) \fromm \sum_{(I,I') \in p(1) \times p'(1)} q[\phi_1(I)] \times q'[\phi'_1(I')]\]
 sending $(I,I',j,j')$ to $(I,j,I',j')$.
 
 Concretely, this tensor product takes a $[p,q]$-coalgebra $\S$ and a $[p',q']$-coalgebra $\S'$ to the $[p \otimes p',q \otimes q']$-coalgebra with states $S \times S'$, action
 \[S \times S' \to \poly(p,q) \times \poly(p',q') \to \poly(p \otimes p',q \otimes q'),\]
-and update described similarly componentwise. The tensor product of morphisms of coalgebras is also given by the cartesian product of functions, and it is (very) tedious but ultimately straightforward to check that the essential uniqueness of products guarantees that $\otimes$ gives a monoidal structure on $\org$.
+and update described similarly componentwise. The tensor product of coalgebra morphisms is also given by the cartesian product of functions, and it is (very) tedious but ultimately straightforward to check that the essential uniqueness of products guarantees that $\otimes$ gives a monoidal structure on $\org$.
 
 
 %--- Section ---%
 \section{$\org$ as a double category}
 
 
-Defining $\org$ as a monoidal bicategory is sufficient for most of the constructions of $\org$-enriched structures in the next chapter. However, using a double category structure to cast morphisms $\phi\colon p\to q$ in $\poly$ as one-state coalgebras $\S_\phi\in[p,q]\coalg$ (see \cref{ex.single_state}) facilitates our eventual definition of adaptives, in particular the maps between them. 
+Defining $\org$ as a monoidal bicategory is sufficient for most of the constructions of $\org$-enriched structures in the next chapter. However, using a double category structure to cast morphisms $\phi\colon p\to q$ in $\poly$ as singleton coalgebras $\S_\phi\in[p,q]\coalg$ (see \cref{ex.single_state}) facilitates our eventual definition of adaptives, in particular the maps between them. 
 
 Specifically, the definition of $\org$ as a monoidal bicategory extends to a monoidal (pseudo-)double category with coalgebras as horizontal morphisms, maps in $\poly$ as vertical morphisms, and squares as in \eqref{eqn.square} given by maps of coalgebras from $\{\psi\}\then\S$ to $\S'\then\{\phi\}$. 
 \begin{equation}\label{eqn.square}
@@ -678,12 +679,11 @@ p' \rar[slash, ""{name=T, above},swap]{\S'} & q'
 \arrow[Rightarrow,shorten=5,from=S,to=T]
 \end{tikzcd}
 \end{equation}
-
-As $\{\phi\}$ and $\{\psi\}$ have only one state and composition of coalgebras acts as the cartesian product on states, such a square amounts to a function $S \to S'$ making \eqref{eqn.coalg_square} commute.
+As $\{\phi\}$ and $\{\psi\}$ have only one state, and as composition of coalgebras acts as the cartesian product on states, such a square amounts to a function $S \to S'$ making \eqref{eqn.coalg_square} commute:
 \begin{equation}\label{eqn.coalg_square}
 \begin{tikzcd}
-S \rar{\beta} \dar[swap]{f} & {[p,q]} \tri S \rar{\psi_\ast} & {[p,q']} \tri S \dar{{[p,q']} \tri f} \\
-S' \rar[swap]{\beta'} & {[p',q']} \tri S' \rar{\phi^\ast} & {[p,q']} \tri S'
+S \rar{\beta} \dar[swap]{f} & {[p,q]} \tri S \rar{\psi_\ast} & {[p,q']} \tri S \ar[d, "{[p,q'] \tri f}" pos=.4] \\
+S' \rar[swap]{\beta'} & {[p',q']} \tri S' \rar[swap]{\phi^\ast} & {[p,q']} \tri S'
 \end{tikzcd}
 \end{equation}
 
@@ -696,15 +696,15 @@ We now proceed to discuss various categorical structures enriched in $\org$, whi
 \chapter{Dynamic structures via $\org$-Enrichment}
 
 
-A monoidal double category is a viable setting for enriching various categorical structures. Intuitively, enrichment in $\org$ replaces the usual set of arrows between two objects in a category or similar structure with a $[p,q]$-coalgebra for some choice of polynomials $p,q$. Therefore not only can each arrow be realized as a map of polynomials $p \to q$, but this map carries dynamics that encode how a position in $p$ and a direction in $q$ determine a transition from one arrow to another.
+A monoidal double category is a viable setting for enriching various categorical structures. Intuitively, enrichment in $\org$ replaces the usual set of arrows between two objects in a categorical structure with a $[p,q]$-coalgebra for some choice of polynomials $p,q$. Therefore not only can each arrow be realized as a map of polynomials $p \to q$, but this map carries dynamics that encode how a position in $p$ and a direction in $q$ determine a transition from one arrow to another. The morphism ``reacts'' to what's coming out of $p$ and into $q$.
 
-Different situations call for different categorical structures to model their dynamics: some systems primarily involve many-to-one arrangements such as the wiring diagrams in \cref{fig.nesting}, others such as gradient descent fit naturally into a many-to-many arrow framework, and we expect in future work to consider evolving systems in which different components operate at differing time scales. Rather than choose one such categorical form to favor and go through the tedious exercise of forcing all of the others to conform to it, we describe how to add dynamics to the definitions of many different structures.
+Different situations call for different categorical structures to model their dynamics: some systems primarily involve many-to-one arrangements such as the wiring diagrams in \cref{fig.nesting}, others such as gradient descent fit naturally into a many-to-many arrow framework, and we expect in future work to consider evolving systems in which different components operate at differing time scales. Rather than choose one such categorical form to favor, and then go through the tedious exercise of forcing all of the others to conform to it, we describe how to add dynamics to the definitions of many different structures.
 
 \slogan{A dynamic *thing* is a *thing* enriched in $\org$.}
 
-This slogan is intentionally imprecise, so as to be maximally inclusive of different notions of categorical structures  (*things*) and notions of enrichment. However, our intuition and examples come from the theories of enrichment described in \cite{leinster1999generalized} and \cite{shapiro2022enrichment}. In the former, a thing can be any suitable type of generalized multicategory, while in the latter a thing can be any structure defined as an algebra for a familial monad on a presheaf category equipped with a choice of ``higher'' and ``lower'' dimensional cell shapes. In both cases, things are algebras for a particular cartesian monad $T$ which admit an ``enriched'' analogue with respect to any $T$-multicategory. To define $T$-algebras enriched in $\org$ is then to identify $\org$ with a $T$-multicategory, and in all of our examples this identification arises naturally from the observation that monoidal double categories give rise to $T$-multicategories in a natural way.
+This slogan is intentionally imprecise, so as to be maximally inclusive of different notions of categorical structures  (*things*) and notions of enrichment, and also to allow the reader who has an intuitive understanding and no need for precision to skip the remainder of this paragraph. Our intuition and examples come from the theories of enrichment described in \cite{leinster1999generalized} and \cite{shapiro2022enrichment}. In the former, a *thing* can be any suitable type of generalized multicategory, while in the latter a *thing* can be any structure defined as an algebra for a familial monad on a presheaf category equipped with a choice of ``higher'' and ``lower'' dimensional cell shapes. In both cases, *things* are algebras for a particular cartesian monad $T$ which admit an ``enriched'' analogue with respect to any $T$-multicategory. To define $T$-algebras enriched in $\org$ is then to identify $\org$ with a $T$-multicategory, and in all of our examples this identification arises naturally from the observation that monoidal double categories give rise to $T$-multicategories in a natural way.
 
-We give specific definitions in \cref{sec.org_cats} for dynamic categories, in \cref{sec.org_multicats} for dynamic multicategories and operads, and in \cref{sec:org_monoidalcats} for dynamic monoidal categories and PRO(P)s. We are also interested in using dynamic duoidal categories to describe dynamical systems in which different contributors to a system operate at different rates, using the duoidal structure on $\org$ based on $\tri$, but that is beyond the scope of this paper.
+We give specific instances of $\org$-enrichment in the following sections: in \cref{sec.org_cats} for dynamical categories, in \cref{sec.org_multicats} for dynamical multicategories and operads, and in \cref{sec:org_monoidalcats} for dynamical monoidal categories and PRO(P)s. We are also interested in using dynamic duoidal categories to describe dynamical systems in which different contributors to a system operate at different rates, using the duoidal structure on $\org$ based on $\tri$, but that is beyond the scope of this paper.
 
 
 %--- Section ---%
