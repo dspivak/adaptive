@@ -701,11 +701,11 @@ Different situations call for different categorical structures to model their dy
 
 This slogan is intentionally imprecise, so as to be maximally inclusive of different notions of categorical structures  (*things*) and notions of enrichment. However, our intuition and examples come from the theories of enrichment described in \cite{leinster1999generalized} and \cite{shapiro2022enrichment}. In the former, a thing can be any suitable type of generalized multicategory, while in the latter a thing can be any structure defined as an algebra for a familial monad on a presheaf category equipped with a choice of ``higher'' and ``lower'' dimensional cell shapes. In both cases, things are algebras for a particular cartesian monad $T$ which admit an ``enriched'' analogue with respect to any $T$-multicategory. To define $T$-algebras enriched in $\org$ is then to identify $\org$ with a $T$-multicategory, and in all of our examples this identification arises naturally from the observation that monoidal double categories give rise to $T$-multicategories in a natural way.
 
-We make this precise in \cref{sec.org_cats} for dynamical categories, in \cref{sec.org_multicats} for dynamical multicategories and operads, and in \cref{sec:org_monoidalcats} for dynamical monoidal categories and PRO(P)s. We are also interested in using dynamical duoidal categories to describe dynamical systems in which different contributors to a system operate at different rates, using the duoidal structure on $\org$ based on $\tri$, but that is beyond the scope of this paper.
+We give specific definitions in \cref{sec.org_cats} for dynamical categories, in \cref{sec.org_multicats} for dynamical multicategories and operads, and in \cref{sec:org_monoidalcats} for dynamical monoidal categories and PRO(P)s. We are also interested in using dynamical duoidal categories to describe dynamical systems in which different contributors to a system operate at different rates, using the duoidal structure on $\org$ based on $\tri$, but that is beyond the scope of this paper.
 
 
 %--- Section ---%
-\section{$\org$-enriched categories}\label{sec.org_cats}
+\section{Dynamical categories}\label{sec.org_cats}
 
 
 Enrichment of categories only makes use of the double category structure of $\org$, as any double category forms an $f\!c$-multicategory (also known as a virtual double category) in the sense of \cite{leinster1999generalized}. %cite specifically
@@ -713,7 +713,7 @@ The following definition of enrichment in $\org$ is an unwinded version of \cite
 which defines categories enriched in any $fc$-multicategory.
 
 \begin{definition}\label{def.org_enriched_cat}
-An $\org$-enriched category $A$ consists of
+An $\org$-enriched (henceforth \emph{dynamical}) category $A$ consists of
 \begin{itemize}
 	\item a set $A_0$ of objects;
 	\item for each $a \in A_0$, a polynomial $p_a$;
@@ -736,12 +736,12 @@ such that these squares satisfy unit and associativity equations.%more on these?
 \end{definition}
 
 The sets $S_{a,b}$ form an underlying ordinary category of $A$. 
-In fact, an $\org$-enriched category could be equivalently defined as an ordinary category such that each object $a$ is assigned a polynomial $p_a$ and each set of arrows $\Hom(a,b)$ is the set of states for an assigned $[p_a,p_b]$-coalgebra $\S_{a,b}$, with composition and identities respecting the coalgebra structure. This means that the arrow $\id_a$ in $\Hom(a,a)$ acts as the identity map on $p_a$ and is unchanged by updates, while for $f$ in $\Hom(a,b)$ and $g$ in $\Hom(b,c)$ the composite $g \circ f$ acts as the composite $p_a \to p_b \to p_c$ of the actions of $f$ and $g$, and it updates as the composite of the updates of $f,g$.
+In fact, a dynamical category could be equivalently defined as an ordinary category such that each object $a$ is assigned a polynomial $p_a$ and each set of arrows $\Hom(a,b)$ is the set of states for an assigned $[p_a,p_b]$-coalgebra $\S_{a,b}$, with composition and identities respecting the coalgebra structure. This means that the arrow $\id_a$ in $\Hom(a,a)$ acts as the identity map on $p_a$ and is unchanged by updates, while for $f$ in $\Hom(a,b)$ and $g$ in $\Hom(b,c)$ the composite $g \circ f$ acts as the composite $p_a \to p_b \to p_c$ of the actions of $f$ and $g$, and it updates as the composite of the updates of $f,g$.
 
 
 
 %--- Section ---%
-\section{$\org$-enriched operads}\label{sec.org_multicats}
+\section{Dynamical multicategories}\label{sec.org_multicats}
 
 
 A monoidal double category also gives rise to an $f\!m$-multicategory in the sense of \cite{leinster1999generalized}, %cite specifically
@@ -749,7 +749,7 @@ A monoidal double category also gives rise to an $f\!m$-multicategory in the sen
 so it makes sense to talk about multicategories enriched in $\org$ as in \cite{leinster1999generalized}. %cite specifically
 
 \begin{definition}
-An $\org$-enriched multicategory $A$ consists of
+An $\org$-enriched (henceforth \emph{dynamical}) multicategory $A$ consists of
 \begin{itemize}
 	\item a set $A_0$ of objects;
 	\item for each $a \in A_0$, a polynomial $p_a$;
@@ -775,7 +775,7 @@ such that these squares satisfy unit and associativity equations.%more on these?
 
 The sets $S_{a,b}$ form an underlying multicategory of $A$, with a description similar to that below \cref{def.org_enriched_cat}. 
 
-We will mostly be interested in what we call an $\org$-enriched operad on $p$, the case when $A$ has only one object which is assigned the polynomial ``interface'' $p$. It consists simply of a $[p^{\otimes n},p]$-coalgebra $S_n$ for each $n \in \nn$ equipped with maps
+We will mostly be interested in what we call a dynamical operad on $p$, the case when $A$ has only one object which is assigned the polynomial ``interface'' $p$. It consists simply of a $[p^{\otimes n},p]$-coalgebra $S_n$ for each $n \in \nn$ equipped with maps
 \begin{equation}\label{eqn.org_operad}
 \idcoalg{p} \to S_1
 \qqand
@@ -784,13 +784,13 @@ We will mostly be interested in what we call an $\org$-enriched operad on $p$, t
 satisfying the usual equations. %\dnote{should we perhaps denote $\id_p$ by $\{\id_p\}$ to emphasize it is a single-state thingy?}
 
 \begin{example}\label{ex.collective}
-A \emph{collective} (as defined in \cite{niu2021collectives}) is a $\otimes$-monoid in $\poly$, meaning a polynomial $p$ equipped with a monoid structure on its positions $p(1)$ and co-unital co-associative ``distribution'' functions $p[I \cdot J] \to p[I] \times p[J]$ for each $I,J \in p(1)$. This can be viewed as an $\org$-enriched operad where $\S_n$ is given by $\{\cdot_n\}$, the one-element coalgebra on the $n$-ary monoidal product $\cdot_n : p^{\otimes n} \to p$, and where the maps of coalgebras in \eqref{eqn.org_operad} are isomorphisms deduced from the equations for a monoid.
+A \emph{collective} (as defined in \cite{niu2021collectives}) is a $\otimes$-monoid in $\poly$, meaning a polynomial $p$ equipped with a monoid structure on its positions $p(1)$ and co-unital co-associative ``distribution'' functions $p[I \cdot J] \to p[I] \times p[J]$ for each $I,J \in p(1)$. This can be viewed as a dynamical operad where $\S_n$ is given by $\{\cdot_n\}$, the one-element coalgebra on the $n$-ary monoidal product $\cdot_n : p^{\otimes n} \to p$, and where the maps of coalgebras in \eqref{eqn.org_operad} are isomorphisms deduced from the equations for a monoid.
 \end{example}
 
 \begin{example}
-In \cref{ex.collective}, the coalgebras $\S_n$ are determined by a single map of polynomials, with no possible updates as there is only one state. This can be generalized to an intermediate notion between collectives and $\org$-enriched multicategories, where the coalgebras are still static but may have multiple states.
+In \cref{ex.collective}, the coalgebras $\S_n$ are determined by a single map of polynomials, with no possible updates as there is only one state. This can be generalized to an intermediate notion between collectives and dynamical multicategories, where the coalgebras are still static but may have multiple states.
 
-Given a multicategory $M$ and a multifunctor $F : M \to \poly$, there is an $\org$-enriched multicategory $A_F$ with 
+Given a multicategory $M$ and a multifunctor $F : M \to \poly$, there is a dynamical multicategory $A_F$ with 
 \begin{itemize}
 	\item object set $\ob(M)$;
 	\item for each $a \in \ob(M)$, the polynomial $p_a = F(a)$;
@@ -802,25 +802,24 @@ Given a multicategory $M$ and a multifunctor $F : M \to \poly$, there is an $\or
 \end{example}
 
 \begin{example}
-Let $\S$ be any $p$-coalgebra for a polynomial $p$. There is an $\org$-enriched operad on $p$ with $\S_0 = \S$, $\S_1 = \idcoalg{p}$, and all other $\S_n=\varnothing$ assigned the empty coalgebra.
+Let $\S$ be any $p$-coalgebra for a polynomial $p$. There is a dynamical operad on $p$ with $\S_0 = \S$, $\S_1 = \idcoalg{p}$, and all other $\S_n=\varnothing$ assigned the empty coalgebra.
 \end{example}
 
 \begin{example}
-Consider an $\org$-enriched operad on the polynomial $y$ with exactly one position and one direction. The internal hom polynomial $[y^{\otimes n},y]$ is simply $y$, so this structure amounts to an operad $S$ with update maps $S_n \to S_n$ that commute with the operad structure. So an $\org$-enriched operad on $y$ is the same as an operad equipped with an operad endomorphism.
+Consider a dynamical operad on the polynomial $y$ with exactly one position and one direction. The internal hom polynomial $[y^{\otimes n},y]$ is simply $y$, so this structure amounts to an operad $S$ with update maps $S_n \to S_n$ that commute with the operad structure. So a dynamical operad on $y$ is the same as an operad equipped with an operad endomorphism.
 \end{example}
 
-%something about wirings
 
 
 %--- Section ---%
-\section{$\org$-enriched monoidal categories}\label{sec:org_monoidalcats}
+\section{Dynamical monoidal categories}\label{sec:org_monoidalcats}
 
 
 A monoidal double category is precisely a representable $MC$-multicategory in the sense of \cite{shapiro2022enrichment}, %cite specifically
 so we can also enrich strict monoidal categories in $\org$.\footnote{We use throughout the notion \emph{strong} enrichment in a monoidal double category from \cite{shapiro2022enrichment}.} These will be similar to $\org$-enriched multicategories but allow for many-to-many coalgebras rather than just many-to-1.
 
 \begin{definition}\label{enriched_monoidal}
-An $\org$-enriched strict monoidal category $A$ consists of
+An $\org$-enriched (henceforth \emph{dynamical}) strict monoidal category $A$ consists of
 \begin{itemize}
 	\item a monoid $A_0$ of objects;
 	\item for each $a \in A_0$, a polynomial $p_a$;
@@ -855,18 +854,14 @@ such that these isomorphisms and squares satisfy unit, associativity, and interc
 
 Here the sets $S_{a,b}$ form the arrows in a strict monoidal category underlying $A$. 
 
-For the rest of this paper, we will only be interested in the restricted case of an $\org$-enriched strict monoidal category with object monoid $\nn$. Concretely, an adaptive of this form consists of a polynomial interface $p$ (so that in the notation above $p_n := p^{\otimes n}$ for $n \in \nn$) along with a $[p^{\otimes m},p^{\otimes n}]$-coalgebra $S_{m,n}$ for each $m,n \in \nn$, equipped with the maps of coalgebras as in \eqref{eqn.adaptive_tor}. We denote such an adaptive as $(p,\S)$, where $\S$ now encodes all of the coalgebras $\S_{m,n}$ that constitute the adaptive and the structure maps are implicit.
-
-%\dnote{in general, please use labeled equations and references more :)}
+For the rest of this paper, we will only be interested in the restricted case of a dynamical monoidal category with object monoid $\nn$, which we call a dynamical PRO.\footnote{A PRO is the non-symmetric version of a PROP. While all of our examples are in fact symmetric, for simplicity we do not describe their symmetry operations.} Concretely, this consists of a polynomial interface $p$ (so that in the notation above $p_n := p^{\otimes n}$ for $n \in \nn$) along with a $[p^{\otimes m},p^{\otimes n}]$-coalgebra $S_{m,n}$ for each $m,n \in \nn$, equipped with the maps of coalgebras as in \eqref{eqn.adaptive_tor}. We denote a dynamical PRO as $(p,\S)$, where $\S$ now encodes all of the coalgebras $\S_{m,n}$ that constitute the $\org$-enrichment and the structure maps are implicit.
 
 %more on what those maps mean
 
-%something about wirings
-
-Morphisms of adaptives are special cases of the general notion of morphisms for enriched monoidal categories as defined in \cite{shapiro2022enrichment}. %cite specifically
+Morphisms of dynamical structures are a special case of the general notion of morphisms between enriched structures as defined in \cite{shapiro2022enrichment}. %cite specifically
 
 \begin{definition}
-A \emph{morphism} of adaptives from $(p,\S)$ to $(p',\S')$ is given by a map of polynomials $\phi : p \to p'$ and, for each $m,n \in \nn$, ``commutor'' squares as in \eqref{eqn.adaptive_map} in $\org$ which commute with the identitor, compositor, and productor squares.
+A \emph{morphism} of dynamical PROs from $(p,\S)$ to $(p',\S')$ is given by a map of polynomials $\phi : p \to p'$ and, for each $m,n \in \nn$, ``commutor'' squares as in \eqref{eqn.adaptive_map} in $\org$ which commute with the identitor, compositor, and productor squares.
 \begin{equation}\label{eqn.adaptive_map}
 \begin{tikzcd}
 p^{\otimes m} \rar[slash, ""{name=S, below}]{\S_{m,n}} \dar[swap]{\phi^{\otimes m}} & p^{\otimes n} \dar{\phi^{\otimes n}} \\
@@ -876,12 +871,12 @@ p'^{\otimes m} \rar[slash, ""{name=T, above}, swap]{\S'_{m,n}} & p'^{\otimes n}
 \end{equation}
 \end{definition}
 
-This definition of morphism is the direct benefit for the theory of adaptives of treating $\org$ as a monoidal double category rather than as a monoidal bicategory (as done in \cite{spivak2021learners}). Otherwise morphisms could either only be easily defined between adaptives on the same polynomial, which is rather restrictive, or take the form of a $[p,p']$-coalgebra, which we believe to be too general to be of much use.
+This definition of morphism is the direct benefit for the theory of treating $\org$ as a monoidal double category rather than as a monoidal bicategory (closer to its description in \cite{spivak2021learners}). Otherwise morphisms could either only be easily defined between dynamical PROs with the same interface polynomial, which is needlessly restrictive, or take the form of a $[p,p']$-coalgebra, which we believe to be too general to be of much use.
 
-A morphism of adaptives $(p,\S) \to (p',\S')$ can be interpreted as a way of telling the codomain how to run the domain. The map of polynomials $p \to p'$ specifies how the positions of $p$ can be modeled by those of $p'$ and how the directions of $p'$ act on the positions of $p$, while the commutor squares describe how the states of $\S_{m,n}$ can be modeled by those of $\S'_{m,n}$ in a way that respects this change of interface. A type of theorem that we hope to find instances of in future work is of the form ``this adaptive that we're interested in can be run by this other adaptive that we already understand well.''
+A morphism $(p,\S) \to (p',\S')$ can be interpreted as a way of telling the codomain how to run the domain. The map of polynomials $p \to p'$ specifies how the positions of $p$ can be modeled by those of $p'$ and how the directions of $p'$ act on the positions of $p$, while the commutor squares describe how the states of $\S_{m,n}$ can be modeled by those of $\S'_{m,n}$ in a way that respects this change of interface. A type of theorem that we hope to find instances of in future work is of the form ``this dynamical structure that we're interested in can be run by this other dynamical structure that we already understand well.''
 
 \begin{example}
-For a fixed polynomial $p$, there is a terminal adaptive $\S^{p!}$ with interface $p$ where $\S^{p!}_{m,n}$ is the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra. 
+For a fixed polynomial $p$, there is a terminal dynamical PRO $\S^{p!}$ with interface $p$ where $\S^{p!}_{m,n}$ is the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra. 
 
 Its states are (not necessarily finite) $[p^{\otimes m},p^{\otimes n}]$-trees: trees inductively defined by a root labeled with a polynomial map $\phi : p^{\otimes m} \to p^{\otimes n}$ and for each pair 
 \begin{equation}\label{eqn.pmn_directions}
@@ -889,16 +884,16 @@ Its states are (not necessarily finite) $[p^{\otimes m},p^{\otimes n}]$-trees: t
 \end{equation}
 an edge out of the root to another $[p^{\otimes m},p^{\otimes n}]$-tree. The action of such a tree is simply the root map $\phi$, and the update sends a pair as in \eqref{eqn.pmn_directions} to the new tree at the end of the corresponding edge. 
 
-The idea is that the state-set of the terminal adaptive encodes all possible trajectories along different actions, and this coalgebra is terminal because from any other coalgebra there is a map to $\S^{p!}_{m,n}$ sending each state to the tree whose root is labeled by the action of the state and whose edges from the root go to the trees for each of the state's possible updates. This map is (uniquely) a coalgebra map because, in order to preserve actions and updates, each state must be sent to the tree rooted by its action and branching according to its updates.
+The idea is that the state-set of the terminal dynamical PRO encodes all possible trajectories along different actions, and this coalgebra is terminal because from any other coalgebra there is a map to $\S^{p!}_{m,n}$ sending each state to the tree whose root is labeled by the action of the state and whose edges from the root go to the trees for each of the state's possible updates. This map is (uniquely) a coalgebra map because, in order to preserve actions and updates, each state must be sent to the tree rooted by its action and branching according to its updates.
 
-The adaptive structure on the terminal coalgebra $\S^{p!}$ is then defined as the unique map to the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra from any identity, composite, or product of coalgebras, which makes the equations hold automatically. This is the terminal adaptive with interface $p$ as for any other such adaptive there is a morphism given by the identity map on $p$ and with commutor squares to $\S^{p!}_{m,n}$ the unique map to the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra.
+The PRO structure on the terminal coalgebra $\S^{p!}$ is then defined as the unique map to the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra from any identity, composite, or product of coalgebras, which makes the equations hold automatically. This is the terminal dynamical PRO with interface $p$ as for any other such dynamical PRO there is a morphism given by the identity map on $p$ and with commutor squares to $\S^{p!}_{m,n}$ the unique map to the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra.
 \end{example}
 
 
 
 %------- Chapter -------%
-\chapter{Adaptives in Nature}
-
+\chapter{Dynamical Structures in Nature}
+%
 
 Our main results are that adaptives describe phenomena in the natural world and human technologies. In this paper, we focus on deep learning and a prediction market in which the reputations of various guess-makers evolve based on how successful they are.
 
