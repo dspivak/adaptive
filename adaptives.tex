@@ -561,25 +561,26 @@ This material is based upon work supported by the Air Force Office of Scientific
 In \cite{spivak2021learners}, the second author defined a category-enriched multicategory $\org$, whose objects are polynomials and whose morphisms are polynomial coalgebras. In this chapter, we describe how $\org$ in fact more naturally takes the form of a monoidal double category, with coalgebras as horizontal morphisms, maps of polynomials as vertical morphisms, and the Dirichlet tensor product $\otimes$ providing the monoidal structure.%
 \footnote{In fact, $\org$ is a duoidal double double category, with a second monoidal structure given by $\tri$, but we will not use that here.}
 
+Before we begin, recall that a polynomial is a functor $p\colon \smset\to\smset$ which is isomorphic to a sum of representables; following \cite{spivak2021learners}, we denote $p,q\in\poly$ by
+\begin{equation}\label{eqn.poly_notation}
+p = \sum_{I \in p(1)} y^{p[I]} \qqand q = \sum_{J \in q(1)} y^{q[J]}
+\end{equation}
+and refer to each $I\in p(1)$ as a \emph{$p$-position} and to each $i\in p[I]$ as a \emph{$p$-direction at $I$}.
 
 %--- Section ---%
 \section{$[p,q]$-coalgebras}
-
 
 We first recall the definitions of the internal-hom polynomials $[p,q]$ and concretely describe the category of $[p,q]$-coalgebras, which forms the category of morphisms from $p$ to $q$ in the underlying bicategory of $\org$.
 
 %\dnote{Introduce the notation $p\slashar q$ in this section?}
 
 \begin{definition}\label{coalgebras}
-For polynomials $p,q\in\poly$ given by
-\[
-p = \sum_{I \in p(1)} y^{p[I]} \qqand q = \sum_{J \in q(1)} y^{q[J]},
-\]
+For polynomials $p,q\in\poly$  as in \eqref{eqn.poly_notation},
 their \emph{internal hom} with respect to the tensor product $\otimes$ is the polynomial
-\[
+\begin{equation}\label{eqn.internal_hom}
 [p,q]\coloneqq \sum_{\phi\colon p \to q} y^{\sum\limits_{\;I \in p(1)} q[\phi_1(I)]}
-\qedhere
-\]
+\end{equation}
+It can also be written $[p,q]=\prod_{I\in p(1)}\sum_{J\in q(1)}\prod_{j\in q[J]}\sum_{i\in p[I]}1$.
 \end{definition}
 
 For intuition, a $[p,q]$-coalgebra (denoted $p \slashar q$) is a machine that outputs maps $p\to q$ and that inputs two things: what flows out of $p$ and what flows in to $q$. More precisely, using \cite[Definition 2.10]{spivak2021learners} applied to $[p,q]$, we get the following definition of $[p,q]$-coalgebras. 
@@ -592,20 +593,21 @@ S \rar{\beta} \dar[swap]{f} & {[p,q]} \tri S \dar{{[p,q]} \tri f} \\
 S' \rar[swap]{\beta'} & {[p,q]} \tri S'
 \end{tikzcd}
 \end{equation}
+We refer to $S$ as the \emph{state set} and to each element $s\in S$ as a \emph{state}.
 \end{definition}
 
 Unwinding this definition, we get that $\beta$ is determined by a function 
-$$\beta_0\colon S \to \poly(p,q) = [p,q](1)$$
-and for each $s \in S$, a function 
-$$\beta_s\colon \sum_{I \in p(1)} q[\beta_0(s)_1(I)] \to S.$$ 
-For each $s \in S$, called a \emph{state}, we call $\beta_0(s)$ the \emph{action of $s$} and $\beta_s$ the \emph{update function of $s$}. A coalgebra map is then a function between the state sets that preserves actions and updates. 
+\[\beta_0\colon S \to \poly(p,q) = [p,q](1)\]
+and for each state $s \in S$, a function 
+\[\beta_s\colon \sum_{I \in p(1)} q[\beta_0(s)_1(I)] \to S.\]
+For each state  $s \in S$, we refer to $\beta_0(s)$ as the \emph{action of $s$} and to $\beta_s$ as the \emph{update function of $s$}. A coalgebra map is then a function between the state sets that preserves actions and updates. 
 
 When, for each $s \in S$, the update $\beta_s$ is the constant function sending everything to $s$, we say the coalgebra $\S$ is \emph{static}, as it remains constantly at $s$ regardless of the output $I \in p(1)$ and input $j\in q[\beta_0(s)_1(I)]$.
 
 \begin{example}\label{ex.single_state}
-A special case of a static $[p,q]$-coalgebra is given by a map $\phi \in \poly(p,q)$. For each such $\phi$, there is a coalgebra $\{\phi\}$ with a singleton set of states, $\beta_0$ sending the point to $\phi$; it is by necessity static. 
+A special case of a static $[p,q]$-coalgebra is given by a map $\phi \in \poly(p,q)$. For each such $\phi$, there is a coalgebra $\{\phi\}$ with a singleton state set and with $\beta_0$ sending the point to $\phi$; we call it a \emph{singleton} coalgebra. 
 
-A coalgebra is static iff it is the coproduct of one-element coalgebras.
+A coalgebra is static iff it is the coproduct of singleton coalgebras.
 \end{example}
 
 
@@ -618,30 +620,28 @@ A coalgebra is static iff it is the coproduct of one-element coalgebras.
 
 We now describe how $[p,q]$-coalgebras behave like morphisms from $p$ to $q$.
 
-\begin{proposition}
+\begin{proposition}\label{prop.def_org}
 The categories $[p,q]\coalg$ form the hom-categories in a bicategory $\org$, which has polynomials as objects.
 \end{proposition}
 
-It is no accident that $\org$ denotes both this bicategory and the categorical operad in \cite[Definition 2.19]{spivak2021learners}, as both are derived from the monoidal double category $\org$ described in the following sections. For now, we merely present the horizontal identities and composites in this bicategory.
+We use $\org$ to denote both the bicategory from \cref{prop.def_org} and the categorical operad in \cite[Definition 2.19]{spivak2021learners}, as both are derived from the monoidal double category $\org$ described in the following sections. For now, we merely present the identities and composites in this bicategory. Identities are easy: the identity object in $\org(p,p)=[p,p]\coalg$ is given by the one-state coalgebra $\idcoalg{p}$. 
 
-The identity coalgebra in $[p,p]\coalg$ is given by the one-state coalgebra $\idcoalg{p}$. 
-
-Composites are defined as
-$$[p,q]\coalg \times [q,r]\coalg \to \left([p,q] \otimes [q,r]\right)\coalg \to [p,r]\coalg,$$
-where the first functor is described in \cite[Proposition 2.13]{spivak2021learners}, and the second is given by the fact that $(-)\coalg$ is a functor $\poly \to \smcat$, using a map of polynomials $[p,q] \otimes [q,r] \to [p,r]$. On positions, this map takes the form
-$$\left([p,q] \otimes [q,r]\right)(1) = \poly(p,q) \times \poly(q,r) \To{\circ} \poly(p,r) = [p,r](1)$$
+The composition functor $\org(p,q)\times\org(q,r)\too\org(p,r)$ is defined as follows:
+\[[p,q]\coalg \times [q,r]\coalg \to \left([p,q] \otimes [q,r]\right)\coalg \too [p,r]\coalg,\]
+where the first functor is the lax monoidality of $(-)\coalg$, as described in \cite[Proposition 2.13]{spivak2021learners}, and the second is given by applying the $(-)\coalg$ functor $\poly \to \smcat$ to the usual ``composition'' map of internal-homs $[p,q] \otimes [q,r] \to [p,r]$ in $\poly$. Using \eqref{eqn.internal_hom} we see that on positions, this map takes the form
+\[\left([p,q] \otimes [q,r]\right)(1) = \poly(p,q) \times \poly(q,r) \To{\then} \poly(p,r) = [p,r](1)\]
 and on directions it is given for $\phi\colon p \to q$ and $\psi\colon q \to r$ by the function
-$$\left(\sum_{I \in p(1)} q[\phi_1(I)]\right) \times \left(\sum_{J \in q(1)} r[\psi_1(J)]\right) \from \sum_{I \in p(1)} r[\psi_1(\phi_1(I))]$$
+\[\left(\sum_{I \in p(1)} q[\phi_1(I)]\right) \times \left(\sum_{J \in q(1)} r[\psi_1(J)]\right) \from \sum_{I \in p(1)} r[\psi_1(\phi_1(I))]\]
 which sends $(I,j)$ to $(I,\psi_{\phi_1(I)}(j),\phi_1(I),j)$. 
 
 Concretely, the composite of a $[p,q]$-coalgebra $\S$ and a $[q,r]$-coalgebra $\S'$ is a $[p,r]$-coalgebra which we denote $\S\then\S'$  and define as follows:
 \begin{itemize}
 	\item its state set is given by $S \times S'$
 	\item the action of the pair $(s,s')$ is given by the composite 
-$$p \To{\beta_0(s)} q \To{\beta'_0(s')} r$$
+\[p \To{\beta_0(s)} q \To{\beta'_0(s')} r\]
 	\item the update function of $(s,s')$ is induced by the functions
-$$\sum_{I \in p(1)} r[\beta'_0(s')_1(\beta_0(s)_1(I))] \To{\beta_0(s)_1} \sum_{J \in q(1)} r[\beta'_0(s')_1(J)] \To{\beta'_{s'}} S',$$
-$$\sum_{I \in p(1)} r[\beta'_0(s')_1(\beta_0(s)_1(I))] \To{\beta'_0(s')_{\beta_0(s)_1(I)}} \sum_{I \in p(1)} q[\beta_0(s)_1(I)] \To{\beta_s} S.$$%check notation for map on positions
+\[\sum_{I \in p(1)} r[\beta'_0(s')_1(\beta_0(s)_1(I))] \To{\beta_0(s)_1} \sum_{J \in q(1)} r[\beta'_0(s')_1(J)] \To{\beta'_{s'}} S',\]
+\[\sum_{I \in p(1)} r[\beta'_0(s')_1(\beta_0(s)_1(I))] \To{\beta'_0(s')_{\beta_0(s)_1(I)}} \sum_{I \in p(1)} q[\beta_0(s)_1(I)] \To{\beta_s} S.\]%check notation for map on positions
 \end{itemize}
 Horizontal composition of morphisms of coalgebras, the 2-cells of the bicategory, is given simply by the cartesian product. The coherence isomorphisms and axioms for a bicategory then follow from the essential uniqueness of finite products of sets, and the unitality and associativity of composition of polynomial maps.%this may be a bit presumptuous, but I do think it's true
 
@@ -652,15 +652,15 @@ Horizontal composition of morphisms of coalgebras, the 2-cells of the bicategory
 
 
 \cite[Proposition 2.13]{spivak2021learners} shows that the tensor product $\otimes$ of polynomials extends to make $\org$ a monoidal bicategory. In particular, for polynomials $p,q,p',q'$ there is a functor
-$$[p,q]\coalg \times [p',q']\coalg \to \left([p,q] \otimes [p',q']\right)\coalg \to [p \otimes p',q \otimes q']\coalg$$
+\[[p,q]\coalg \times [p',q']\coalg \to \left([p,q] \otimes [p',q']\right)\coalg \to [p \otimes p',q \otimes q']\coalg\]
 derived from the map of polynomials $[p,q] \otimes [p',q'] \to [p \otimes p',q \otimes q']$ given on positions by 
-$$\poly(p,q) \times \poly(p',q') \To{\otimes} \poly(p \otimes p',q \otimes q')$$
+\[\poly(p,q) \times \poly(p',q') \To{\otimes} \poly(p \otimes p',q \otimes q')\]
 and on directions by, for $\phi\colon p \to q$ and $\phi'\colon p' \to q'$,
-$$\left(\sum_{I \in p(1)} q[\phi_1(I)]\right) \times \left(\sum_{I' \in p'(1)} q'[\phi'_1(I')]\right) \from \sum_{(I,I') \in p(1) \times p'(1)} q[\phi_1(I)] \times q'[\phi'_1(I')]$$
+\[\left(\sum_{I \in p(1)} q[\phi_1(I)]\right) \times \left(\sum_{I' \in p'(1)} q'[\phi'_1(I')]\right) \from \sum_{(I,I') \in p(1) \times p'(1)} q[\phi_1(I)] \times q'[\phi'_1(I')]\]
 sending $(I,I',j,j')$ to $(I,j,I',j')$.
 
 Concretely, this tensor product takes a $[p,q]$-coalgebra $\S$ and a $[p',q']$-coalgebra $\S'$ to the $[p \otimes p',q \otimes q']$-coalgebra with states $S \times S'$, action
-$$S \times S' \to \poly(p,q) \times \poly(p',q') \to \poly(p \otimes p',q \otimes q'),$$
+\[S \times S' \to \poly(p,q) \times \poly(p',q') \to \poly(p \otimes p',q \otimes q'),\]
 and update described similarly componentwise. The tensor product of morphisms of coalgebras is also given by the cartesian product of functions, and it is (very) tedious but ultimately straightforward to check that the essential uniqueness of products guarantees that $\otimes$ gives a monoidal structure on $\org$.
 
 
@@ -933,7 +933,7 @@ Thus far, we have provided the data of the polynomial $t$ and the $[t^{\otimes m
 \begin{itemize}
 	\item The identitors $\idcoalg{t^{\otimes n}} \to \S_{n,n}$ send the unique state in the domain to the state $(0,\id_{\rr^n},0) \in S_{n,n}$. 
 	\item The compositors $\S_{\ell,m}\then\S_{m,n} \to \S_{\ell,n}$ send the pair $((L,f,p),(M,g,q))$ to 
-$$\left( M+L,g(-,f(-,-))\colon \rr^{M+L+\ell} \To{\id \times f} \rr^{M+m} \To{g} \rr^n, (q,p) \in \rr^{M+L} \right).$$
+\[\left( M+L,g(-,f(-,-))\colon \rr^{M+L+\ell} \To{\id \times f} \rr^{M+m} \To{g} \rr^n, (q,p) \in \rr^{M+L} \right).\]
 	\item The productors $\S_{m,n} \otimes \S_{m',n'} \to \S_{m+m',n+n'}$ send the pair $((M,f,p),(M',f',p'))$ to $(M+M',(f,f'),(p,p'))$
 \end{itemize}
 
@@ -1038,21 +1038,21 @@ This is proven in \cref{coherenceproofs}.
 %
 %\begin{definition}
 %For the rest of this section, let $C$ denote the unit cube in $\rr^3$ and
-%$$S_1 = \{(s\colon C \to C, v \in T_0 C) | \textrm{ s is a rectilinear embedding}\}.$$ 
+%$$S_1 = \{(s\colon C \to C, v \in T_0 C) | \textrm{ s is a rectilinear embedding}\}.\]
 %An embedding $s\colon C \to C$ can be interpreted as a rectangular prism inside the unit cube with faces parallel to those of the outer cube. Let $S_n = S_1^n$, whose elements are made up of $n$ such prisms $\vec s = (s_1,...,s_n)$ and velocities $\vec v = (v_1,...,v_n)$.
 %\end{definition}
 %
 %These prisms inside the unit cube are meant to describe the positions and sizes of $n$ bodies moving through space. In physical models they typically wouldn't be allowed to overlap, but for simplicity we will in effect only consider their centers of mass when computing gravitational effects. %something about boundaries. Is there an easy way out of that?
 %
 %Consider the polynomial 
-%$$g = \sum_{m \in \rrp \\ c \in C} y^{t \in \rrnn},$$
+%$$g = \sum_{m \in \rrp \\ c \in C} y^{t \in \rrnn},\]
 %whose positions we interpret as the mass $m$ of a body and its center of mass $c$, and whose directions we interpret as lengths of time $t$. We now describe an adaptive on $g$ with state sets $S_n$, where the action of a state computes its center of mass and the update modifies the positions and velocities of the bodies according to their current velocities and the force of gravity.
 %
 %\begin{definition}
 %For $m_1,...,m_n \in \rrp$ and $c_1,...,c_n \in C$, representing $n$ positions in the unit cube $C$ and their masses, the vector pointing from the $i$th body to the center of mass of the others is given by
-%$$\Delta c_i = \frac{m_1c_1 + \cdots + \hat{m_ic_i} + \cdots m_nc_n}{m_1 + \cdots + \hat{m_i} + \cdots + m_n} - c_i.$$
+%$$\Delta c_i = \frac{m_1c_1 + \cdots + \hat{m_ic_i} + \cdots m_nc_n}{m_1 + \cdots + \hat{m_i} + \cdots + m_n} - c_i.\]
 %The gravitational pull of the $i$th body in the system is given by
-%$$G_i(\vec m,\vec c) = \frac{m_i(m_1 + \cdots + \hat m_i + \cdots m_n)G}{|\Delta c_i|^3}\Delta c_i,$$
+%$$G_i(\vec m,\vec c) = \frac{m_i(m_1 + \cdots + \hat m_i + \cdots m_n)G}{|\Delta c_i|^3}\Delta c_i,\]
 %where $G$ is the gravitational constant. We will write $\vec G(\vec m, \vec c)$ for the tuple of these $n$ different vectors.
 %\end{definition}
 %
@@ -1060,10 +1060,10 @@ This is proven in \cref{coherenceproofs}.
 %The $[g^{\otimes n},g]$-coalgebra structure on $S_n$ is given by 
 %\begin{itemize}
 %	\item $\beta_0(\vec s,\vec v)_1\colon \rrp^n C^n \to C$ sends $(m_1,...,m_n,c_1,...,c_n)$ to 
-%$$c_{\vec s,\vec m} = \frac{m_1s_1(c_1) + \cdots + m_ns_n(c_n)}{m_1 + \cdots + m_n}$$
+%$$c_{\vec s,\vec m} = \frac{m_1s_1(c_1) + \cdots + m_ns_n(c_n)}{m_1 + \cdots + m_n}\]
 %	\item $\beta_0(\vec s,\vec v)_{\vec m,\vec c}\colon \rrnn \to \rrnn^n$ sends $t$ to $(t,...,t)$\footnote{This simply says that when the entire system is observed for a length of time $t$, so is each component. Perhaps this could be varied to incorporate some version of relativity.} 
 %	\item The update function $\beta_{\vec s,\vec v}$ sends $(\vec m \in \rrp^n,\vec c \in C^n)$ and $t \in \rrnn$ to 
-%$$\left( \vec s + t\vec v + \frac{t^2}{2} \vec G(\vec m, \vec s(\vec c)),\vec v + t\vec G(\vec m, \vec s(\vec c)) \right)$$
+%$$\left( \vec s + t\vec v + \frac{t^2}{2} \vec G(\vec m, \vec s(\vec c)),\vec v + t\vec G(\vec m, \vec s(\vec c)) \right)\]
 %\end{itemize}
 %\end{definition}
 %
@@ -1072,9 +1072,9 @@ This is proven in \cref{coherenceproofs}.
 %\begin{itemize}
 %	\item The identitor state in $S_1$ is given by $(\id_C,0)$
 %	\item The operadic compositor sends 
-%$$(\vec s,\vec v) \in S_n, (\vec s^1,\vec v^1) \in S_{\ell_1},...,(\vec s^n,\vec v^n) \in S_{\ell_n}$$
+%$$(\vec s,\vec v) \in S_n, (\vec s^1,\vec v^1) \in S_{\ell_1},...,(\vec s^n,\vec v^n) \in S_{\ell_n}\]
 %to
-%$$\hspace{-1cm}\left( s_1 \circ s^1_1,...,s_1 \circ s^1_{\ell_1},s_2 \circ s^2_1,...,s_n \circ s^n_{\ell_n},v_1 + Ds_1 \cdot v^1_1,...,v_1 + Ds_1 \cdot v^1_{\ell_1},v_2 + Ds_2 \cdot v^2_1,...,v_n + Ds_n \cdot v^n_{\ell_n} \right)$$
+%$$\hspace{-1cm}\left( s_1 \circ s^1_1,...,s_1 \circ s^1_{\ell_1},s_2 \circ s^2_1,...,s_n \circ s^n_{\ell_n},v_1 + Ds_1 \cdot v^1_1,...,v_1 + Ds_1 \cdot v^1_{\ell_1},v_2 + Ds_2 \cdot v^2_1,...,v_n + Ds_n \cdot v^n_{\ell_n} \right)\]
 %\end{itemize}
 %
 %Intuitively, the identitor describes a body filling the entire cube and not moving, while the operadic compositor describes plugging in $n$ systems into the prisms of another system. When doing so, the resulting prisms are precisely the composite embeddings of a prism of an inner system into the cube that is then again embedded into the cube as a prism in the outer system. The resulting velocities combine the velocity of the inner body in the cube of the inner system, scaled according to how that cube embeds into the cube of the outer system, then added to the velocity of the entire prism in the outer system. In other words, it is the velocity of a body moving inside a box which is itself moving.
@@ -1259,17 +1259,17 @@ It then remains only to show that the identitors, compositors, and productors ar
 For the identitors, the state $(0,\id_{\rr^n},0)$ acts as the identity function on $\rr^n$ and on directions by the transpose of its derivative, which is also the identity. The updates in the coalgebras $\S_{n,n}$ only modify the parameter $p$, so as the parameter here is 0-dimensional this state is never changed by the update function, as is the case in the coalgebra $\idcoalg{t^{\otimes n}}$. Therefore this function is a map of coalgebras.
 
 The compositors preserve the component of the action on positions as, for states 
-$$(L \in \nn, f\colon \rr^{L+\ell}, p \in \rr^L) \quad \textrm{and} \quad (M \in \nn, g\colon \rr^{M+m}, q \in \rr^M),$$ 
+\[(L \in \nn, f\colon \rr^{L+\ell}, p \in \rr^L) \quad \textrm{and} \quad (M \in \nn, g\colon \rr^{M+m}, q \in \rr^M),\]
 we have 
-$$g(q,-) \circ f(p,-) = g(-,f(-,-))(q,p,-).$$
+\[g(q,-) \circ f(p,-) = g(-,f(-,-))(q,p,-).\]
 This may seem like a trivial rewriting, but it illustrates how the compositor was defined in order for the action to be preserved, as on the left we have the composite of the actions on positions as in $\S_{\ell,m};\S_{m,n}$, and on the right we apply the compositor and take the action of the resulting state in $\S_{\ell,n}$.
 
 To show that the compositor preserves both the action on directions and the update we note that by the chain rule, for $x \in \rr^\ell$ and $z \in T_{g(q,f(p,x))}$,
-$$D\left( g(-,f(-,-)) \right)^\top z = Df^\top \cdot \pi_m(Dg^\top \cdot z) \in T_{(p,x)}\rr^{L+\ell}.$$
+\[D\left( g(-,f(-,-)) \right)^\top z = Df^\top \cdot \pi_m(Dg^\top \cdot z) \in T_{(p,x)}\rr^{L+\ell}.\]
 Applying $\pi_\ell$ to both sides above shows that the compositor preserves the action on directions, as on the left we have the action on directions after applying the compositor and on the right we have the composition of the actions of $(L,f,p)$ and $(M,g,q)$ on directions as in $\S_{\ell,m};\S_{m,n}$.
 
 Finally for updates, we observe by the chain rule that the update rule in $\S_{\ell,n}$ agrees with that in $\S_{\ell,m};\S_{m,n}$ under the compositor, as either way for $x,z$ as above the composite state of $(L,f,p)$ and $(M,g,q)$ updates to 
-$$\left( M+L,g(-,f(-,-)),\left( p + \epsilon \pi_L (Df^\top \cdot \pi_m(Dg^\top \cdot z)),q + \epsilon \pi_M(Dg^\top \cdot z) \right) \right).$$
+\[\left( M+L,g(-,f(-,-)),\left( p + \epsilon \pi_L (Df^\top \cdot \pi_m(Dg^\top \cdot z)),q + \epsilon \pi_M(Dg^\top \cdot z) \right) \right).\]
 \end{proof}
 
 
@@ -1305,17 +1305,17 @@ $$\left( M+L,g(-,f(-,-)),\left( p + \epsilon \pi_L (Df^\top \cdot \pi_m(Dg^\top 
 %\begin{itemize}
 %	\item an assignment $F\colon \ob(\C) \to \ob(\D)$
 %	\item for each $c,c' \in \ob(\C)$, functions 
-%$$F\colon \Hom_\C(c,c') \to \ob(\D(F(c),F(c')))$$
+%$$F\colon \Hom_\C(c,c') \to \ob(\D(F(c),F(c')))\]
 %	\item for each $c \in \ob(\C)$, an ``identitor'' 2-cell in $\D(F(c),F(c))$ 
-%$$F_{\id_c}\colon \id_{F(c)} \Rightarrow F(\id_c)$$
+%$$F_{\id_c}\colon \id_{F(c)} \Rightarrow F(\id_c)\]
 %	\item for each $f\colon c \to c'$ and $f'\colon c' \to c''$ in $\C$, a ``compositor'' 2-cell  in $\D(F(c),F(c''))$
-%$$F_{f \circ f'}\colon F(f') \circ F(f) \Rightarrow F(f' \circ f)$$
+%$$F_{f \circ f'}\colon F(f') \circ F(f) \Rightarrow F(f' \circ f)\]
 %\end{itemize}
 %such that the identitors and compositors satisfy unit and associativity equations. 
 %\end{definition}
 %
 %The equations here ensure a unique lax structure map 
-%$$F_{f_1 \circ \cdots \circ f_n}\colon F(f_n) \circ \cdots \circ F(f_1) \Rightarrow F(f_n \circ \cdots \circ f_1)$$
+%$$F_{f_1 \circ \cdots \circ f_n}\colon F(f_n) \circ \cdots \circ F(f_1) \Rightarrow F(f_n \circ \cdots \circ f_1)\]
 %built out of composites of whiskerings of the identitors and compositors, for all $n \ge 0$ and composable morphisms $f_1,...,f_n$.
 %
 %\begin{definition}%cite? Gurski's thesis mentions lax functors of tricategories which should give a similar notion aside from the strict monoidality on objects and iso-ness of the monoidality equations
@@ -1323,9 +1323,9 @@ $$\left( M+L,g(-,f(-,-)),\left( p + \epsilon \pi_L (Df^\top \cdot \pi_m(Dg^\top 
 %\begin{itemize}
 %	\item a lax functor $F\colon \C \to \D$
 %	\item an ``identitor'' vertical morphism in $\D$ %is this ok? it's a 1-cell not a 2-cell like the other...
-%$$F_I\colon I_\D \to F(I_\C)$$
+%$$F_I\colon I_\D \to F(I_\C)\]
 %	\item for each $c_1,c_2 \in \ob(\C)$, a ``productor'' vertical morphism in $\D$ 
-%$$F_{c_1,c_2}\colon F(c_1) \otimes F(c_2) \to F(c_1 \otimes c_2)$$
+%$$F_{c_1,c_2}\colon F(c_1) \otimes F(c_2) \to F(c_1 \otimes c_2)\]
 %	\item for each $f_1\colon c_1 \to c_1'$ and $f_2\colon c_2 \to c_2'$ in $\C$, a ``productor'' square $F_{f_1 \otimes f_2}$ in $\D$
 %\[\begin{tikzcd}
 %F(c_1) \otimes F(c_2) \dar[swap]{F(f_1) \otimes F(f_2)} \ar[""{name=S, below}]{r}{F_{c_1,c_2}} & F(c_1 \otimes c_2) \dar{F(f_1 \otimes f_2)} \\
