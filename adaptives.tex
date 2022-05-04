@@ -927,7 +927,7 @@ Then $\bet_X$ is an algebra for it: for any $\mu\in\Delta_N$ and $\gamma \in (\b
 \]
 and it is easy to check that $(\mu\cdot\gamma)\in\bet_X$, i.e.\ its components are in bounds $(\mu\cdot\gamma)(x)\in (0,1]$ and $\sum_x(\mu\cdot\gamma)(x)=1$.
 
-We now construct an dynamic operad with interface $p_X$ defined as:
+We now construct a dynamic operad with interface $p_X$ defined as:
 \[
 p_X\coloneqq \bet_X\,\yon^X
 \]
@@ -940,7 +940,7 @@ The most interesting part of the dynamic structure is how the trust distribution
 \gamma(x) * \mu \coloneqq \left( i \mapsto \frac{\gamma_i(x)\mu_i}{\sum_j \gamma_j(x)\mu_j}\right).
 \]
 
-Finally, we describe the PRO structure maps. As $\Delta^+_1$ is a singleton set whose action is the identity on $p_X$, the identitor $\{\id_{p_X}\} \to \Delta^+_1$ is an isomorphism. The operadic compositor is given by the usual operad structure on (nowhere-zero) distributions:
+Finally, we describe the operadic structure maps. As $\Delta^+_1$ is a singleton set whose action is the identity on $p_X$, the identitor $\{\id_{p_X}\} \to \Delta^+_1$ is an isomorphism. The operadic compositor is given by the usual operad structure on (nowhere-zero) distributions:
 \[
 \Delta^+_N \times \Delta^+_{M_1} \times \cdots \times \Delta^+_{M_N} \to \Delta^+_{\sum_i M_i} \qquad\qquad (\mu,\nu_1,\ldots,\nu_N) \mapsto \mu \circ \nu \coloneqq \left( (i,j) \mapsto \mu_i\nu_j \right).
 \]
@@ -1318,7 +1318,37 @@ p^{\otimes m} \rar[slash, ""{name=V, above},swap]{\S_{m,n}} & p^{\otimes n}
 We now proceed to prove that the coalgebras and structure maps defined above for organized predictions and gradient descent form dynamic structures. In each case, it suffices to show that the structure maps on states preserve coalgebra structure, and that the equations in \cref{operadequations} or \cref{PROequations}, respectively, are satisfied.
 
 \begin{proof}[Proof of \cref{predictionadaptive}]
+The operad equations are all satisfied as $\Delta^+$ is known to be an operad, and morphisms of coalgebras are entirely determined by a function between the state sets. It then remains only to show that the identitor and compositor as defined in \cref{sec.kelly} commute with actions and updates. This is clearly true for the identitor as it is an isomorphism, so we focus on the compositor.
 
+For the compositor to commute with actions on positions is the claim that $\Delta^+_X$ is an algebra for the operad $\Delta^+$; it means that for $\mu \in \Delta^+_N$, $\nu_1 \in \Delta^+_{M_1}$, ..., $\nu_N \in \Delta^+_{M_N}$, and $\gamma_{i,j} \in \Delta^+_X$ for $i=1,...,N$ and $j=1,...,M_i$, we have
+\[
+\sum_i \mu_i \left(\sum_j \nu_j \gamma_{i,j}\right) = \sum_{i,j} (\mu_i \nu_{i,j})\gamma_{i,j},
+\]
+which is clearly the case.
+
+The compositor commutes with actions on directions because in $(\S_{M_1} \otimes \cdots \otimes \S_{M_N}) \then \S_N$ the action of $(\nu_1,...,\nu_N,\mu)$ sends an outcome 
+\[
+x \in X = p_X[\mu \cdot (\nu \cdot \gamma)]
+\]
+to 
+\[
+(x,...,x) \in X^N = p_X^{\otimes N}[\nu_1 \cdot \gamma_1,...,\nu_N \cdot \gamma_N]
+\]
+and then to 
+\[
+(x,...,x) \in X^{\sum_i M_i} = p_X^{\otimes \sum_i M_i}[\gamma_{1,1},...,\gamma_{N,M_N}],
+\]
+while in $\S_{\sum_i M_i}$ the action of $\mu \circ \nu$ sends $x \in X$ to $(x,...,x) \in X^{\sum_i M_i}$ directly.
+
+It then only remains to show that the compositor commutes with updates. Using the shorthand notation $\nu = (\nu_1,...,\nu_N)$ and $\gamma = (\gamma_1,...,\gamma_N) = (\gamma_{1,1},...,\gamma_{N,M_N})$ already employed above, to show that the composite of the updates of $\mu,\nu$ agrees with the update of the composite $\mu \circ \nu$ amounts to the equation
+\begin{equation}\label{trustupdate}
+\gamma(x) * (\mu \circ \nu) = \big((\nu \cdot \gamma)(x) * \mu\big) \circ \big(\gamma(x) * \nu\big)
+\end{equation}
+for any $x \in X$. Here $\nu \cdot \gamma$ denotes $(\nu_1 \cdot \gamma_1,...,\nu_N \cdot \gamma_N)$ and $\gamma(x) * \nu$ denotes $(\gamma_1(x) * \nu_1,...,\gamma_N(x) * \nu_N)$. On the $(i,j)$-component of these distributions, \eqref{trustupdate} unwinds to
+\[
+\frac{\gamma_{i,j}(x)(\mu_i\nu_{i,j})}{\sum_{i',j'}\gamma_{i',j'}(x)(\mu_{i'}\nu_{i',j'})} = \left(\frac{\sum_{j'}(\nu_{i,j'}\gamma_{i,j'}(x))\mu_i}{\sum_{i'}\sum_{j'}(\nu_{i',j'}\gamma_{i',j'}(x))\mu_{i'}}\right)\left(\frac{\gamma_{i,j}(x)\nu_{i,j}}{\sum_{j'}\nu_{i,j'}\gamma_{i,j'}(x)}\right),
+\]
+which is easily seen to hold by extracting $\mu_i$ from the first fraction on the right hand side and cancelling the sums over $j'$.
 \end{proof}
 
 \begin{proof}[Proof of \cref{gradientadaptive}]
