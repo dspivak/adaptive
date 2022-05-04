@@ -827,7 +827,7 @@ An $\org$-enriched (henceforth \emph{dynamic}) strict monoidal category $A$ cons
 \begin{itemize}
 	\item a monoid $(A_0,e,*)$ of objects;
 	\item for each $a \in A_0$, a polynomial $p_a$;
-	\item an isomorphism of polynomials $y \cong p_e$ for $e$ the unit of $A_0$;
+	\item an isomorphism of polynomials $y \cong p_e$;
 	\item for each $a,a' \in A_0$, an isomorphism of polynomials $p_{a} \otimes p_{a'} \cong p_{a*a'}$;
 	\item for each $a,b \in A_0$, a $[p_a,p_b]$-coalgebra $\S_{a,b}$;
 	\item for each $a \in A_0$, an ``identitor'' square in $\org$ as in \cref{eqn.adaptive_tor} left;
@@ -856,13 +856,11 @@ p_{aa'} \rar[slash, ""{name=T, above},swap]{\S_{a*a',b*b'}} & p_{b*b'}
 such that these isomorphisms and squares satisfy unit, associativity, and interchange equations.%more on these?
 \end{definition}
 
-Similar to \cref{sec.org_cats,sec.org_multicats}, the sets $S_{a,b}$ form the arrows in an ordinary strict monoidal category underlying $A$. 
+Similar to \cref{sec.org_cats,sec.org_multicats}, the sets $S_{a,b}$ form the arrows in an ordinary strict monoidal category underlying $A$.  
 
-For the rest of this paper, we will only be interested in the restricted case of a dynamic monoidal category with object monoid $(\nn,0,+)$, which we call a dynamic PRO.%
-\footnote{A PRO is the non-symmetric version of a PROP. While all of our examples are in fact symmetric, for simplicity we do not describe their symmetry operations.}
-Concretely, this consists of a polynomial interface $p$ (so that in the notation above $p_n := p^{\otimes n}$ for $n \in \nn$) along with a $[p^{\otimes m},p^{\otimes n}]$-coalgebra $S_{m,n}$ for each $m,n \in \nn$, equipped with the maps of coalgebras as in \eqref{eqn.adaptive_tor}. We denote a dynamic PRO as $(p,\S)$, where $\S$ now encodes all of the coalgebras $\S_{m,n}$ that constitute the $\org$-enrichment and the structure maps are implicit.
-
-%more on what those maps mean
+For the rest of this paper, we will only be interested in the restricted case of a dynamic monoidal category with object monoid $(\nn,0,+)$, which we call a dynamic PRO.
+\footnote{A PRO is the non-symmetric version of a PROP. While all of our examples are in fact symmetric, for simplicity we do not describe their symmetry operations.} 
+Concretely, this consists of a polynomial interface $p$ (so that in the notation above $p_n := p^{\otimes n}$ for $n \in \nn$) along with a $[p^{\otimes m},p^{\otimes n}]$-coalgebra $S_{m,n}$ for each $m,n \in \nn$, equipped with the maps of coalgebras as in \eqref{eqn.adaptive_tor}. The identitors, compositors, productors, and their equations amount to the ability to compose any string diagram of the usual sort for monoidal categories, with the $m$-to-$n$ boxes given by states in $S_{m,n}$, into a new state with the appropriate sources and targets. We denote a dynamic PRO as $(p,\S)$, where $\S$ now encodes all of the coalgebras $\S_{m,n}$ that constitute the $\org$-enrichment and the structure maps are implicit.
 
 Morphisms of dynamic categorical structures are a special case of the general notion of morphisms between enriched structures as defined in \cite{shapiro2022enrichment}. %cite specifically
 
@@ -956,20 +954,20 @@ This is proven in \cref{coherenceproofs}.%update
 
 Fix a finite set $X$, elements of which we call \emph{outcomes} and intuit to be ``all equally likely'', define the set $\bet_X$ of \emph{guesses on $X$} as\footnote{The assumption that every possible outcome is given some nonzero probability in each guess could be interpreted either as humility of the guess-makers or a strategic decision to avoid permanent loss of all trust. It also lets us avoid dividing by zero when updating.}
 \[
-	\bet_X\coloneqq\left\{\beta\colon X\to[0,1]\;\;\middle|\;\;1=\sum_x\beta(x), \;\; \forall x\colon \beta(x) \neq 0 \right\}
+	\bet_X\coloneqq\left\{\gamma\colon X\to[0,1]\;\;\middle|\;\;1=\sum_x\gamma(x), \;\; \forall x\colon \gamma(x) \neq 0 \right\}
 \]
-The monoid $((0,1],1,*)$ of nonzero subunital reals acts on $\bet_X$ by scalar multiplication, i.e. for any $0 < m\leq 1$ and $\beta\in\bet_X$, we can define
+The monoid $((0,1],1,*)$ of nonzero subunital reals acts on $\bet_X$ by scalar multiplication, i.e. for any $0 < m\leq 1$ and $\gamma\in\bet_X$, we can define
 \[
-	m\cdot \beta\coloneqq \big(x\mapsto m\beta (x)\big)
+	m\cdot \gamma\coloneqq \big(x\mapsto m\gamma (x)\big)
 \]
-and we have $m\cdot\beta\in\bet_X$. 
+and we have $m\cdot\gamma\in\bet_X$. 
 
 Let $\Delta^+$ denote the operad of finite nowhere-zero probability distributions, where $\Delta^+_N$ is defined as above with the natural number $N$ regarded as the $N$-element set. %\coloneqq\left\{\mu\colon N\to[0,1]\;\middle|\;1=\sum_{i\in N}\mu_i\right\}
-Then $\bet_X$ is an algebra for it: for any $\mu\in\Delta_N$ and $\beta \in (\bet_X)^N$, we define 
+Then $\bet_X$ is an algebra for it: for any $\mu\in\Delta_N$ and $\gamma \in (\bet_X)^N$, we define 
 \[
-	\mu\cdot\beta\coloneqq\left(x\mapsto\sum_{i\in N}(\mu_i\cdot\beta_i)(x)\right)
+	\mu\cdot\gamma\coloneqq\left(x\mapsto\sum_{i\in N}(\mu_i\cdot\gamma_i)(x)\right)
 \]
-and it is easy to check that $(\mu\cdot\beta)\in\bet_X$, i.e.\ its components are in bounds $(\mu\cdot\beta)(x)\in (0,1]$ and $\sum_x(\mu\cdot\beta)(x)=1$.
+and it is easy to check that $(\mu\cdot\gamma)\in\bet_X$, i.e.\ its components are in bounds $(\mu\cdot\gamma)(x)\in (0,1]$ and $\sum_x(\mu\cdot\gamma)(x)=1$.
 
 We now construct an dynamic operad with interface $p_X$ defined as:
 \[
@@ -977,11 +975,11 @@ p_X\coloneqq \bet_X\,\yon^X
 \]
 and use the $\Delta^+_N$ as our state spaces. The idea is that a state $\mu\in\Delta^+_N$ says how much the organization trusts each of its $N$ members (guess-makers) relative to each other. A member's position at a given moment is a report of how much confidence it has in each of the $X$-many possibilities, represented by how its balance is distributed among them.
 
-The action of a trust distribution $\mu \in \Delta^+_N$ is the map of polynomials $p_X^{\otimes N} \to p_X$ which on positions sends $\beta \in (\bet_X)^N$ to $\mu \cdot \beta$ and on directions sends $x \in X$ to $(x,...,x) \in X^N$. The idea is that the organization aggregates the predictions of its members according to their trust, and the outcome is accurately communicated back to each member.
+The action of a trust distribution $\mu \in \Delta^+_N$ is the map of polynomials $p_X^{\otimes N} \to p_X$ which on positions sends $\gamma \in (\bet_X)^N$ to $\mu \cdot \gamma$ and on directions sends $x \in X$ to $(x,...,x) \in X^N$. The idea is that the organization aggregates the predictions of its members according to their trust, and the outcome is accurately communicated back to each member.
 
-The most interesting part of the dynamic structure is how the trust distribution is updated once predictions are made and a result $x\in X$ is returned. For membership $N\geq 1$, trust distribution $\mu\in\Delta^+_N$, guesses $\beta\in(\bet_X)^N$, and outcome $x\in X$, we define the updated trust distribution as $\beta(x) * \mu \in\Delta^+_N$, where
+The most interesting part of the dynamic structure is how the trust distribution is updated once predictions are made and a result $x\in X$ is returned. For membership $N\geq 1$, trust distribution $\mu\in\Delta^+_N$, guesses $\gamma\in(\bet_X)^N$, and outcome $x\in X$, we define the updated trust distribution as $\gamma(x) * \mu \in\Delta^+_N$, where
 \[
-\beta(x) * \mu \coloneqq \left( i \mapsto \frac{\beta_i(x)\mu_i}{\sum_j \beta_j(x)\mu_j}\right).
+\gamma(x) * \mu \coloneqq \left( i \mapsto \frac{\gamma_i(x)\mu_i}{\sum_j \gamma_j(x)\mu_j}\right).
 \]
 
 Finally, we describe the PRO structure maps. As $\Delta^+_1$ is a singleton set whose action is the identity on $p_X$, the identitor $\{\id_{p_X}\} \to \Delta^+_1$ is an isomorphism. The operadic compositor is given by the usual operad structure on (nowhere-zero) distributions:
