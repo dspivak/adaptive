@@ -903,6 +903,51 @@ Our main results are that dynamic structures describe phenomena we see instantia
 
 
 %------- Section -------%
+\section{The prediction market dynamic operad}\label{sec.kelley}
+
+
+Fix a finite set $X$, elements of which we call \emph{outcomes} and intuit to be ``all equally likely'', define the set $\bet_X$ of \emph{guesses on $X$} as\footnote{The assumption that every possible outcome is given some nonzero probability in each guess could be interpreted either as humility of the guess-makers or a strategic decision to avoid permanent loss of all trust. It also lets us avoid dividing by zero when updating.}
+\[
+	\bet_X\coloneqq\left\{\gamma\colon X\to[0,1]\;\;\middle|\;\;1=\sum_x\gamma(x), \;\; \forall x\colon \gamma(x) \neq 0 \right\}
+\]
+The monoid $((0,1],1,*)$ of nonzero subunital reals acts on $\bet_X$ by scalar multiplication, i.e. for any $0 < m\leq 1$ and $\gamma\in\bet_X$, we can define
+\[
+	m\cdot \gamma\coloneqq \big(x\mapsto m\gamma (x)\big)
+\]
+and we have $m\cdot\gamma\in\bet_X$. 
+
+Let $\Delta^+$ denote the operad of finite nowhere-zero probability distributions, where $\Delta^+_N$ is defined as above with the natural number $N$ regarded as the $N$-element set. %\coloneqq\left\{\mu\colon N\to[0,1]\;\middle|\;1=\sum_{i\in N}\mu_i\right\}
+Then $\bet_X$ is an algebra for it: for any $\mu\in\Delta_N$ and $\gamma \in (\bet_X)^N$, we define 
+\[
+	\mu\cdot\gamma\coloneqq\left(x\mapsto\sum_{i\in N}(\mu_i\cdot\gamma_i)(x)\right)
+\]
+and it is easy to check that $(\mu\cdot\gamma)\in\bet_X$, i.e.\ its components are in bounds $(\mu\cdot\gamma)(x)\in (0,1]$ and $\sum_x(\mu\cdot\gamma)(x)=1$.
+
+We now construct an dynamic operad with interface $p_X$ defined as:
+\[
+p_X\coloneqq \bet_X\,\yon^X
+\]
+and use the $\Delta^+_N$ as our state spaces. The idea is that a state $\mu\in\Delta^+_N$ says how much the organization trusts each of its $N$ members (guess-makers) relative to each other. A member's position at a given moment is a report of how much confidence it has in each of the $X$-many possibilities, represented by how its balance is distributed among them.
+
+The action of a trust distribution $\mu \in \Delta^+_N$ is the map of polynomials $p_X^{\otimes N} \to p_X$ which on positions sends $\gamma \in (\bet_X)^N$ to $\mu \cdot \gamma$ and on directions sends $x \in X$ to $(x,...,x) \in X^N$. The idea is that the organization aggregates the predictions of its members according to their trust, and the outcome is accurately communicated back to each member.
+
+The most interesting part of the dynamic structure is how the trust distribution is updated once predictions are made and a result $x\in X$ is returned. For membership $N\geq 1$, trust distribution $\mu\in\Delta^+_N$, guesses $\gamma\in(\bet_X)^N$, and outcome $x\in X$, we define the updated trust distribution as $\gamma(x) * \mu \in\Delta^+_N$, where
+\[
+\gamma(x) * \mu \coloneqq \left( i \mapsto \frac{\gamma_i(x)\mu_i}{\sum_j \gamma_j(x)\mu_j}\right).
+\]
+
+Finally, we describe the PRO structure maps. As $\Delta^+_1$ is a singleton set whose action is the identity on $p_X$, the identitor $\{\id_{p_X}\} \to \Delta^+_1$ is an isomorphism. The operadic compositor is given by the usual operad structure on (nowhere-zero) distributions:
+\[
+\Delta^+_N \times \Delta^+_{M_1} \times \cdots \times \Delta^+_{M_N} \to \Delta^+_{\sum_i M_i} \qquad\qquad (\mu,\nu_1,\ldots,\nu_N) \mapsto \mu \circ \nu \coloneqq \left( (i,j) \mapsto \mu_i\nu_j \right).
+\]
+
+\begin{theorem}\label{predictionadaptive}
+The maps defined above are maps of coalgebras and satisfy the coherence equations of a dynamic operad described in \cref{operadequations}.
+\end{theorem}
+
+This is proven in \cref{proofs}.
+
+%------- Section -------%
 \section{The gradient descent dynamic PRO}
 
 Deep learning uses the algorithm of gradient descent to optimize a choice of function, based on external feedback on its output. This naturally fits into the paradigm of dynamic structures, as functions $\rr^m \to \rr^n$ can form the states of a polynomial coalgebra, with the feedback providing the information needed to update the choice of function. These functions can be composed and juxtaposed to provide compositions of networks of such gradient descenders in a way that respects the updates.
@@ -942,56 +987,11 @@ Thus far, we have provided the data of the polynomial $t$ and the $[t^{\otimes m
 These structure maps ensure that whenever two gradient descenders are combined in series or parallel, the resulting composite descender retains the parameter spaces of both. Likewise when the input or output of a descender is wired past some other descender in a network, it does not contribute any new parameters and merely preserves its input/output until plugged into a descender.
 
 \begin{theorem}\label{gradientadaptive}
-The maps defined above are maps of coalgebras and satisfy the coherence equations of a dynamic PRO described in \cref{equations}.%update
+The maps defined above are maps of coalgebras and satisfy the coherence equations of a dynamic PRO described in \cref{PROequations}.%update
 \end{theorem}
 
-This is proven in \cref{coherenceproofs}.%update
+This is proven in \cref{proofs}.
 
-
-%------- Section -------%
-\section{The prediction market dynamic operad}\label{sec.kelley}
-
-
-Fix a finite set $X$, elements of which we call \emph{outcomes} and intuit to be ``all equally likely'', define the set $\bet_X$ of \emph{guesses on $X$} as\footnote{The assumption that every possible outcome is given some nonzero probability in each guess could be interpreted either as humility of the guess-makers or a strategic decision to avoid permanent loss of all trust. It also lets us avoid dividing by zero when updating.}
-\[
-	\bet_X\coloneqq\left\{\gamma\colon X\to[0,1]\;\;\middle|\;\;1=\sum_x\gamma(x), \;\; \forall x\colon \gamma(x) \neq 0 \right\}
-\]
-The monoid $((0,1],1,*)$ of nonzero subunital reals acts on $\bet_X$ by scalar multiplication, i.e. for any $0 < m\leq 1$ and $\gamma\in\bet_X$, we can define
-\[
-	m\cdot \gamma\coloneqq \big(x\mapsto m\gamma (x)\big)
-\]
-and we have $m\cdot\gamma\in\bet_X$. 
-
-Let $\Delta^+$ denote the operad of finite nowhere-zero probability distributions, where $\Delta^+_N$ is defined as above with the natural number $N$ regarded as the $N$-element set. %\coloneqq\left\{\mu\colon N\to[0,1]\;\middle|\;1=\sum_{i\in N}\mu_i\right\}
-Then $\bet_X$ is an algebra for it: for any $\mu\in\Delta_N$ and $\gamma \in (\bet_X)^N$, we define 
-\[
-	\mu\cdot\gamma\coloneqq\left(x\mapsto\sum_{i\in N}(\mu_i\cdot\gamma_i)(x)\right)
-\]
-and it is easy to check that $(\mu\cdot\gamma)\in\bet_X$, i.e.\ its components are in bounds $(\mu\cdot\gamma)(x)\in (0,1]$ and $\sum_x(\mu\cdot\gamma)(x)=1$.
-
-We now construct an dynamic operad with interface $p_X$ defined as:
-\[
-p_X\coloneqq \bet_X\,\yon^X
-\]
-and use the $\Delta^+_N$ as our state spaces. The idea is that a state $\mu\in\Delta^+_N$ says how much the organization trusts each of its $N$ members (guess-makers) relative to each other. A member's position at a given moment is a report of how much confidence it has in each of the $X$-many possibilities, represented by how its balance is distributed among them.
-
-The action of a trust distribution $\mu \in \Delta^+_N$ is the map of polynomials $p_X^{\otimes N} \to p_X$ which on positions sends $\gamma \in (\bet_X)^N$ to $\mu \cdot \gamma$ and on directions sends $x \in X$ to $(x,...,x) \in X^N$. The idea is that the organization aggregates the predictions of its members according to their trust, and the outcome is accurately communicated back to each member.
-
-The most interesting part of the dynamic structure is how the trust distribution is updated once predictions are made and a result $x\in X$ is returned. For membership $N\geq 1$, trust distribution $\mu\in\Delta^+_N$, guesses $\gamma\in(\bet_X)^N$, and outcome $x\in X$, we define the updated trust distribution as $\gamma(x) * \mu \in\Delta^+_N$, where
-\[
-\gamma(x) * \mu \coloneqq \left( i \mapsto \frac{\gamma_i(x)\mu_i}{\sum_j \gamma_j(x)\mu_j}\right).
-\]
-
-Finally, we describe the PRO structure maps. As $\Delta^+_1$ is a singleton set whose action is the identity on $p_X$, the identitor $\{\id_{p_X}\} \to \Delta^+_1$ is an isomorphism. The operadic compositor is given by the usual operad structure on (nowhere-zero) distributions:
-\[
-\Delta^+_N \times \Delta^+_{M_1} \times \cdots \times \Delta^+_{M_N} \to \Delta^+_{\sum_i M_i} \qquad\qquad (\mu,\nu_1,\ldots,\nu_N) \mapsto \mu \circ \nu \coloneqq \left( (i,j) \mapsto \mu_i\nu_j \right).
-\]
-
-\begin{theorem}\label{predictionadaptive}%change equations reference as needed
-The maps defined above are maps of coalgebras and satisfy the coherence equations of a dynamic operad described in \cref{equations}.%update
-\end{theorem}
-
-This is proven in \cref{coherenceproofs}.%update
 
 %To do so, consider the number
 %\[
@@ -1091,14 +1091,20 @@ This is proven in \cref{coherenceproofs}.%update
 
 
 
-%------- Chapter -------%
 \appendix
-\chapter{Coherence equations and proofs}\label{coherenceproofs}
+%------- Chapter -------%
+\chapter{Coherence Equations}\label{coherences}
 
 
-We now present the equations that must be satisfied by the identitors, compositors, and productors of an adaptive\dnote{change name}. While we only provide these in the narrow setting of adaptives, the equations governing $\org$-enriched categories, multicategories, and monoidal categories are all quite similarly defined.
+We now present the equations that must be satisfied by the structure maps in dynamic operads and PROs. While we only provide these for the single-object variant of dynamic multicategories and monoidal categories, respectively, the equations in the general case are entirely analogous.
 
-\begin{definition}\label{equations}
+\begin{definition}\label{operadequations}
+
+\end{definition}
+
+These equations derive directly from the definition of operads, namely the associativity and unitality of operadic composition. The equations for dynamic PROs below are similarly derived from the definition of monoidal categories, namely that composition and products of arrows are associative and unital (giving the associativity and unitality equations for compositors and productors) and products are functorial (giving the interchange equations). 
+
+\begin{definition}\label{PROequations}
 The equations between the structure maps in an adaptive are as follows:
 \begin{itemize}
 	\item The identitor interchange law
@@ -1248,7 +1254,18 @@ p^{\otimes m} \rar[slash, ""{name=V, above},swap]{\S_{m,n}} & p^{\otimes n}
 \end{itemize}
 \end{definition}
 
-We now proceed to prove that the coalgebras and structure maps defined above for gradient descent and gravitational \dnote{update} motion form adaptives. In each case, it suffices to show that the structure maps on states preserve coalgebra structure, and that equations \eqref{eqn.id_inter} through \eqref{eqn.prod_unit} are satisfied.
+
+
+
+%------- Chapter -------%
+\chapter{Proofs of Dynamic Structure}\label{proofs}
+
+
+We now proceed to prove that the coalgebras and structure maps defined above for organized predictions and gradient descent form dynamic structures. In each case, it suffices to show that the structure maps on states preserve coalgebra structure, and that the equations in \cref{operadequations} or \cref{PROequations}, respectively, are satisfied.
+
+\begin{proof}[Proof of \cref{predictionadaptive}]
+
+\end{proof}
 
 \begin{proof}[Proof of \cref{gradientadaptive}]
 The unit and associativity equations follow immediately from associativity and unitality of addition, cartesian products, and function composition. The interchange equations follow from the preservation of 0 under addition and identity functions under cartesian products, the analogous interchange property of function composition and cartesian products of functions, and the fact that the compositors and productors act the same way on the parameters and their dimension. 
@@ -1270,6 +1287,8 @@ Applying $\pi_\ell$ to both sides above shows that the compositor preserves the 
 Finally for updates, we observe by the chain rule that the update rule in $\S_{\ell,n}$ agrees with that in $\S_{\ell,m};\S_{m,n}$ under the compositor, as either way for $x,z$ as above the composite state of $(L,f,p)$ and $(M,g,q)$ updates to 
 \[\left( M+L,g(-,f(-,-)),\left( p + \epsilon \pi_L (Df^\top \cdot \pi_m(Dg^\top \cdot z)),q + \epsilon \pi_M(Dg^\top \cdot z) \right) \right).\]
 \end{proof}
+
+
 
 
 \printbibliography 
