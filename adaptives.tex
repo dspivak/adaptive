@@ -1099,17 +1099,52 @@ This is proven in \cref{proofs}.
 We now present the equations that must be satisfied by the structure maps in dynamic operads and PROs. While we only provide these for the single-object variant of dynamic multicategories and monoidal categories, respectively, the equations in the general case are entirely analogous.
 
 \begin{definition}\label{operadequations}
-
+The equations between the identitors and compositors in a dynamic operad are as follows:
+\begin{itemize}
+	\item The left and right unit laws
+\begin{equation}\label{eqn.operad_unit}
+\hspace{-1.4cm}  \begin{tikzcd}[column sep=large, ampersand replacement=\&]
+  p^{\otimes n} \dar[equals] \ar[r, slash, "\{\id_p\}^{\otimes n}", ""' name=R] \& p^{\otimes n} \rar[slash, ""' name=S]{\S_n} \dar[equals] \& p \dar[equals] \\
+  p^{\otimes n} \dar[equals] \ar[r,""' name=U,""{name=W,below},slash,swap,"\S_1^{\otimes n}"] \& p^{\otimes n} \ar[r,""' name=V,slash,swap,"\S_n"] \& p \dar[equals] \\
+  p^{\otimes n} \ar[slash, ""{name=T}]{rr}[swap]{\S_n} \& \& p
+  \arrow[Rightarrow,shorten=7,from=W-|T,to=T]
+  \arrow[Rightarrow,shorten=7,from=R,to=U]
+  \arrow[equals,shorten=7,from=S,to=V]
+  \end{tikzcd} \quad = \quad \begin{tikzcd}[column sep=large, ampersand replacement=\&]
+p^{\otimes n} \dar[equals] \rar[slash,""{name=S, below}]{\S_n} \& p \dar[equals] \\
+p^{\otimes n} \rar[slash, ""{name=T, above},swap]{\S_n} \& p
+\arrow[equals,shorten=7,from=S,to=T]
+  \end{tikzcd} \quad = \quad \begin{tikzcd}[column sep=large, ampersand replacement=\&]
+  p^{\otimes n} \dar[equals] \ar[r, slash, "\S_n", ""' name=R] \& p \rar[slash, ""' name=S]{\{\id_p\}} \dar[equals] \& p \dar[equals] \\
+  p^{\otimes n} \dar[equals] \ar[r,""' name=U,""{name=W,below},slash,swap,"\S_n"] \& p \ar[r,""' name=V,slash,swap,"\S_1"] \& p \dar[equals] \\
+  p^{\otimes n} \ar[slash, ""{name=T}]{rr}[swap]{\S_n} \& \& p
+  \arrow[Rightarrow,shorten=7,from=W-|T,to=T]
+  \arrow[equals,shorten=7,from=R,to=U]
+  \arrow[Rightarrow,shorten=7,from=S,to=V]
+  \end{tikzcd}
+\end{equation}
+	\item The associativity law
+\begin{equation}\label{eqn.operad_assoc}
+  \begin{tikzcd}[ampersand replacement=\&]
+  p^{\otimes \ell_{1,1}} \otimes \cdots \otimes p^{\otimes \ell_{n,m_n}} \dar[equals,swap,"\wr"] \ar[r, slash, "\bigotimes_{i,j} \S_{\ell_{i,j}}", ""' name=U] \& p^{\otimes m_1} \otimes \cdots \otimes p^{\otimes m_n} \ar[r, slash, "\bigotimes_i \S_{m_i}"] \& p^{\otimes n} \dar[equals] \rar[slash, ""' name=V]{\S_n} \& p \dar[equals] \\
+  p^{\otimes (\sum_j \ell_{1,j})} \otimes \cdots \otimes p^{\otimes (\sum_j \ell_{n,j})} \dar[equals,swap,"\wr"] \ar[slash, ""{name=W,above},""{name=S, below}]{rr}[description]{\bigotimes_i \S_{\ell_{i,1} + \cdots + \ell_{i,m_i}}} \& \& p^{\otimes n} \rar[slash,swap,""' name=X]{\S_n} \& p \dar[equals] \\
+  p^{\otimes (\sum_{i,j} \ell_{i,j})} \ar[slash, ""{name=T}]{rrr}[swap]{\S_{\ell_{1,1} + \cdots + \ell_{n,m_n}}} \& \& \& p
+  \arrow[Rightarrow,shorten=7,from=U-|W,to=W]
+  \arrow[equals,shorten=7,from=V,to=X]
+  \arrow[Rightarrow,shorten=7,from=S-|T,to=T]
+  \end{tikzcd}
+\end{equation}
+\end{itemize}
 \end{definition}
 
 These equations derive directly from the definition of operads, namely the associativity and unitality of operadic composition. The equations for dynamic PROs below are similarly derived from the definition of monoidal categories, namely that composition and products of arrows are associative and unital (giving the associativity and unitality equations for compositors and productors) and products are functorial (giving the interchange equations). 
 
 \begin{definition}\label{PROequations}
-The equations between the structure maps in a dynamic PRO are as follows:
+The equations between the identitors, compositors, and productors in a dynamic PRO are as follows:
 \begin{itemize}
 	\item The identitor interchange law
 \begin{equation}\label{eqn.id_inter}
-\hspace{-1.9cm}\begin{tikzcd}[column sep={150,between origins}]
+\hspace{-1.5cm}\begin{tikzcd}[column sep={150,between origins}]
 p^{\otimes n} \otimes p^{\otimes n'} \dar[equals] \rar[slash, ""{name=S, below}]{\idcoalg{p^{\otimes n}} \otimes \idcoalg{p^{\otimes n'}}} & 
 p^{\otimes n} \otimes p^{\otimes n'} \dar[equals] \\
 p^{\otimes n} \otimes p^{\otimes n'} \dar[equals,swap]{\wr} \ar[slash, ""{name=T, above}, ""{name=U, below}]{r}[description]{\S_{n,n} \otimes \S_{n',n'}} & 
