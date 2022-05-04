@@ -528,7 +528,7 @@ A nesting of interacting open dynamical systems: the $X_{i,j}$ are wired togethe
 }\label{fig.nesting}
 \end{figure}
 
-But if we think about some things that interact to do work in the real world, we often notice that often the organization itself---the connections themselves---change. Unlike we see in \cref{fig.wd}, the way we connect this hour may be different from the way we connect next hour; in particular, our interfaces go in and out of contact. At the end of this paragraph, look away from the page for a few seconds, think about some things you know that interact together or influence each other, and ask yourself three questions about them: Do these things ever stop interacting? If so, do they ever start interacting again? And how is it decided? 
+But if we think about some things that interact to do work in the real world, we often notice that often the organization itself---the connections themselves---change. Unlike what we see in \cref{fig.nesting}, the way we connect this hour may be different from the way we connect next hour; in particular, our interfaces go in and out of contact. At the end of this paragraph, look away from the page for a few seconds, think about some things you know that interact together or influence each other, and ask yourself three questions about them: Do these things ever stop interacting? If so, do they ever start interacting again? And how is it decided? 
 
 \section{Accounting for organizational change}
 
@@ -552,7 +552,7 @@ We thank you the reader for having postponed your counterpoints and counterexamp
 
 \section{Acknowledgments}
 
-The influences on this paper are too numerous and unranked to name, but in particular we thank Sophie Libkind for stimulating conversations, and we thank Scott Garrabrant for teaching us about Kelley betting, our interpretation of which has become \cref{sec.kelley}.
+The influences on this paper are too numerous and unranked to name, but in particular we thank Sophie Libkind for stimulating conversations, and we thank Scott Garrabrant for teaching us about Kelley betting, which partially inspired \cref{sec.kelley}.
 
 This material is based upon work supported by the Air Force Office of Scientific Research under award number FA9550-20-1-0348.
 
@@ -561,7 +561,7 @@ This material is based upon work supported by the Air Force Office of Scientific
 \chapter{The Monoidal Double Category $\org$}\label{chap.org}
 
 In \cite{spivak2021learners}, the second author defined a category-enriched multicategory $\org$, whose objects are polynomials and whose morphisms are polynomial coalgebras. In this chapter, we describe how $\org$ in fact more naturally takes the form of a monoidal double category, with coalgebras as horizontal morphisms, maps of polynomials as vertical morphisms, and the Dirichlet tensor product $\otimes$ providing the monoidal structure.%
-\footnote{In fact, $\org$ is a duoidal double double category, with a second monoidal structure given by $\tri$, but we will not use that here.}
+\footnote{In fact, $\org$ is a duoidal double category, with a second monoidal structure given by $\tri$, but we will not use that here.}
 
 Before we begin, recall that a polynomial is a functor $p\colon \smset\to\smset$ which is isomorphic to a sum of representables; following \cite{spivak2021learners}, we denote $p,q\in\poly$ by
 \begin{equation}\label{eqn.poly_notation}
@@ -585,7 +585,7 @@ their \emph{internal hom} with respect to the tensor product $\otimes$ is the po
 It can also be written $[p,q]=\prod_{I\in p(1)}\sum_{J\in q(1)}\prod_{j\in q[J]}\sum_{i\in p[I]}1$.
 \end{definition}
 
-For intuition, a $[p,q]$-coalgebra (denoted $p \slashar q$) is a machine that outputs maps $p\to q$ and that inputs two things: what flows out of $p$ and what flows in to $q$. More precisely, using \cite[Definition 2.10]{spivak2021learners} applied to $[p,q]$, we get the following definition of $[p,q]$-coalgebras. 
+For intuition, a $[p,q]$-coalgebra (denoted $p \slashar q$) is a machine that outputs maps $p\to q$ and that inputs two things: what flows out of $p$ and what flows in to $q$. More precisely, using \cite[Definition 2.10]{spivak2021learners} applied to $[p,q]$, we define $[p,q]$-coalgebras as follows. 
 
 \begin{definition}
 The category $[p,q]\coalg$ has as objects pairs $\S = (S,\beta)$ where $S$ is a set and $\beta\colon S \to [p,q] \tri S$ is a function, and where a morphism from $\S$ to $\S'$ is a function $f\colon S \to S'$ making \eqref{eqn.coalg_map} commute. 
@@ -655,7 +655,7 @@ Horizontal composition of coalgebra-morphisms---the 2-cells of the bicategory---
 \section{Monoidal product of coalgebras}
 
 
-It is shown in \cite[Proposition 2.13]{spivak2021learners} that the tensor product $\otimes$ of polynomials extends to make $\org$ a monoidal bicategory. In particular, for polynomials $p,q,p',q'$ there is a functor
+It is shown in \cite[Proposition 2.13]{spivak2021learners} that the tensor product $\otimes$ of polynomials extends to make $\org$ a monoidal bicategory. That is, for polynomials $p,q,p',q'$ there is a functor
 \[[p,q]\coalg \times [p',q']\coalg \to \left([p,q] \otimes [p',q']\right)\coalg \to [p \otimes p',q \otimes q']\coalg\]
 derived from the map of polynomials $[p,q] \otimes [p',q'] \to [p {\otimes} p',q {\otimes} q']$ given on positions by 
 \[\poly(p,q) \times \poly(p',q') \To{\otimes} \poly(p \otimes p',q \otimes q')\]
@@ -672,7 +672,7 @@ and update described similarly componentwise. The tensor product of coalgebra mo
 \section{$\org$ as a double category}
 
 
-Defining $\org$ as a monoidal bicategory is sufficient for most of the constructions of $\org$-enriched structures in the next chapter. However, using a double category structure to cast morphisms $\phi\colon p\to q$ in $\poly$ as singleton coalgebras $\S_\phi\in[p,q]\coalg$ (see \cref{ex.single_state}) facilitates our eventual definition of dynamic structures, in particular the maps between them. 
+Defining $\org$ as a monoidal bicategory is sufficient for most of the constructions of $\org$-enriched structures in the next chapter. However, using a double category structure casting singleton coalgebras $\S_\phi\in[p,q]\coalg$ (see \cref{ex.single_state}) as morphisms $\phi\colon p\to q$ in $\poly$ facilitates our eventual definition of maps between dynamic structures. 
 
 Specifically, the definition of $\org$ as a monoidal bicategory extends to a monoidal (pseudo-)double category with coalgebras as horizontal morphisms, maps in $\poly$ as vertical morphisms, and squares as in \eqref{eqn.square} given by maps of coalgebras from $\{\psi\}\then\S$ to $\S'\then\{\phi\}$. 
 \begin{equation}\label{eqn.square}
@@ -684,7 +684,7 @@ p' \rar[slash, ""{name=T, above},swap]{\S'} & q'
 \end{equation}
 The symbol $\slashar$ is intended to indicate that the map is ``dynamic'', changing in response to what flows out of $p$ and into $q$.
 
-As $\{\phi\}$ and $\{\psi\}$ have only one state, and as composition of coalgebras acts as the cartesian product on states, such a square amounts to a function $S \to S'$ making \eqref{eqn.coalg_square} commute:
+As $\{\phi\}$ and $\{\psi\}$ have only one state, and composition of coalgebras acts as the cartesian product on states, such a square amounts to a function $S \to S'$ making \eqref{eqn.coalg_square} commute:
 \begin{equation}\label{eqn.coalg_square}
 \begin{tikzcd}
 S \rar{\beta} \dar[swap]{f} & {[p,q]} \tri S \rar{\psi_\ast} & {[p,q']} \tri S \ar[d, "{[p,q'] \tri f}" pos=.4] \\
@@ -814,7 +814,7 @@ Let $\S$ be any $p$-coalgebra for a polynomial $p$. There is a dynamic operad on
 \end{example}
 
 \begin{example}
-Consider a dynamic operad with interface $\yon\in\poly$ with exactly one position and one direction. The internal hom polynomial $[\yon^{\otimes n},\yon]$ is simply $\yon$, so this structure amounts to an operad $S$ with a function $S_n \to S_n$ for each $n$, commuting with the operad structure. So a dynamic operad on $\yon$ is the same as an operad equipped with an operad endomorphism.
+Consider a dynamic operad with interface $\yon\in\poly$. The internal hom polynomial $[\yon^{\otimes n},\yon]$ is simply $\yon$, so this structure amounts to an operad $S$ with a function $S_n \to S_n$ for each $n$, commuting with the operad structure. A dynamic operad on $\yon$ is then the same as an operad equipped with an operad endomorphism.
 \end{example}
 
 
@@ -823,8 +823,9 @@ Consider a dynamic operad with interface $\yon\in\poly$ with exactly one positio
 \section{Dynamic monoidal categories}\label{sec:org_monoidalcats}
 
 
-A monoidal double category is precisely a representable $MC$-multicategory in the sense of \cite{shapiro2022enrichment}, %cite specifically
-so we can also enrich strict monoidal categories in $\org$.\footnote{We use throughout the notion \emph{strong} enrichment in a monoidal double category from \cite{shapiro2022enrichment}.} These will be similar to $\org$-enriched multicategories, except they allow for many-to-many coalgebras rather than just many-to-one. 
+A monoidal double category is precisely a representable $f\!m\!c$-multicategory as in \cite{shapiro2022enrichment}, %cite specifically
+so we can also enrich strict monoidal categories in $\org$.\footnote{We use throughout the notion \emph{strong} enrichment in a monoidal double category from \cite{shapiro2022enrichment}.} These are similar to $\org$-enriched multicategories, but include many-to-many coalgebras rather than just many-to-one. 
+
 \begin{definition}\label{enriched_monoidal}
 An $\org$-enriched (henceforth \emph{dynamic}) strict monoidal category $A$ consists of
 \begin{itemize}
@@ -856,7 +857,7 @@ p_{aa'} \rar[slash, ""{name=T, above},swap]{\S_{a*a',b*b'}} & p_{b*b'}
 \arrow[Rightarrow,shorten=5,from=S,to=T]
 \end{tikzcd}
 \end{equation}
-such that these isomorphisms and squares satisfy unit, associativity, and interchange equations.%more on these?
+satisfying unit, associativity, and interchange equations.
 \end{definition}
 
 Similar to \cref{sec.org_cats,sec.org_multicats}, the sets $S_{a,b}$ form the arrows in an ordinary strict monoidal category underlying $A$.  
@@ -981,10 +982,12 @@ The action of a state as a map $t^{\otimes m} \to t^{\otimes n}$ is given by app
 
 Thus far, we have provided the data of the polynomial $t$ and the $[t^{\otimes m},t^{\otimes n}]$-coalgebras $\S_{m,n}$ needed to define a dynamic PRO. We now define the identitor, compositor, and productor morphisms of coalgebras presented by the squares in \cref{enriched_monoidal}.
 \begin{itemize}
-	\item The identitors $\idcoalg{t^{\otimes n}} \to \S_{n,n}$ send the unique state in the domain to the state $(0,\id_{\rr^n},0) \in S_{n,n}$. 
+	\item The identitors $\idcoalg{t^{\otimes n}} \to \S_{n,n}$ send the unique state in the domain to the state 
+\[(0,\id_{\rr^n},0) \in S_{n,n}.\] 
 	\item The compositors $\S_{\ell,m}\then\S_{m,n} \to \S_{\ell,n}$ send the pair $((L,f,p),(M,g,q))$ to 
 \[\left( M+L,\,g(-,f(-,-))\colon \rr^{M+L+\ell} \To{\id \times f} \rr^{M+m} \To{g} \rr^n,\, (q,p) \in \rr^{M+L} \right).\]
-	\item The productors $\S_{m,n} \otimes \S_{m',n'} \to \S_{m+m',n+n'}$ send the pair $((M,f,p),(M',f',p'))$ to $(M+M',\,(f,f'),\,(p,p'))$.
+	\item The productors $\S_{m,n} \otimes \S_{m',n'} \to \S_{m+m',n+n'}$ send the pair $((M,f,p),(M',f',p'))$ to 
+\[(M+M',\,(f,f'),\,(p,p')).\]
 \end{itemize}
 
 These structure maps ensure that whenever two gradient descenders are combined in series or parallel, the resulting composite descender retains the parameter spaces of both. Likewise when the input or output of a descender is wired past some other descender in a network, it does not contribute any new parameters and merely preserves its input/output until plugged into a descender.
@@ -1110,9 +1113,9 @@ The equations between the identitors and compositors in a dynamic operad are as 
   p^{\otimes n} \dar[equals] \ar[r, slash, "\{\id_p\}^{\otimes n}", ""' name=R] \& p^{\otimes n} \rar[slash, ""' name=S]{\S_n} \dar[equals] \& p \dar[equals] \\
   p^{\otimes n} \dar[equals] \ar[r,""' name=U,""{name=W,below},slash,swap,"\S_1^{\otimes n}"] \& p^{\otimes n} \ar[r,""' name=V,slash,swap,"\S_n"] \& p \dar[equals] \\
   p^{\otimes n} \ar[slash, ""{name=T}]{rr}[swap]{\S_n} \& \& p
-  \arrow[Rightarrow,shorten=7,from=W-|T,to=T]
+  \arrow[Rightarrow,shorten=8,from=W-|T,to=T]
   \arrow[Rightarrow,shorten=7,from=R,to=U]
-  \arrow[equals,shorten=7,from=S,to=V]
+  \arrow[equals,shorten=8,from=S,to=V]
   \end{tikzcd} \quad = \quad \begin{tikzcd}[column sep=large, ampersand replacement=\&]
 p^{\otimes n} \dar[equals] \rar[slash,""{name=S, below}]{\S_n} \& p \dar[equals] \\
 p^{\otimes n} \rar[slash, ""{name=T, above},swap]{\S_n} \& p
@@ -1121,22 +1124,35 @@ p^{\otimes n} \rar[slash, ""{name=T, above},swap]{\S_n} \& p
   p^{\otimes n} \dar[equals] \ar[r, slash, "\S_n", ""' name=R] \& p \rar[slash, ""' name=S]{\{\id_p\}} \dar[equals] \& p \dar[equals] \\
   p^{\otimes n} \dar[equals] \ar[r,""' name=U,""{name=W,below},slash,swap,"\S_n"] \& p \ar[r,""' name=V,slash,swap,"\S_1"] \& p \dar[equals] \\
   p^{\otimes n} \ar[slash, ""{name=T}]{rr}[swap]{\S_n} \& \& p
-  \arrow[Rightarrow,shorten=7,from=W-|T,to=T]
-  \arrow[equals,shorten=7,from=R,to=U]
+  \arrow[Rightarrow,shorten=8,from=W-|T,to=T]
+  \arrow[equals,shorten=8,from=R,to=U]
   \arrow[Rightarrow,shorten=7,from=S,to=V]
   \end{tikzcd}
 \end{equation}
 	\item The associativity law
-\begin{equation}\label{eqn.operad_assoc}
-  \begin{tikzcd}[ampersand replacement=\&]
+\[ 
+\hspace{-2.6cm} \begin{tikzcd}[column sep=large,ampersand replacement=\&]
   p^{\otimes \ell_{1,1}} \otimes \cdots \otimes p^{\otimes \ell_{n,m_n}} \dar[equals,swap,"\wr"] \ar[r, slash, "\bigotimes_{i,j} \S_{\ell_{i,j}}", ""' name=U] \& p^{\otimes m_1} \otimes \cdots \otimes p^{\otimes m_n} \ar[r, slash, "\bigotimes_i \S_{m_i}"] \& p^{\otimes n} \dar[equals] \rar[slash, ""' name=V]{\S_n} \& p \dar[equals] \\
-  p^{\otimes (\sum_j \ell_{1,j})} \otimes \cdots \otimes p^{\otimes (\sum_j \ell_{n,j})} \dar[equals,swap,"\wr"] \ar[slash, ""{name=W,above},""{name=S, below}]{rr}[description]{\bigotimes_i \S_{\ell_{i,1} + \cdots + \ell_{i,m_i}}} \& \& p^{\otimes n} \rar[slash,swap,""' name=X]{\S_n} \& p \dar[equals] \\
-  p^{\otimes (\sum_{i,j} \ell_{i,j})} \ar[slash, ""{name=T}]{rrr}[swap]{\S_{\ell_{1,1} + \cdots + \ell_{n,m_n}}} \& \& \& p
-  \arrow[Rightarrow,shorten=7,from=U-|W,to=W]
-  \arrow[equals,shorten=7,from=V,to=X]
-  \arrow[Rightarrow,shorten=7,from=S-|T,to=T]
+  p^{\otimes (\sum_j \ell_{1,j})} \otimes \cdots \otimes p^{\otimes (\sum_j \ell_{n,j})} \dar[equals,swap,"\wr"] \ar[slash, ""{name=W,above},""{name=S, below}]{rr}[description]{\bigotimes_i \S_{\sum_j \ell_{1,j}}} \& \& p^{\otimes n} \rar[slash,swap,""' name=X]{\S_n} \& p \dar[equals] \\
+  p^{\otimes (\sum_{i,j} \ell_{i,j})} \ar[slash, ""{name=T}]{rrr}[swap]{\S_{\sum_{i,j} \ell_{i,j}}} \& \& \& p
+  \arrow[Rightarrow,shorten=8,from=U-|W,to=W]
+  \arrow[equals,shorten=8,from=V,to=X]
+  \arrow[Rightarrow,shorten=8,from=S-|T,to=T]
   \end{tikzcd}
+\]
+\begin{equation}\label{eqn.operad_assoc}
+=
 \end{equation}
+\[
+\hspace{-2.2cm} \begin{tikzcd}[column sep=large,ampersand replacement=\&]
+  p^{\otimes \ell_{1,1}} \otimes \cdots \otimes p^{\otimes \ell_{n,m_n}} \dar[equals] \ar[r, slash, "\bigotimes_{i,j} \S_{\ell_{i,j}}", ""' name=U] \& p^{\otimes m_1} \otimes \cdots \otimes p^{\otimes m_n} \dar[equals,swap,"\wr"] \ar[r, slash, "\bigotimes_i \S_{m_i}"] \& p^{\otimes n} \rar[slash, ""' name=V]{\S_n} \& p \dar[equals] \\
+  p^{\otimes \ell_{1,1}} \otimes \cdots \otimes p^{\otimes \ell_{n,m_n}} \dar[equals,swap,"\wr"] \ar[slash, ""{name=W,above}]{r}[description]{\bigotimes_{i,j} \S_{\ell_{i,j}}} \& p^{\otimes (\sum_i m_i)} \ar[slash, ""{name=X,above},""{name=S, below}]{rr}[description]{\S_{\sum_i m_i}} \& \& p \dar[equals] \\
+  p^{\otimes (\sum_{i,j} \ell_{i,j})} \ar[slash, ""{name=T}]{rrr}[swap]{\S_{\sum_{i,j} \ell_{i,j}}} \& \& \& p
+  \arrow[equals,shorten=8,from=U-|W,to=W]
+  \arrow[Rightarrow,shorten=8,from=V-|X,to=X]
+  \arrow[Rightarrow,shorten=8,from=S-|T,to=T]
+  \end{tikzcd}
+\]
 \end{itemize}
 \end{definition}
 
