@@ -424,7 +424,8 @@ replacement=\&]{}\ar[r,slash, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\List}{\Fun{List}}
 \newcommand{\set}{\tn{-}\Cat{Set}}
 
-
+\newcommand{\act}{\tn{act}}
+\newcommand{\upd}{\tn{upd}}
 
 
 \newcommand{\yon}{\mathcal{y}}
@@ -597,11 +598,14 @@ S' \rar[swap]{\beta'} & {[p,q]} \tri S'
 We refer to $S$ as the \emph{state set} and to each element $s\in S$ as a \emph{state}.
 \end{definition}
 
-Unwinding this definition, we get that $\beta$ is determined by a function 
-\[\beta_0\colon S \to \poly(p,q) = [p,q](1)\]
-and for each state $s \in S$, a function 
-\[\beta_s\colon \sum_{I \in p(1)} q[\beta_0(s)_1(I)] \to S.\]
-For each state  $s \in S$, we refer to $\beta_0(s)$ as the \emph{action of $s$} and to $\beta_s$ as the \emph{update function of $s$}. A coalgebra map is then a function between the state sets that preserves actions and updates. 
+Unwinding this definition, it is useful to break $\beta$ into two functions $\beta\coloneqq(\act^\beta,\upd^\beta)$, an \emph{action} function
+\[\act^\beta\colon S\to\poly(p,q)=[p,q](1)\]
+%\[\beta_0\colon S \to \poly(p,q) = [p,q](1)\]
+and, for each state $s \in S$, an \emph{update} function 
+\[\upd^\beta_s\colon \sum_{I \in p(1)} q[\act^\beta_s(I)] \to S.\]
+For a state $s\in S$ and position $I\in p(1)$ we often write $\act^\beta_s\colon p\to q$ and $\upd^\beta_s(I)\colon q[\act^\beta_s(I)]\to S.$ A coalgebra map is a function between the state sets that preserves actions and updates. 
+
+\dnote{Push this notational change throughout the paper.}
 
 When, for each $s \in S$, the update $\beta_s$ is the constant function sending everything to $s$, we say the coalgebra $\S$ is \emph{static}, as it remains constantly at $s$ regardless of the output $I \in p(1)$ and input $j\in q[\beta_0(s)_1(I)]$.
 
