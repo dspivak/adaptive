@@ -91,7 +91,7 @@ bimr/.tip={Glyph[glyph math command=triangleright, glyph length=.95ex]},
 	slash/.style={postaction={
   	decorate,
     decoration={markings, mark=at position 0.5 with
-    	{\node[font=\footnotesize] {\rotatebox{90}{$\sim$}};}}}
+    	{\node[font=\footnotesize] {\rotatebox{90}{$\approx$}};}}}
   }
 } 
 
@@ -482,8 +482,8 @@ replacement=\&]{}\ar[r,slash, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\rrp}{\rr_{>0}}
 \newcommand{\rrnn}{\rr_{\ge 0}}
 
-\newcommand{\dnote}[1]{{\color{blue}David says:}~#1.\quad{\color{blue}$\lozenge$}}
-\newcommand{\bnote}[1]{{\color{red}Brandon says:}~#1.\quad{\color{red}$\lozenge$}}
+\newcommand{\dnote}[1]{{\color{blue}David says:}~#1\quad{\color{blue}$\lozenge$}}
+\newcommand{\bnote}[1]{{\color{red}Brandon says:}~#1\quad{\color{red}$\lozenge$}}
 
 
 % ---- Changeable document parameters ---- %
@@ -564,7 +564,7 @@ In \cite{spivak2021learners}, the second author defined a category-enriched mult
 
 Before we begin, recall that a polynomial is a functor $p\colon \smset\to\smset$ which is isomorphic to a sum of representables; following \cite{spivak2021learners}, we denote $p,q\in\poly$ by
 \begin{equation}\label{eqn.poly_notation}
-p = \sum_{I \in p(1)} y^{p[I]} \qqand q = \sum_{J \in q(1)} y^{q[J]}
+p = \sum_{I \in p(1)} \yon^{p[I]} \qqand q = \sum_{J \in q(1)} \yon^{q[J]}
 \end{equation}
 and refer to each $I\in p(1)$ as a \emph{$p$-position} and to each $i\in p[I]$ as a \emph{$p$-direction at $I$}.
 
@@ -579,7 +579,7 @@ We first recall the definitions of the internal-hom polynomials $[p,q]$ and conc
 For polynomials $p,q\in\poly$  as in \eqref{eqn.poly_notation},
 their \emph{internal hom} with respect to the tensor product $\otimes$ is the polynomial
 \begin{equation}\label{eqn.internal_hom}
-[p,q]\coloneqq \sum_{\phi\colon p \to q} y^{\sum\limits_{\;I \in p(1)} q[\phi_1(I)]}
+[p,q]\coloneqq \sum_{\phi\colon p \to q} \yon^{\sum\limits_{\;I \in p(1)} q[\phi_1(I)]}
 \end{equation}
 It can also be written $[p,q]=\prod_{I\in p(1)}\sum_{J\in q(1)}\prod_{j\in q[J]}\sum_{i\in p[I]}1$.
 \end{definition}
@@ -614,7 +614,7 @@ A coalgebra is static iff it is the coproduct of singleton coalgebras.
 
 
 %--- Section ---%
-\section{Composition of morphism coalgebras}
+\section{Composition of hom-coalgebras}\label{sec.compose_hom_coalg}
 %\dnote{Let's call these something besides coalgebras; they're special coalgebras, a kind that is possible to "compose".}
 
 
@@ -649,7 +649,7 @@ Horizontal composition of coalgebra-morphisms---the 2-cells of the bicategory---
 
 
 %--- Section ---%
-\section{Product of coalgebras}
+\section{Monoidal product of coalgebras}
 
 
 It is shown in \cite[Proposition 2.13]{spivak2021learners} that the tensor product $\otimes$ of polynomials extends to make $\org$ a monoidal bicategory. In particular, for polynomials $p,q,p',q'$ there is a functor
@@ -679,6 +679,8 @@ p' \rar[slash, ""{name=T, above},swap]{\S'} & q'
 \arrow[Rightarrow,shorten=5,from=S,to=T]
 \end{tikzcd}
 \end{equation}
+The symbol $\slashar$ is intended to indicate that the map is ``dynamic'', changing in response to what flows out of $p$ and into $q$.
+
 As $\{\phi\}$ and $\{\psi\}$ have only one state, and as composition of coalgebras acts as the cartesian product on states, such a square amounts to a function $S \to S'$ making \eqref{eqn.coalg_square} commute:
 \begin{equation}\label{eqn.coalg_square}
 \begin{tikzcd}
@@ -768,48 +770,48 @@ An $\org$-enriched (henceforth \emph{dynamic}) multicategory $A$ consists of
   \end{tikzcd}
  \qquad\quad
   \begin{tikzcd}[column sep=huge, ampersand replacement=\&]
-  p_{a_{1,1}} \otimes \cdots \otimes p_{a_{n,m_n}} \dar[equals] \rar[slash]{\otimes_i \S_{a_{i,1},...,a_{i,m_i};b_i}} \& p_{b_1} \otimes \cdots \otimes p_{b_n} \rar[slash]{\S_{b_1,...,b_n;c}} \& p_c \dar[equals] \\
-  p_{a_{1,1}} \otimes \cdots \otimes p_{a_{n,m_n}} \ar[slash, ""{name=T, above}]{rr}[swap]{\S_{a_{1,1},...,a_{n,m_n};c}} \& \& p_c
-  \arrow[Rightarrow,shorten=4,from=1-2,to=T]
+  p_{a_{1,1}} \otimes \cdots \otimes p_{a_{n,m_n}} \dar[equals] \ar[r, slash, "\bigotimes_i \S_{a_{i,1},...,a_{i,m_i};b_i}", ""' name=U] \&[20pt] p_{b_1} \otimes \cdots \otimes p_{b_n} \rar[slash]{\S_{b_1,...,b_n;c}} \&[-10pt] p_c \dar[equals] \\
+  p_{a_{1,1}} \otimes \cdots \otimes p_{a_{n,m_n}} \ar[slash, ""{name=T}]{rr}[swap]{\S_{a_{1,1},...,a_{n,m_n};c}} \& \& p_c
+  \arrow[Rightarrow,shorten=6,from=U-|T,to=T]
   \end{tikzcd}
 \end{equation}
 such that these squares satisfy unit and associativity equations.%more on these?
 \end{definition}
 
-The sets $S_{a,b}$ form an underlying multicategory of $A$, with a description similar to that below \cref{def.org_enriched_cat}. 
+The sets $S_{a,b}$ form an ordinary (set-enriched) multicategory, which underlies $A$ and has a description similar to the underlying category described below \cref{def.org_enriched_cat}. 
 
-We will mostly be interested in what we call a dynamic operad on $p$, the case when $A$ has only one object which is assigned the polynomial ``interface'' $p$. It consists simply of a $[p^{\otimes n},p]$-coalgebra $S_n$ for each $n \in \nn$ equipped with maps
+We will mostly be interested in what we call a \emph{dynamic operad}, the case when a dynamic multicategory $A$ has only one object, assigned the polynomial ``interface'' $p$. It consists simply of a $[p^{\otimes n},p]$-coalgebra $\S_n$ for each $n \in \nn$, equipped with coalgebra maps
 \begin{equation}\label{eqn.org_operad}
-\idcoalg{p} \to S_1
+\idcoalg{p} \to \S_1
 \qqand
-\bigotimes_i S_{n_i} \to S_{\sum_i n_i}
+\bigotimes_{i\in I} \S_{n_i} \to \S_N
 \end{equation}
-satisfying the usual equations. %\dnote{should we perhaps denote $\id_p$ by $\{\id_p\}$ to emphasize it is a single-state thingy?}
+where $I$ is any finite set and $N\coloneqq\sum_{i\in I}n_i$, which together satisfy the usual equations. %\dnote{should we perhaps denote $\id_p$ by $\{\id_p\}$ to emphasize it is a single-state thingy?}
 
 \begin{example}\label{ex.collective}
-A \emph{collective} (as defined in \cite{niu2021collectives}) is a $\otimes$-monoid in $\poly$, meaning a polynomial $p$ equipped with a monoid structure on its positions $p(1)$ and co-unital co-associative ``distribution'' functions $p[I \cdot J] \to p[I] \times p[J]$ for each $I,J \in p(1)$. This can be viewed as a dynamic operad where $\S_n$ is given by $\{\cdot_n\}$, the one-element coalgebra on the $n$-ary monoidal product $\cdot_n\colon p^{\otimes n} \to p$, and where the maps of coalgebras in \eqref{eqn.org_operad} are isomorphisms deduced from the equations for a monoid.
+A \emph{collective} (as defined in \cite{niu2021collectives}) is a $\otimes$-monoid in $\poly$, meaning a polynomial $p$ equipped with a monoid structure on its positions $p(1)$ and co-unital co-associative ``distribution'' functions $p[I \cdot J] \to p[I] \times p[J]$ for each $I,J \in p(1)$. This can be viewed as a dynamic operad where $\S_n$ is given by $\{\cdot_n\}$, the singleton coalgebra on the $n$-ary monoidal product $(\cdot_n)\colon p^{\otimes n} \to p$, and where the maps of coalgebras in \eqref{eqn.org_operad} are isomorphisms deduced from the equations for a monoid.
 \end{example}
 
 \begin{example}
-In \cref{ex.collective}, the coalgebras $\S_n$ are determined by a single map of polynomials, with no possible updates as there is only one state. This can be generalized to an intermediate notion between collectives and dynamic multicategories, where the coalgebras are still static but may have multiple states.
+In \cref{ex.collective}, the coalgebras $\S_n$ are determined by a single map of polynomials, with trivial updates as there is only one state. This can be generalized to an intermediate notion between collectives and dynamic multicategories, where the coalgebras are still static but may have multiple states.
 
-Given a multicategory $M$ and a multifunctor $F\colon M \to \poly$, there is a dynamic multicategory $A_F$ with 
+Given a multicategory $M$ and a multifunctor $F\colon M \to\poly$, where $\poly$ here denotes the multicategory underlying $(\poly,\yon,\otimes)$, there is a dynamic multicategory $A_F$ with 
 \begin{itemize}
 	\item object set $\ob(M)$;
-	\item for each $a \in \ob(M)$, the polynomial $p_a = F(a)$;
-	\item for each tuple $(a_1,...,a_n;b)$ in $\ob(M)$, $S_{a_1,...,a_n;b} = M(a_1,...,a_n;b)$;
-	\item the map $\beta_0\colon M(a_1,...,a_n;b) \to \poly(p_{a_1} \otimes \cdots \otimes p_{a_n},p_b)$ is given by $F$; and 
+	\item for each $a \in \ob(M)$, the polynomial interface $p_a \coloneqq F(a)$;
+	\item for each tuple $(a_1,...,a_n;b)$ in $\ob(M)$, state set $S_{a_1,...,a_n;b} \coloneqq M(a_1,...,a_n;b)$;
+	\item the action $\beta_0\colon M(a_1,...,a_n;b) \to \poly(p_{a_1} \otimes \cdots \otimes p_{a_n},p_b)$ is given by $F$; and 
 	\item this coalgebra is static, in that for any state $s$ in $M(a_1,...,a_n;b)$, the update function $\beta_s$ is the constant function at $s$.
 	\qedhere
 \end{itemize}
 \end{example}
 
 \begin{example}
-Let $\S$ be any $p$-coalgebra for a polynomial $p$. There is a dynamic operad on $p$ with $\S_0 = \S$, $\S_1 = \idcoalg{p}$, and all other $\S_n=\varnothing$ assigned the empty coalgebra.
+Let $\S$ be any $p$-coalgebra for a polynomial $p$. There is a dynamic operad on $p$ with $\S_0\coloneqq \S$, $\S_1\coloneqq\idcoalg{p}$, and all other $\S_n\coloneqq\varnothing$ assigned the empty coalgebra.
 \end{example}
 
 \begin{example}
-Consider a dynamic operad on the polynomial $y$ with exactly one position and one direction. The internal hom polynomial $[y^{\otimes n},y]$ is simply $y$, so this structure amounts to an operad $S$ with update maps $S_n \to S_n$ that commute with the operad structure. So a dynamic operad on $y$ is the same as an operad equipped with an operad endomorphism.
+Consider a dynamic operad with interface $\yon\in\poly$ with exactly one position and one direction. The internal hom polynomial $[\yon^{\otimes n},\yon]$ is simply $\yon$, so this structure amounts to an operad $S$ with a function $S_n \to S_n$ for each $n$, commuting with the operad structure. So a dynamic operad on $\yon$ is the same as an operad equipped with an operad endomorphism.
 \end{example}
 
 
@@ -819,49 +821,50 @@ Consider a dynamic operad on the polynomial $y$ with exactly one position and on
 
 
 A monoidal double category is precisely a representable $MC$-multicategory in the sense of \cite{shapiro2022enrichment}, %cite specifically
-so we can also enrich strict monoidal categories in $\org$.\footnote{We use throughout the notion \emph{strong} enrichment in a monoidal double category from \cite{shapiro2022enrichment}.} These will be similar to $\org$-enriched multicategories but allow for many-to-many coalgebras rather than just many-to-1.
-
+so we can also enrich strict monoidal categories in $\org$.\footnote{We use throughout the notion \emph{strong} enrichment in a monoidal double category from \cite{shapiro2022enrichment}.} These will be similar to $\org$-enriched multicategories, except they allow for many-to-many coalgebras rather than just many-to-one. 
 \begin{definition}\label{enriched_monoidal}
 An $\org$-enriched (henceforth \emph{dynamic}) strict monoidal category $A$ consists of
 \begin{itemize}
-	\item a monoid $A_0$ of objects;
+	\item a monoid $(A_0,e,*)$ of objects;
 	\item for each $a \in A_0$, a polynomial $p_a$;
 	\item an isomorphism of polynomials $y \cong p_e$ for $e$ the unit of $A_0$;
-	\item for each $a,a' \in A_0$, an isomorphism of polynomials $p_{a} \otimes p_{a'} \cong p_{a a'}$;
+	\item for each $a,a' \in A_0$, an isomorphism of polynomials $p_{a} \otimes p_{a'} \cong p_{a*a'}$;
 	\item for each $a,b \in A_0$, a $[p_a,p_b]$-coalgebra $\S_{a,b}$;
 	\item for each $a \in A_0$, an ``identitor'' square in $\org$ as in \cref{eqn.adaptive_tor} left;
 	\item for each $a,b,c \in A_0$, a ``compositor'' square in $\org$ as in \cref{eqn.adaptive_tor} center; and
 	\item for each $a,a',b,b' \in A_0$, a ``productor'' square in $\org$ as in \cref{eqn.adaptive_tor} right:
 \end{itemize}
 \begin{equation}\label{eqn.adaptive_tor}
-\begin{tikzcd}
+\begin{tikzcd}[column sep=35pt]
 p_a \dar[equals] \rar[slash, ""{name=S, below}]{\idcoalg{p_a}} & p_a \dar[equals] \\
 p_a \rar[slash, ""{name=T, above},swap]{\S_{a,a}} & p_a
 \arrow[Rightarrow,shorten=5,from=S,to=T]
 \end{tikzcd}
 \qquad
-\begin{tikzcd}[column sep=large]
+\begin{tikzcd}[column sep=30pt]
 p_a \dar[equals] \rar[slash]{\S_{a,b}} & p_b \rar[slash]{\S_{b,c}} & p_c \dar[equals] \\
 p_a \ar[slash, ""{name=T, above}]{rr}[swap]{\S_{a,c}} & & p_c
 \arrow[Rightarrow,shorten=4,from=1-2,to=T]
 \end{tikzcd}
 \qquad
-\begin{tikzcd}[column sep=huge]
+\begin{tikzcd}[column sep=50pt]
 p_a \otimes p_{a'} \dar[equals,swap]{\wr} \rar[slash,""{name=S,below}]{\S_{a,b} \otimes \S_{a',b'}} & p_b \otimes p_{b'} \dar[equals,swap]{\wr} \\
-p_{aa'} \rar[slash, ""{name=T, above},swap]{\S_{aa',bb'}} & p_{bb'}
+p_{aa'} \rar[slash, ""{name=T, above},swap]{\S_{a*a',b*b'}} & p_{b*b'}
 \arrow[Rightarrow,shorten=5,from=S,to=T]
 \end{tikzcd}
 \end{equation}
 such that these isomorphisms and squares satisfy unit, associativity, and interchange equations.%more on these?
 \end{definition}
 
-Here the sets $S_{a,b}$ form the arrows in a strict monoidal category underlying $A$. 
+Similar to \cref{sec.org_cats,sec.org_multicats}, the sets $S_{a,b}$ form the arrows in an ordinary strict monoidal category underlying $A$. 
 
-For the rest of this paper, we will only be interested in the restricted case of a dynamic monoidal category with object monoid $\nn$, which we call a dynamic PRO.\footnote{A PRO is the non-symmetric version of a PROP. While all of our examples are in fact symmetric, for simplicity we do not describe their symmetry operations.} Concretely, this consists of a polynomial interface $p$ (so that in the notation above $p_n := p^{\otimes n}$ for $n \in \nn$) along with a $[p^{\otimes m},p^{\otimes n}]$-coalgebra $S_{m,n}$ for each $m,n \in \nn$, equipped with the maps of coalgebras as in \eqref{eqn.adaptive_tor}. We denote a dynamic PRO as $(p,\S)$, where $\S$ now encodes all of the coalgebras $\S_{m,n}$ that constitute the $\org$-enrichment and the structure maps are implicit.
+For the rest of this paper, we will only be interested in the restricted case of a dynamic monoidal category with object monoid $(\nn,0,+)$, which we call a dynamic PRO.%
+\footnote{A PRO is the non-symmetric version of a PROP. While all of our examples are in fact symmetric, for simplicity we do not describe their symmetry operations.}
+Concretely, this consists of a polynomial interface $p$ (so that in the notation above $p_n := p^{\otimes n}$ for $n \in \nn$) along with a $[p^{\otimes m},p^{\otimes n}]$-coalgebra $S_{m,n}$ for each $m,n \in \nn$, equipped with the maps of coalgebras as in \eqref{eqn.adaptive_tor}. We denote a dynamic PRO as $(p,\S)$, where $\S$ now encodes all of the coalgebras $\S_{m,n}$ that constitute the $\org$-enrichment and the structure maps are implicit.
 
 %more on what those maps mean
 
-Morphisms of dynamic structures are a special case of the general notion of morphisms between enriched structures as defined in \cite{shapiro2022enrichment}. %cite specifically
+Morphisms of dynamic categorical structures are a special case of the general notion of morphisms between enriched structures as defined in \cite{shapiro2022enrichment}. %cite specifically
 
 \begin{definition}
 A \emph{morphism} of dynamic PROs from $(p,\S)$ to $(p',\S')$ is given by a map of polynomials $\phi\colon p \to p'$ and, for each $m,n \in \nn$, ``commutor'' squares as in \eqref{eqn.adaptive_map} in $\org$ which commute with the identitor, compositor, and productor squares.
@@ -874,22 +877,22 @@ p'^{\otimes m} \rar[slash, ""{name=T, above}, swap]{\S'_{m,n}} & p'^{\otimes n}
 \end{equation}
 \end{definition}
 
-This definition of morphism is the direct benefit for the theory of treating $\org$ as a monoidal double category rather than as a monoidal bicategory (closer to its description in \cite{spivak2021learners}). Otherwise morphisms could either only be easily defined between dynamic PROs with the same interface polynomial, which is needlessly restrictive, or take the form of a $[p,p']$-coalgebra, which we believe to be too general to be of much use.
+This definition of morphism is the direct theoretical benefit of treating $\org$ as a monoidal double category rather than as a monoidal bicategory (closer to its description in \cite{spivak2021learners}). Otherwise morphisms could either only be easily defined between dynamic PROs with the same interface polynomial, which is needlessly restrictive, or take the form of a $[p,p']$-coalgebra, which we believe to be too general to be of much use.
 
-A morphism $(p,\S) \to (p',\S')$ can be interpreted as a way of telling the codomain how to run the domain. The map of polynomials $p \to p'$ specifies how the positions of $p$ can be modeled by those of $p'$ and how the directions of $p'$ act on the positions of $p$, while the commutor squares describe how the states of $\S_{m,n}$ can be modeled by those of $\S'_{m,n}$ in a way that respects this change of interface. A type of theorem that we hope to find instances of in future work is of the form ``this dynamic structure that we're interested in can be run by this other dynamic structure that we already understand well.''
+A morphism $(p,\S) \to (p',\S')$ can be interpreted as a way of telling the codomain how to run the domain. The map of polynomials $p \to p'$ specifies how the positions of $p$ can be modeled by those of $p'$ and how the directions of $p'$ are returned as directions of $p$, while the commutor squares describe how the states of $\S_{m,n}$ can be modeled by those of $\S'_{m,n}$ in a way that respects this change of interface. A type of theorem that we hope to instantiate in future work is of the form ``this dynamic structure that we're interested in can be run by (has a map to) this other dynamic structure that we already understand well.''
 
 \begin{example}
-For a fixed polynomial $p$, there is a terminal dynamic PRO $\S^{p!}$ with interface $p$ where $\S^{p!}_{m,n}$ is the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra. 
+For a fixed polynomial $p$, there is a terminal dynamic PRO with interface $p$, which we denote $\S^{p!}$; here $\S^{p!}_{m,n}$ is the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra for each $m,n$. 
 
-Its states are (not necessarily finite) $[p^{\otimes m},p^{\otimes n}]$-trees: trees inductively defined by a root labeled with a polynomial map $\phi\colon p^{\otimes m} \to p^{\otimes n}$ and for each pair 
+A state in $\S^{p!}$ is a (not necessarily finite) $[p^{\otimes m},p^{\otimes n}]$-tree, i.e.\ a tree co-inductively defined by a root labeled with a polynomial map $\phi\colon p^{\otimes m} \to p^{\otimes n}$ together with an arrow, whose source is the root and whose target is another $[p^{\otimes m},p^{\otimes n}]$-tree, assigned to each tuple 
 \begin{equation}\label{eqn.pmn_directions}
-\left((I_1,...,I_m) \in p(1)^m, (i_1,...,i_n) \in p[\phi(I_1,...,I_m)_1] \times \cdots \times p[\phi(I_1,...,I_m)_n]\right)
+\big((I_1,\ldots,I_m), i_1,\ldots,i_n\big) \in  p(1)^m\times p[\phi(I_1,...,I_m)_1] \times \cdots \times p[\phi(I_1,...,I_m)_n]
 \end{equation}
-an edge out of the root to another $[p^{\otimes m},p^{\otimes n}]$-tree. The action of such a tree is simply the root map $\phi$, and the update sends a pair as in \eqref{eqn.pmn_directions} to the new tree at the end of the corresponding edge. 
+The action of such a tree is simply the map $\phi$ labeling its root, and the update sends a tuple as in \eqref{eqn.pmn_directions} to the target of its assigned arrow. 
 
 The idea is that the state-set of the terminal dynamic PRO encodes all possible trajectories along different actions, and this coalgebra is terminal because from any other coalgebra there is a map to $\S^{p!}_{m,n}$ sending each state to the tree whose root is labeled by the action of the state and whose edges from the root go to the trees for each of the state's possible updates. This map is (uniquely) a coalgebra map because, in order to preserve actions and updates, each state must be sent to the tree rooted by its action and branching according to its updates.
 
-The PRO structure on the terminal coalgebra $\S^{p!}$ is then defined as the unique map to the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra from any identity, composite, or product of coalgebras, which makes the equations hold automatically. This is the terminal dynamic PRO with interface $p$ as for any other such dynamic PRO there is a morphism given by the identity map on $p$ and with commutor squares to $\S^{p!}_{m,n}$ the unique map to the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra.
+To define a dynamic PRO structure on the terminal coalgebra $\S^{p!}$, it only remains to define maps of coalgebras as in \cref{eqn.adaptive_tor}, and these are all taken to be the unique map to the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra; the equations hold automatically. This is the terminal dynamic PRO with interface $p$ because for any other such dynamic PRO there is a morphism given by the identity map on $p$ and with commutor squares to $\S^{p!}_{m,n}$ the unique map to the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra. In other words, $\S^{p!}$ \emph{uniquely runs} any other dynamic PRO with interface $p$.
 \end{example}
 
 
@@ -898,7 +901,7 @@ The PRO structure on the terminal coalgebra $\S^{p!}$ is then defined as the uni
 \chapter{Dynamic Structures in Nature}
 %
 
-Our main results are that dynamic structures describe phenomena in the natural world and human technologies. In this paper, we focus on deep learning and a prediction market in which the reputations of various guess-makers evolve based on how successful they are.
+Our main results are that dynamic structures describe phenomena we see instantiated around us. In this paper, we focus on deep learning and a prediction market in which the reputations of various guess-makers evolve based on how successful they are.
 
 
 %------- Section -------%
@@ -906,41 +909,42 @@ Our main results are that dynamic structures describe phenomena in the natural w
 
 Deep learning uses the algorithm of gradient descent to optimize a choice of function, based on external feedback on its output. This naturally fits into the paradigm of dynamic structures, as functions $\rr^m \to \rr^n$ can form the states of a polynomial coalgebra, with the feedback providing the information needed to update the choice of function. These functions can be composed and juxtaposed to provide compositions of networks of such gradient descenders in a way that respects the updates.
 
-\begin{definition}
-For the rest of this section, let 
+\begin{definition}\label{def.Smn}
+For the rest of this section, we will use the state sets 
 \[
-S_{m,n} = \left\{(M \in \nn, f\colon \rr^{M+m}, p \in \rr^M) \middle| f \textrm{ is differentiable}\right\}.
+S_{m,n} \coloneqq \left\{(M \in \nn, f\colon \rr^{M+m}, p \in \rr^M) \;\middle|\; f \textrm{ is differentiable}\right\}.
 \qedhere
 \]
 \end{definition}
 
-The idea is that these states are the possible parameters among which a gradient descender is meant to find the optimal choice, while $f$ dictates how the parameter affects the resulting function $f(p,-)$. In the dynamics of these states described below, only the value of the parameter $p$ is updated while the dimension $M$ of the parameter space and the parameterized function $f$ remain fixed, though network composition of descenders will involve combining these data in nontrivial ways.\footnote{Other versions of a gradient descent dynamic PRO might have the states be simply some space of functions from $\rr^m$ to $\rr^n$, but this type of model is more difficult to describe in a computation-friendly manner as the relevant space of functions is not finite dimensional.}
+The idea is that these states are the possible parameters among which a gradient descender is meant to find the optimal choice, while $f$ dictates how the parameter affects the resulting function $f(p,-)$. In the dynamics of these states described below, only the value of the parameter $p$ will be updated; the parameter-space dimension $M$ and the parameterized function $f$ will remain fixed, though network composition of gradient descenders will involve combining these data in nontrivial ways. Fix $\epsilon>0$.%Do we need this footnote?\footnote{Other versions of a gradient descent dynamic PRO might have the states be simply some space of functions from $\rr^m$ to $\rr^n$, but this type of model is more difficult to describe in a computation-friendly manner as the relevant space of functions is not finite dimensional.}
 
-Let $t = \sum_{x \in \rr} y^{T_x \rr}$.  For all practical purposes $T_x \rr$ can be regarded as simply $\rr$, but in both the description of polynomials as bundles and the intuition in this example it makes sense to use the tangent space at $x$. We proceed to define a dynamic PRO with interface $t$ and $S_{m,n}$ the states of the coalgebra $\S_{m,n}$ which updates using gradient descent. The PRO structure maps encode how networks of gradient descenders can be composed into a single descender with a larger parameter space.
+For every $x\in\rr$, let $T_x\rr$ denote the tangent space at $X$; for all practical purposes $T_x \rr$ can be regarded as simply $\rr$, but in both the description of polynomials as bundles and the intuition for this example it makes sense to use the tangent space at $x$. We proceed to define a dynamic PRO with interface $t \coloneqq \sum_{x \in \rr} \yon^{T_x \rr}$ and with  coalgebras $\S_{m,n}$ which update the state sets $S_{m,n}$ from \cref{def.Smn} using gradient descent. The PRO structure maps encode how networks of gradient descenders can be composed into a single gradient descender with a larger parameter space.
 
 \begin{definition}
 The $[t^{\otimes m},t^{\otimes n}]$-coalgebra structure on $S_{m,n}$ is given by 
 \begin{itemize}
-	\item $\beta_0(M,f,p)_1\colon \rr^m \to \rr^n$ given by $f(p,-)$
-	\item For $x \in \rr^m$, $\beta_0(M,f,p)_x\colon T_{f(p,x)} \rr^n \to T_x \rr^m$ sends $y$ to $\pi_m Df^\top \cdot y$
-	\item The update function $\beta_{M,f,p}$ sends $x \in \rr^m$ and $y \in T_{f(p,x)}$ to $(M,f,p+\epsilon \pi_M Df^\top \cdot y)$ for some fixed value of $\epsilon$
+	\item On positions, the action $\beta_0(M,f,p)_1\colon \rr^m \to \rr^n$ is given by $f(p,-)$.
+	\item For $x \in \rr^m$, the action $\beta_0(M,f,p)_x\colon T_{f(p,x)} \rr^n \to T_x \rr^m$ on directions sends $y\in T_{f(p,x)}$ to $\pi_m (Df)^\top \cdot y$.
+	\item The update function $\beta_{M,f,p}$ sends $x \in \rr^m$ and $y \in T_{f(p,x)}$ to $(M,f,p+\epsilon \pi_M (Df)^\top \cdot y)$ for our fixed $\epsilon$.
+	\qedhere
 \end{itemize}
 \end{definition}
 
-The action of a state as a map $t^{\otimes m} \to t^{\otimes n}$ is given by applying the parameterized function $f$ with the parameter $p$ resulting in a function $\rr^m \to \rr^n$ as desired. The transpose of the derivative of $f$ sends a feedback vector $y \in T_{f(p,x)} \rr^n$, which can be interpreted as the difference in $\rr^n$ between the ``correct'' result for $x$ and the current approximation $f(p,x)$, to the corresponding ``correction'' to $(p,x)$ in $\rr^{M+m}$. The projection of this correction to $T_x \rr^m$ provides the action of the state on directions, which in a network can then be further propogated back down to another gradient descender that output $x$. The projection to $T_p \rr^M$ provides the direction and magnitude with which to update the parameters (scaled by $\epsilon$ representing the responsiveness of the learning).
+The action of a state as a map $t^{\otimes m} \to t^{\otimes n}$ is given by applying the parameterized function $f$ with the parameter $p$, resulting in a function $\rr^m \to \rr^n$ as desired. The transpose $(Df)^\top$ of the derivative of $f$ sends a feedback vector $y \in T_{f(p,x)} \rr^n$, which can be interpreted as the difference in $\rr^n$ between the ``correct'' result for $x$ and the current approximation $f(p,x)$, to the corresponding ``correction'' to $(p,x)$ in $\rr^{M+m}$. The projection of this correction to $T_x \rr^m$ provides the action of the state on directions, which in a network will then be further propagated back to the gradient descender which had output $x$. The projection to $T_p \rr^M$ provides the direction and magnitude with which to update the parameters (scaled by the ``learning rate'' $\epsilon$).
 
-Thus far, we have provided the data of the polynomial $t$ and the $[t^{\otimes m},t^{\otimes n}]$-coalgebra $\S_{m,n}$ needed to define a dynamic PRO. We now define the identitor, compositor, and productor morphisms of coalgebras presented by the squares in \cref{enriched_monoidal}.
+Thus far, we have provided the data of the polynomial $t$ and the $[t^{\otimes m},t^{\otimes n}]$-coalgebras $\S_{m,n}$ needed to define a dynamic PRO. We now define the identitor, compositor, and productor morphisms of coalgebras presented by the squares in \cref{enriched_monoidal}.
 \begin{itemize}
 	\item The identitors $\idcoalg{t^{\otimes n}} \to \S_{n,n}$ send the unique state in the domain to the state $(0,\id_{\rr^n},0) \in S_{n,n}$. 
 	\item The compositors $\S_{\ell,m}\then\S_{m,n} \to \S_{\ell,n}$ send the pair $((L,f,p),(M,g,q))$ to 
-\[\left( M+L,g(-,f(-,-))\colon \rr^{M+L+\ell} \To{\id \times f} \rr^{M+m} \To{g} \rr^n, (q,p) \in \rr^{M+L} \right).\]
-	\item The productors $\S_{m,n} \otimes \S_{m',n'} \to \S_{m+m',n+n'}$ send the pair $((M,f,p),(M',f',p'))$ to $(M+M',(f,f'),(p,p'))$
+\[\left( M+L,\,g(-,f(-,-))\colon \rr^{M+L+\ell} \To{\id \times f} \rr^{M+m} \To{g} \rr^n,\, (q,p) \in \rr^{M+L} \right).\]
+	\item The productors $\S_{m,n} \otimes \S_{m',n'} \to \S_{m+m',n+n'}$ send the pair $((M,f,p),(M',f',p'))$ to $(M+M',\,(f,f'),\,(p,p'))$.
 \end{itemize}
 
 These structure maps ensure that whenever two gradient descenders are combined in series or parallel, the resulting composite descender retains the parameter spaces of both. Likewise when the input or output of a descender is wired past some other descender in a network, it does not contribute any new parameters and merely preserves its input/output until plugged into a descender.
 
 \begin{theorem}\label{gradientadaptive}
-These structure maps are maps of coalgebras and satisfy the coherence equations of a dynamic PRO described in \cref{equations}.%update
+The maps defined above are maps of coalgebras and satisfy the coherence equations of a dynamic PRO described in \cref{equations}.%update
 \end{theorem}
 
 This is proven in \cref{coherenceproofs}.%update
@@ -958,7 +962,7 @@ The monoid $((0,1],1,*)$ of nonzero subunital reals acts on $\bet_X$ by scalar m
 \[
 	m\cdot \beta\coloneqq \big(x\mapsto m\beta (x)\big)
 \]
-and have $m\cdot\beta\in\bet_X$. 
+and we have $m\cdot\beta\in\bet_X$. 
 
 Let $\Delta^+$ denote the operad of finite nowhere-zero probability distributions, where $\Delta^+_N$ is defined as above with the natural number $N$ regarded as the $N$-element set. %\coloneqq\left\{\mu\colon N\to[0,1]\;\middle|\;1=\sum_{i\in N}\mu_i\right\}
 Then $\bet_X$ is an algebra for it: for any $\mu\in\Delta_N$ and $\beta \in (\bet_X)^N$, we define 
@@ -975,18 +979,18 @@ and use the $\Delta^+_N$ as our state spaces. The idea is that a state $\mu\in\D
 
 The action of a trust distribution $\mu \in \Delta^+_N$ is the map of polynomials $p_X^{\otimes N} \to p_X$ which on positions sends $\beta \in (\bet_X)^N$ to $\mu \cdot \beta$ and on directions sends $x \in X$ to $(x,...,x) \in X^N$. The idea is that the organization aggregates the predictions of its members according to their trust, and the outcome is accurately communicated back to each member.
 
-The most interesting part of the dynamic structure is how the trust distribution is updated once predictions are made and a result $x\in X$ is returned. For membership $N\geq 1$, trust distribution $\mu\in\Delta^+_N$, guess $\beta\in(\bet_X)^N$, and outcome $x\in X$, we define the updated trust distribution as $\beta(x) * \mu \in\dist(X)$, where
+The most interesting part of the dynamic structure is how the trust distribution is updated once predictions are made and a result $x\in X$ is returned. For membership $N\geq 1$, trust distribution $\mu\in\Delta^+_N$, guesses $\beta\in(\bet_X)^N$, and outcome $x\in X$, we define the updated trust distribution as $\beta(x) * \mu \in\Delta^+_N$, where
 \[
 \beta(x) * \mu \coloneqq \left( i \mapsto \frac{\beta_i(x)\mu_i}{\sum_j \beta_j(x)\mu_j}\right).
 \]
 
 Finally, we describe the PRO structure maps. As $\Delta^+_1$ is a singleton set whose action is the identity on $p_X$, the identitor $\{\id_{p_X}\} \to \Delta^+_1$ is an isomorphism. The operadic compositor is given by the usual operad structure on (nowhere-zero) distributions:
 \[
-\Delta^+_N \times \Delta^+_{M_1} \times \cdots \times \Delta^+_{M_N} \to \Delta^+_{\sum_i M_i} \qquad\qquad (\mu,\nu_1,...,\nu_N) \mapsto \mu \circ \nu \coloneqq \left( (i,j) \mapsto \mu_i\nu_j \right).
+\Delta^+_N \times \Delta^+_{M_1} \times \cdots \times \Delta^+_{M_N} \to \Delta^+_{\sum_i M_i} \qquad\qquad (\mu,\nu_1,\ldots,\nu_N) \mapsto \mu \circ \nu \coloneqq \left( (i,j) \mapsto \mu_i\nu_j \right).
 \]
 
 \begin{theorem}\label{predictionadaptive}%change equations reference as needed
-These structure maps are maps of coalgebras and satisfy the coherence equations of a dynamic operad described in \cref{equations}.%update
+The maps defined above are maps of coalgebras and satisfy the coherence equations of a dynamic operad described in \cref{equations}.%update
 \end{theorem}
 
 This is proven in \cref{coherenceproofs}.%update
@@ -1042,7 +1046,7 @@ This is proven in \cref{coherenceproofs}.%update
 %These prisms inside the unit cube are meant to describe the positions and sizes of $n$ bodies moving through space. In physical models they typically wouldn't be allowed to overlap, but for simplicity we will in effect only consider their centers of mass when computing gravitational effects. %something about boundaries. Is there an easy way out of that?
 %
 %Consider the polynomial 
-%$$g = \sum_{m \in \rrp \\ c \in C} y^{t \in \rrnn},\]
+%$$g = \sum_{m \in \rrp \\ c \in C} \yon^{t \in \rrnn},\]
 %whose positions we interpret as the mass $m$ of a body and its center of mass $c$, and whose directions we interpret as lengths of time $t$. We now describe an adaptive on $g$ with state sets $S_n$, where the action of a state computes its center of mass and the update modifies the positions and velocities of the bodies according to their current velocities and the force of gravity.
 %
 %\begin{definition}
@@ -1094,7 +1098,7 @@ This is proven in \cref{coherenceproofs}.%update
 \chapter{Coherence equations and proofs}\label{coherenceproofs}
 
 
-We now present the equations that must be satisfied by the identitors, compositors, and productors of an adaptive. While we only provide these in the narrow setting of adaptives, the equations governing $\org$-enriched categories, multicategories, and monoidal categories are all quite similarly defined.
+We now present the equations that must be satisfied by the identitors, compositors, and productors of an adaptive\dnote{change name}. While we only provide these in the narrow setting of adaptives, the equations governing $\org$-enriched categories, multicategories, and monoidal categories are all quite similarly defined.
 
 \begin{definition}\label{equations}
 The equations between the structure maps in an adaptive are as follows:
@@ -1123,7 +1127,7 @@ p^{\otimes (n+n')}
 \end{equation}
 	\item The compositor interchange law
 \begin{equation}\label{eqn.comp_inter}
-\hspace{-4.3cm}\begin{tikzcd}[column sep={110,between origins}]
+\hspace{-4cm}\begin{tikzcd}[column sep={110,between origins}]
 p^{\otimes \ell} \otimes p^{\otimes \ell'} \dar[equals,swap]{\wr} \rar[slash, ""{name=S, below}]{\S_{\ell,m} \otimes \S_{\ell',m'}} & 
 p^{\otimes m} \otimes p^{\otimes m'} \dar[equals,swap]{\wr} \rar[slash, ""{name=U, below}]{\S_{m,n} \otimes \S_{m',n'}} & 
 p^{\otimes n} \otimes p^{\otimes n'} \dar[equals,swap]{\wr} \\
@@ -1246,7 +1250,7 @@ p^{\otimes m} \rar[slash, ""{name=V, above},swap]{\S_{m,n}} & p^{\otimes n}
 \end{itemize}
 \end{definition}
 
-We now proceed to prove that the coalgebras and structure maps defined above for gradient descent and gravitational motion form adaptives. In each case, it suffices to show that the structure maps on states preserve coalgebra structure, and that equations \eqref{eqn.id_inter} through \eqref{eqn.prod_unit} are satisfied.
+We now proceed to prove that the coalgebras and structure maps defined above for gradient descent and gravitational \dnote{update} motion form adaptives. In each case, it suffices to show that the structure maps on states preserve coalgebra structure, and that equations \eqref{eqn.id_inter} through \eqref{eqn.prod_unit} are satisfied.
 
 \begin{proof}[Proof of \cref{gradientadaptive}]
 The unit and associativity equations follow immediately from associativity and unitality of addition, cartesian products, and function composition. The interchange equations follow from the preservation of 0 under addition and identity functions under cartesian products, the analogous interchange property of function composition and cartesian products of functions, and the fact that the compositors and productors act the same way on the parameters and their dimension. 
