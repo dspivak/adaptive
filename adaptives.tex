@@ -424,7 +424,8 @@ replacement=\&]{}\ar[r,slash, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\List}{\Fun{List}}
 \newcommand{\set}{\tn{-}\Cat{Set}}
 
-
+\newcommand{\act}{\tn{act}}
+\newcommand{\upd}{\tn{upd}}
 
 
 \newcommand{\yon}{\mathcal{y}}
@@ -597,20 +598,22 @@ S' \rar[swap]{\beta'} & {[p,q]} \tri S'
 We refer to $S$ as the \emph{state set} and to each element $s\in S$ as a \emph{state}.
 \end{definition}
 
-Unwinding this definition, we get that $\beta$ is determined by a function 
-\[\beta_0\colon S \to \poly(p,q) = [p,q](1)\]
-and for each state $s \in S$, a function 
-\[\beta_s\colon \sum_{I \in p(1)} q[\beta_0(s)_1(I)] \to S.\]
-For each state  $s \in S$, we refer to $\beta_0(s)$ as the \emph{action of $s$} and to $\beta_s$ as the \emph{update function of $s$}. A coalgebra map is then a function between the state sets that preserves actions and updates. 
+Unwinding this definition, it is useful to break $\beta$ into two functions $\beta\coloneqq(\act^\beta,\upd^\beta)$, an \emph{action} function
+\[\act^\beta\colon S\to\poly(p,q)=[p,q](1)\]
+%\[\beta_0\colon S \to \poly(p,q) = [p,q](1)\]
+and, for each state $s \in S$, an \emph{update} function 
+\[\upd^\beta_s\colon \sum_{I \in p(1)} q[\act^\beta_s(I)] \to S.\]
+For a state $s\in S$ and position $I\in p(1)$ we often write $\act^\beta_s\colon p\to q$ and $\upd^\beta_s(I)\colon q[\act^\beta_s(I)]\to S.$ We may suppress the $\beta$ when it is clear from context, writing $\act_s$ and $\upd_s$. A coalgebra map $\S\to\S'$ is a function $S\to S'$ between the state sets that preserves actions and updates. 
 
-When, for each $s \in S$, the update $\beta_s$ is the constant function sending everything to $s$, we say the coalgebra $\S$ is \emph{static}, as it remains constantly at $s$ regardless of the output $I \in p(1)$ and input $j\in q[\beta_0(s)_1(I)]$.
+When, for each $s \in S$, the update $\upd_s$ is the constant function sending everything to $s$, we say the coalgebra $\S$ is \emph{static}, as it remains constantly at $s$ regardless of the output $I \in p(1)$ and input $j\in q[\act_s(I)]$.
 
 \begin{example}\label{ex.single_state}
-A special case of a static $[p,q]$-coalgebra is given by a map $\phi \in \poly(p,q)$. For each such $\phi$, there is a coalgebra $\{\phi\}$ with a singleton state set and with $\beta_0$ sending the point to $\phi$; we call it a \emph{singleton} coalgebra. 
+A special case of a static $[p,q]$-coalgebra is given by a map $\phi \in \poly(p,q)$. For each such $\phi$, there is a coalgebra $\{\phi\}$ with a singleton state set and with $\act^\beta$ sending the point to $\phi$; we call it a \emph{singleton} coalgebra. 
 
 A coalgebra is static iff it is the coproduct of singleton coalgebras.
 \end{example}
 
+\dnote{Push this notational change throughout the paper.}
 
 
 %--- Section ---%
@@ -642,7 +645,7 @@ Concretely, the composite of a $[p,q]$-coalgebra $\S$ and a $[q,r]$-coalgebra $\
 \[p \To{\beta_0(s)} q \To{\beta'_0(s')} r\]
 	\item the update function of $(s,s')$ is induced by the functions
 \[\sum_{I \in p(1)} r[\beta'_0(s')_1(\beta_0(s)_1(I))] \To{\beta_0(s)_1} \sum_{J \in q(1)} r[\beta'_0(s')_1(J)] \To{\beta'_{s'}} S',\]
-\[\sum_{I \in p(1)} r[\beta'_0(s')_1(\beta_0(s)_1(I))] \To{\beta'_0(s')_{\beta_0(s)_1(I)}} \sum_{I \in p(1)} q[\beta_0(s)_1(I)] \To{\beta_s} S.\]%check notation for map on positions
+\[\sum_{I \in p(1)} r[\beta'_0(s')_1(\beta_0(s)_1(I))] \To{\beta'_0(s')_{\beta_0(s)_1(I)}} \sum_{I \in p(1)} q[\beta_0(s)_1(I)] \To{\upd^\beta_s} S.\]%check notation for map on positions
 \end{itemize}
 Horizontal composition of coalgebra-morphisms---the 2-cells of the bicategory---is given simply by the cartesian product. The coherence isomorphisms and axioms for a bicategory then follow from the essential uniqueness of finite products of sets, and the unitality and associativity of composition for polynomial maps.%this may be a bit presumptuous, but I do think it's true
 
@@ -801,7 +804,7 @@ Given a multicategory $M$ and a multifunctor $F\colon M \to\poly$, where $\poly$
 	\item for each $a \in \ob(M)$, the polynomial interface $p_a \coloneqq F(a)$;
 	\item for each tuple $(a_1,...,a_n;b)$ in $\ob(M)$, state set $S_{a_1,...,a_n;b} \coloneqq M(a_1,...,a_n;b)$;
 	\item the action $\beta_0\colon M(a_1,...,a_n;b) \to \poly(p_{a_1} \otimes \cdots \otimes p_{a_n},p_b)$ is given by $F$; and 
-	\item this coalgebra is static, in that for any state $s$ in $M(a_1,...,a_n;b)$, the update function $\beta_s$ is the constant function at $s$.
+	\item this coalgebra is static, in that for any state $s$ in $M(a_1,...,a_n;b)$, the update function $\upd^\beta_s$ is the constant function at $s$.
 	\qedhere
 \end{itemize}
 \end{example}
