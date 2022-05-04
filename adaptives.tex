@@ -567,7 +567,8 @@ Before we begin, recall that a polynomial is a functor $p\colon \smset\to\smset$
 \begin{equation}\label{eqn.poly_notation}
 p = \sum_{I \in p(1)} \yon^{p[I]} \qqand q = \sum_{J \in q(1)} \yon^{q[J]}
 \end{equation}
-and refer to each $I\in p(1)$ as a \emph{$p$-position} and to each $i\in p[I]$ as a \emph{$p$-direction at $I$}.
+and refer to each $I\in p(1)$ as a \emph{$p$-position} and to each $i\in p[I]$ as a \emph{$p$-direction at $I$}. A map $\varphi\colon p\to q$ of polynomials is a natural transformation. Combinatorially, $\varphi$ provides: for each $I\in p(1)$ a choice of $\varphi(I)\in q(1)$ and for each $j\in q[\varphi(I)]$ a choice of $\varphi(I,j)\in p[I]$.%
+\footnote{In \cite{spivak2021learners}, what we denote $\varphi(I)$ is denoted $\varphi_1(I)$ and what we denote $\varphi(I,j)$ is denoted $\varphi^\sharp_I(j)$.}
 
 %--- Section ---%
 \section{$[p,q]$-coalgebras}
@@ -602,7 +603,7 @@ Unwinding this definition, it is useful to break $\beta$ into two functions $\be
 \[\act^\beta\colon S\to\poly(p,q)=[p,q](1)\]
 %\[\beta_0\colon S \to \poly(p,q) = [p,q](1)\]
 and, for each state $s \in S$, an \emph{update} function 
-\[\upd^\beta_s\colon \sum_{I \in p(1)} q[\act^\beta_s(I)] \to S.\]
+\[\upd^\beta_s\colon \sum_{I \in p(1)} q\left[\act^\beta_s(I)\right] \to S.\]
 For a state $s\in S$ and position $I\in p(1)$ we often write $\act^\beta_s\colon p\to q$ and $\upd^\beta_s(I)\colon q[\act^\beta_s(I)]\to S.$ We may suppress the $\beta$ when it is clear from context, writing $\act_s$ and $\upd_s$. A coalgebra map $\S\to\S'$ is a function $S\to S'$ between the state sets that preserves actions and updates. 
 
 When, for each $s \in S$, the update $\upd_s$ is the constant function sending everything to $s$, we say the coalgebra $\S$ is \emph{static}, as it remains constantly at $s$ regardless of the output $I \in p(1)$ and input $j\in q[\act_s(I)]$.
@@ -612,8 +613,6 @@ A special case of a static $[p,q]$-coalgebra is given by a map $\phi \in \poly(p
 
 A coalgebra is static iff it is the coproduct of singleton coalgebras.
 \end{example}
-
-\dnote{Push this notational change throughout the paper.}
 
 
 %--- Section ---%
@@ -642,12 +641,15 @@ Concretely, the composite of a $[p,q]$-coalgebra $\S$ and a $[q,r]$-coalgebra $\
 \begin{itemize}
 	\item its state set is given by $S \times S'$
 	\item the action of the pair $(s,s')$ is given by the composite 
-\[p \To{\beta_0(s)} q \To{\beta'_0(s')} r\]
+\[\act^{\beta\then\beta'}_{s,s'}\coloneqq(\act^\beta_s\then\act^{\beta'}_{s'})\colon p \to q \to r\]
 	\item the update function of $(s,s')$ is induced by the functions
-\[\sum_{I \in p(1)} r[\beta'_0(s')_1(\beta_0(s)_1(I))] \To{\beta_0(s)_1} \sum_{J \in q(1)} r[\beta'_0(s')_1(J)] \To{\beta'_{s'}} S',\]
-\[\sum_{I \in p(1)} r[\beta'_0(s')_1(\beta_0(s)_1(I))] \To{\beta'_0(s')_{\beta_0(s)_1(I)}} \sum_{I \in p(1)} q[\beta_0(s)_1(I)] \To{\upd^\beta_s} S.\]%check notation for map on positions
+\begin{align*}
+	\sum_{I \in p(1)} r\left[\act^{\beta\then\beta'}_{s,s'}(I)\right] \To{(I,k)\mapsto\left(I,\act^{\beta'}_{s'}\left(\act^\beta_s(I),k\right)\right)} \sum_{I \in p(1)} q\left[\act^\beta_s(I)\right] \To{\upd^\beta_s} S,\\
+	\sum_{I \in p(1)} r\left[\act^{\beta\then\beta'}_{s,s'}(I)\right] \To{(I,k)\mapsto\left(\act^\beta_s(I),k\right)} \sum_{J \in q(1)} r\left[\act^{\beta'}_{s'}(J)\right] \To{\upd^{\beta'}_{s'}} S'.
+\end{align*}%check notation for map on positions
 \end{itemize}
-Horizontal composition of coalgebra-morphisms---the 2-cells of the bicategory---is given simply by the cartesian product. The coherence isomorphisms and axioms for a bicategory then follow from the essential uniqueness of finite products of sets, and the unitality and associativity of composition for polynomial maps.%this may be a bit presumptuous, but I do think it's true
+
+Horizontal composition of coalgebra-morphisms---i.e.\ of the 2-cells in the bicategory---is given simply by the cartesian product. The coherence isomorphisms and axioms for a bicategory then follow from the essential uniqueness of finite products of sets, and the unitality and associativity of composition for polynomial maps.%this may be a bit presumptuous, but I do think it's true
 
 
 
@@ -803,7 +805,7 @@ Given a multicategory $M$ and a multifunctor $F\colon M \to\poly$, where $\poly$
 	\item object set $\ob(M)$;
 	\item for each $a \in \ob(M)$, the polynomial interface $p_a \coloneqq F(a)$;
 	\item for each tuple $(a_1,...,a_n;b)$ in $\ob(M)$, state set $S_{a_1,...,a_n;b} \coloneqq M(a_1,...,a_n;b)$;
-	\item the action $\beta_0\colon M(a_1,...,a_n;b) \to \poly(p_{a_1} \otimes \cdots \otimes p_{a_n},p_b)$ is given by $F$; and 
+	\item the action $\act^\beta\colon M(a_1,...,a_n;b) \to \poly(p_{a_1} \otimes \cdots \otimes p_{a_n},p_b)$ is given by $F$; and 
 	\item this coalgebra is static, in that for any state $s$ in $M(a_1,...,a_n;b)$, the update function $\upd^\beta_s$ is the constant function at $s$.
 	\qedhere
 \end{itemize}
@@ -971,9 +973,9 @@ For every $x\in\rr$, let $T_x\rr$ denote the tangent space at $X$; for all pract
 \begin{definition}
 The $[t^{\otimes m},t^{\otimes n}]$-coalgebra structure on $S_{m,n}$ is given by 
 \begin{itemize}
-	\item On positions, the action $\beta_0(M,f,p)_1\colon \rr^m \to \rr^n$ is given by $f(p,-)$.
-	\item For $x \in \rr^m$, the action $\beta_0(M,f,p)_x\colon T_{f(p,x)} \rr^n \to T_x \rr^m$ on directions sends $y\in T_{f(p,x)}$ to $\pi_m (Df)^\top \cdot y$.
-	\item The update function $\beta_{M,f,p}$ sends $x \in \rr^m$ and $y \in T_{f(p,x)}$ to $(M,f,p+\epsilon \pi_M (Df)^\top \cdot y)$ for our fixed $\epsilon$.
+	\item On positions, the action $\act^\beta_{M,f,p}\colon \rr^m \to \rr^n$ is given by $f(p,-)$.
+	\item For $x \in \rr^m$, the action $\act^\beta_{M,f,p}(x,-)\colon T_{f(p,x)} \rr^n \to T_x \rr^m$ on directions sends $y\in T_{f(p,x)}$ to $\pi_m (Df)^\top \cdot y$.
+	\item The update function $\upd^\beta_{M,f,p}$ sends $x \in \rr^m$ and $y \in T_{f(p,x)}$ to $(M,f,p+\epsilon \pi_M (Df)^\top \cdot y)$ for our fixed $\epsilon$.
 	\qedhere
 \end{itemize}
 \end{definition}
@@ -997,40 +999,6 @@ The maps defined above are maps of coalgebras and satisfy the coherence equation
 \end{theorem}
 
 This is proven in \cref{proofs}.
-
-
-%To do so, consider the number
-%\[
-%	\mu_i(1+\beta_i(x)) \in [0,2\mu_i]
-%\]
-%which is $0$ if member $i$ bet fully against $\beta_i(x)=-1$, is $2\mu_i$ if member $i$ bet fully in favor $\beta_i(x)=1$, and is $\mu_i$ if member $i$ bet nothing $\beta_i(x)=0$. Now for computing the updated distribution, there are two cases: the catastrophic and the normal. In  the \emph{catastrophic} scenario $\beta_i(x)=0$ for all $j\in N$; in the \emph{normal} scenario $\beta_j(x)>-1$ for some $j\in N$, and the following fraction makes sense:
-%\[
-%	U^{\tn{normal}}(\mu,\beta,x)_i\coloneqq\frac{\mu_i(1+\beta_i(x))}{\sum_{j\in N}\mu_j(1+\beta_j(x))}
-%\]
-%We now define $U(\mu,\beta,x)$ by cases:
-%\[
-%	U(\mu,\beta,x)\coloneqq
-%	\begin{cases}
-%		U^{\tn{normal}}(\mu,\beta,x)&\tn{ if $\beta_j>-1$ for some $j\in N$}\\
-%		U^N&\tn{ if $\beta_j=-1$ for all $j\in N$}
-%	\end{cases}
-%\]
-%where $(U^N)_i\coloneqq 1/N$, for all $i\in N$, is the uniform distribution on $N$.
-%
-%$\Delta_N\to[p_X^{\otimes N},p_X]\tri\Delta_N$ by
-%
-%\[
-%	\mu\mapsto\Bigg(
-%		\beta\mapsto\bigg(
-%			\mu\cdot\beta,\,
-%			x\mapsto
-%				i\mapsto \Big(
-%					x,
-%					\frac{\mu_i(1+\beta_i(x))}{\sum_{j\in N}\mu_j(1+\beta_j(x))}
-%			\Big)
-%		\bigg)
-%	\Bigg)
-%\]
 
 
 
