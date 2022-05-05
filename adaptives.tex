@@ -865,7 +865,7 @@ Similar to \cref{sec.org_cats,sec.org_multicats}, the sets $S_{a,b}$ form the ar
 
 For the rest of this paper, we will only be interested in the restricted case of a dynamic monoidal category with object monoid $(\nn,0,+)$, which we call a dynamic PRO.%
 \footnote{A PRO is the non-symmetric version of a PROP. While all of our examples are in fact symmetric, to keep the paper short we do not describe their symmetry operations.} 
-Concretely, this consists of a polynomial interface $p$ (so that in the notation above $p_n := p^{\otimes n}$ for $n \in \nn$) along with a $[p^{\otimes m},p^{\otimes n}]$-coalgebra $S_{m,n}$ for each $m,n \in \nn$, equipped with the maps of coalgebras as in \eqref{eqn.adaptive_tor}. The identitors, compositors, productors, and their equations amount to the ability to compose any string diagram of the usual sort for monoidal categories, with each $m$-to-$n$ box given by a state in $S_{m,n}$, into a new box (i.e.\ state) with the appropriate sources and targets. We denote a dynamic PRO as $(p,\S)$, where $\S$ encodes all of the coalgebras $\S_{m,n}$ that constitute the $\org$-enrichment and the structure maps are implicit.
+Concretely, this consists of a polynomial interface $p$ (so that in the notation above $p_n\coloneqq p^{\otimes n}$ for $n \in \nn$) along with a $[p^{\otimes m},p^{\otimes n}]$-coalgebra $S_{m,n}$ for each $m,n \in \nn$, equipped with the maps of coalgebras as in \eqref{eqn.adaptive_tor}. The identitors, compositors, productors, and their equations amount to the ability to compose any string diagram of the usual sort for monoidal categories, with each $m$-to-$n$ box given by a state in $S_{m,n}$, into a new box (i.e.\ state) with the appropriate sources and targets. We denote a dynamic PRO as $(p,\S)$, where $\S$ encodes all of the coalgebras $\S_{m,n}$ that constitute the $\org$-enrichment and the structure maps are implicit.
 
 \bigskip
 We now turn to morphisms between dynamic PROs; the interested reader can hopefully find analogous definitions for dynamic categories and operads.
@@ -898,7 +898,7 @@ A state in $\S^{p!}$ is a (not necessarily finite) $[p^{\otimes m},p^{\otimes n}
 
 The action of such a tree is simply the map $\phi$ labeling its root, and the update sends a tuple as in \eqref{eqn.pmn_directions} to the target of its assigned arrow. 
 
-The idea is that the state-set of the terminal dynamic PRO encodes all possible trajectories along different actions, and this coalgebra is terminal because from any other coalgebra there is a map to $\S^{p!}_{m,n}$ sending each state to the tree whose root is labeled by the action of the state and whose edges from the root go to the trees for each of the state's possible updates. This map is (uniquely) a coalgebra map because, in order to preserve actions and updates, each state must be sent to the tree rooted by its action and branching according to its updates.
+The idea is that the state-set of the terminal dynamic PRO encodes all possible trajectories along different actions, and this coalgebra is terminal because from any other coalgebra there is a map to $\S^{p!}_{m,n}$ sending each state to the tree whose root is labeled by the action of the state and whose edges from the root go to the trees for each of the state's possible updates.
 
 To define a dynamic PRO structure on the terminal coalgebra $\S^{p!}$, it only remains to define maps of coalgebras as in \cref{eqn.adaptive_tor}, and these are all taken to be the unique map to the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra; the equations hold automatically. This is the terminal dynamic PRO with interface $p$ because for any other such dynamic PRO there is a morphism given by the identity map on $p$ and with commutor squares to $\S^{p!}_{m,n}$ the unique map to the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra. In other words, $\S^{p!}$ \emph{uniquely runs} any other dynamic PRO with interface $p$.
 \end{example}
@@ -916,9 +916,9 @@ Our main results are that dynamic structures describe phenomena we see instantia
 \section{The prediction market dynamic operad}\label{sec.kelley}
 
 
-Fix a finite set $X$, elements of which we call \emph{outcomes} and intuit to be ``all equally likely'', define the set $\bet_X$ of \emph{guesses on $X$} as\footnote{The assumption that every possible outcome is given some nonzero probability in each guess could be interpreted either as humility of the guess-makers or a strategic decision to avoid permanent loss of all trust. It also lets us avoid dividing by zero when updating.}
+Fix a finite set $X$, elements of which we call \emph{outcomes} and intuit to be ``all equally likely'', define the set $\bet_X$ of \emph{guesses on $X$} as\footnote{The assumption that every possible outcome is given some nonzero probability in each guess could be interpreted either as humility of the guess-makers or a strategic decision to avoid permanent loss of all trust. But the real reason for the choice is that it lets us avoid dividing by zero when updating.}
 \[
-	\bet_X\coloneqq\left\{\gamma\colon X\to[0,1]\;\;\middle|\;\;1=\sum_x\gamma(x), \;\; \forall x\colon \gamma(x) \neq 0 \right\}
+	\bet_X\coloneqq\left\{\gamma\colon X\to(0,1]\;\;\middle|\;\;1=\sum_x\gamma(x) \right\}
 \]
 The monoid $((0,1],1,*)$ of nonzero subunital reals acts on $\bet_X$ by scalar multiplication, i.e. for any $0 < m\leq 1$ and $\gamma\in\bet_X$, we can define $m\cdot\gamma\in\bet_X$ as follows:
 \[
@@ -929,17 +929,17 @@ Then $\bet_X$ is an algebra for it: for any $\mu\in\Delta_N$ and $\gamma \in (\b
 \[
 	\mu\cdot\gamma\coloneqq\bigg(x\mapsto\sum_{i\in N}(\mu_i\cdot\gamma_i)(x)\bigg)
 \]
-and it is easy to check that $(\mu\cdot\gamma)\in\bet_X$, i.e.\ its components are in bounds $(\mu\cdot\gamma)(x)\in (0,1]$ and $\sum_x(\mu\cdot\gamma)(x)=1$.
+and it is easy to check that $(\mu\cdot\gamma)\in\bet_X$, i.e.\ its components are in bounds $(\mu\cdot\gamma)(x)\in (0,1]$ and it is normalized $\sum_x(\mu\cdot\gamma)(x)=1$.
 
-We now construct a dynamic operad with interface $p_X$ defined as:
+We now construct a dynamic operad with interface $p_X\in\poly$ defined as:
 \[
 p_X\coloneqq \bet_X\,\yon^X
 \]
-and use the $\Delta^+_N$ as our state spaces. The idea is that a state $\mu\in\Delta^+_N$ says how much the organization trusts each of its $N$ members (guess-makers) relative to each other. A member's position at a given moment is a report of how much confidence it has in each of the $X$-many possibilities, represented by how its balance is distributed among them.
+and use the $\Delta^+_N$ as our state spaces. The idea is that a state $\mu\in\Delta^+_N$ says how much the organization trusts each of its $N$ members (guess-makers) relative to each other. A member's position at a given moment is a report of how much confidence it has in each of the $X$-many possibilities, represented by its probability distribution.
 
-The action of a trust distribution $\mu \in \Delta^+_N$ is the map of polynomials $p_X^{\otimes N} \to p_X$ which on positions sends $\gamma \in (\bet_X)^N$ to $\mu \cdot \gamma$ and on directions sends $x \in X$ to $(x,...,x) \in X^N$. The idea is that the organization aggregates the predictions of its members according to their trust, and the outcome is accurately communicated back to each member.
+The action of a trust distribution $\mu \in \Delta^+_N$ is the map of polynomials $p_X^{\otimes N} \to p_X$ which on positions sends $\gamma \in (\bet_X)^N$ to $\mu \cdot \gamma$ and on directions sends $x \in X$ to $(x,...,x) \in X^N$. The idea is that the organization aggregates its members' predictions according to its current trust-distribution, and the outcome is accurately communicated back to each member.
 
-The most interesting part of the dynamic structure is how the trust distribution is updated once predictions are made and a result $x\in X$ is returned. For membership $N\geq 1$, trust distribution $\mu\in\Delta^+_N$, guesses $\gamma\in(\bet_X)^N$, and outcome $x\in X$, we define the updated trust distribution as $\gamma(x) * \mu \in\Delta^+_N$, where
+The most interesting part of the dynamic structure is how the trust distribution is updated once predictions are made and a result $x\in X$ is returned. When $N=0$, there's nothing to do: $\Delta^+_0=\varnothing$. For membership $N\geq 1$, trust distribution $\mu\in\Delta^+_N$, guesses $\gamma\in(\bet_X)^N$, and outcome $x\in X$, we define the updated trust distribution $\gamma(x) * \mu \in\Delta^+_N$ as
 \[
 \gamma(x) * \mu \coloneqq \left( i \mapsto \frac{\gamma_i(x)\mu_i}{\sum_j \gamma_j(x)\mu_j}\right).
 \]
@@ -958,7 +958,7 @@ This is proven in \cref{proofs}.
 %------- Section -------%
 \section{The gradient descent dynamic PRO}
 
-Deep learning uses the algorithm of gradient descent to optimize a choice of function, based on external feedback on its output. This naturally fits into the paradigm of dynamic structures, as functions $\rr^m \to \rr^n$ can form the states of a polynomial coalgebra, with the feedback providing the information needed to update the choice of function. These functions can be composed and juxtaposed to provide compositions of networks of such gradient descenders in a way that respects the updates.
+Deep learning uses the algorithm of gradient descent to optimize a choice of function, based on external feedback on its output. This naturally fits into the paradigm of dynamic structures, since functions $\rr^m \to \rr^n$ can form the states of a polynomial coalgebra, with the feedback providing the information needed to update the choice of function. These functions can be composed and juxtaposed in a way that preserves the updates. That is, the composite of gradient descenders is a gradient descender.
 
 \begin{definition}\label{def.Smn}
 For the rest of this section, we will use the state sets 
