@@ -765,7 +765,7 @@ An $\org$-enriched (henceforth \emph{dynamic}) multicategory $A$ consists of
 \begin{itemize}
 	\item a set $A_0$ of objects;
 	\item for each $a \in A_0$, a polynomial $p_a$;
-	\item for each $a_1,...,a_n,b \in A_0$, a $[p_{a_1} \otimes \cdots \otimes p_{a_n},p_b]$-coalgebra $\S_{a_1,...,a_n;b}$;
+	\item for each $a_1,...,a_n,b \in A_0$, a $[p_{a_1} \otimes \cdots \otimes p_{a_n},p_b]$-coalgebra $\S_{a_1,...,a_n\,;\,b}$;
 	\item for each $a \in A_0$, an ``identitor'' square in $\org$ as in \eqref{eqn.multi_tors} left; and
 	\item for each $a_{1,1},\ldots,a_{1,m_1},\;\ldots,\;a_{n,1},\ldots,a_{n,m_n},\;b_1,\ldots,b_n,$ and $c \in A_0$, a ``compositor'' square in $\org$ as in \eqref{eqn.multi_tors} right
 \end{itemize}
@@ -777,7 +777,7 @@ An $\org$-enriched (henceforth \emph{dynamic}) multicategory $A$ consists of
   \end{tikzcd}
  \qquad\quad
   \begin{tikzcd}[column sep=huge, ampersand replacement=\&]
-  p_{a_{1,1}} \otimes \cdots \otimes p_{a_{n,m_n}} \dar[equals] \ar[r, slash, "\bigotimes_i \S_{a_{i,1},...,a_{i,m_i};b_i}", ""' name=U] \&[20pt] p_{b_1} \otimes \cdots \otimes p_{b_n} \rar[slash]{\S_{b_1,...,b_n;c}} \&[-10pt] p_c \dar[equals] \\
+  p_{a_{1,1}} \otimes \cdots \otimes p_{a_{n,m_n}} \dar[equals] \ar[r, slash, "\bigotimes_i \S_{a_{i,1},...,a_{i,m_i};b_i}", ""' name=U] \&[20pt] p_{b_1} \otimes \cdots \otimes p_{b_n} \rar[slash]{\S_{b_1,...,b_n\,;\,c}} \&[-10pt] p_c \dar[equals] \\
   p_{a_{1,1}} \otimes \cdots \otimes p_{a_{n,m_n}} \ar[slash, ""{name=T}]{rr}[swap]{\S_{a_{1,1},...,a_{n,m_n};c}} \& \& p_c
   \arrow[Rightarrow,shorten=6,from=U-|T,to=T]
   \end{tikzcd}
@@ -806,19 +806,19 @@ Given any multicategory $M$ and multifunctor $F\colon M \to\poly$, where $\poly$
 \begin{itemize}
 	\item object set $\ob(M)$;
 	\item for each $a \in \ob(M)$, the polynomial interface $p_a \coloneqq F(a)$;
-	\item for each tuple $(a_1,...,a_n;b)$ in $\ob(M)$, state set $S_{a_1,...,a_n;b} \coloneqq M(a_1,...,a_n;b)$;
-	\item the action $\act^\beta\colon M(a_1,...,a_n;b) \to \poly(p_{a_1} \otimes \cdots \otimes p_{a_n},p_b)$ is given by $F$; and 
-	\item this coalgebra is static, in that for any state $s$ in $M(a_1,...,a_n;b)$, the update function $\upd^\beta_s$ is the constant function at $s$.
+	\item for each tuple $(a_1,...,a_n\,;\,b)$ in $\ob(M)$, state set $S_{a_1,...,a_n\,;\,b} \coloneqq M(a_1,...,a_n\,;\,b)$;
+	\item the action $\act^\beta\colon M(a_1,...,a_n\,;\,b) \to \poly(p_{a_1} \otimes \cdots \otimes p_{a_n},p_b)$ is given by $F$; and 
+	\item this coalgebra is static, in that for any state $s$ in $M(a_1,...,a_n\,;\,b)$, the update function $\upd^\beta_s$ is the constant function at $s$.
 	\qedhere
 \end{itemize}
 \end{example}
 
 \begin{example}
-Let $\S$ be any $p$-coalgebra for a polynomial $p$. There is a dynamic operad on $p$ with $\S_0\coloneqq \S$, $\S_1\coloneqq\idcoalg{p}$, and all other $\S_n\coloneqq\varnothing$ assigned the empty coalgebra.
+Let $\S$ be any $p$-coalgebra for a polynomial $p$. There is a dynamic operad on $p$ with $\S_0\coloneqq \S$, with $\S_1\coloneqq\idcoalg{p}$, and with all other $\S_n\coloneqq\varnothing$ assigned the empty coalgebra.
 \end{example}
 
 \begin{example}
-Consider a dynamic operad with interface $\yon\in\poly$. The internal hom polynomial $[\yon^{\otimes n},\yon]$ is simply $\yon$, so this structure amounts to an operad $S$ with a function $S_n \to S_n$ for each $n$, commuting with the operad structure. A dynamic operad on $\yon$ is then the same as an operad equipped with an operad endomorphism.
+Consider a dynamic operad with interface $\yon\in\poly$. The internal hom polynomial $[\yon^{\otimes n},\yon]$ is simply $\yon$, so this structure amounts to an operad $S$ with a function $S_n \to S_n$ for each $n$, commuting with the operad structure. A dynamic operad on $\yon$ can thus be identified with an operad $\cat{S}$ equipped with an operad map $\cat{S}\to\cat{S}$ to itself.
 \end{example}
 
 
@@ -867,10 +867,11 @@ satisfying unit, associativity, and interchange equations.
 Similar to \cref{sec.org_cats,sec.org_multicats}, the sets $S_{a,b}$ form the arrows in an ordinary strict monoidal category underlying $A$.  
 
 For the rest of this paper, we will only be interested in the restricted case of a dynamic monoidal category with object monoid $(\nn,0,+)$, which we call a dynamic PRO.%
-\footnote{A PRO is the non-symmetric version of a PROP. While all of our examples are in fact symmetric, for simplicity we do not describe their symmetry operations.} 
-Concretely, this consists of a polynomial interface $p$ (so that in the notation above $p_n := p^{\otimes n}$ for $n \in \nn$) along with a $[p^{\otimes m},p^{\otimes n}]$-coalgebra $S_{m,n}$ for each $m,n \in \nn$, equipped with the maps of coalgebras as in \eqref{eqn.adaptive_tor}. The identitors, compositors, productors, and their equations amount to the ability to compose any string diagram of the usual sort for monoidal categories, with the $m$-to-$n$ boxes given by states in $S_{m,n}$, into a new state with the appropriate sources and targets. We denote a dynamic PRO as $(p,\S)$, where $\S$ now encodes all of the coalgebras $\S_{m,n}$ that constitute the $\org$-enrichment and the structure maps are implicit.
+\footnote{A PRO is the non-symmetric version of a PROP. While all of our examples are in fact symmetric, to keep the paper short we do not describe their symmetry operations.} 
+Concretely, this consists of a polynomial interface $p$ (so that in the notation above $p_n := p^{\otimes n}$ for $n \in \nn$) along with a $[p^{\otimes m},p^{\otimes n}]$-coalgebra $S_{m,n}$ for each $m,n \in \nn$, equipped with the maps of coalgebras as in \eqref{eqn.adaptive_tor}. The identitors, compositors, productors, and their equations amount to the ability to compose any string diagram of the usual sort for monoidal categories, with each $m$-to-$n$ box given by a state in $S_{m,n}$, into a new box (i.e.\ state) with the appropriate sources and targets. We denote a dynamic PRO as $(p,\S)$, where $\S$ now encodes all of the coalgebras $\S_{m,n}$ that constitute the $\org$-enrichment and where the structure maps are implicit.
 
-Morphisms of dynamic categorical structures are a special case of the general notion of morphisms between enriched structures as defined in \cite{shapiro2022enrichment}. %cite specifically
+\bigskip
+We now turn to morphisms between dynamic PROs; the interested reader can hopefully find analogous definitions for dynamic categories and operads.
 
 \begin{definition}
 A \emph{morphism} of dynamic PROs from $(p,\S)$ to $(p',\S')$ is given by a map of polynomials $\phi\colon p \to p'$ and, for each $m,n \in \nn$, ``commutor'' squares as in \eqref{eqn.adaptive_map} in $\org$ which commute with the identitor, compositor, and productor squares.
@@ -883,7 +884,8 @@ p'^{\otimes m} \rar[slash, ""{name=T, above}, swap]{\S'_{m,n}} & p'^{\otimes n}
 \end{equation}
 \end{definition}
 
-This definition of morphism is the direct theoretical benefit of treating $\org$ as a monoidal double category rather than as a monoidal bicategory (closer to its description in \cite{spivak2021learners}). Otherwise morphisms could either only be easily defined between dynamic PROs with the same interface polynomial, which is needlessly restrictive, or take the form of a $[p,p']$-coalgebra, which we believe to be too general to be of much use.
+This definition of morphism (taken from \cite{shapiro2022enrichment}) %cite specifically
+is the direct theoretical benefit of treating $\org$ as a monoidal double category rather than as a monoidal bicategory (as in \cite{spivak2021learners}). Otherwise morphisms could either only be easily defined between dynamic PROs with the same interface polynomial, which is needlessly restrictive, or take the form of a $[p,p']$-coalgebra, which we believe to be too general to be of much use.
 
 A morphism $(p,\S) \to (p',\S')$ can be interpreted as a way of telling the codomain how to run the domain. The map of polynomials $p \to p'$ specifies how the positions of $p$ can be modeled by those of $p'$ and how the directions of $p'$ are returned as directions of $p$, while the commutor squares describe how the states of $\S_{m,n}$ can be modeled by those of $\S'_{m,n}$ in a way that respects this change of interface. A type of theorem that we hope to instantiate in future work is of the form ``this dynamic structure that we're interested in can be run by (has a map to) this other dynamic structure that we already understand well.''
 
