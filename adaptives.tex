@@ -502,6 +502,7 @@ replacement=\&]{}\ar[r,slash, "{#1}"]\&{}\end{tikzcd}}
 \begin{document}
 
 \title{Dynamic Categorical Structures:\\From deep learning to prediction markets}
+\title{Dynamic categories, dynamic operads:\\From deep learning to prediction markets}
 
 \author{Brandon Shapiro \and David I. Spivak}
 
@@ -546,7 +547,7 @@ But is this right? How could you check such a claim? One would need to give a pr
 
 \section{Dynamic categorical structures}
 
-Our main definition in this paper is what we call an \emph{dynamic categorical structure}. We might poetically say that an \emph{dynamic} category is one where the morphisms change in response to what flows in to and out of the objects it connects. To define it, we first refactor the definition of $\org$ from \cite{spivak2021learners}. Once defined, we give a couple examples of this structure: a \emph{prediction market} operad and a \emph{deep learning} monoidal category. In the prediction market, a population $Y$ predicts a distribution based on the predictions of its member populations $X_i$ weighted by their reputations, and the reputations change dynamically based on the returned outcome. A similar story holds with deep learning.
+Our main definition in this paper is what we call an \emph{dynamic categorical structure}. We might poetically say that an \emph{dynamic} category is one where the morphisms change in response to what flows in to and out of the objects it connects. To define it, we first refactor the definition of $\org$ from \cite{spivak2021learners}. Once defined, we give a couple examples of this structure: a \emph{prediction market} operad and a \emph{deep learning} monoidal category. In the prediction market, a population $Y$ predicts a distribution based on the predictions of its member populations $X_i$ weighted by their reputations, and the reputations change dynamically based on the returned outcome. A similar story holds with deep learning. Each has the flavor of a self-similar \emph{bureaucracy}.
 
 We thank you the reader for having postponed your counterpoints and counterexamples, and we ask you to reengage both skepticism and interest as you see fit. We invite you to ask openly: what's not a collective of interacting parts that are themselves collectives? Nature, love, or experience perhaps? It all depends on how you look. What we present here is an accounting system for making sense of a certain sort of experiential pattern; the matter itself is whatever it is.
 
@@ -992,13 +993,13 @@ Thus far, we have provided the data of the polynomial $t$ and the $[t^{\otimes m
 \[(M+M',\,(f,f'),\,(p,p')).\]
 \end{itemize}
 
-These structure maps ensure that whenever two gradient descenders are combined in series or parallel, the resulting composite descender retains the parameter spaces of both. Likewise when the input or output of a descender is wired past some other descender in a network, it does not contribute any new parameters and merely preserves its input/output until plugged into a descender.
+These structure maps ensure that whenever two gradient descenders are combined in series or parallel, the resulting composite descender retains the parameter spaces of both. Likewise when the input or output of a descender is wired past some other descender in a network, it does not contribute any new parameters and merely preserves its input/output until plugged into a descender. The following is proven in \cref{proofs}.
+
 
 \begin{theorem}\label{gradientadaptive}
 The maps defined above are maps of coalgebras and satisfy the coherence equations of a dynamic PRO described in \cref{PROequations}.%update
 \end{theorem}
 
-This is proven in \cref{proofs}.
 
 
 
