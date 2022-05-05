@@ -578,8 +578,6 @@ and refer to each $I\in p(1)$ as a \emph{$p$-position} and to each $i\in p[I]$ a
 
 We first recall the definitions of the internal-hom polynomials $[p,q]$ and concretely describe the category of $[p,q]$-coalgebras, which will form the category of morphisms from $p$ to $q$ in the underlying bicategory of $\org$.
 
-%\dnote{Introduce the notation $p\slashar q$ in this section?}
-
 \begin{definition}\label{coalgebras}
 For polynomials $p,q\in\poly$  as in \eqref{eqn.poly_notation},
 their \emph{internal hom} with respect to the tensor product $\otimes$ is the polynomial
@@ -620,7 +618,6 @@ A coalgebra is static iff it is the coproduct of singleton coalgebras.
 
 %--- Section ---%
 \section{Composition of hom-coalgebras}\label{sec.compose_hom_coalg}
-%\dnote{Let's call these something besides coalgebras; they're special coalgebras, a kind that is possible to "compose".}
 
 
 
@@ -649,7 +646,7 @@ Concretely, the composite of a $[p,q]$-coalgebra $\S$ and a $[q,r]$-coalgebra $\
 \begin{align*}
 	\sum_{I \in p(1)} r\left[\act^{\beta\then\beta'}_{s,s'}(I)\right] \To{(I,k)\mapsto\left(I,\act^{\beta'}_{s'}\left(\act^\beta_s(I),k\right)\right)} \sum_{I \in p(1)} q\left[\act^\beta_s(I)\right] \To{\upd^\beta_s} S,\\
 	\sum_{I \in p(1)} r\left[\act^{\beta\then\beta'}_{s,s'}(I)\right] \To{(I,k)\mapsto\left(\act^\beta_s(I),k\right)} \sum_{J \in q(1)} r\left[\act^{\beta'}_{s'}(J)\right] \To{\upd^{\beta'}_{s'}} S'.
-\end{align*}%check notation for map on positions
+\end{align*}
 \end{itemize}
 
 Horizontal composition of coalgebra-morphisms---i.e.\ of the 2-cells in the bicategory $\org$---is given simply by the cartesian product. The coherence isomorphisms and axioms for a bicategory then follow from the essential uniqueness of finite products of sets, and the unitality and associativity of composition for polynomial maps.%this may be a bit presumptuous, but I do think it's true
@@ -744,7 +741,7 @@ p_a \ar[slash, ""{name=T, above}]{rr}[swap]{\S_{a,c}} & & p_c
 \end{tikzcd}
 \end{equation}
 \end{itemize}
-such that these squares satisfy unit and associativity equations.%more on these?
+such that these squares satisfy unit and associativity equations.
 \end{definition}
 
 The sets $S_{a,b}$ form an ordinary category which we say \emph{underlies} $A$. 
@@ -757,7 +754,7 @@ In fact, a dynamic category could be equivalently defined as an ordinary categor
 
 
 A monoidal double category also gives rise to an $f\!m$-multicategory in the sense of \cite[Section 3.1]{leinster1999generalized}, 
-%where the ``2-cells'' are horizontal arrows of the form $a_1 \otimes \cdots \otimes a_n \slasharrow b$ and the ``3-cells'' are squares from the horizontal composite of a tree-shaped arrangement of these arrows to a horizontal arrow whose domain is a tensor product with arity the number of leaves in the tree.%reword
+%where the ``2-cells'' are horizontal arrows of the form $a_1 \otimes \cdots \otimes a_n \slasharrow b$ and the ``3-cells'' are squares from the horizontal composite of a tree-shaped arrangement of these arrows to a horizontal arrow whose domain is a tensor product with arity the number of leaves in the tree.
 so we can talk about multicategories enriched in $\org$ as in \cite[Section 3.2]{leinster1999generalized}.
 
 \begin{definition}
@@ -782,7 +779,7 @@ An $\org$-enriched (henceforth \emph{dynamic}) multicategory $A$ consists of
   \arrow[Rightarrow,shorten=6,from=U-|T,to=T]
   \end{tikzcd}
 \end{equation}
-such that these squares satisfy unit and associativity equations.%more on these?
+such that these squares satisfy unit and associativity equations (\cref{operadequations}).
 \end{definition}
 
 The sets $S_{a,b}$ form an ordinary (set-enriched) multicategory, which underlies $A$ and has a description similar to the underlying category we described below \cref{def.org_enriched_cat}. 
@@ -793,7 +790,7 @@ We will mostly be interested in what we call a \emph{dynamic operad}, the case w
 \qqand
 \bigotimes_{i\in I} \S_{n_i} \to \S_N
 \end{equation}
-where $I$ is any finite set and $N\coloneqq\sum_{i\in I}n_i$, which together satisfy the usual equations. %\dnote{should we perhaps denote $\id_p$ by $\{\id_p\}$ to emphasize it is a single-state thingy?}
+where $I$ is any finite set and $N\coloneqq\sum_{i\in I}n_i$, which together satisfy the usual equations. 
 
 \begin{example}\label{ex.collective}
 A \emph{collective} (as defined in \cite{niu2021collectives}) is a $\otimes$-monoid in $\poly$, meaning a polynomial $p$ equipped with a monoid structure on its positions $p(1)$ and co-unital co-associative ``distribution'' functions $p[I \cdot J] \to p[I] \times p[J]$ for each $I,J \in p(1)$. This can be viewed as a dynamic operad where $\S_n$ is given by $\{\cdot_n\}$, the singleton coalgebra on the $n$-ary monoidal product $(\cdot_n)\colon p^{\otimes n} \to p$, and where the maps of coalgebras in \eqref{eqn.org_operad} are isomorphisms deduced from the equations for a monoid.
@@ -827,8 +824,8 @@ Consider a dynamic operad with interface $\yon\in\poly$. The internal hom polyno
 \section{Dynamic monoidal categories}\label{sec:org_monoidalcats}
 
 
-A monoidal double category is precisely a representable $f\!m\!c$-multicategory as in \cite{shapiro2022enrichment}, %cite specifically
-so we can also enrich strict monoidal categories in $\org$.\footnote{We use throughout the notion \emph{strong} enrichment in a monoidal double category from \cite{shapiro2022enrichment}.} These are similar to $\org$-enriched multicategories, but include many-to-many coalgebras rather than just many-to-one. 
+A monoidal double category is precisely a representable $f\!m\!c$-multicategory as in \cite[Section 2]{shapiro2022enrichment}, %cite specifically
+so we can also enrich strict monoidal categories in $\org$.\footnote{We use throughout the notion \emph{strong} enrichment in a monoidal double category from \cite[Section 3]{shapiro2022enrichment}.} These are similar to $\org$-enriched multicategories, but include many-to-many coalgebras rather than just many-to-one. 
 
 \begin{definition}\label{enriched_monoidal}
 An $\org$-enriched (henceforth \emph{dynamic}) strict monoidal category $A$ consists of
@@ -868,7 +865,7 @@ Similar to \cref{sec.org_cats,sec.org_multicats}, the sets $S_{a,b}$ form the ar
 
 For the rest of this paper, we will only be interested in the restricted case of a dynamic monoidal category with object monoid $(\nn,0,+)$, which we call a dynamic PRO.%
 \footnote{A PRO is the non-symmetric version of a PROP. While all of our examples are in fact symmetric, to keep the paper short we do not describe their symmetry operations.} 
-Concretely, this consists of a polynomial interface $p$ (so that in the notation above $p_n := p^{\otimes n}$ for $n \in \nn$) along with a $[p^{\otimes m},p^{\otimes n}]$-coalgebra $S_{m,n}$ for each $m,n \in \nn$, equipped with the maps of coalgebras as in \eqref{eqn.adaptive_tor}. The identitors, compositors, productors, and their equations amount to the ability to compose any string diagram of the usual sort for monoidal categories, with each $m$-to-$n$ box given by a state in $S_{m,n}$, into a new box (i.e.\ state) with the appropriate sources and targets. We denote a dynamic PRO as $(p,\S)$, where $\S$ now encodes all of the coalgebras $\S_{m,n}$ that constitute the $\org$-enrichment and where the structure maps are implicit.
+Concretely, this consists of a polynomial interface $p$ (so that in the notation above $p_n := p^{\otimes n}$ for $n \in \nn$) along with a $[p^{\otimes m},p^{\otimes n}]$-coalgebra $S_{m,n}$ for each $m,n \in \nn$, equipped with the maps of coalgebras as in \eqref{eqn.adaptive_tor}. The identitors, compositors, productors, and their equations amount to the ability to compose any string diagram of the usual sort for monoidal categories, with each $m$-to-$n$ box given by a state in $S_{m,n}$, into a new box (i.e.\ state) with the appropriate sources and targets. We denote a dynamic PRO as $(p,\S)$, where $\S$ encodes all of the coalgebras $\S_{m,n}$ that constitute the $\org$-enrichment and the structure maps are implicit.
 
 \bigskip
 We now turn to morphisms between dynamic PROs; the interested reader can hopefully find analogous definitions for dynamic categories and operads.
@@ -884,7 +881,7 @@ p'^{\otimes m} \rar[slash, ""{name=T, above}, swap]{\S'_{m,n}} & p'^{\otimes n}
 \end{equation}
 \end{definition}
 
-This definition of morphism (taken from \cite{shapiro2022enrichment}) %cite specifically
+This definition of morphism (taken from \cite[Section 3]{shapiro2022enrichment}) %cite specifically
 is the direct theoretical benefit of treating $\org$ as a monoidal double category rather than as a monoidal bicategory (as in \cite{spivak2021learners}). Otherwise morphisms could either only be easily defined between dynamic PROs with the same interface polynomial, which is needlessly restrictive, or take the form of a $[p,p']$-coalgebra, which we believe to be too general to be of much use.
 
 A morphism $(p,\S) \to (p',\S')$ can be interpreted as a way of telling the codomain how to run the domain. The map of polynomials $p \to p'$ specifies how the positions of $p$ can be modeled by those of $p'$ and how the directions of $p'$ are returned as directions of $p$, while the commutor squares describe how the states of $\S_{m,n}$ can be modeled by those of $\S'_{m,n}$ in a way that respects this change of interface. A type of theorem that we hope to instantiate in future work is of the form ``this dynamic structure that we're interested in can be run by (has a map to) this other dynamic structure that we already understand well.''
@@ -907,7 +904,7 @@ To define a dynamic PRO structure on the terminal coalgebra $\S^{p!}$, it only r
 
 %------- Chapter -------%
 \chapter{Dynamic Structures in Nature}
-%
+
 
 Our main results are that dynamic structures describe phenomena we see instantiated around us. In this paper, we focus on deep learning and a prediction market in which the reputations of various guess-makers evolve based on how successful they are.
 
@@ -997,7 +994,7 @@ Thus far, we have provided the data of the polynomial $t$ and the $[t^{\otimes m
 These structure maps ensure that whenever two gradient descenders are combined in series or parallel, the resulting composite descender retains the parameter spaces of both. Likewise when the input or output of a descender is wired past some other descender in a network, it does not contribute any new parameters and merely preserves its input/output until plugged into a descender. The following is proven in \cref{proofs}.
 
 \begin{theorem}\label{gradientadaptive}
-The maps defined above are maps of coalgebras and satisfy the coherence equations of a dynamic PRO described in \cref{PROequations}.%update
+The maps defined above are maps of coalgebras and satisfy the coherence equations of a dynamic PRO described in \cref{PROequations}.
 \end{theorem}
 
 
