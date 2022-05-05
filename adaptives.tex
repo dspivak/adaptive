@@ -872,6 +872,7 @@ We now turn to morphisms between dynamic PROs; the interested reader can hopeful
 
 \begin{definition}
 A \emph{morphism} of dynamic PROs from $(p,\S)$ to $(p',\S')$ is given by a map of polynomials $\phi\colon p \to p'$ and, for each $m,n \in \nn$, ``commutor'' squares as in \eqref{eqn.adaptive_map} in $\org$ which commute with the identitor, compositor, and productor squares.
+\setlength{\belowdisplayskip}{-5pt}
 \begin{equation}\label{eqn.adaptive_map}
 \begin{tikzcd}
 p^{\otimes m} \rar[slash, ""{name=S, below}]{\S_{m,n}} \dar[swap]{\phi^{\otimes m}} & p^{\otimes n} \dar{\phi^{\otimes n}} \\
@@ -880,19 +881,21 @@ p'^{\otimes m} \rar[slash, ""{name=T, above}, swap]{\S'_{m,n}} & p'^{\otimes n}
 \end{tikzcd}
 \end{equation}
 \end{definition}
+\setlength{\belowdisplayskip}{11pt}
 
 This definition of morphism (taken from \cite[Section 3]{shapiro2022enrichment}) %cite specifically
-is the direct theoretical benefit of treating $\org$ as a monoidal double category rather than as a monoidal bicategory (as in \cite{spivak2021learners}). Otherwise morphisms could either only be easily defined between dynamic PROs with the same interface polynomial, which is needlessly restrictive, or take the form of a $[p,p']$-coalgebra, which we believe to be too general to be of much use.
+is the direct theoretical benefit of treating $\org$ as a monoidal double category rather than as a monoidal bicategory (closer to its description in \cite{spivak2021learners}). Otherwise morphisms could either only be easily defined between dynamic PROs with the same interface polynomial, which is needlessly restrictive, or take the form of a $[p,p']$-coalgebra, which seems to be too general to be of much use.
 
 A morphism $(p,\S) \to (p',\S')$ can be interpreted as a way of telling the codomain how to run the domain. The map of polynomials $p \to p'$ specifies how the positions of $p$ can be modeled by those of $p'$ and how the directions of $p'$ are returned as directions of $p$, while the commutor squares describe how the states of $\S_{m,n}$ can be modeled by those of $\S'_{m,n}$ in a way that respects this change of interface. A type of theorem that we hope to instantiate in future work is of the form ``this dynamic structure that we're interested in can be run by (has a map to) this other dynamic structure that we already understand well.''
 
 \begin{example}
-For a fixed polynomial $p$, there is a terminal dynamic PRO with interface $p$, which we denote $\S^{p!}$; here $\S^{p!}_{m,n}$ is the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra for each $m,n$. 
+For a fixed polynomial $p$, there is a terminal dynamic PRO with interface $p$, which we denote $\S^{p!}$; here $\S^{p!}_{m,n}$ is the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra for each $m,n\in\nn$. 
 
-A state in $\S^{p!}$ is a (not necessarily finite) $[p^{\otimes m},p^{\otimes n}]$-tree, i.e.\ a tree co-inductively defined by a root labeled with a polynomial map $\phi\colon p^{\otimes m} \to p^{\otimes n}$ together with an arrow, whose source is the root and whose target is another $[p^{\otimes m},p^{\otimes n}]$-tree, assigned to each tuple 
+A state in $\S^{p!}$ is a (not necessarily finite) $[p^{\otimes m},p^{\otimes n}]$-tree. By this we mean a tree co-inductively defined by a root node labeled with a polynomial map $\phi\colon p^{\otimes m} \to p^{\otimes n}$ together with an arrow---whose source is the root and whose target is another $[p^{\otimes m},p^{\otimes n}]$-tree---assigned to each tuple 
 \begin{equation}\label{eqn.pmn_directions}
-\big((I_1,\ldots,I_m), i_1,\ldots,i_n\big) \in  p(1)^m\times p[\phi(I_1,...,I_m)_1] \times \cdots \times p[\phi(I_1,...,I_m)_n]
+\big((I_1,\ldots,I_m), i_1,\ldots,i_n\big) \in  p^{\otimes m}(1)\times p^{\otimes n}[\phi(I_1,...,I_m)] 
 \end{equation}
+
 The action of such a tree is simply the map $\phi$ labeling its root, and the update sends a tuple as in \eqref{eqn.pmn_directions} to the target of its assigned arrow. 
 
 The idea is that the state-set of the terminal dynamic PRO encodes all possible trajectories along different actions, and this coalgebra is terminal because from any other coalgebra there is a map to $\S^{p!}_{m,n}$ sending each state to the tree whose root is labeled by the action of the state and whose edges from the root go to the trees for each of the state's possible updates. This map is (uniquely) a coalgebra map because, in order to preserve actions and updates, each state must be sent to the tree rooted by its action and branching according to its updates.
