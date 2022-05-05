@@ -2,7 +2,7 @@
 
 
 \settrims{0pt}{0pt} % page and stock same size
-\settypeblocksize{*}{36pc}{*} % {height}{width}{ratio}
+\settypeblocksize{*}{36.1pc}{*} % {height}{width}{ratio}
 \setlrmargins{*}{*}{1} % {spine}{edge}{ratio}
 \setulmarginsandblock{.98in}{.98in}{*} % height of typeblock computed
 \setheadfoot{\onelineskip}{2\onelineskip} % {headheight}{footskip}
@@ -511,13 +511,15 @@ replacement=\&]{}\ar[r,slash, "{#1}"]\&{}\end{tikzcd}}
 \maketitle
 
 \begin{abstract}
-It seems that organized systems adapt to internal and external pressures and that this happens all the way down. Wanting to think clearly about this idea motivates our paper, and so the idea is elaborated extensively in the introduction, which should be broadly accessible to a philosophically-interested audience. In the remaining sections, we turn to more compressed category theory. We define the monoidal double category $\org$ of dynamic organizations, and we spell out how to think about $\org$-enriched, or \emph{dynamic} categorical structures---e.g.\ dynamic categories, operads, and monoidal categories---instantiate the motivating philosophical ideas. We give two examples of dynamic categorical structures: prediction markets as a dynamic operad and deep learning as a dynamic monoidal category.
+Natural organized systems adapt to internal and external pressures and this seems to happens all the way down. Wanting to think clearly about this idea motivates our paper, and so the idea is elaborated extensively in the introduction, which should be broadly accessible to a philosophically-interested audience.
+
+In the remaining sections, we turn to more compressed category theory. We define the monoidal double category $\org$ of dynamic organizations, we provide definitions of $\org$-enriched, or \emph{dynamic} categorical structures---e.g.\ dynamic categories, operads, and monoidal categories---and we show how they instantiate the motivating philosophical ideas. We give two examples of dynamic categorical structures: prediction markets as a dynamic operad and deep learning as a dynamic monoidal category.
 \end{abstract}
 
 %------- Chapter -------%
 \chapter{Introduction}
 
-Intuitively, an \emph{open dynamical system} is a machine or worker with an interface by which to interact with whatever else is out there. Open dynamical systems can be organized as circuits or control loops, so that they affect each other by their outward expressions of internal work, and thereby possibly form a more complex worker. The framework here is fractal---or more precisely \emph{operadic}---in its structure: organizations of workers can be nested into arbitrary hierarchies of abstraction, without changing the activity of these workers as they interact together.
+Intuitively, an \emph{open dynamical system} is a machine or worker with an interface by which to interact with whatever else is out there. Open dynamical systems can be organized as circuits or control loops, so that they affect each other by their outward expressions of internal work, and thereby possibly form a more complex worker. The framework here is fractal---or more precisely \emph{operadic}---in its structure: organizations of workers can be nested into arbitrary hierarchies of abstraction.
 \begin{figure}[H]
 \[
 \begin{tikzpicture}[oriented WD, bb min width =.5cm, bbx=.5cm, bb port sep =1,bb port length=.08cm, bby=.14cm]
@@ -525,7 +527,7 @@ Intuitively, an \emph{open dynamical system} is a machine or worker with an inte
 \end{tikzpicture}
 \]
 \caption{
-A nesting of interacting open dynamical systems: the $X_{i,j}$ are wired together to form the $Y_i$, which are wired together to form $Z$; often these groupings are chosen to create new abstractions, e.g.\ in logical circuits or control systems. The permanence of the displayed wiring pattern is exactly what is relaxed in this paper; a dynamic organization is one in which interactions may change dynamically based on what flows within the system.
+A nesting of interacting open dynamical systems: the $X_{i,j}$ are wired together to form the $Y_i$, which are wired together to form $Z$; often these groupings are chosen to create new abstractions, e.g.\ in logical circuits or control systems. The permanence of the above-displayed wiring pattern is exactly what is relaxed in this paper; a dynamic organization is one in which interactions may change dynamically based on what flows within the system.
 }\label{fig.nesting}
 \end{figure}
 
@@ -533,21 +535,21 @@ But if we think about some things that interact to do work in the real world, we
 
 \section{Accounting for organizational change}
 
-We propose that the metaphysical nature and scope of these questions should be complemented by some sort of guard rails to keep our contemplation on track. This is the role of mathematics in our work. It provides a symbolic tracking system which is articulate enough to facilitate one in explicating an example and another in asking questions about it.
+We propose that the metaphysical nature and scope of these questions should be complemented by some sort of guard rails to keep our contemplation on track. This is the role of mathematics in our work. It provides a symbolic \emph{accounting system} which is articulate enough to facilitate one in explicating an example and another in asking questions about it.
 
 The category $\poly$ of polynomial functors in one variable is an ergonomic mathematical structure with many applications and spin-off categorical gadgets. We will begin in \cref{chap.org} by recalling one such gadget from \cite{spivak2021learners}: a category-enriched multicategory $\org$ that will be the conceptual centerpiece of our accounting system. Its objects are polynomial functors in one variable, and its morphisms are polynomial coalgebras related to a certain monoidal closed structure on $\poly$. We will see that the morphisms in $\org$ are intuitively ``collective organizational patterns that change dynamically''.
 
-Leaving the mathematics aside until \cref{chap.org}---at which point we will have little more to say about the background philosophy---let's return to the question ``how is the organizational pattern between various systems is decided, moment-by-moment?'' Let's mesh this question with the idea that the so-organized systems can be nested into arbitrary hierarchies of abstraction. And let's think about all this in the frame of a certain worldview which we invite you the reader to engage with like a fictional movie, not intended to convince you of fact but instead simply to convey an experience. Here goes.
+Leaving the mathematics aside until \cref{chap.org}---at which point we will have little more to say about the background philosophy---let's return to the question ``how is the organizational pattern between various systems decided, moment-by-moment?'' Let's mesh this question with the idea that the so-organized systems can be nested into arbitrary hierarchies of abstraction. And let's think about all this in the frame of a certain worldview which we invite you the reader to engage with like a fictional movie, not intended to convince you of fact but instead simply to convey an experience. Here goes.
 
-In this worldview, we notice that everything that makes any sense to us happens to be a collective. A cell body, a human body, an antibody, Topos Institute, an idea, an airport, a sentence, a mathematical definition, a grain of sand, ... each of these is a collective of interacting parts that may themselves be collectives. Stay with an example or two---e.g.\ any of the above---for now, not the counterexamples or counterpoints yet, because there are plenty of examples and they point more toward the subject-matter of this paper.
+In this worldview, we notice that everything that makes any sense to us happens to be a collective. A cell body, a human body, an antibody, Topos Institute, an idea, an airport, a sentence, a mathematical definition, a grain of sand, ... each is a collective of interacting parts that may themselves be collectives. Stay with an example or two---e.g.\ any of the above---for now, not the counterexamples or counterpoints yet, because there are plenty of examples (collectives) and they point more toward the subject-matter of this paper.
 
-It's quite often the case that these collectives, like the ship of theseus, are not permanent organizations that are fixed for all time; they are adapting to forces from within and without the system. Even a grain of sand can break or melt; even a mathematical definition can be refactored. So then what's outside the system, generating these forces that influence it? We imagine that what's outside is in fact more of the same kind of stuff as what's inside, just not as cohesive perhaps. Let's go full-on woo: if the universe is a big system, then maybe the sort of thing that happens in our head is---in some way---just like what happens outside of it. Maybe the motives that organize Brandon and David into a collaborative thinking and paper-writing unit are, in the proper accounting system, of the same nature as the motives that organize each one of them into a body. 
+It's quite often the case that these collectives, like the ship of theseus, are not permanent organizations that are fixed for all time; they are adapting to forces from within and without the system. Even a grain of sand can break or melt; even a mathematical definition can be refactored. So then what's outside the system, generating these forces that influence it? We imagine that what's outside is in fact more of the same kind of stuff as what's inside, just not as cohesive perhaps. Let's go full-on woo: if the universe is a big system, then maybe the sort of thing that happens in our head is---in some way---just like what happens outside of it. Maybe the motives that organize Brandon and David into a collaborative thinking and paper-writing unit are, in the some reasonable account, of the same nature as the motives that organize each one of them into a body. 
 
-But is this right? How could you check such a claim? One would need to give a proper account, and since we as authors can't give such an account, we don't make this claim. Instead, what we present here is an accounting system in which the woo-person, (or would it instead be the reductive materialist?) who thought that what went on inside the head was somehow the same as what went on outside, could endeavor to provide a plausible account of their thinking.
+But is this right? How could you check such a claim? One would need to give a reasonable account of it, and since we as authors can't currently give such an account, we don't make this claim. Instead, what we present here is an \emph{accounting system} in which the woo-person, (or would it instead be the reductive materialist?) who thought that what went on inside the head was somehow the same as what went on outside, could endeavor to provide such an account of their thinking.
 
 \section{Dynamic categorical structures}
 
-Our main definition in this paper is what we call an \emph{dynamic categorical structure}. We might poetically say that an \emph{dynamic} category is one where the morphisms change in response to what flows in to and out of the objects it connects. To define it, we first refactor the definition of $\org$ from \cite{spivak2021learners}. Once defined, we give a couple examples of this structure: a \emph{prediction market} operad and a \emph{deep learning} monoidal category. In the prediction market, a population $Y$ predicts a distribution based on the predictions of its member populations $X_i$ weighted by their reputations, and the reputations change dynamically based on the returned outcome. A similar story holds with deep learning. Each has the flavor of a self-similar \emph{bureaucracy}.
+Our main definition in this paper is what we call an \emph{dynamic categorical structure}. We might poetically say that a \emph{dynamic} category is one where the morphisms between two objects change in response to what flows between those objects. To define it, we first refactor the definition of $\org$ from \cite{spivak2021learners} from an operad to a monoidal double category; we then define a dynamic *thing* to be a *thing* enriched in $\org$. Once these are defined, we give a couple examples: a \emph{prediction market} operad and a \emph{deep learning} monoidal category. In the prediction market, a population $Y$ predicts a distribution based on the predictions of its member populations $X_i$ weighted by their reputations, and the reputations change dynamically based on the returned outcome. A similar story holds with deep learning.
 
 We thank you the reader for having postponed your counterpoints and counterexamples, and we ask you to reengage both skepticism and interest as you see fit. We invite you to ask openly: what's not a collective of interacting parts that are themselves collectives? Nature, love, or experience perhaps? It all depends on how you look. What we present here is an accounting system for making sense of a certain sort of experiential pattern; the matter itself is whatever it is.
 
@@ -568,13 +570,13 @@ Before we begin, recall that a polynomial is a functor $p\colon \smset\to\smset$
 \begin{equation}\label{eqn.poly_notation}
 p = \sum_{I \in p(1)} \yon^{p[I]} \qqand q = \sum_{J \in q(1)} \yon^{q[J]}
 \end{equation}
-and refer to each $I\in p(1)$ as a \emph{$p$-position} and to each $i\in p[I]$ as a \emph{$p$-direction at $I$}. A map $\varphi\colon p\to q$ of polynomials is a natural transformation. Combinatorially, $\varphi$ provides: for each $I\in p(1)$ a choice of $\varphi(I)\in q(1)$ and for each $j\in q[\varphi(I)]$ a choice of $\varphi(I,j)\in p[I]$.%
-\footnote{In \cite{spivak2021learners}, what we denote $\varphi(I)$ is denoted $\varphi_1(I)$ and what we denote $\varphi(I,j)$ is denoted $\varphi^\sharp_I(j)$.}
+and refer to each $I\in p(1)$ as a \emph{$p$-position} and to each $i\in p[I]$ as a \emph{$p$-direction at $I$}. A map $\phi\colon p\to q$ of polynomials is a natural transformation. Combinatorially, $\phi$ provides: for each $I\in p(1)$ a choice of $\phi(I)\in q(1)$ and for each $j\in q[\phi(I)]$ a choice of $\phi(I,j)\in p[I]$.%
+\footnote{In \cite{spivak2021learners}, what we denote $\phi(I)$ is denoted $\phi_1(I)$ and what we denote $\phi(I,j)$ is denoted $\phi^\sharp_I(j)$.}
 
 %--- Section ---%
 \section{$[p,q]$-coalgebras}
 
-We first recall the definitions of the internal-hom polynomials $[p,q]$ and concretely describe the category of $[p,q]$-coalgebras, which forms the category of morphisms from $p$ to $q$ in the underlying bicategory of $\org$.
+We first recall the definitions of the internal-hom polynomials $[p,q]$ and concretely describe the category of $[p,q]$-coalgebras, which will form the category of morphisms from $p$ to $q$ in the underlying bicategory of $\org$.
 
 %\dnote{Introduce the notation $p\slashar q$ in this section?}
 
@@ -582,12 +584,12 @@ We first recall the definitions of the internal-hom polynomials $[p,q]$ and conc
 For polynomials $p,q\in\poly$  as in \eqref{eqn.poly_notation},
 their \emph{internal hom} with respect to the tensor product $\otimes$ is the polynomial
 \begin{equation}\label{eqn.internal_hom}
-[p,q]\coloneqq \sum_{\phi\colon p \to q} \yon^{\sum\limits_{\;I \in p(1)} q[\phi_1(I)]}
+[p,q]\coloneqq \sum_{\phi\colon p \to q} \yon^{\sum\limits_{\;I \in p(1)} q[\phi(I)]}
 \end{equation}
-It can also be written $[p,q]=\prod_{I\in p(1)}\sum_{J\in q(1)}\prod_{j\in q[J]}\sum_{i\in p[I]}1$.
+It can also be written $[p,q]=\prod_{I\in p(1)}\sum_{J\in q(1)}\prod_{j\in q[J]}\sum_{i\in p[I]}1$. 
 \end{definition}
 
-For intuition, a $[p,q]$-coalgebra (denoted $p \slashar q$) is a machine that outputs maps $p\to q$ and that inputs two things: what flows out of $p$ and what flows in to $q$. More precisely, using \cite[Definition 2.10]{spivak2021learners} applied to $[p,q]$, we define $[p,q]$-coalgebras as follows. 
+For intuition, a $[p,q]$-coalgebra (denoted $p \slashar q$) is a machine that outputs maps $\phi\colon p\to q$ and that inputs what \emph{flows} between them: pairs $(I,j)$ where $I\in p(1)$ is a position of $p$, which ``flows'' to $q$ as $J\coloneqq\phi(I)\in q(1)$, and $j\in q[J]$ is a direction of $q$, which ``flows'' backward to $p$ as $\phi(I,j)\in p[I]$. More precisely, using \cite[Definition 2.10]{spivak2021learners}, we define $[p,q]$-coalgebras as follows. 
 
 \begin{definition}
 The category $[p,q]\coalg$ has as objects pairs $\S = (S,\beta)$ where $S$ is a set and $\beta\colon S \to [p,q] \tri S$ is a function, and where a morphism from $\S$ to $\S'$ is a function $f\colon S \to S'$ making \eqref{eqn.coalg_map} commute. 
@@ -607,7 +609,7 @@ and, for each state $s \in S$, an \emph{update} function
 \[\upd^\beta_s\colon \sum_{I \in p(1)} q\left[\act^\beta_s(I)\right] \to S.\]
 For a state $s\in S$ and position $I\in p(1)$ we often write $\act^\beta_s\colon p\to q$ and $\upd^\beta_s(I)\colon q[\act^\beta_s(I)]\to S.$ We may suppress the $\beta$ when it is clear from context, writing $\act_s$ and $\upd_s$. A coalgebra map $\S\to\S'$ is a function $S\to S'$ between the state sets that preserves actions and updates. 
 
-When, for each $s \in S$, the update $\upd_s$ is the constant function sending everything to $s$, we say the coalgebra $\S$ is \emph{static}, as it remains constantly at $s$ regardless of the output $I \in p(1)$ and input $j\in q[\act_s(I)]$.
+When, for each $s \in S$, the update $\upd_s$ is the constant function sending everything to $s$, we say the coalgebra $\S$ is \emph{static}, as it remains constantly at $s$ regardless of the inputs $I \in p(1)$ and $j\in q[\act_s(I)]$ flowing between $p$ and $q$.
 
 \begin{example}\label{ex.single_state}
 A special case of a static $[p,q]$-coalgebra is given by a map $\phi \in \poly(p,q)$. For each such $\phi$, there is a coalgebra $\{\phi\}$ with a singleton state set and with $\act^\beta$ sending the point to $\phi$; we call it a \emph{singleton} coalgebra. 
@@ -630,13 +632,13 @@ The categories $[p,q]\coalg$ form the hom-categories in a bicategory $\org$, whi
 
 We use $\org$ to denote both the bicategory from \cref{prop.def_org} and the categorical operad in \cite[Definition 2.19]{spivak2021learners}, as both are derived from the monoidal double category $\org$ described in the following sections. For now, we merely present the identities and composites in this bicategory. Identities are easy: the identity object in $\org(p,p)=[p,p]\coalg$ is given by the one-state coalgebra $\idcoalg{p}$. 
 
-The composition functor $\org(p,q)\times\org(q,r)\too\org(p,r)$ is defined as follows:
+The composition functor $\org(p,q)\times\org(q,r)\too\org(p,r)$ is defined as the composite:
 \[[p,q]\coalg \times [q,r]\coalg \to \left([p,q] \otimes [q,r]\right)\coalg \too [p,r]\coalg,\]
 where the first functor is the lax monoidality of $(-)\coalg\colon\poly \to \smcat$, as described in \cite[Proposition 2.13]{spivak2021learners}, and the second is given by applying $(-)\coalg$ to the usual ``composition'' map of internal-homs $[p,q] \otimes [q,r] \to [p,r]$ in $\poly$. Using \eqref{eqn.internal_hom} we see that on positions, this map takes the form\vspace{-.1cm}
 \[\left([p,q] \otimes [q,r]\right)(1) = \poly(p,q) \times \poly(q,r) \To{\then} \poly(p,r) = [p,r](1)\]
 and on directions it is given for $\phi\colon p \to q$ and $\psi\colon q \to r$ by the function
-\[\bigg(\sum_{I \in p(1)} q[\phi_1(I)]\bigg) \times \bigg(\sum_{J \in q(1)} r[\psi_1(J)]\bigg) \from \sum_{I \in p(1)} r[\psi_1(\phi_1(I))]\]
-which sends $(I,j)$ to $(I,\psi_{\phi_1(I)}(j),\phi_1(I),j)$. 
+\[\bigg(\sum_{I \in p(1)} q[\phi(I)]\bigg) \times \bigg(\sum_{J \in q(1)} r[\psi(J)]\bigg) \from \sum_{I \in p(1)} r[\psi(\phi(I))]\]
+which sends $(I,k)$ to $\big((I,\psi(\phi(I),k)),(\phi(I),j)\big)$. 
 
 Concretely, the composite of a $[p,q]$-coalgebra $\S$ and a $[q,r]$-coalgebra $\S'$ is a $[p,r]$-coalgebra which we denote $\S\then\S'$  and define as follows:
 \begin{itemize}
@@ -650,7 +652,7 @@ Concretely, the composite of a $[p,q]$-coalgebra $\S$ and a $[q,r]$-coalgebra $\
 \end{align*}%check notation for map on positions
 \end{itemize}
 
-Horizontal composition of coalgebra-morphisms---i.e.\ of the 2-cells in the bicategory---is given simply by the cartesian product. The coherence isomorphisms and axioms for a bicategory then follow from the essential uniqueness of finite products of sets, and the unitality and associativity of composition for polynomial maps.%this may be a bit presumptuous, but I do think it's true
+Horizontal composition of coalgebra-morphisms---i.e.\ of the 2-cells in the bicategory $\org$---is given simply by the cartesian product. The coherence isomorphisms and axioms for a bicategory then follow from the essential uniqueness of finite products of sets, and the unitality and associativity of composition for polynomial maps.%this may be a bit presumptuous, but I do think it's true
 
 
 
@@ -675,9 +677,9 @@ and update described similarly componentwise. The tensor product of coalgebra mo
 \section{$\org$ as a double category}
 
 
-Defining $\org$ as a monoidal bicategory is sufficient for most of the constructions of $\org$-enriched structures in the next chapter. However, using a double category structure casting singleton coalgebras $\S_\phi\in[p,q]\coalg$ (see \cref{ex.single_state}) as morphisms $\phi\colon p\to q$ in $\poly$ facilitates our eventual definition of maps between dynamic structures. 
+Defining $\org$ as a monoidal bicategory is sufficient for most of the constructions of $\org$-enriched structures in \cref{chap.org_enrich}. However, using a double category structure casting singleton coalgebras $\S_\phi\in[p,q]\coalg$ (see \cref{ex.single_state}) as morphisms $\phi\colon p\to q$ in $\poly$ facilitates our eventual definition of maps between dynamic structures. 
 
-Specifically, the definition of $\org$ as a monoidal bicategory extends to a monoidal (pseudo-)double category with coalgebras as horizontal morphisms, maps in $\poly$ as vertical morphisms, and squares as in \eqref{eqn.square} given by maps of coalgebras from $\{\psi\}\then\S$ to $\S'\then\{\phi\}$. 
+Specifically, the definition of $\org$ as a monoidal bicategory extends to a monoidal (pseudo-)double category with coalgebras as horizontal morphisms, maps in $\poly$ as vertical morphisms, and squares as in \eqref{eqn.square} given by maps of coalgebras from $\S\then\{\psi\}$ to $\{\phi\}\then\S'$. 
 \begin{equation}\label{eqn.square}
 \begin{tikzcd}
 p \rar[slash, ""{name=S, below}]{\S} \dar[swap]{\phi} & q \dar{\psi} \\
@@ -685,7 +687,7 @@ p' \rar[slash, ""{name=T, above},swap]{\S'} & q'
 \arrow[Rightarrow,shorten=5,from=S,to=T]
 \end{tikzcd}
 \end{equation}
-The symbol $\slashar$ is intended to indicate that the map is ``dynamic'', changing in response to what flows out of $p$ and into $q$.
+The symbol $\slashar$ is intended to indicate that the map is ``dynamic'', changing in response to what flows between $p$ and $q$.
 
 As $\{\phi\}$ and $\{\psi\}$ have only one state, and composition of coalgebras acts as the cartesian product on states, such a square amounts to a function $S \to S'$ making \eqref{eqn.coalg_square} commute:
 \begin{equation}\label{eqn.coalg_square}
@@ -701,10 +703,10 @@ We now proceed to discuss various categorical structures enriched in $\org$, whi
 
 
 %------- Chapter -------%
-\chapter{Dynamic structures via $\org$-Enrichment}
+\chapter{Dynamic structures via $\org$-Enrichment}\label{chap.org_enrich}
 
 
-A monoidal double category is a viable setting for enriching various categorical structures. Intuitively, enrichment in $\org$ replaces the usual set of arrows between two objects in a categorical structure with a $[p,q]$-coalgebra for some choice of polynomials $p,q$. Therefore not only can each arrow be realized as a map of polynomials $p \to q$, but this map carries dynamics that encode how a position in $p$ and a direction in $q$ determine a transition from one arrow to another. The morphism ``reacts'' to what's coming out of $p$ and into $q$.
+A monoidal double category is a viable setting for enriching various categorical structures. Intuitively, enrichment in $\org$ replaces the usual set of arrows between two objects in a categorical structure with a $[p,q]$-coalgebra for some choice of polynomials $p,q$. Therefore not only can each arrow be realized as a map of polynomials $p \to q$, but this map carries dynamics that encode how a position in $p$ and a direction in $q$ determine a transition from one arrow to another. The morphism ``reacts'' to what's flowing between $p$ and $q$.
 
 Different situations call for different categorical structures to model their dynamics: some systems primarily involve many-to-one arrangements such as the wiring diagrams in \cref{fig.nesting}, others such as gradient descent fit naturally into a many-to-many arrow framework, and we expect in future work to consider evolving systems in which different components operate at differing time scales. Rather than choose one such categorical form to favor, and then go through the tedious exercise of forcing all of the others to conform to it, we describe how to add dynamics to the definitions of many different structures.
 
@@ -719,9 +721,8 @@ We give specific instances of $\org$-enrichment in the following sections: in \c
 \section{Dynamic categories}\label{sec.org_cats}
 
 
-Enrichment of categories only makes use of the double category structure of $\org$, as any double category forms an $f\!c$-multicategory (also known as a virtual double category) in the sense of \cite{leinster1999generalized}. %cite specifically
-The following definition of enrichment in $\org$ is an unwinded version of \cite{leinster1999generalized}, %cite specifically
-which defines categories enriched in any $f\!c$-multicategory.
+Enrichment of categories only uses $\org$'s double category structure---not its monoidal structure---as any double category forms an $f\!c$-multicategory (also known as a virtual double category) in the sense of \cite[Section 2.1]{leinster1999generalized}. 
+The following definition of enrichment in $\org$ is an unwinded version the more general definition in \cite[Section 2.2]{leinster1999generalized}.
 
 \begin{definition}\label{def.org_enriched_cat}
 An $\org$-enriched (henceforth \emph{dynamic}) category $A$ consists of
@@ -746,8 +747,8 @@ p_a \ar[slash, ""{name=T, above}]{rr}[swap]{\S_{a,c}} & & p_c
 such that these squares satisfy unit and associativity equations.%more on these?
 \end{definition}
 
-The sets $S_{a,b}$ form an underlying ordinary category of $A$. 
-In fact, a dynamic category could be equivalently defined as an ordinary category such that each object $a$ is assigned a polynomial $p_a$ and each set of arrows $\Hom(a,b)$ is the set of states for an assigned $[p_a,p_b]$-coalgebra $\S_{a,b}$, with composition and identities respecting the coalgebra structure. This means that the arrow $\id_a$ in $\Hom(a,a)$ acts as the identity map on $p_a$ and is unchanged by updates, while for $f$ in $\Hom(a,b)$ and $g$ in $\Hom(b,c)$ the composite $g \circ f$ acts as the composite $p_a \to p_b \to p_c$ of the actions of $f$ and $g$, and it updates as the composite of the updates of $f,g$.
+The sets $S_{a,b}$ form an ordinary category which we say \emph{underlies} $A$. 
+In fact, a dynamic category could be equivalently defined as an ordinary category such that each object $a$ is assigned a polynomial $p_a$ and each set of arrows $\Hom(a,b)$ is the set of states for an assigned $[p_a,p_b]$-coalgebra $\S_{a,b}$, with composition and identities respecting the coalgebra structure. This means that the arrow $\id_a$ in $\Hom(a,a)$ acts as the identity map on $p_a$ and is unchanged by updates, while for $f$ in $\Hom(a,b)$ and $g$ in $\Hom(b,c)$ the composite $f\then g$ acts as the composite $p_a \to p_b \to p_c$ of the actions of $f$ and $g$, and the update of their composite equals the composite of their updates.
 
 
 
@@ -755,9 +756,9 @@ In fact, a dynamic category could be equivalently defined as an ordinary categor
 \section{Dynamic multicategories}\label{sec.org_multicats}
 
 
-A monoidal double category also gives rise to an $f\!m$-multicategory in the sense of \cite{leinster1999generalized}, %cite specifically
+A monoidal double category also gives rise to an $f\!m$-multicategory in the sense of \cite[Section 3.1]{leinster1999generalized}, 
 %where the ``2-cells'' are horizontal arrows of the form $a_1 \otimes \cdots \otimes a_n \slasharrow b$ and the ``3-cells'' are squares from the horizontal composite of a tree-shaped arrangement of these arrows to a horizontal arrow whose domain is a tensor product with arity the number of leaves in the tree.%reword
-so it makes sense to talk about multicategories enriched in $\org$ as in \cite{leinster1999generalized}. %cite specifically
+so we can talk about multicategories enriched in $\org$ as in \cite[Section 3.2]{leinster1999generalized}.
 
 \begin{definition}
 An $\org$-enriched (henceforth \emph{dynamic}) multicategory $A$ consists of
@@ -784,7 +785,7 @@ An $\org$-enriched (henceforth \emph{dynamic}) multicategory $A$ consists of
 such that these squares satisfy unit and associativity equations.%more on these?
 \end{definition}
 
-The sets $S_{a,b}$ form an ordinary (set-enriched) multicategory, which underlies $A$ and has a description similar to the underlying category described below \cref{def.org_enriched_cat}. 
+The sets $S_{a,b}$ form an ordinary (set-enriched) multicategory, which underlies $A$ and has a description similar to the underlying category we described below \cref{def.org_enriched_cat}. 
 
 We will mostly be interested in what we call a \emph{dynamic operad}, the case when a dynamic multicategory $A$ has only one object, assigned the polynomial ``interface'' $p$. It consists simply of a $[p^{\otimes n},p]$-coalgebra $\S_n$ for each $n \in \nn$, equipped with coalgebra maps
 \begin{equation}\label{eqn.org_operad}
@@ -799,9 +800,9 @@ A \emph{collective} (as defined in \cite{niu2021collectives}) is a $\otimes$-mon
 \end{example}
 
 \begin{example}
-In \cref{ex.collective}, the coalgebras $\S_n$ are determined by a single map of polynomials, with trivial updates as there is only one state. This can be generalized to an intermediate notion between collectives and dynamic multicategories, where the coalgebras are still static but may have multiple states.
+In \cref{ex.collective}, the coalgebras $\S_n$ are determined by a single map of polynomials, with trivial updates since the state sets are singletons. This can be generalized to an intermediate notion between collectives and dynamic multicategories, where the coalgebras are still static but may have multiple states.
 
-Given a multicategory $M$ and a multifunctor $F\colon M \to\poly$, where $\poly$ here denotes the multicategory underlying $(\poly,\yon,\otimes)$, there is a dynamic multicategory $A_F$ with 
+Given any multicategory $M$ and multifunctor $F\colon M \to\poly$, where $\poly$ here denotes the multicategory underlying $(\poly,\yon,\otimes)$, there is a dynamic multicategory $A_F$ with 
 \begin{itemize}
 	\item object set $\ob(M)$;
 	\item for each $a \in \ob(M)$, the polynomial interface $p_a \coloneqq F(a)$;
@@ -865,7 +866,7 @@ satisfying unit, associativity, and interchange equations.
 
 Similar to \cref{sec.org_cats,sec.org_multicats}, the sets $S_{a,b}$ form the arrows in an ordinary strict monoidal category underlying $A$.  
 
-For the rest of this paper, we will only be interested in the restricted case of a dynamic monoidal category with object monoid $(\nn,0,+)$, which we call a dynamic PRO.
+For the rest of this paper, we will only be interested in the restricted case of a dynamic monoidal category with object monoid $(\nn,0,+)$, which we call a dynamic PRO.%
 \footnote{A PRO is the non-symmetric version of a PROP. While all of our examples are in fact symmetric, for simplicity we do not describe their symmetry operations.} 
 Concretely, this consists of a polynomial interface $p$ (so that in the notation above $p_n := p^{\otimes n}$ for $n \in \nn$) along with a $[p^{\otimes m},p^{\otimes n}]$-coalgebra $S_{m,n}$ for each $m,n \in \nn$, equipped with the maps of coalgebras as in \eqref{eqn.adaptive_tor}. The identitors, compositors, productors, and their equations amount to the ability to compose any string diagram of the usual sort for monoidal categories, with the $m$-to-$n$ boxes given by states in $S_{m,n}$, into a new state with the appropriate sources and targets. We denote a dynamic PRO as $(p,\S)$, where $\S$ now encodes all of the coalgebras $\S_{m,n}$ that constitute the $\org$-enrichment and the structure maps are implicit.
 
@@ -917,16 +918,14 @@ Fix a finite set $X$, elements of which we call \emph{outcomes} and intuit to be
 \[
 	\bet_X\coloneqq\left\{\gamma\colon X\to[0,1]\;\;\middle|\;\;1=\sum_x\gamma(x), \;\; \forall x\colon \gamma(x) \neq 0 \right\}
 \]
-The monoid $((0,1],1,*)$ of nonzero subunital reals acts on $\bet_X$ by scalar multiplication, i.e. for any $0 < m\leq 1$ and $\gamma\in\bet_X$, we can define
+The monoid $((0,1],1,*)$ of nonzero subunital reals acts on $\bet_X$ by scalar multiplication, i.e. for any $0 < m\leq 1$ and $\gamma\in\bet_X$, we can define $m\cdot\gamma\in\bet_X$ as follows:
 \[
 	m\cdot \gamma\coloneqq \big(x\mapsto m\gamma (x)\big)
 \]
-and we have $m\cdot\gamma\in\bet_X$. 
-
 Let $\Delta^+$ denote the operad of finite nowhere-zero probability distributions, where $\Delta^+_N$ is defined as above with the natural number $N$ regarded as the $N$-element set. %\coloneqq\left\{\mu\colon N\to[0,1]\;\middle|\;1=\sum_{i\in N}\mu_i\right\}
 Then $\bet_X$ is an algebra for it: for any $\mu\in\Delta_N$ and $\gamma \in (\bet_X)^N$, we define 
 \[
-	\mu\cdot\gamma\coloneqq\left(x\mapsto\sum_{i\in N}(\mu_i\cdot\gamma_i)(x)\right)
+	\mu\cdot\gamma\coloneqq\bigg(x\mapsto\sum_{i\in N}(\mu_i\cdot\gamma_i)(x)\bigg)
 \]
 and it is easy to check that $(\mu\cdot\gamma)\in\bet_X$, i.e.\ its components are in bounds $(\mu\cdot\gamma)(x)\in (0,1]$ and $\sum_x(\mu\cdot\gamma)(x)=1$.
 
@@ -994,7 +993,6 @@ Thus far, we have provided the data of the polynomial $t$ and the $[t^{\otimes m
 \end{itemize}
 
 These structure maps ensure that whenever two gradient descenders are combined in series or parallel, the resulting composite descender retains the parameter spaces of both. Likewise when the input or output of a descender is wired past some other descender in a network, it does not contribute any new parameters and merely preserves its input/output until plugged into a descender. The following is proven in \cref{proofs}.
-
 
 \begin{theorem}\label{gradientadaptive}
 The maps defined above are maps of coalgebras and satisfy the coherence equations of a dynamic PRO described in \cref{PROequations}.%update
