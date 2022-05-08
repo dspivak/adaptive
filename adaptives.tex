@@ -582,7 +582,7 @@ their \emph{internal hom} with respect to the tensor product $\otimes$ is the po
 \begin{equation}\label{eqn.internal_hom}
 [p,q]\coloneqq \sum_{\phi\colon p \to q} \yon^{\sum\limits_{\;I \in p(1)} q[\phi(I)]}
 \end{equation}
-It can also be written $[p,q]=\prod_{I\in p(1)}\sum_{J\in q(1)}\prod_{j\in q[J]}\sum_{i\in p[I]}1$. 
+It can also be written $[p,q]=\prod_{I\in p(1)}\sum_{J\in q(1)}\prod_{j\in q[J]}\sum_{i\in p[I]}\yon$. 
 \end{definition}
 
 For intuition, a $[p,q]$-coalgebra (denoted $p \slashar q$) is a machine that outputs maps $\phi\colon p\to q$ and that inputs what \emph{flows} between them: pairs $(I,j)$ where $I\in p(1)$ is a position of $p$, which ``flows'' to $q$ as $J\coloneqq\phi(I)\in q(1)$, and $j\in q[J]$ is a direction of $q$, which ``flows'' backward to $p$ as $\phi(I,j)\in p[I]$. More precisely, using \cite[Definition 2.10]{spivak2021learners}, we define $[p,q]$-coalgebras as follows. 
