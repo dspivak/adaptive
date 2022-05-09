@@ -19,7 +19,7 @@
 
 \refsection{0}
   \datalist[entry]{anyt/global//global/global}
-    \entry{leinster1999generalized}{misc}{}
+    \entry{leinster1999generalized}{article}{}
       \name{author}{1}{}{%
         {{hash=82417a4f76230e108804a8ce467246af}{%
            family={Leinster},
@@ -47,7 +47,7 @@
       \verb 9901139
       \endverb
     \endentry
-    \entry{niu2021collectives}{misc}{}
+    \entry{niu2021collectives}{article}{}
       \name{author}{2}{}{%
         {{hash=11632aeb00018612b165117f994253a4}{%
            family={Niu},
@@ -87,7 +87,7 @@
       \endverb
       \keyw{Category Theory (math.CT),FOS: Mathematics,FOS: Mathematics,18M35,18B20}
     \endentry
-    \entry{shapiro2022enrichment}{misc}{}
+    \entry{shapiro2022enrichment}{article}{}
       \name{author}{1}{}{%
         {{hash=0a61cf0f620b1cecda93958b1f9dfdc5}{%
            family={Shapiro},
