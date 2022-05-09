@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.4.29)  9 MAY 2022 10:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.4.29)  9 MAY 2022 10:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2010,8 +2010,8 @@ LaTeX Font Info:    Undo math alphabet allocation in version normal on input li
 ne 584.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input l
 ine 584.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input l
-ine 585.
+LaTeX Font Info:    Undo math alphabet allocation in version normal on input li
+ne 585.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input l
 ine 586.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input l
@@ -8676,8 +8676,6 @@ LaTeX Font Info:    Font shape `T1/zplTLF/m/sc' will be
 (Font)              scaled to size 10.95pt on input line 1345.
 LaTeX Font Info:    No math alphabet change to frozen version normal on input l
 ine 1345.
-LaTeX Font Info:    No math alphabet change to frozen version normal on input l
-ine 1345.
  [19]
 (adaptives.aux)
 
@@ -8719,9 +8717,9 @@ X 2.9/fonts/type1/public/txfonts/txsyb.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
 ype1/public/txfonts/txsyc.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/n
 ewpx/zplb.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/newpx/zplr.pfb><C
 :/Program Files/MiKTeX 2.9/fonts/type1/public/newpx/zplri.pfb>
-Output written on adaptives.pdf (19 pages, 337131 bytes).
+Output written on adaptives.pdf (19 pages, 335780 bytes).
 PDF statistics:
- 440 PDF objects out of 1000 (max. 8388607)
+ 439 PDF objects out of 1000 (max. 8388607)
  90 named destinations out of 1000 (max. 500000)
  261 words of extra memory for PDF output out of 10000 (max. 10000000)
 
