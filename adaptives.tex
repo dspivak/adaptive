@@ -529,7 +529,7 @@ A nesting of interacting open dynamical systems: the $X_{i,j}$ are wired togethe
 }\label{fig.nesting}
 \end{figure}
 
-But if we think about some things that interact to do work in the real world, we often notice that often the organization itself---the connections themselves---change. Unlike what we see in \cref{fig.nesting}, the way we connect this hour may be different from the way we connect next hour; in particular, our interfaces go in and out of contact. At the end of this paragraph, look away from the page for a few seconds, think about some things you know that interact together or influence each other, and ask yourself three questions about them: Do these things ever stop interacting? If so, do they ever start interacting again? And how is it decided? 
+But if we think about some things that interact to do work in the real world, we notice that often the organization itself---the connections themselves---change. Unlike what we see in \cref{fig.nesting}, the way we connect this hour may be different from the way we connect next hour; in particular, our interfaces go in and out of contact. At the end of this paragraph, look away from the page for a few seconds, think about some things you know that interact together or influence each other, and ask yourself three questions about them: Do these things ever stop interacting? If so, do they ever start interacting again? And how is it decided? 
 
 \section{Accounting for organizational change}
 
@@ -541,7 +541,7 @@ Leaving the mathematics aside until \cref{chap.org}---at which point we will hav
 
 In this worldview, we notice that everything that makes any sense to us happens to be a collective. A cell body, a human body, an antibody, Topos Institute, an idea, an airport, a sentence, a mathematical definition, a grain of sand, ... each is a collective of interacting parts that may themselves be collectives. Stay with an example or two---e.g.\ any of the above---for now, not the counterexamples or counterpoints yet, because there are plenty of examples (collectives) and they point more toward the subject-matter of this paper.
 
-It's quite often the case that these collectives, like the ship of theseus, are not permanent organizations that are fixed for all time; they are adapting to forces from within and without the system. Even a grain of sand can break or melt; even a mathematical definition can be refactored. So then what's outside the system, generating these forces that influence it? We imagine that what's outside is in fact more of the same kind of stuff as what's inside, just not as cohesive perhaps. Let's go full-on woo: if the universe is a big system, then maybe the sort of thing that happens in our head is---in some way---just like what happens outside of it. Maybe the motives that organize Brandon and David into a collaborative thinking and paper-writing unit are, in the some reasonable account, of the same nature as the motives that organize each one of them into a body. 
+It's quite often the case that these collectives, like the ship of Theseus, are not permanent organizations that are fixed for all time; they are adapting to forces from within and without the system. Even a grain of sand can break or melt; even a mathematical definition can be refactored. So then what's outside the system, generating these forces that influence it? We imagine that what's outside is in fact more of the same kind of stuff as what's inside, just not as cohesive perhaps. Let's go full-on woo: if the universe is a big system, then maybe the sort of thing that happens in our head is---in some way---just like what happens outside of it. Maybe the motives that organize Brandon and David into a collaborative thinking and paper-writing unit are, in the some reasonable account, of the same nature as the motives that organize each one of them into a body. 
 
 But is this right? How could you check such a claim? One would need to give a reasonable account of it, and since we as authors can't currently give such an account, we don't make this claim. Instead, what we present here is an \emph{accounting system} in which the woo-person, (or would it instead be the reductive materialist?) who thought that what went on inside the head was somehow the same as what went on outside, could endeavor to provide such an account of their thinking.
 
@@ -717,7 +717,7 @@ We give specific instances of $\org$-enrichment in the following sections: in \c
 
 
 Enrichment of categories only uses $\org$'s double category structure---not its monoidal structure---as any double category forms an $f\!c$-multicategory (also known as a virtual double category) in the sense of \cite[Section 2.1]{leinster1999generalized}. 
-The following definition of enrichment in $\org$ is an unwinded version the more general definition in \cite[Section 2.2]{leinster1999generalized}.
+The following definition of enrichment in $\org$ is an unwound version of the more general definition in \cite[Section 2.2]{leinster1999generalized}.
 
 \begin{definition}\label{def.org_enriched_cat}
 An $\org$-enriched (henceforth \emph{dynamic}) category $A$ consists of
@@ -739,7 +739,7 @@ p_a \ar[slash, ""{name=T, above}]{rr}[swap]{\S_{a,c}} & & p_c
 \end{tikzcd}
 \end{equation}
 \end{itemize}
-such that these squares satisfy unit and associativity equations.
+such that these squares satisfy unit and associativity equations (\cref{CatEquations}).
 \end{definition}
 
 The sets $S_{a,b}$ form an ordinary category which we say \emph{underlies} $A$. 
@@ -777,7 +777,7 @@ An $\org$-enriched (henceforth \emph{dynamic}) multicategory $A$ consists of
   \arrow[Rightarrow,shorten=6,from=U-|T,to=T]
   \end{tikzcd}
 \end{equation}
-such that these squares satisfy unit and associativity equations (\cref{operadequations}).
+satisfying unit and associativity equations (see \cref{operadequations} for the one-object case).
 \end{definition}
 
 The sets $S_{a,b}$ form an ordinary (set-enriched) multicategory, which underlies $A$ and has a description similar to the underlying category we described below \cref{def.org_enriched_cat}. 
@@ -823,7 +823,7 @@ Consider a dynamic operad with interface $\yon\in\poly$. The internal hom polyno
 
 
 A monoidal double category is precisely a representable $f\!m\!c$-multicategory as in \cite[Section 2]{shapiro2022enrichment}, %cite specifically
-so we can also enrich strict monoidal categories in $\org$.\footnote{We use throughout the notion \emph{strong} enrichment in a monoidal double category from \cite[Section 3]{shapiro2022enrichment}.} These are similar to $\org$-enriched multicategories, but include many-to-many coalgebras rather than just many-to-one. 
+so we can also enrich strict monoidal categories in $\org$.\footnote{We use throughout the notion of \emph{strong} enrichment in a monoidal double category from \cite[Section 3]{shapiro2022enrichment}.} These are similar to $\org$-enriched multicategories, but include many-to-many coalgebras rather than just many-to-one. 
 
 \begin{definition}\label{enriched_monoidal}
 An $\org$-enriched (henceforth \emph{dynamic}) strict monoidal category $A$ consists of
@@ -856,7 +856,7 @@ p_{aa'} \rar[slash, ""{name=T, above},swap]{\S_{a*a',b*b'}} & p_{b*b'}
 \arrow[Rightarrow,shorten=5,from=S,to=T]
 \end{tikzcd}
 \end{equation}
-satisfying unit, associativity, and interchange equations.
+satisfying unit, associativity, and interchange equations (see \cref{PROequations} for the one-object case).
 \end{definition}
 
 Similar to \cref{sec.org_cats,sec.org_multicats}, the sets $S_{a,b}$ form the arrows in an ordinary strict monoidal category underlying $A$.  
@@ -914,7 +914,8 @@ Our main results are that dynamic structures describe phenomena we see instantia
 \section{The prediction market dynamic operad}\label{sec.kelley}
 
 
-Fix a finite set $X$, elements of which we call \emph{outcomes} and intuit to be ``all equally likely'', define the set $\bet_X$ of \emph{guesses on $X$} as\footnote{The assumption that every possible outcome is given some nonzero probability in each guess could be interpreted either as humility of the guess-makers or a strategic decision to avoid permanent loss of all trust. But the real reason for the choice is that it lets us avoid dividing by zero when updating.}
+Fix a finite set $X$, elements of which we call \emph{outcomes} and intuit to be ``all equally likely'', define the set $\bet_X$ of \emph{guesses on $X$} as\footnote{We assume that each guess assigns a nonzero probability to each possible outcome, which avoids the issues of dividing by zero when updating or permanent loss of a guess-maker's reputation. This should be interpreted as both humility and good strategy on the part of the guess-makers.}
+%{The assumption that every possible outcome is given some nonzero probability in each guess could be interpreted either as humility of the guess-makers or a strategic decision to avoid permanent loss of all trust. But the real reason for the choice is that it lets us avoid dividing by zero when updating.}
 \[
 	\bet_X\coloneqq\left\{\gamma\colon X\to(0,1]\;\;\middle|\;\;1=\sum_x\gamma(x) \right\}
 \]
@@ -980,7 +981,7 @@ The $[t^{\otimes m},t^{\otimes n}]$-coalgebra structure on $S_{m,n}$ is given by
 \end{itemize}
 \end{definition}
 
-The action of a state as a map $t^{\otimes m} \to t^{\otimes n}$ is given by applying the parameterized function $f$ with the parameter $p$, resulting in a function $\rr^m \to \rr^n$ as desired. The transpose $(Df)^\top$ of the derivative of $f$ sends a feedback vector $y \in T_{f(p,x)} \rr^n$, which can be interpreted as the difference in $\rr^n$ between the ``correct'' result for $x$ and the current approximation $f(p,x)$, to the corresponding ``correction'' to $(p,x)$ in $\rr^{M+m}$. The projection of this correction to $T_x \rr^m$ provides the action of the state on directions, which in a network will then be further propagated back to the gradient descender which had output $x$. The projection to $T_p \rr^M$ provides the direction and magnitude with which to update the parameters (scaled by the ``learning rate'' $\epsilon$).
+The action of a state as a map $t^{\otimes m} \to t^{\otimes n}$ is given by applying the parameterized function $f$ with the parameter $p$, resulting in a function $\rr^m \to \rr^n$ as desired. The transpose $(Df)^\top$ of the derivative of $f$ sends a feedback vector $y \in T_{f(p,x)} \rr^n$, which can be interpreted as the difference in $\rr^n$ between the ``correct'' result for $x$ and the current approximation $f(p,x)$, to the corresponding ``correction'' to $(p,x)$ in $\rr^{M+m}$. The projection of this correction to $T_x \rr^m$ provides the action of the state on directions, which in a network will then be further propagated back to the gradient descender which had output $x$. The projection to $T_p \rr^M$ provides the direction and magnitude in which to update the parameters (scaled by the ``learning rate'' $\epsilon$).
 
 Thus far, we have provided the data of the polynomial $t$ and the $[t^{\otimes m},t^{\otimes n}]$-coalgebras $\S_{m,n}$ needed to define a dynamic PRO. We now define the identitor, compositor, and productor morphisms of coalgebras presented by the squares in \cref{enriched_monoidal}.
 \begin{itemize}
@@ -1069,7 +1070,55 @@ The maps defined above are maps of coalgebras and satisfy the coherence equation
 \chapter{Coherence Equations}\label{coherences}
 
 
-We now present the equations that must be satisfied by the structure maps in dynamic operads and PROs. While we only provide these for the single-object variant of dynamic multicategories and monoidal categories, respectively, the equations in the general case are entirely analogous.
+We now present the equations that must be satisfied by the structure maps in dynamic categories, operads and PROs. While we only provide the equations for the single-object variant of dynamic multicategories and monoidal categories, respectively, the equations in the general case are entirely analogous.
+
+\begin{definition}\label{CatEquations}
+The equations between the identitors and compositors in a dynamic category are as follows:
+\begin{itemize}
+	\item The left and right unit laws
+\begin{equation}\label{eqn.cat_unit}
+\hspace{-1.4cm}  \begin{tikzcd}[column sep=large, ampersand replacement=\&]
+  p_a \dar[equals] \ar[r, slash, "\{\id_{p_a}\}", ""' name=R] \& p_a \rar[slash, ""' name=S]{\S_{a,b}} \dar[equals] \& p_b \dar[equals] \\
+  p_a \dar[equals] \ar[r,""' name=U,""{name=W,below},slash,swap,"\S_{a,a}"] \& p_a \ar[r,""' name=V,slash,swap,"\S_{a,b}"] \& p_b \dar[equals] \\
+  p_a \ar[slash, ""{name=T}]{rr}[swap]{\S_{a,b}} \& \& p
+  \arrow[Rightarrow,shorten=8,from=W-|T,to=T]
+  \arrow[Rightarrow,shorten=7,from=R,to=U]
+  \arrow[equals,shorten=8,from=S,to=V]
+  \end{tikzcd} \quad = \quad \begin{tikzcd}[column sep=large, ampersand replacement=\&]
+p_a \dar[equals] \rar[slash,""{name=S, below}]{\S_{a,b}} \& p_b \dar[equals] \\
+p_a \rar[slash, ""{name=T, above},swap]{\S_{a,b}} \& p_b
+\arrow[equals,shorten=7,from=S,to=T]
+  \end{tikzcd} \quad = \quad \begin{tikzcd}[column sep=large, ampersand replacement=\&]
+  p_a \dar[equals] \ar[r, slash, "\S_{a,b}", ""' name=R] \& p_b \rar[slash, ""' name=S]{\{\id_{p_b}\}} \dar[equals] \& p_b \dar[equals] \\
+  p_a \dar[equals] \ar[r,""' name=U,""{name=W,below},slash,swap,"\S_{a,b}"] \& p_b \ar[r,""' name=V,slash,swap,"\S_{b,b}"] \& p_b \dar[equals] \\
+  p_a \ar[slash, ""{name=T}]{rr}[swap]{\S_{a,b}} \& \& p
+  \arrow[Rightarrow,shorten=8,from=W-|T,to=T]
+  \arrow[equals,shorten=8,from=R,to=U]
+  \arrow[Rightarrow,shorten=7,from=S,to=V]
+  \end{tikzcd}
+\end{equation}
+	\item The associativity law
+\begin{equation}\label{eqn.cat_assoc}
+\hspace{-1.4cm} \begin{tikzcd}[column sep=large,ampersand replacement=\&]
+  p_a \dar[equals] \ar[r, slash, "\S_{a,b}", ""' name=U] \& p_b \ar[r, slash, "\S_{b,c}"] \& p_c \dar[equals] \rar[slash, ""' name=V]{\S_{c,d}} \& p_d \dar[equals] \\
+  p_a \dar[equals] \ar[slash, ""{name=W,above},""{name=S, below}]{rr}[description]{\S_{a,c}} \& \& p_c \rar[slash,swap,""' name=X]{\S_{c,d}} \& p_d \dar[equals] \\
+  p_a \ar[slash, ""{name=T}]{rrr}[swap]{\S_{a,d}} \& \& \& p_d
+  \arrow[Rightarrow,shorten=8,from=U-|W,to=W]
+  \arrow[equals,shorten=8,from=V,to=X]
+  \arrow[Rightarrow,shorten=8,from=S-|T,to=T]
+  \end{tikzcd} \quad = \quad \begin{tikzcd}[column sep=large,ampersand replacement=\&]
+  p_a \dar[equals] \ar[r, slash, "\S_{a,b}", ""' name=U] \& p_b \dar[equals] \ar[r, slash, "\S_{b,c}"] \& p_c \rar[slash, ""' name=V]{\S_{c,d}} \& p_d \dar[equals] \\
+  p_a \dar[equals] \ar[slash, ""{name=W,above}]{r}[description]{\S_{a,b}} \& p_b \ar[slash, ""{name=X,above},""{name=S, below}]{rr}[description]{\S_{b,d}} \& \& p_d \dar[equals] \\
+  p_a \ar[slash, ""{name=T}]{rrr}[swap]{\S_{a,d}} \& \& \& p_d
+  \arrow[equals,shorten=8,from=U-|W,to=W]
+  \arrow[Rightarrow,shorten=8,from=V-|X,to=X]
+  \arrow[Rightarrow,shorten=8,from=S-|T,to=T]
+  \end{tikzcd}
+\end{equation}
+\end{itemize}
+\end{definition}
+
+We now present the equations for dynamic operads. These equations derive directly from the definition of operads, namely the associativity and unitality of operadic composition, but unlike the equations above only involve a single polynomial $p$.
 
 \begin{definition}\label{operadequations}
 The equations between the identitors and compositors in a dynamic operad are as follows:
@@ -1123,7 +1172,7 @@ p^{\otimes n} \rar[slash, ""{name=T, above},swap]{\S_n} \& p
 \end{itemize}
 \end{definition}
 
-These equations derive directly from the definition of operads, namely the associativity and unitality of operadic composition. The equations for dynamic PROs below are similarly derived from the definition of monoidal categories, namely that composition and products of arrows are associative and unital (giving the associativity and unitality equations for compositors and productors) and products are functorial (giving the interchange equations). 
+The equations for dynamic PROs below are similarly derived from the definition of monoidal categories, namely that composition and products of arrows are associative and unital (giving the associativity and unitality equations for compositors and productors) and products are functorial (giving the interchange equations). 
 
 \begin{definition}\label{PROequations}
 The equations between the identitors, compositors, and productors in a dynamic PRO are as follows:
@@ -1285,7 +1334,7 @@ p^{\otimes m} \rar[slash, ""{name=V, above},swap]{\S_{m,n}} & p^{\otimes n}
 We now proceed to prove that the coalgebras and structure maps defined above for organized predictions and gradient descent form dynamic structures. In each case, it suffices to show that the structure maps on states preserve coalgebra structure, and that the equations in \cref{operadequations} or \cref{PROequations}, respectively, are satisfied.
 
 \begin{proof}[Proof of \cref{predictionadaptive}]
-The operad equations are all satisfied as $\Delta^+$ is known to be an operad, and morphisms of coalgebras are entirely determined by a function between the state sets. It then remains only to show that the identitor and compositor as defined in \cref{sec.kelly} commute with actions and updates. This is clearly true for the identitor as it is an isomorphism, so we focus on the compositor.
+The operad equations are all satisfied as $\Delta^+$ is known to be an operad, and morphisms of coalgebras are entirely determined by a function between the state sets. It then remains only to show that the identitor and compositor as defined in \cref{sec.kelley} commute with actions and updates. This is clearly true for the identitor as it is an isomorphism, so we focus on the compositor.
 
 For the compositor to commute with actions on positions is the claim that $\Delta^+_X$ is an algebra for the operad $\Delta^+$; it means that for $\mu \in \Delta^+_N$, $\nu_1 \in \Delta^+_{M_1}$, ..., $\nu_N \in \Delta^+_{M_N}$, and $\gamma_{i,j} \in \Delta^+_X$ for $i=1,...,N$ and $j=1,...,M_i$, we have
 \[
