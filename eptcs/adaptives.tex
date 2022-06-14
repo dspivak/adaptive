@@ -1,0 +1,1456 @@
+\documentclass{eptcs}
+
+
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+\usepackage[inline]{enumitem}
+\usepackage{ifthen}
+\usepackage[utf8]{inputenc} %allows non-ascii in bib file
+\usepackage{xcolor}
+
+\usepackage[capitalize]{cleveref}
+\usepackage[backend=biber, backref=true, maxbibnames = 10, style = alphabetic]{biblatex}
+
+\usepackage{tikz}
+
+\usepackage{amssymb}
+\usepackage{newpxtext}
+\usepackage[varg,bigdelims]{newpxmath}
+\usepackage{mathrsfs}
+\usepackage{dutchcal}
+\usepackage{fontawesome}
+\usepackage{ebproof}
+\usepackage{stmaryrd}
+\usepackage{float}
+
+% cleveref %
+  \newcommand{\creflastconjunction}{, and\nobreakspace} % serial comma
+  \crefformat{enumi}{\card#2#1#3}
+  \crefalias{section}{section}
+
+
+% biblatex %
+  \addbibresource{Library20220421.bib} 
+
+% hyperref %
+  \hypersetup{final}
+
+% enumitem %
+  \setlist{nosep}
+  \setlistdepth{6}
+
+
+
+% tikz %
+
+
+
+  \usetikzlibrary{ 
+  	cd,
+  	math,
+  	decorations.markings,
+		decorations.pathreplacing,
+  	positioning,
+  	arrows.meta,
+  	shapes,
+		shadows,
+		shadings,
+  	calc,
+  	fit,
+  	quotes,
+  	intersections,
+    circuits,
+    circuits.ee.IEC
+  }
+  
+  \tikzset{
+biml/.tip={Glyph[glyph math command=triangleleft, glyph length=.95ex]},
+bimr/.tip={Glyph[glyph math command=triangleright, glyph length=.95ex]},
+}
+
+\tikzset{
+	tick/.style={postaction={
+  	decorate,
+    decoration={markings, mark=at position 0.5 with
+    	{\draw[-] (0,.4ex) -- (0,-.4ex);}}}
+  }
+} 
+\tikzset{
+	slash/.style={postaction={
+  	decorate,
+    decoration={markings, mark=at position 0.5 with
+    	{\node[font=\footnotesize] {\rotatebox{90}{$\approx$}};}}}
+  }
+} 
+
+\newcommand{\upp}{\begin{tikzcd}[row sep=6pt]~\\~\ar[u, bend left=50pt, looseness=1.3, start anchor=east, end anchor=east]\end{tikzcd}}
+
+\newcommand{\bito}[1][]{
+	\begin{tikzcd}[ampersand replacement=\&, cramped]\ar[r, biml-bimr, "#1"]\&~\end{tikzcd}  
+}
+\newcommand{\bifrom}[1][]{
+	\begin{tikzcd}[ampersand replacement=\&, cramped]\ar[r, bimr-biml, "{#1}"]\&~\end{tikzcd}  
+}
+\newcommand{\bifromlong}[2][]{
+	\begin{tikzcd}[ampersand replacement=\&, column sep=#2, cramped]\ar[r, bimr-biml, "#1"]\&~\end{tikzcd}  
+}
+
+% Adjunctions
+\newcommand{\adj}[5][30pt]{%[size] Cat L, Left, Right, Cat R.
+\begin{tikzcd}[ampersand replacement=\&, column sep=#1]
+  #2\ar[r, shift left=7pt, "#3"]
+  \ar[r, phantom, "\scriptstyle\Rightarrow"]\&
+  #5\ar[l, shift left=7pt, "#4"]
+\end{tikzcd}
+}
+
+\newcommand{\adjr}[5][30pt]{%[size] Cat R, Right, Left, Cat L.
+\begin{tikzcd}[ampersand replacement=\&, column sep=#1]
+  #2\ar[r, shift left=7pt, "#3"]\&
+  #5\ar[l, shift left=7pt, "#4"]
+  \ar[l, phantom, "\scriptstyle\Leftarrow"]
+\end{tikzcd}
+}
+
+\newcommand{\xtickar}[1]{\begin{tikzcd}[baseline=-0.5ex,cramped,sep=small,ampersand 
+replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
+
+\newcommand{\xslashar}[1]{\begin{tikzcd}[baseline=-0.5ex,cramped,sep=small,ampersand 
+replacement=\&]{}\ar[r,slash, "{#1}"]\&{}\end{tikzcd}}
+
+\tikzset{
+	oriented WD/.style={%everything after equals replaces "oriented WD" in key.
+		every to/.style={out=0,in=180,draw},
+    label/.style={
+    	font=\everymath\expandafter{\the\everymath\scriptstyle},
+      inner sep=0pt,
+      node distance=2pt and -2pt},
+    semithick,
+    node distance=1 and 1,
+    decoration={markings, mark=at position \stringdecpos with \stringdec},
+    ar/.style={postaction={decorate}},
+    execute at begin picture={\tikzset{
+    	x=\bbx, y=\bby,
+      every fit/.style={inner xsep=\bbx, inner ysep=\bby}}}
+    },
+    string decoration/.store in=\stringdec,
+    string decoration={\arrow{stealth};},
+    string decoration pos/.store in=\stringdecpos,
+    string decoration pos=.7,
+    bbx/.store in=\bbx,
+    bbx = 1.5cm,
+    bby/.store in=\bby,
+    bby = 1.5ex,
+    bb port sep/.store in=\bbportsep,
+    bb port sep=1.5,
+    % bb wire sep/.store in=\bbwiresep,
+    % bb wire sep=1.75ex,
+    bb port length/.store in=\bbportlen,
+    bb port length=4pt,
+    bb penetrate/.store in=\bbpenetrate,
+    bb penetrate=0,
+    bb min width/.store in=\bbminwidth,
+    bb min width=1cm,
+    bb rounded corners/.store in=\bbcorners,
+    bb rounded corners=2pt,
+    bb spider/.style={
+    	bb port sep=1, bb port length=10pt, bbx=.4cm, bb min width=.4cm, bby=.8ex},
+    bb small/.style={
+    	bb port sep=1, bb port length=2.5pt, bbx=.4cm, bb min width=.4cm, bby=.7ex},
+		bb medium/.style={
+			bb port sep=1, bb port length=2.5pt, bbx=.4cm, bb min width=.4cm, bby=.9ex},
+    bb/.code 2 args={%When you see this key, run the code below:
+    	\pgfmathsetlengthmacro{\bbheight}{\bbportsep * (max(#1,#2)+1) * \bby}
+      \pgfkeysalso{draw,minimum height=\bbheight,minimum
+       width=\bbminwidth,outer sep=0pt,
+         rounded corners=\bbcorners,thick,
+         prefix after command={\pgfextra{\let\fixname\tikzlastnode}},
+         append after command={\pgfextra{\draw
+            \ifnum #1=0{} \else foreach \i in {1,...,#1} {
+            	($(\fixname.north west)!{\i/(#1+1)}!(\fixname.south west)$) +(-\bbportlen,0) coordinate (\fixname_in\i) -- +(\bbpenetrate,0) coordinate (\fixname_in\i')}\fi 
+  					%Define the endpoints of tickmarks
+            \ifnum #2=0{} \else foreach \i in {1,...,#2} {
+            	($(\fixname.north east)!{\i/(#2+1)}!(\fixname.south east)$) +(-
+\bbpenetrate,0) coordinate (\fixname_out\i') -- +(\bbportlen,0) coordinate (\fixname_out\i)}\fi;
+           }}}
+		},
+			bb name/.style={
+     	append after command={
+				\pgfextra{\node[anchor=north] at (\fixname.north) {#1};}
+			}
+		}
+  }
+
+
+
+\tikzset{Yonepart/.pic={
+	\node[bb={1}{2},bb name = {\tiny$X_{11}$}] (X11) {};
+	\node[bb={2}{2},below right=of X11,bb name = {\tiny$X_{12}$}] (X12) {};
+	\node[bb={2}{1}, above right=of X12,bb name = {\tiny$X_{13}$}] (X13) {};
+	\node[bb={0}{0}, inner xsep=10pt, fit={($(X11.north west)+(.3,1.5)$) (X12)  ($(X13.east)+(-.3,0)$)},bb name = {\scriptsize $Y_1$}] (Y1) {};
+	\coordinate (Y1_in1') at (X11_in1-|Y1.west);
+	\coordinate (Y1_in1) at (X11_in1-|Y1.west);
+	\coordinate (Y1_in2') at (X12_in2-|Y1.west);
+	\coordinate (Y1_in2) at (X12_in2-|Y1.west);
+	\coordinate (Y1_out1') at (X13_out1-|Y1.east);
+	\coordinate (Y1_out1) at (X13_out1-|Y1.east);
+	\coordinate (Y1_out2') at (X12_out2-|Y1.east);
+	\coordinate (Y1_out2) at (X12_out2-|Y1.east);
+	\draw (Y1_in1') to (X11_in1);	
+	\draw (Y1_in2') to (X12_in2);
+	\draw (X11_out1) to (X13_in1);
+	\draw (X11_out2) to (X12_in1);
+	\draw (X12_out1) to (X13_in2);
+	\draw (X12_out2) to (Y1_out2');
+	\draw (X13_out1) to (Y1_out1');
+	\coordinate (bottombox) at ($(X12.south)$);
+	\coordinate (rightbox) at ($(X13.east)$);
+	\coordinate (Y1northwest) at ($(Y1.north west)$);
+	}
+}
+  \tikzset{Ytwopart/.pic={
+	\node[bb={2}{2}, bb name = {\tiny$X_{21}$}] (X21) {};
+	\node[bb={1}{2},above right=-1 and 1 of X21,bb name = {\tiny$X_{22}$}] (X22) {};
+	\node[bb={0}{0}, inner xsep=10pt, fit={($(X21.south west)+(-.25,0)$) ($(X22.north east)+(.25,3.5)$)},bb name = {\scriptsize$Y_2$}] (Y2){};
+	\coordinate (Y2_in1') at (X21_in2-|Y2.west);
+	\coordinate (Y2_in1) at (X21_in2-|Y2.west);
+	\coordinate (Y2_out1') at (X22_out2-|Y2.east);
+	\coordinate (Y2_out1) at (X22_out2-|Y2.east);
+	\coordinate (Y2_out2') at (X21_out2-|Y2.east);
+	\coordinate (Y2_out2) at (X21_out2-|Y2.east);	
+	\draw (Y2_in1') to (X21_in2);
+	\draw (X21_out1) to (X22_in1);
+	\draw (X22_out2) to (Y2_out1');
+	\draw let \p1=(X22.south east), \p2=($(Y2_out2)$), \n1={\y1-\bby}, \n2=\bbportlen in
+	  (X21_out2) to (\x1+\n2,\n1) -- (\x1+\n2,\n1) to (Y2_out2');
+	\draw let \p1=(X22.north east), \p2=(X21.north west), \n1={\y1+\bby}, \n2=\bbportlen in
+          (X22_out1) to[in=0] (\x1+\n2,\n1) -- (\x2-\n2,\n1) to[out=180] (X21_in1);
+          }
+}
+
+\tikzset{SmallNestingPic/.pic={
+  \path (0,0) pic [purple] {Yonepart};
+  \path ($(rightbox)+(4,-5)$) pic [blue!40!black] {Ytwopart};
+  
+  \node[bb={0}{0}, fit={($(Y1northwest)+(-.5,4)$) ($(Y2.south east)+(1,0)$)}, bb name={\small $Z$}] (Z) {};
+  \coordinate[above=\bby] (helper) at (Y2.north west);
+	\coordinate (Z_in1') at (Y1_in2-|Z.west);
+	\coordinate (Z_in1) at (Y1_in2-|Z.west);
+	\coordinate (Z_out1') at (helper-|Z.east);
+	\coordinate (Z_out1) at (helper-|Z.east);
+	\coordinate (Z_out2') at (Y2_out2-|Z.east);
+	\coordinate (Z_out2) at (Y2_out2-|Z.east);	  
+  \draw (Z_in1') to (Y1_in2);
+  \draw let \p1=(Y2.north west),\p2=(Y2.north east),\n1={\y2+\bby},\n2=\bbportlen in
+  (Y1_out1) to (\x1+\n2,\n1)--(\x2+\n2,\n1) to (Z_out1');
+  \draw (Y1_out2) to (Y2_in1);
+  \draw (Y2_out2) to (Z_out2');
+  \draw let \p1=(Y2.north east), \p2=(Y1.north west), \n1={\y2+\bby}, \n2=\bbportlen in
+          (Y2_out1) to[in=0] (\x1+\n2,\n1) -- (\x2-\n2,\n1) to[out=180] (Y1_in1);
+          }
+}
+
+  
+  % amsthm %
+\theoremstyle{definition}
+\newtheorem{definitionx}{Definition}[section]
+\newtheorem{examplex}[definitionx]{Example}
+\newtheorem{remarkx}[definitionx]{Remark}
+\newtheorem{notation}[definitionx]{Notation}
+
+
+\theoremstyle{plain}
+
+\newtheorem{theorem}[definitionx]{Theorem}
+\newtheorem{proposition}[definitionx]{Proposition}
+\newtheorem{corollary}[definitionx]{Corollary}
+\newtheorem{lemma}[definitionx]{Lemma}
+\newtheorem{warning}[definitionx]{Warning}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{warning*}{Warning}
+%\theoremstyle{definition}
+%\newtheorem{definition}[theorem]{Definition}
+%\newtheorem{construction}[theorem]{Construction}
+
+\newenvironment{example}
+  {\pushQED{\qed}\renewcommand{\qedsymbol}{$\lozenge$}\examplex}
+  {\popQED\endexamplex}
+  
+ \newenvironment{remark}
+  {\pushQED{\qed}\renewcommand{\qedsymbol}{$\lozenge$}\remarkx}
+  {\popQED\endremarkx}
+  
+  \newenvironment{definition}
+  {\pushQED{\qed}\renewcommand{\qedsymbol}{$\lozenge$}\definitionx}
+  {\popQED\enddefinitionx} 
+
+    
+%-------- Single symbols --------%
+	
+\DeclareSymbolFont{stmry}{U}{stmry}{m}{n}
+\DeclareMathSymbol\fatsemi\mathop{stmry}{"23}
+
+\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathx}{m}{n}{
+      <5> <6> <7> <8> <9> <10>
+      <10.95> <12> <14.4> <17.28> <20.74> <24.88>
+      mathx10
+      }{}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+\DeclareFontSubstitution{U}{mathx}{m}{n}
+\DeclareMathAccent{\widecheck}{0}{mathx}{"71}
+
+
+%-------- Renewed commands --------%
+
+\renewcommand{\ss}{\subseteq}
+
+%-------- Other Macros --------%
+
+
+\DeclarePairedDelimiter{\present}{\langle}{\rangle}
+\DeclarePairedDelimiter{\copair}{[}{]}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\corners}{\ulcorner}{\urcorner}
+\DeclarePairedDelimiter{\ihom}{[}{]}
+
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Mor}{Mor}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\cod}{cod}
+\DeclareMathOperator{\idy}{idy}
+\DeclareMathOperator{\comp}{com}
+\DeclareMathOperator*{\colim}{colim}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\ob}{Ob}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\el}{El}
+
+
+
+
+\newcommand{\const}[1]{\texttt{#1}}%a constant, or named element of a set
+\newcommand{\Set}[1]{\mathsf{#1}}%a named set
+\newcommand{\ord}[1]{\mathsf{#1}}%an ordinal
+\newcommand{\cat}[1]{\mathcal{#1}}%a generic category
+\newcommand{\Cat}[1]{\textbf{#1}}%a named category
+\newcommand{\fun}[1]{\mathrm{#1}}%a function
+\newcommand{\Fun}[1]{\mathit{#1}}%a named functor
+
+
+
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\then}{\mathbin{\fatsemi}}
+
+\newcommand{\cocolon}{:\!}
+
+
+\newcommand{\iso}{\cong}
+\newcommand{\too}{\longrightarrow}
+\newcommand{\tto}{\rightrightarrows}
+\newcommand{\To}[2][]{\xrightarrow[#1]{#2}}
+\renewcommand{\Mapsto}[1]{\xmapsto{#1}}
+\newcommand{\Tto}[3][13pt]{\begin{tikzcd}[sep=#1, cramped, ampersand replacement=\&, text height=1ex, text depth=.3ex]\ar[r, shift left=2pt, "#2"]\ar[r, shift right=2pt, "#3"']\&{}\end{tikzcd}}
+\newcommand{\Too}[1]{\xrightarrow{\;\;#1\;\;}}
+\newcommand{\from}{\leftarrow}
+\newcommand{\fromm}{\longleftarrow}
+\newcommand{\ffrom}{\leftleftarrows}
+\newcommand{\From}[1]{\xleftarrow{#1}}
+\newcommand{\Fromm}[1]{\xleftarrow{\;\;#1\;\;}}
+\newcommand{\surj}{\twoheadrightarrow}
+\newcommand{\inj}{\rightarrowtail}
+\newcommand{\wavyto}{\rightsquigarrow}
+\newcommand{\lollipop}{\multimap}
+\newcommand{\imp}{\Rightarrow}
+\renewcommand{\iff}{\Leftrightarrow}
+\newcommand{\down}{\mathbin{\downarrow}}
+\newcommand{\fromto}{\leftrightarrows}
+\newcommand{\tickar}{\xtickar{}}
+\newcommand{\slashar}{\xslashar{}}
+\newcommand{\card}{\,^{\#}}
+
+
+\newcommand{\inv}{^{-1}}
+\newcommand{\op}{^\tn{op}}
+
+\newcommand{\tn}[1]{\textnormal{#1}}
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\ul}[1]{\underline{#1}}
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\wh}[1]{\widehat{#1}}
+\newcommand{\wc}[1]{\widecheck{#1}}
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+
+
+\newcommand{\bb}{\mathbb{B}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\pp}{\mathbb{P}}
+\newcommand{\qq}{\mathbb{Q}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\rr}{\mathbb{R}}
+
+
+\newcommand{\finset}{\Cat{Fin}}
+\newcommand{\smset}{\Cat{Set}}
+\newcommand{\smcat}{\Cat{Cat}}
+\newcommand{\catsharp}{\Cat{Cat}^{\sharp}}
+\newcommand{\ppolyfun}{\mathbb{P}\Cat{olyFun}}
+\newcommand{\ccatsharp}{\mathbb{C}\Cat{at}^{\sharp}}
+\newcommand{\ccatsharpdisc}{\mathbb{C}\Cat{at}^{\sharp}_{\tn{disc}}}
+\newcommand{\ccatsharplin}{\mathbb{C}\Cat{at}^{\sharp}_{\tn{lin}}}
+\newcommand{\ccatsharpdisccon}{\mathbb{C}\Cat{at}^{\sharp}_{\tn{disc,con}}}
+\newcommand{\sspan}{\mathbb{S}\Cat{pan}}
+\newcommand{\en}{\Cat{End}}
+
+\newcommand{\List}{\Fun{List}}
+\newcommand{\set}{\tn{-}\Cat{Set}}
+
+\newcommand{\act}{\tn{act}}
+\newcommand{\upd}{\tn{upd}}
+
+
+\newcommand{\yon}{\mathcal{y}}
+\newcommand{\poly}{\Cat{Poly}}
+\newcommand{\dir}{\Set{Dir}}
+\newcommand{\rect}{\Set{Rect}}
+\newcommand{\polycart}{\poly^{\Cat{Cart}}}
+\newcommand{\hh}{\mathcal{h}}
+\newcommand{\ppoly}{\mathbb{P}\Cat{oly}}
+\newcommand{\0}{\textsf{0}}
+\newcommand{\1}{\tn{\textsf{1}}}
+\newcommand{\tri}{\mathbin{\triangleleft}}
+\newcommand{\R}{R}
+\newcommand{\T}{T}
+\newcommand{\dist}{\Set{Dist}}
+\newcommand{\bet}{\Delta^+}
+
+% lenses
+\newcommand{\biglens}[2]{
+     \begin{bmatrix}{\vphantom{f_f^f}#2} \\ {\vphantom{f_f^f}#1} \end{bmatrix}
+}
+\newcommand{\littlelens}[2]{
+     \begin{bsmallmatrix}{\vphantom{f}#2} \\ {\vphantom{f}#1} \end{bsmallmatrix}
+}
+\newcommand{\lens}[2]{
+  \relax\if@display
+     \biglens{#1}{#2}
+  \else
+     \littlelens{#1}{#2}
+  \fi
+}
+
+
+\newcommand{\slogan}[1]{\begin{center}\textit{#1}\end{center}}
+
+\newcommand{\qand}{\quad\text{and}\quad}
+\newcommand{\qqand}{\qquad\text{and}\qquad}
+
+
+\newcommand{\coto}{\nrightarrow}
+\newcommand{\cofun}{{\raisebox{2pt}{\resizebox{2.5pt}{2.5pt}{$\setminus$}}}}
+
+\newcommand{\coalg}{\tn{-}\Cat{Coalg}}
+
+\newcommand{\bic}[2]{{}_{#1}\Cat{Comod}_{#2}}
+
+
+\newcommand{\org}{{\mathbb{O}\Cat{rg}}}
+\renewcommand{\S}{{\Cat{S}}}
+%\newcommand{\blp}{\Big{(}}
+%\newcommand{\brp}{\Big{)}}
+\newcommand{\idcoalg}[1]{{\{\id_{#1}\}}}
+\newcommand{\rrp}{\rr_{>0}}
+\newcommand{\rrnn}{\rr_{\ge 0}}
+
+\newcommand{\dnote}[1]{{\color{blue}David says:}~#1\quad{\color{blue}$\lozenge$}}
+\newcommand{\bnote}[1]{{\color{red}Brandon says:}~#1\quad{\color{red}$\lozenge$}}
+
+
+% ---- Changeable document parameters ---- %
+
+\linespread{1.1}
+\allowdisplaybreaks
+\setlength{\parindent}{15pt}
+\setcounter{tocdepth}{1}
+
+
+
+%--------------- Document ---------------%
+\begin{document}
+
+\title{Dynamic Categorical Structures:\\From deep learning to prediction markets}
+\title{Dynamic categories, dynamic operads:\\From deep learning to prediction markets}
+
+\def\titlerunning{Dynamic categories, dynamic operads}
+\author{Brandon Shapiro \and David I. Spivak}
+\def\authorrunning{B.\ Shapiro and D.I.\ Spivak}
+\date{\vspace{-.2in}}
+
+\maketitle
+
+\begin{abstract}
+Natural organized systems adapt to internal and external pressures and this happens at all levels of the abstraction hierarchy. Wanting to think clearly about this idea motivates our paper, and so the idea is elaborated extensively in the introduction, which should be broadly accessible to a philosophically-interested audience.
+
+In the remaining sections, we turn to more compressed category theory. We define the monoidal double category $\org$ of dynamic organizations, we provide definitions of $\org$-enriched, or \emph{dynamic}, categorical structures---e.g.\ dynamic categories, operads, and monoidal categories---and we show how they instantiate the motivating philosophical ideas. We give two examples of dynamic categorical structures: prediction markets as a dynamic operad and deep learning as a dynamic monoidal category.
+\end{abstract}
+
+%------- Chapter -------%
+\section{Introduction}
+
+Intuitively, an \emph{open dynamical system} is a machine or worker with an interface by which to interact with whatever else is out there. Open dynamical systems can be organized as circuits or control loops, so that they affect each other by their outward expressions of internal work, and thereby possibly form a more complex worker. The framework here is fractal---or more precisely \emph{operadic}---in its structure: organizations of workers can be nested into arbitrary hierarchies of abstraction.
+\begin{figure}[H]
+\[
+\begin{tikzpicture}[oriented WD, bb min width =.5cm, bbx=.5cm, bb port sep =1,bb port length=.08cm, bby=.14cm]
+\path (0,0) pic {SmallNestingPic};
+\end{tikzpicture}
+\]
+\caption{
+A nesting of interacting open dynamical systems: the $X_{i,j}$ are wired together to form the $Y_i$, which are wired together to form $Z$; typically these groupings are chosen to create new abstractions, e.g.\ in logical circuits or control systems. The permanence of the above-displayed wiring pattern is exactly what is relaxed in this paper; a dynamic organization is one in which interactions may change dynamically based on what flows within the system.
+}\label{fig.nesting}
+\end{figure}
+
+But if we think about some things that interact to do work in the real world, we notice that often the organization itself---the connections themselves---change. Unlike what we see in \cref{fig.nesting}, the way we connect this hour may be different from the way we connect next hour; in particular, our interfaces go in and out of contact. At the end of this paragraph, look away from the page for a few seconds, think about some things you know that interact together or influence each other, and ask yourself three questions about them: Do these things ever stop interacting? If so, do they ever start interacting again? And how is it decided? 
+
+\subsection{Accounting for organizational change}
+
+We propose that the metaphysical nature and scope of these questions should be complemented by some sort of guard rails to keep our contemplation on track. This is the role of mathematics in our work. It provides a symbolic \emph{accounting system} which is articulate enough to facilitate one person in explicating an example and asking questions about it.
+
+The category $\poly$ of polynomial functors in one variable is an ergonomic mathematical structure with many applications and spin-off categorical gadgets. We will begin in \cref{chap.org} by recalling one such gadget from \cite{spivak2021learners}: a category-enriched multicategory $\org$ that will be the conceptual centerpiece of our accounting system. Its objects are polynomial functors in one variable, and its morphisms are polynomial coalgebras related to a certain monoidal closed structure on $\poly$. We will see that the morphisms in $\org$ are intuitively ``collective organizational patterns that change dynamically''.
+
+Leaving the mathematics aside until \cref{chap.org}---at which point we will have almost nothing more to say about the background philosophy---let's return to the question ``how is the organizational pattern between various systems decided, moment-by-moment?'' Let's mesh this question with the idea that the so-organized systems can be nested into arbitrary hierarchies of abstraction. And let's think about all this in the frame of a certain worldview which we invite you the reader to engage with like a fictional movie, not intended to convince you of fact but instead simply to convey an experience. Here goes.
+
+In this worldview, we notice that everything that makes any sense to us happens to be a collective. A cell body, a human body, an antibody, Topos Institute, an idea, an airport, a sentence, a mathematical definition, a grain of sand, ... each is a collective of interacting parts that may themselves be collectives. %Stay with an example or two---e.g.\ any of the above---for now, not the counterexamples or counterpoints yet, because there are plenty of examples (collectives) and they point more toward the subject-matter of this paper.
+
+It's quite often the case that these collectives, like the ship of Theseus, are not permanent organizations that are fixed for all time; they are adapting to forces from within and without the system. Even a grain of sand can break or melt; even a mathematical definition can be refactored. So then what's outside the system, generating these forces that influence it? We imagine that what's outside is in fact more of the same kind of stuff as what's inside, just not as cohesive perhaps. Let's go full-on woo: if the universe is a big system, then maybe the sort of thing that happens in our head is---in some way---just like what happens outside of it. Maybe the motives that organize Brandon and David into a collaborative thinking and paper-writing unit are, in the some reasonable account, of the same nature as the motives that organize each one of them into a body. 
+
+But is this right? How could you check such a claim? One would need to give a reasonable account of it, and since we as authors can't currently give such an account, we don't make this claim. Instead, what we present here is an \emph{accounting system} in which the woo-person, (or would it instead be the reductive materialist?) who thought that what went on inside the head was somehow the same as what went on outside, could endeavor to provide such an account of their thinking.
+
+\subsection{Dynamic categorical structures}
+
+Our main definition in this paper is what we call an \emph{dynamic categorical structure}. We might poetically say that a \emph{dynamic} category is one where the morphisms between two objects change in response to what flows between those objects. To define it, we first refactor the definition of $\org$ from \cite{spivak2021learners} from an operad to a monoidal double category; we then define a dynamic *thing* to be a *thing* enriched in $\org$. Once these are defined, we give a couple examples: a \emph{prediction market} operad and a \emph{deep learning} monoidal category. In the prediction market, a population $Y$ predicts a distribution based on the predictions of its member populations $X_i$ weighted by their reputations, and the reputations change dynamically based on the returned outcome. A similar story holds with deep learning.
+
+We thank you the reader for having postponed your counterpoints and counterexamples, and we ask you to reengage both skepticism and interest as you see fit. We invite you to ask openly: what's not a collective of interacting parts that are themselves collectives? Nature, love, or experience perhaps? It all depends on how you look. What we present here is an accounting system for making sense of a certain sort of experiential pattern; the matter itself is whatever it is.
+
+\subsection{Acknowledgments}
+
+The influences on this paper are too numerous and unranked to name, but in particular we thank Sophie Libkind for stimulating conversations, and we thank Scott Garrabrant for teaching us about Kelly betting, which partially inspired \cref{sec.kelley}.
+
+This material is based upon work supported by the Air Force Office of Scientific Research under award number FA9550-20-1-0348.
+
+
+%------- Chapter -------%
+\section{The Monoidal Double Category $\org$}\label{chap.org}
+
+In \cite{spivak2021learners}, the second author defined a category-enriched multicategory $\org$, whose objects are polynomials and whose morphisms are polynomial coalgebras. In this section, we describe how $\org$ in fact more naturally takes the form of a monoidal double category, with coalgebras as horizontal morphisms, maps of polynomials as vertical morphisms, and the Dirichlet tensor product $\otimes$ providing the monoidal structure.%
+\footnote{In fact, $\org$ is a duoidal double category, with a second monoidal structure given by $\tri$, but we will not use that here.}
+
+Before we begin, recall that a polynomial is a functor $p\colon \smset\to\smset$ which is isomorphic to a sum of representables; following \cite{spivak2021learners}, we denote $p,q\in\poly$ by
+\begin{equation}\label{eqn.poly_notation}
+p = \sum_{I \in p(1)} \yon^{p[I]} \qqand q = \sum_{J \in q(1)} \yon^{q[J]}
+\end{equation}
+and refer to each $I\in p(1)$ as a \emph{$p$-position} and to each $i\in p[I]$ as a \emph{$p$-direction at $I$}. A map $\phi\colon p\to q$ of polynomials is a natural transformation. Combinatorially, $\phi$ provides: for each $I\in p(1)$ a choice of $\phi(I)\in q(1)$ and for each $j\in q[\phi(I)]$ a choice of $\phi(I,j)\in p[I]$.%
+\footnote{In \cite{spivak2021learners}, what we denote $\phi(I)$ is denoted $\phi_1(I)$ and what we denote $\phi(I,j)$ is denoted $\phi^\sharp_I(j)$.}
+
+%--- Section ---%
+\subsection{$[p,q]$-coalgebras}
+
+We first recall the definitions of the internal-hom polynomials $[p,q]$ and concretely describe the category of $[p,q]$-coalgebras, which will form the category of morphisms from $p$ to $q$ in the underlying bicategory of $\org$.
+
+\begin{definition}\label{coalgebras}
+For polynomials $p,q\in\poly$  as in \eqref{eqn.poly_notation},
+their \emph{internal hom} with respect to the tensor product $\otimes$ is the polynomial
+\begin{equation}\label{eqn.internal_hom}
+[p,q]\coloneqq \sum_{\phi\colon p \to q} \yon^{\sum\limits_{\;I \in p(1)} q[\phi(I)]}
+\end{equation}
+It can also be written $[p,q]\cong\prod_{I\in p(1)}\sum_{J\in q(1)}\prod_{j\in q[J]}\sum_{i\in p[I]}\yon$. 
+\end{definition}
+
+For intuition, a $[p,q]$-coalgebra (denoted $p \slashar q$) is a machine that outputs maps $\phi\colon p\to q$ and that inputs what \emph{flows} between them: pairs $(I,j)$ where $I\in p(1)$ is a position of $p$, which ``flows'' to $q$ as $J\coloneqq\phi(I)\in q(1)$, and $j\in q[J]$ is a direction of $q$, which ``flows'' backward to $p$ as $\phi(I,j)\in p[I]$. More precisely, using \cite[Definition 2.10]{spivak2021learners}, we define $[p,q]$-coalgebras as follows. 
+
+\begin{definition}
+The category $[p,q]\coalg$ has as objects pairs $\S = (S,\beta)$ where $S$ is a set and $\beta\colon S \to [p,q] \tri S$ is a function, and where a morphism from $\S$ to $\S'$ is a function $f\colon S \to S'$ making \eqref{eqn.coalg_map} commute. 
+\begin{equation}\label{eqn.coalg_map}
+\begin{tikzcd}
+S \rar{\beta} \dar[swap]{f} & {[p,q]} \tri S \dar{{[p,q]} \tri f} \\
+S' \rar[swap]{\beta'} & {[p,q]} \tri S'
+\end{tikzcd}
+\end{equation}
+We refer to $S$ as the \emph{state set} and to each element $s\in S$ as a \emph{state}.
+\end{definition}
+
+Unwinding this definition, it is useful to break $\beta$ into two functions $\beta\coloneqq(\act^\beta,\upd^\beta)$, an \emph{action} function
+\[\act^\beta\colon S\to\poly(p,q)=[p,q](1)\]
+%\[\beta_0\colon S \to \poly(p,q) = [p,q](1)\]
+and, for each state $s \in S$, an \emph{update} function 
+\[\upd^\beta_s\colon \sum_{I \in p(1)} q\left[\act^\beta_s(I)\right] \to S.\]
+For a state $s\in S$ and position $I\in p(1)$ we often write $\act^\beta_s\colon p\to q$ and $\upd^\beta_s(I)\colon q[\act^\beta_s(I)]\to S.$ We may suppress the $\beta$ when it is clear from context, writing $\act_s$ and $\upd_s$. A coalgebra map $\S\to\S'$ is a function $S\to S'$ between the state sets that preserves actions and updates. 
+
+When, for each $s \in S$, the update $\upd_s$ is the constant function sending everything to $s$, we say the coalgebra $\S$ is \emph{static}, as it remains constantly at $s$ regardless of the inputs $I \in p(1)$ and $j\in q[\act_s(I)]$ flowing between $p$ and $q$.
+
+\begin{example}\label{ex.single_state}
+A special case of a static $[p,q]$-coalgebra is given by a map $\phi \in \poly(p,q)$. For each such $\phi$, there is a coalgebra $\{\phi\}$ with a singleton state set and with $\act^\beta$ sending the point to $\phi$; we call it a \emph{singleton} coalgebra. 
+
+A coalgebra is static iff it is the coproduct of singleton coalgebras.
+\end{example}
+
+
+%--- Section ---%
+\subsection{Composition of hom-coalgebras}\label{sec.compose_hom_coalg}
+
+
+
+We now describe how $[p,q]$-coalgebras behave like morphisms from $p$ to $q$.
+
+\begin{proposition}\label{prop.def_org}
+The categories $[p,q]\coalg$ form the hom-categories in a bicategory $\org$, which has polynomials as objects.
+\end{proposition}
+
+We use $\org$ to denote both the bicategory from \cref{prop.def_org} and the categorical operad in \cite[Definition 2.19]{spivak2021learners}, as both are derived from the monoidal double category $\org$ described in the following sections. For now, we merely present the identities and composites in this bicategory. Identities are easy: the identity object in $\org(p,p)=[p,p]\coalg$ is given by the one-state coalgebra $\idcoalg{p}$. 
+
+The composition functor $\org(p,q)\times\org(q,r)\too\org(p,r)$ is defined as the composite:
+\[[p,q]\coalg \times [q,r]\coalg \to \left([p,q] \otimes [q,r]\right)\coalg \too [p,r]\coalg,\]
+where the first functor is the lax monoidality of $(-)\coalg\colon\poly \to \smcat$, as described in \cite[Proposition 2.13]{spivak2021learners}, and the second is given by applying $(-)\coalg$ to the usual ``composition'' map of internal-homs $[p,q] \otimes [q,r] \to [p,r]$ in $\poly$. Using \eqref{eqn.internal_hom} we see that on positions, this map takes the form\vspace{-.1cm}
+\[\left([p,q] \otimes [q,r]\right)(1) = \poly(p,q) \times \poly(q,r) \To{\then} \poly(p,r) = [p,r](1)\]
+and on directions it is given for $\phi\colon p \to q$ and $\psi\colon q \to r$ by the function
+\[\bigg(\sum_{I \in p(1)} q[\phi(I)]\bigg) \times \bigg(\sum_{J \in q(1)} r[\psi(J)]\bigg) \from \sum_{I \in p(1)} r[\psi(\phi(I))]\]
+which sends $(I,k)$ to $\big((I,\psi(\phi(I),k)),(\phi(I),j)\big)$. 
+
+Concretely, the composite of a $[p,q]$-coalgebra $\S$ and a $[q,r]$-coalgebra $\S'$ is a $[p,r]$-coalgebra which we denote $\S\then\S'$  and define as follows:
+\begin{itemize}
+	\item its state set is given by $S \times S'$
+	\item the action of the pair $(s,s')$ is given by the composite 
+\[\act^{\beta\then\beta'}_{s,s'}\coloneqq(\act^\beta_s\then\act^{\beta'}_{s'})\colon p \to q \to r\]
+	\item the update function of $(s,s')$ is induced by the functions
+\begin{align*}
+	\sum_{I \in p(1)} r\left[\act^{\beta\then\beta'}_{s,s'}(I)\right] \To{(I,k)\mapsto\left(I,\act^{\beta'}_{s'}\left(\act^\beta_s(I),k\right)\right)} \sum_{I \in p(1)} q\left[\act^\beta_s(I)\right] \To{\upd^\beta_s} S,\\
+	\sum_{I \in p(1)} r\left[\act^{\beta\then\beta'}_{s,s'}(I)\right] \To{(I,k)\mapsto\left(\act^\beta_s(I),k\right)} \sum_{J \in q(1)} r\left[\act^{\beta'}_{s'}(J)\right] \To{\upd^{\beta'}_{s'}} S'.
+\end{align*}
+\end{itemize}
+
+Horizontal composition of coalgebra-morphisms---i.e.\ of the 2-cells in the bicategory $\org$---is given simply by the cartesian product. The coherence isomorphisms and axioms for a bicategory then follow from the essential uniqueness of finite products of sets, and the unitality and associativity of composition for polynomial maps.%this may be a bit presumptuous, but I do think it's true
+
+
+
+%--- Section ---%
+\subsection{Monoidal product of coalgebras}
+
+
+It is shown in \cite[Proposition 2.13]{spivak2021learners} that the tensor product $\otimes$ of polynomials extends to make $\org$ a monoidal bicategory. That is, for polynomials $p,q,p',q'$ there is a functor
+\[[p,q]\coalg \times [p',q']\coalg \to \left([p,q] \otimes [p',q']\right)\coalg \to [p \otimes p',q \otimes q']\coalg\]
+derived from the map of polynomials $[p,q] \otimes [p',q'] \to [p {\otimes} p',q {\otimes} q']$ given on positions by 
+\[\poly(p,q) \times \poly(p',q') \To{\otimes} \poly(p \otimes p',q \otimes q')\]
+and on directions by, for $\phi\colon p \to q$ and $\phi'\colon p' \to q'$,
+\[\bigg(\sum_{I \in p(1)} q[\phi_1(I)]\bigg) \times \bigg(\sum_{I' \in p'(1)} q'[\phi'_1(I')]\bigg) \fromm \sum_{(I,I') \in p(1) \times p'(1)} q[\phi_1(I)] \times q'[\phi'_1(I')]\]
+sending $(I,I',j,j')$ to $(I,j,I',j')$.
+
+Concretely, this tensor product takes a $[p,q]$-coalgebra $\S$ and a $[p',q']$-coalgebra $\S'$ to the $[p \otimes p',q \otimes q']$-coalgebra with states $S \times S'$, action
+\[S \times S' \to \poly(p,q) \times \poly(p',q') \to \poly(p \otimes p',q \otimes q'),\]
+and update described similarly componentwise. The tensor product of coalgebra morphisms is also given by the cartesian product of functions, and it is (very) tedious but ultimately straightforward to check that the essential uniqueness of products guarantees that $\otimes$ gives a monoidal structure on $\org$.
+
+
+%--- Section ---%
+\subsection{$\org$ as a double category}
+
+
+Defining $\org$ as a monoidal bicategory is sufficient for most of the constructions of $\org$-enriched structures in \cref{chap.org_enrich}. However, using a double category structure casting singleton coalgebras $\S_\phi\in[p,q]\coalg$ (see \cref{ex.single_state}) as morphisms $\phi\colon p\to q$ in $\poly$ facilitates our eventual definition of maps between dynamic structures. 
+
+Specifically, the definition of $\org$ as a monoidal bicategory extends to a monoidal (pseudo-)double category with coalgebras as horizontal morphisms, maps in $\poly$ as vertical morphisms, and squares as in \eqref{eqn.square} given by maps of coalgebras from $\S\then\{\psi\}$ to $\{\phi\}\then\S'$. 
+\begin{equation}\label{eqn.square}
+\begin{tikzcd}
+p \rar[slash, ""{name=S, below}]{\S} \dar[swap]{\phi} & q \dar{\psi} \\
+p' \rar[slash, ""{name=T, above},swap]{\S'} & q'
+\arrow[Rightarrow,shorten=5,from=S,to=T]
+\end{tikzcd}
+\end{equation}
+The symbol $\slashar$ is intended to indicate that the map is ``dynamic'', changing in response to what flows between $p$ and $q$.
+
+As $\{\phi\}$ and $\{\psi\}$ have only one state, and composition of coalgebras acts as the cartesian product on states, such a square amounts to a function $S \to S'$ making \eqref{eqn.coalg_square} commute:
+\begin{equation}\label{eqn.coalg_square}
+\begin{tikzcd}
+S \rar{\beta} \dar[swap]{f} & {[p,q]} \tri S \rar{\psi_\ast} & {[p,q']} \tri S \ar[d, "{[p,q'] \tri f}" pos=.4] \\
+S' \rar[swap]{\beta'} & {[p',q']} \tri S' \rar[swap]{\phi^\ast} & {[p,q']} \tri S'
+\end{tikzcd}
+\end{equation}
+
+Identities and composites for these squares are determined by the bicategory structure, as this double category is a restriction in the vertical direction of the double category of lax-commuting squares in a bicategory.\footnote{It should be noted however that the vertical arrows in $\org$ are regarded as polynomial maps rather than coalgebras, so that they compose strictly unitally and associatively.}
+
+We now proceed to discuss various categorical structures enriched in $\org$, which describe dynamical systems equipped with extra algebraic structure that allows us to remove abstraction barriers when considering nested layers and complex arrangements of the components of the system.
+
+
+%------- Chapter -------%
+\section{Dynamic structures via $\org$-Enrichment}\label{chap.org_enrich}
+
+
+A monoidal double category is a viable setting for enriching various categorical structures. Intuitively, enrichment in $\org$ replaces the usual set of arrows between two objects in a categorical structure with a $[p,q]$-coalgebra for some choice of polynomials $p,q$. Therefore not only can each arrow be realized as a map of polynomials $p \to q$, but this map carries dynamics that encode how a position in $p$ and a direction in $q$ determine a transition from one arrow to another. The morphism ``reacts'' to what's flowing between $p$ and $q$.
+
+Different situations call for different categorical structures to model their dynamics: some systems primarily involve many-to-one arrangements such as the wiring diagrams in \cref{fig.nesting}, others such as gradient descent fit naturally into a many-to-many arrow framework, and we expect in future work to consider evolving systems in which different components operate at differing time scales. Rather than choose one such categorical form to favor, and then go through the tedious exercise of forcing all of the others to conform to it, we describe how to add dynamics to the definitions of many different structures.
+
+\slogan{A dynamic *thing* is a *thing* enriched in $\org$.}
+
+This slogan is intentionally imprecise, so as to be maximally inclusive of different notions of categorical structures  (*things*) and notions of enrichment, and also to allow the reader who has an intuitive understanding and no need for precision to skip the remainder of this paragraph. Our intuition and examples come from the theories of enrichment described in \cite{leinster1999generalized} and \cite{shapiro2022enrichment}. In the former, a *thing* can be any suitable type of generalized multicategory, while in the latter a *thing* can be any structure defined as an algebra for a familial monad on a presheaf category equipped with a choice of ``higher'' and ``lower'' dimensional cell shapes. In both cases, *things* are algebras for a particular cartesian monad $T$ which admit an ``enriched'' analogue with respect to any $T$-multicategory. To define $T$-algebras enriched in $\org$ is then to identify $\org$ with a $T$-multicategory, and in all of our examples this identification arises naturally from the observation that monoidal double categories give rise to $T$-multicategories in a natural way.
+
+We give specific instances of $\org$-enrichment in the following sections: in \cref{sec.org_cats} for dynamical categories, in \cref{sec.org_multicats} for dynamical multicategories and operads, and in \cref{sec:org_monoidalcats} for dynamical monoidal categories and PRO(P)s. We are also interested in using dynamic duoidal categories to describe dynamical systems in which different contributors to a system operate at different rates, using the duoidal structure on $\org$ based on $\tri$, but that is beyond the scope of this paper.
+
+
+%--- Section ---%
+\subsection{Dynamic categories}\label{sec.org_cats}
+
+
+Enrichment of categories only uses $\org$'s double category structure---not its monoidal structure---as any double category forms an $f\!c$-multicategory (also known as a virtual double category) in the sense of \cite[Section 2.1]{leinster1999generalized}. 
+The following definition of enrichment in $\org$ is an unwound version of the more general definition in \cite[Section 2.2]{leinster1999generalized}.
+
+\begin{definition}\label{def.org_enriched_cat}
+An $\org$-enriched (henceforth \emph{dynamic}) category $A$ consists of
+\begin{itemize}
+	\item a set $A_0$ of objects;
+	\item for each $a \in A_0$, a polynomial $p_a$;
+	\item for each $a,b \in A_0$, a $[p_a,p_b]$-coalgebra $\S_{a,b}$;
+	\item for each $a \in A_0$, an ``identitor'' square in $\org$ as in \eqref{eqn.tors} left; and
+	\item for each $a,b,c \in A_0$, a ``compositor'' square in $\org$ as in \eqref{eqn.tors} right:
+\begin{equation}\label{eqn.tors}
+\begin{tikzcd}
+p_a \dar[equals] \rar[slash, ""{name=S, below}]{\idcoalg{p_a}} & p_a \dar[equals] \\
+p_a \rar[slash, ""{name=T, above},swap]{\S_{a,a}} & p_a
+\arrow[Rightarrow,shorten=5,from=S,to=T]
+\end{tikzcd}\qquad\qquad\begin{tikzcd}
+p_a \dar[equals] \rar[slash]{\S_{a,b}} & p_b \rar[slash]{\S_{b,c}} & p_c \dar[equals] \\
+p_a \ar[slash, ""{name=T, above}]{rr}[swap]{\S_{a,c}} & & p_c
+\arrow[Rightarrow,shorten=4,from=1-2,to=T]
+\end{tikzcd}
+\end{equation}
+\end{itemize}
+such that these squares satisfy unit and associativity equations (\cref{CatEquations}).
+\end{definition}
+
+The sets $S_{a,b}$ form an ordinary category which we say \emph{underlies} $A$. 
+In fact, a dynamic category could be equivalently defined as an ordinary category such that each object $a$ is assigned a polynomial $p_a$ and each set of arrows $\Hom(a,b)$ is the set of states for an assigned $[p_a,p_b]$-coalgebra $\S_{a,b}$, with composition and identities respecting the coalgebra structure. This means that the arrow $\id_a$ in $\Hom(a,a)$ acts as the identity map on $p_a$ and is unchanged by updates, while for $f$ in $\Hom(a,b)$ and $g$ in $\Hom(b,c)$ the composite $f\then g$ acts as the composite $p_a \to p_b \to p_c$ of the actions of $f$ and $g$, and the update of their composite equals the composite of their updates.
+
+
+
+%--- Section ---%
+\subsection{Dynamic multicategories}\label{sec.org_multicats}
+
+
+A monoidal double category also gives rise to an $f\!m$-multicategory in the sense of \cite[Section 3.1]{leinster1999generalized}, 
+%where the ``2-cells'' are horizontal arrows of the form $a_1 \otimes \cdots \otimes a_n \slasharrow b$ and the ``3-cells'' are squares from the horizontal composite of a tree-shaped arrangement of these arrows to a horizontal arrow whose domain is a tensor product with arity the number of leaves in the tree.
+so we can talk about multicategories enriched in $\org$ as in \cite[Section 3.2]{leinster1999generalized}.
+
+\begin{definition}
+An $\org$-enriched (henceforth \emph{dynamic}) multicategory $A$ consists of
+\begin{itemize}
+	\item a set $A_0$ of objects;
+	\item for each $a \in A_0$, a polynomial $p_a$;
+	\item for each $a_1,...,a_n,b \in A_0$, a $[p_{a_1} \otimes \cdots \otimes p_{a_n},p_b]$-coalgebra $\S_{a_1,...,a_n\,;\,b}$;
+	\item for each $a \in A_0$, an ``identitor'' square in $\org$ as in \eqref{eqn.multi_tors} left; and
+	\item for each $a_{1,1},\ldots,a_{1,m_1},\;\ldots,\;a_{n,1},\ldots,a_{n,m_n},\;b_1,\ldots,b_n,$ and $c \in A_0$, a ``compositor'' square in $\org$ as in \eqref{eqn.multi_tors} right
+\end{itemize}
+\begin{equation}\label{eqn.multi_tors}
+  \begin{tikzcd}[ampersand replacement=\&]
+  p_a \dar[equals] \rar[slash, ""{name=S, below}]{\idcoalg{p_a}} \& p_a \dar[equals] \\
+  p_a \rar[slash, ""{name=T, above},swap]{\S_{a;a}} \& p_a
+  \arrow[Rightarrow,shorten=5,from=S,to=T]
+  \end{tikzcd}
+ \qquad\quad
+  \begin{tikzcd}[column sep=huge, ampersand replacement=\&]
+  p_{a_{1,1}} \otimes \cdots \otimes p_{a_{n,m_n}} \dar[equals] \ar[r, slash, "\bigotimes_i \S_{a_{i,1},...,a_{i,m_i};b_i}", ""' name=U] \&[20pt] p_{b_1} \otimes \cdots \otimes p_{b_n} \rar[slash]{\S_{b_1,...,b_n\,;\,c}} \&[-10pt] p_c \dar[equals] \\
+  p_{a_{1,1}} \otimes \cdots \otimes p_{a_{n,m_n}} \ar[slash, ""{name=T}]{rr}[swap]{\S_{a_{1,1},...,a_{n,m_n};c}} \& \& p_c
+  \arrow[Rightarrow,shorten=6,from=U-|T,to=T]
+  \end{tikzcd}
+\end{equation}
+satisfying unit and associativity equations (see \cref{operadequations} for the one-object case).
+\end{definition}
+
+The sets $S_{a,b}$ form an ordinary (set-enriched) multicategory, which underlies $A$ and has a description similar to the underlying category we described below \cref{def.org_enriched_cat}. 
+
+We will mostly be interested in what we call a \emph{dynamic operad}, the case when a dynamic multicategory $A$ has only one object, assigned the polynomial ``interface'' $p$. It consists simply of a $[p^{\otimes n},p]$-coalgebra $\S_n$ for each $n \in \nn$, equipped with coalgebra maps
+\begin{equation}\label{eqn.org_operad}
+\idcoalg{p} \to \S_1
+\qqand
+\bigotimes_{i\in I} \S_{n_i} \to \S_N
+\end{equation}
+where $I$ is any finite set and $N\coloneqq\sum_{i\in I}n_i$, which together satisfy the usual equations. 
+
+\begin{example}\label{ex.collective}
+A \emph{collective} (as defined in \cite{niu2021collectives}) is a $\otimes$-monoid in $\poly$, meaning a polynomial $p$ equipped with a monoid structure on its positions $p(1)$ and co-unital co-associative ``distribution'' functions $p[I \cdot J] \to p[I] \times p[J]$ for each $I,J \in p(1)$. This can be viewed as a dynamic operad where $\S_n$ is given by $\{\cdot_n\}$, the singleton coalgebra on the $n$-ary monoidal product $(\cdot_n)\colon p^{\otimes n} \to p$, and where the maps of coalgebras in \eqref{eqn.org_operad} are isomorphisms deduced from the equations for a monoid.
+\end{example}
+
+\begin{example}
+In \cref{ex.collective}, the coalgebras $\S_n$ are determined by a single map of polynomials, with trivial updates since the state sets are singletons. This can be generalized to an intermediate notion between collectives and dynamic multicategories, where the coalgebras are still static but may have multiple states.
+
+Given any multicategory $M$ and multifunctor $F\colon M \to\poly$, where $\poly$ here denotes the multicategory underlying $(\poly,\yon,\otimes)$, there is a dynamic multicategory $A_F$ with 
+\begin{itemize}
+	\item object set $\ob(M)$;
+	\item for each $a \in \ob(M)$, the polynomial interface $p_a \coloneqq F(a)$;
+	\item for each tuple $(a_1,...,a_n\,;\,b)$ in $\ob(M)$, state set $S_{a_1,...,a_n\,;\,b} \coloneqq M(a_1,...,a_n\,;\,b)$;
+	\item the action $\act^\beta\colon M(a_1,...,a_n\,;\,b) \to \poly(p_{a_1} \otimes \cdots \otimes p_{a_n},p_b)$ is given by $F$; and 
+	\item this coalgebra is static, in that for any state $s$ in $M(a_1,...,a_n\,;\,b)$, the update function $\upd^\beta_s$ is the constant function at $s$.
+	\qedhere
+\end{itemize}
+\end{example}
+
+\begin{example}
+Let $\S$ be any $p$-coalgebra for a polynomial $p$. There is a dynamic operad on $p$ with $\S_0\coloneqq \S$, with $\S_1\coloneqq\idcoalg{p}$, and with all other $\S_n\coloneqq\varnothing$ assigned the empty coalgebra.
+\end{example}
+
+\begin{example}
+Consider a dynamic operad with interface $\yon\in\poly$. The internal hom polynomial $[\yon^{\otimes n},\yon]$ is simply $\yon$, so this structure amounts to an operad $S$ with a function $S_n \to S_n$ for each $n$, commuting with the operad structure. A dynamic operad on $\yon$ can thus be identified with an operad $\cat{S}$ equipped with an operad map $\cat{S}\to\cat{S}$ to itself.
+\end{example}
+
+
+
+%--- Section ---%
+\subsection{Dynamic monoidal categories}\label{sec:org_monoidalcats}
+
+
+A monoidal double category is precisely a representable $f\!m\!c$-multicategory as in \cite[Section 2]{shapiro2022enrichment}, %cite specifically
+so we can also enrich strict monoidal categories in $\org$.\footnote{We use throughout the notion of \emph{strong} enrichment in a monoidal double category from \cite[Section 3]{shapiro2022enrichment}.} These are similar to $\org$-enriched multicategories, but include many-to-many coalgebras rather than just many-to-one. 
+
+\begin{definition}\label{enriched_monoidal}
+An $\org$-enriched (henceforth \emph{dynamic}) strict monoidal category $A$ consists of
+\begin{itemize}
+	\item a monoid $(A_0,e,*)$ of objects;
+	\item for each $a \in A_0$, a polynomial $p_a$;
+	\item an isomorphism of polynomials $y \cong p_e$;
+	\item for each $a,a' \in A_0$, an isomorphism of polynomials $p_{a} \otimes p_{a'} \cong p_{a*a'}$;
+	\item for each $a,b \in A_0$, a $[p_a,p_b]$-coalgebra $\S_{a,b}$;
+	\item for each $a \in A_0$, an ``identitor'' square in $\org$ as in \cref{eqn.adaptive_tor} left;
+	\item for each $a,b,c \in A_0$, a ``compositor'' square in $\org$ as in \cref{eqn.adaptive_tor} center; and
+	\item for each $a,a',b,b' \in A_0$, a ``productor'' square in $\org$ as in \cref{eqn.adaptive_tor} right:
+\end{itemize}
+\begin{equation}\label{eqn.adaptive_tor}
+\begin{tikzcd}[column sep=35pt]
+p_a \dar[equals] \rar[slash, ""{name=S, below}]{\idcoalg{p_a}} & p_a \dar[equals] \\
+p_a \rar[slash, ""{name=T, above},swap]{\S_{a,a}} & p_a
+\arrow[Rightarrow,shorten=5,from=S,to=T]
+\end{tikzcd}
+\qquad
+\begin{tikzcd}[column sep=30pt]
+p_a \dar[equals] \rar[slash]{\S_{a,b}} & p_b \rar[slash]{\S_{b,c}} & p_c \dar[equals] \\
+p_a \ar[slash, ""{name=T, above}]{rr}[swap]{\S_{a,c}} & & p_c
+\arrow[Rightarrow,shorten=4,from=1-2,to=T]
+\end{tikzcd}
+\qquad
+\begin{tikzcd}[column sep=50pt]
+p_a \otimes p_{a'} \dar[equals,swap]{\wr} \rar[slash,""{name=S,below}]{\S_{a,b} \otimes \S_{a',b'}} & p_b \otimes p_{b'} \dar[equals,swap]{\wr} \\
+p_{aa'} \rar[slash, ""{name=T, above},swap]{\S_{a*a',b*b'}} & p_{b*b'}
+\arrow[Rightarrow,shorten=5,from=S,to=T]
+\end{tikzcd}
+\end{equation}
+satisfying unit, associativity, and interchange equations (see \cref{PROequations} for the one-object case).
+\end{definition}
+
+Similar to \cref{sec.org_cats,sec.org_multicats}, the sets $S_{a,b}$ form the arrows in an ordinary strict monoidal category underlying $A$.  
+
+For the rest of this paper, we will only be interested in the restricted case of a dynamic monoidal category with object monoid $(\nn,0,+)$, which we call a dynamic PRO.%
+\footnote{A PRO is the non-symmetric version of a PROP. While all of our examples are in fact symmetric, to keep the paper short we do not describe their symmetry operations.} 
+Concretely, this consists of a polynomial interface $p$ (so that in the notation above $p_n\coloneqq p^{\otimes n}$ for $n \in \nn$) along with a $[p^{\otimes m},p^{\otimes n}]$-coalgebra $S_{m,n}$ for each $m,n \in \nn$, equipped with the maps of coalgebras as in \eqref{eqn.adaptive_tor}. The identitors, compositors, productors, and their equations amount to the ability to compose any string diagram of the usual sort for monoidal categories, with each $m$-to-$n$ box given by a state in $S_{m,n}$, into a new box (i.e.\ state) with the appropriate sources and targets. We denote a dynamic PRO as $(p,\S)$, where $\S$ encodes all of the coalgebras $\S_{m,n}$ that constitute the $\org$-enrichment and the structure maps are implicit.
+
+\bigskip
+We now turn to morphisms between dynamic PROs; the interested reader can hopefully find analogous definitions for dynamic categories and operads.
+
+\begin{definition}
+A \emph{morphism} of dynamic PROs from $(p,\S)$ to $(p',\S')$ is given by a map of polynomials $\phi\colon p \to p'$ and, for each $m,n \in \nn$, ``commutor'' squares as in \eqref{eqn.adaptive_map} in $\org$ which commute with the identitor, compositor, and productor squares.
+\setlength{\belowdisplayskip}{-5pt}
+\begin{equation}\label{eqn.adaptive_map}
+\begin{tikzcd}
+p^{\otimes m} \rar[slash, ""{name=S, below}]{\S_{m,n}} \dar[swap]{\phi^{\otimes m}} & p^{\otimes n} \dar{\phi^{\otimes n}} \\
+p'^{\otimes m} \rar[slash, ""{name=T, above}, swap]{\S'_{m,n}} & p'^{\otimes n}
+\arrow[Rightarrow,shorten=5,from=S,to=T]
+\end{tikzcd}
+\end{equation}
+\end{definition}
+\setlength{\belowdisplayskip}{11pt}
+
+This definition of morphism (taken from \cite[Section 3]{shapiro2022enrichment}) %cite specifically
+is the direct theoretical benefit of treating $\org$ as a monoidal double category rather than as a monoidal bicategory (closer to its description in \cite{spivak2021learners}). Otherwise morphisms could either only be easily defined between dynamic PROs with the same interface polynomial, which is needlessly restrictive, or take the form of a $[p,p']$-coalgebra, which seems to be too general to be of much use.
+
+A morphism $(p,\S) \to (p',\S')$ can be interpreted as a way of telling the codomain how to run the domain. The map of polynomials $p \to p'$ specifies how the positions of $p$ can be modeled by those of $p'$ and how the directions of $p'$ are returned as directions of $p$, while the commutor squares describe how the states of $\S_{m,n}$ can be modeled by those of $\S'_{m,n}$ in a way that respects this change of interface. A type of theorem that we hope to instantiate in future work is of the form ``this dynamic structure that we're interested in can be run by (has a map to) this other dynamic structure that we already understand well.''
+
+\begin{example}
+For a fixed polynomial $p$, there is a terminal dynamic PRO with interface $p$, which we denote $\S^{p!}$; here $\S^{p!}_{m,n}$ is the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra for each $m,n\in\nn$. 
+
+A state in $\S^{p!}$ is a (not necessarily finite) $[p^{\otimes m},p^{\otimes n}]$-tree. By this we mean a tree co-inductively defined by a root node labeled with a polynomial map $\phi\colon p^{\otimes m} \to p^{\otimes n}$ together with an arrow---whose source is the root and whose target is another $[p^{\otimes m},p^{\otimes n}]$-tree---assigned to each tuple 
+\begin{equation}\label{eqn.pmn_directions}
+\big((I_1,\ldots,I_m), i_1,\ldots,i_n\big) \in  p^{\otimes m}(1)\times p^{\otimes n}[\phi(I_1,...,I_m)] 
+\end{equation}
+
+The action of such a tree is simply the map $\phi$ labeling its root, and the update sends a tuple as in \eqref{eqn.pmn_directions} to the target of its assigned arrow. 
+
+The idea is that the state-set of the terminal dynamic PRO encodes all possible trajectories along different actions, and this coalgebra is terminal because from any other coalgebra there is a map to $\S^{p!}_{m,n}$ sending each state to the tree whose root is labeled by the action of the state and whose edges from the root go to the trees for each of the state's possible updates.
+
+To define a dynamic PRO structure on the terminal coalgebra $\S^{p!}$, it only remains to define maps of coalgebras as in \cref{eqn.adaptive_tor}, and these are all taken to be the unique map to the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra; the equations hold automatically. This is the terminal dynamic PRO with interface $p$ because for any other such dynamic PRO there is a morphism given by the identity map on $p$ and with commutor squares to $\S^{p!}_{m,n}$ the unique map to the terminal $[p^{\otimes m},p^{\otimes n}]$-coalgebra. In other words, $\S^{p!}$ \emph{uniquely runs} any other dynamic PRO with interface $p$.
+\end{example}
+
+
+
+%------- Chapter -------%
+\section{Dynamic Structures in Nature}
+
+
+Our main results are that dynamic structures describe phenomena we see instantiated around us. In this paper, we focus on deep learning and a prediction market in which the reputations of various guess-makers evolve based on how successful they are.
+
+
+%------- Section -------%
+\subsection{The prediction market dynamic operad}\label{sec.kelley}
+
+
+Fix a finite set $X$, elements of which we call \emph{outcomes} and intuit to be ``all equally likely'', define the set $\bet_X$ of \emph{guesses on $X$} as\footnote{We assume that each guess assigns a nonzero probability to each possible outcome, which avoids the issues of dividing by zero when updating or permanent loss of a guess-maker's reputation. This should be interpreted as both humility and good strategy on the part of the guess-makers.}
+%{The assumption that every possible outcome is given some nonzero probability in each guess could be interpreted either as humility of the guess-makers or a strategic decision to avoid permanent loss of all trust. But the real reason for the choice is that it lets us avoid dividing by zero when updating.}
+\[
+	\bet_X\coloneqq\left\{\gamma\colon X\to(0,1]\;\;\middle|\;\;1=\sum_x\gamma(x) \right\}
+\]
+The monoid $((0,1],1,*)$ of nonzero subunital reals acts on $\bet_X$ by scalar multiplication, i.e. for any $0 < m\leq 1$ and $\gamma\in\bet_X$, we can define $m\cdot\gamma\in\bet_X$ as follows:
+\[
+	m\cdot \gamma\coloneqq \big(x\mapsto m\gamma (x)\big)
+\]
+Let $\Delta^+$ denote the operad of finite nowhere-zero probability distributions, where $\Delta^+_N$ is defined as above with the natural number $N$ regarded as the $N$-element set. %\coloneqq\left\{\mu\colon N\to[0,1]\;\middle|\;1=\sum_{i\in N}\mu_i\right\}
+Then $\bet_X$ is an algebra for it: for any $\mu\in\Delta_N$ and $\gamma \in (\bet_X)^N$, we define 
+\[
+	\mu\cdot\gamma\coloneqq\bigg(x\mapsto\sum_{i\in N}(\mu_i\cdot\gamma_i)(x)\bigg)
+\]
+and it is easy to check that $(\mu\cdot\gamma)\in\bet_X$, i.e.\ its components are in bounds $(\mu\cdot\gamma)(x)\in (0,1]$ and it is normalized $\sum_x(\mu\cdot\gamma)(x)=1$.
+
+We now construct a dynamic operad with interface $p_X\in\poly$ defined as:
+\[
+p_X\coloneqq \bet_X\,\yon^X
+\]
+and use the $\Delta^+_N$ as our state spaces. The idea is that a state $\mu\in\Delta^+_N$ says how much the organization trusts each of its $N$ members (guess-makers) relative to each other. A member's position at a given moment is a report of how much confidence it has in each of the $X$-many possibilities, represented by its probability distribution.
+
+The action of a trust distribution $\mu \in \Delta^+_N$ is the map of polynomials $p_X^{\otimes N} \to p_X$ which on positions sends $\gamma \in (\bet_X)^N$ to $\mu \cdot \gamma$ and on directions sends $x \in X$ to $(x,...,x) \in X^N$. The idea is that the organization aggregates its members' predictions according to its current trust-distribution, and the outcome is accurately communicated back to each member.
+
+The most interesting part of the dynamic structure is how the trust distribution is updated once predictions are made and a result $x\in X$ is returned. When $N=0$, there's nothing to do: $\Delta^+_0=\varnothing$. For membership $N\geq 1$, trust distribution $\mu\in\Delta^+_N$, guesses $\gamma\in(\bet_X)^N$, and outcome $x\in X$, we define the updated trust distribution $\gamma(x) * \mu \in\Delta^+_N$ as
+\[
+\gamma(x) * \mu \coloneqq \left( i \mapsto \frac{\gamma_i(x)\mu_i}{\sum_j \gamma_j(x)\mu_j}\right).
+\]
+
+Finally, we describe the operadic structure maps. As $\Delta^+_1$ is a singleton set whose action is the identity on $p_X$, the identitor $\{\id_{p_X}\} \to \Delta^+_1$ is an isomorphism. The operadic compositor is given by the usual operad structure on (nowhere-zero) distributions:
+\[
+\Delta^+_N \times \Delta^+_{M_1} \times \cdots \times \Delta^+_{M_N} \to \Delta^+_{\sum_i M_i} \qquad\qquad (\mu,\nu_1,\ldots,\nu_N) \mapsto \mu \circ \nu \coloneqq \left( (i,j) \mapsto \mu_i\nu_j \right).
+\]
+
+\begin{theorem}\label{predictionadaptive}
+The maps defined above are maps of coalgebras and satisfy the coherence equations of a dynamic operad described in \cref{operadequations}.
+\end{theorem}
+
+This is proven in \cref{proofs}.
+
+%------- Section -------%
+\subsection{The gradient descent dynamic PRO}
+
+Deep learning uses the algorithm of gradient descent to optimize a choice of function, based on external feedback on its output. This naturally fits into the paradigm of dynamic structures, since functions $\rr^m \to \rr^n$ can form the states of a polynomial coalgebra, with the feedback providing the information needed to update the choice of function. These functions can be composed and juxtaposed in a way that preserves the updates. That is, the composite of gradient descenders is a gradient descender.
+
+\begin{definition}\label{def.Smn}
+For the rest of this section, we will use the state sets 
+\[
+S_{m,n} \coloneqq \left\{(M \in \nn, f\colon \rr^{M+m}, p \in \rr^M) \;\middle|\; f \textrm{ is differentiable}\right\}.
+\qedhere
+\]
+\end{definition}
+
+The idea is that these states are the possible parameters among which a gradient descender is meant to find the optimal choice, while $f$ dictates how the parameter affects the resulting function $f(p,-)$. In the dynamics of these states described below, only the value of the parameter $p$ will be updated; the parameter-space dimension $M$ and the parameterized function $f$ will remain fixed, though network composition of gradient descenders will involve combining these data in nontrivial ways. Fix $\epsilon>0$.%Do we need this footnote?\footnote{Other versions of a gradient descent dynamic PRO might have the states be simply some space of functions from $\rr^m$ to $\rr^n$, but this type of model is more difficult to describe in a computation-friendly manner as the relevant space of functions is not finite dimensional.}
+
+For every $x\in\rr$, let $T_x\rr$ denote the tangent space at $X$; for all practical purposes $T_x \rr$ can be regarded as simply $\rr$, but in both the description of polynomials as bundles and the intuition for this example it makes sense to use the tangent space at $x$. We proceed to define a dynamic PRO with interface $t \coloneqq \sum_{x \in \rr} \yon^{T_x \rr}$ and with  coalgebras $\S_{m,n}$ which update the state sets $S_{m,n}$ from \cref{def.Smn} using gradient descent. The PRO structure maps encode how networks of gradient descenders can be composed into a single gradient descender with a larger parameter space.
+
+\begin{definition}
+The $[t^{\otimes m},t^{\otimes n}]$-coalgebra structure on $S_{m,n}$ is given by 
+\begin{itemize}
+	\item On positions, the action $\act^\beta_{M,f,p}\colon \rr^m \to \rr^n$ is given by $f(p,-)$.
+	\item For $x \in \rr^m$, the action $\act^\beta_{M,f,p}(x,-)\colon T_{f(p,x)} \rr^n \to T_x \rr^m$ on directions sends $y\in T_{f(p,x)}$ to $\pi_m (Df)^\top \cdot y$.
+	\item The update function $\upd^\beta_{M,f,p}$ sends $x \in \rr^m$ and $y \in T_{f(p,x)}$ to $(M,f,p+\epsilon \pi_M (Df)^\top \cdot y)$ for our fixed $\epsilon$.
+	\qedhere
+\end{itemize}
+\end{definition}
+
+The action of a state as a map $t^{\otimes m} \to t^{\otimes n}$ is given by applying the parameterized function $f$ with the parameter $p$, resulting in a function $\rr^m \to \rr^n$ as desired. The transpose $(Df)^\top$ of the derivative of $f$ sends a feedback vector $y \in T_{f(p,x)} \rr^n$, which can be interpreted as the difference in $\rr^n$ between the ``correct'' result for $x$ and the current approximation $f(p,x)$, to the corresponding ``correction'' to $(p,x)$ in $\rr^{M+m}$. The projection of this correction to $T_x \rr^m$ provides the action of the state on directions, which in a network will then be further propagated back to the gradient descender which had output $x$. The projection to $T_p \rr^M$ provides the direction and magnitude in which to update the parameters (scaled by the ``learning rate'' $\epsilon$).
+
+Thus far, we have provided the data of the polynomial $t$ and the $[t^{\otimes m},t^{\otimes n}]$-coalgebras $\S_{m,n}$ needed to define a dynamic PRO. We now define the identitor, compositor, and productor morphisms of coalgebras presented by the squares in \cref{enriched_monoidal}.
+\begin{itemize}
+	\item The identitors $\idcoalg{t^{\otimes n}} \to \S_{n,n}$ send the unique state in the domain to the state 
+\[(0,\id_{\rr^n},0) \in S_{n,n}.\] 
+	\item The compositors $\S_{\ell,m}\then\S_{m,n} \to \S_{\ell,n}$ send the pair $((L,f,p),(M,g,q))$ to 
+\[\left( M+L,\,g(-,f(-,-))\colon \rr^{M+L+\ell} \To{\id \times f} \rr^{M+m} \To{g} \rr^n,\, (q,p) \in \rr^{M+L} \right).\]
+	\item The productors $\S_{m,n} \otimes \S_{m',n'} \to \S_{m+m',n+n'}$ send the pair $((M,f,p),(M',f',p'))$ to 
+\[(M+M',\,(f,f'),\,(p,p')).\]
+\end{itemize}
+
+These structure maps ensure that whenever two gradient descenders are combined in series or parallel, the resulting composite descender retains the parameter spaces of both. Likewise when the input or output of a descender is wired past some other descender in a network, it does not contribute any new parameters and merely preserves its input/output until plugged into a descender. The following is proven in \cref{proofs}.
+
+\begin{theorem}\label{gradientadaptive}
+The maps defined above are maps of coalgebras and satisfy the coherence equations of a dynamic PRO described in \cref{PROequations}.
+\end{theorem}
+
+
+
+
+
+%%------- Section -------%
+%\subsection{The Gravity Adaptive}
+%
+%
+%In pursuit of the idea of using adaptives to describe the dynamics of the world, we describe an adaptive that models how bodies move through space under the force of gravity. For simplicity, however, these bodies will not be prevented from overlapping so as to avoid encoding the complicated dynamics of potential collisions. This adaptive will be modeled as an $\org$-enriched operad. %sync up new terminology
+%
+%\begin{definition}
+%For the rest of this section, let $C$ denote the unit cube in $\rr^3$ and
+%$$S_1 = \{(s\colon C \to C, v \in T_0 C) | \textrm{ s is a rectilinear embedding}\}.\]
+%An embedding $s\colon C \to C$ can be interpreted as a rectangular prism inside the unit cube with faces parallel to those of the outer cube. Let $S_n = S_1^n$, whose elements are made up of $n$ such prisms $\vec s = (s_1,...,s_n)$ and velocities $\vec v = (v_1,...,v_n)$.
+%\end{definition}
+%
+%These prisms inside the unit cube are meant to describe the positions and sizes of $n$ bodies moving through space. In physical models they typically wouldn't be allowed to overlap, but for simplicity we will in effect only consider their centers of mass when computing gravitational effects. %something about boundaries. Is there an easy way out of that?
+%
+%Consider the polynomial 
+%$$g = \sum_{m \in \rrp \\ c \in C} \yon^{t \in \rrnn},\]
+%whose positions we interpret as the mass $m$ of a body and its center of mass $c$, and whose directions we interpret as lengths of time $t$. We now describe an adaptive on $g$ with state sets $S_n$, where the action of a state computes its center of mass and the update modifies the positions and velocities of the bodies according to their current velocities and the force of gravity.
+%
+%\begin{definition}
+%For $m_1,...,m_n \in \rrp$ and $c_1,...,c_n \in C$, representing $n$ positions in the unit cube $C$ and their masses, the vector pointing from the $i$th body to the center of mass of the others is given by
+%$$\Delta c_i = \frac{m_1c_1 + \cdots + \hat{m_ic_i} + \cdots m_nc_n}{m_1 + \cdots + \hat{m_i} + \cdots + m_n} - c_i.\]
+%The gravitational pull of the $i$th body in the system is given by
+%$$G_i(\vec m,\vec c) = \frac{m_i(m_1 + \cdots + \hat m_i + \cdots m_n)G}{|\Delta c_i|^3}\Delta c_i,\]
+%where $G$ is the gravitational constant. We will write $\vec G(\vec m, \vec c)$ for the tuple of these $n$ different vectors.
+%\end{definition}
+%
+%\begin{definition}
+%The $[g^{\otimes n},g]$-coalgebra structure on $S_n$ is given by 
+%\begin{itemize}
+%	\item $\beta_0(\vec s,\vec v)_1\colon \rrp^n C^n \to C$ sends $(m_1,...,m_n,c_1,...,c_n)$ to 
+%$$c_{\vec s,\vec m} = \frac{m_1s_1(c_1) + \cdots + m_ns_n(c_n)}{m_1 + \cdots + m_n}\]
+%	\item $\beta_0(\vec s,\vec v)_{\vec m,\vec c}\colon \rrnn \to \rrnn^n$ sends $t$ to $(t,...,t)$\footnote{This simply says that when the entire system is observed for a length of time $t$, so is each component. Perhaps this could be varied to incorporate some version of relativity.} 
+%	\item The update function $\beta_{\vec s,\vec v}$ sends $(\vec m \in \rrp^n,\vec c \in C^n)$ and $t \in \rrnn$ to 
+%$$\left( \vec s + t\vec v + \frac{t^2}{2} \vec G(\vec m, \vec s(\vec c)),\vec v + t\vec G(\vec m, \vec s(\vec c)) \right)\]
+%\end{itemize}
+%\end{definition}
+%
+%This coalgebra structure is designed so that $n$ moving bodies are agglomerated into a single body by juxtaposition, with the center of mass of the new body computed as the center of mass of those that constitute it. Then for a given length of time, the positions and velocities of the original bodies are updated appropriately according to their original velocities and the force of gravity. The operadic composition of these states describe how to rescale these velocities according to the perspective of fitting their outer cube frame into a prism inside yet another outer cube.
+%
+%\begin{itemize}
+%	\item The identitor state in $S_1$ is given by $(\id_C,0)$
+%	\item The operadic compositor sends 
+%$$(\vec s,\vec v) \in S_n, (\vec s^1,\vec v^1) \in S_{\ell_1},...,(\vec s^n,\vec v^n) \in S_{\ell_n}\]
+%to
+%$$\hspace{-1cm}\left( s_1 \circ s^1_1,...,s_1 \circ s^1_{\ell_1},s_2 \circ s^2_1,...,s_n \circ s^n_{\ell_n},v_1 + Ds_1 \cdot v^1_1,...,v_1 + Ds_1 \cdot v^1_{\ell_1},v_2 + Ds_2 \cdot v^2_1,...,v_n + Ds_n \cdot v^n_{\ell_n} \right)\]
+%\end{itemize}
+%
+%Intuitively, the identitor describes a body filling the entire cube and not moving, while the operadic compositor describes plugging in $n$ systems into the prisms of another system. When doing so, the resulting prisms are precisely the composite embeddings of a prism of an inner system into the cube that is then again embedded into the cube as a prism in the outer system. The resulting velocities combine the velocity of the inner body in the cube of the inner system, scaled according to how that cube embeds into the cube of the outer system, then added to the velocity of the entire prism in the outer system. In other words, it is the velocity of a body moving inside a box which is itself moving.
+%
+%\begin{theorem}\label{gravityadaptive}
+%These structure maps are maps of coalgebras and satisfy the coherence equations of an adaptive described in \cref{equations}.
+%\end{theorem}
+%
+%This is discussed in more detail in \cref{coherenceproofs}, though the main thrust of the proof is entirely given by physical principles. The identitor picks out a static state in $S_1$, as it has zero velocity, and hence is a coalgebra morphism. It also clearly acts as an identity with respect to the compositor, as plugging an inner system into an outer system which is just one prism occupying the entire cube recovers the inner system. 
+%
+%The compositor is a coalgebra because the center of mass construction is ``associative'' in the sense of being computable in stages according to any (even nested) partition of the contributing masses, and the update is the physical evolution of the bodies in the system under their velocities and gravity, which is not affected by abstraction barriers such as drawing or removing boxes around some of the masses. 
+%
+%\bnote{Is this true? when the systems are rescaled it will change the distances and hence the force. This could be fine if the scaling of the velocities and distance traveled depends in the same way as the force does... but applying s on the outside scales G(m,c) once whereas applying s on the inside scales distances quadratically... this seems worrying}
+
+
+
+
+\appendix
+%------- Chapter -------%
+\section{Coherence Equations}\label{coherences}
+
+
+We now present the equations that must be satisfied by the structure maps in dynamic categories, operads and PROs. While we only provide the equations for the single-object variant of dynamic multicategories and monoidal categories, respectively, the equations in the general case are entirely analogous.
+
+\begin{definition}\label{CatEquations}
+The equations between the identitors and compositors in a dynamic category are as follows:
+\begin{itemize}
+	\item The left and right unit laws
+\begin{equation}\label{eqn.cat_unit}
+\hspace{-1.4cm}  \begin{tikzcd}[column sep=large, ampersand replacement=\&]
+  p_a \dar[equals] \ar[r, slash, "\{\id_{p_a}\}", ""' name=R] \& p_a \rar[slash, ""' name=S]{\S_{a,b}} \dar[equals] \& p_b \dar[equals] \\
+  p_a \dar[equals] \ar[r,""' name=U,""{name=W,below},slash,swap,"\S_{a,a}"] \& p_a \ar[r,""' name=V,slash,swap,"\S_{a,b}"] \& p_b \dar[equals] \\
+  p_a \ar[slash, ""{name=T}]{rr}[swap]{\S_{a,b}} \& \& p
+  \arrow[Rightarrow,shorten=8,from=W-|T,to=T]
+  \arrow[Rightarrow,shorten=7,from=R,to=U]
+  \arrow[equals,shorten=8,from=S,to=V]
+  \end{tikzcd} \quad = \quad \begin{tikzcd}[column sep=large, ampersand replacement=\&]
+p_a \dar[equals] \rar[slash,""{name=S, below}]{\S_{a,b}} \& p_b \dar[equals] \\
+p_a \rar[slash, ""{name=T, above},swap]{\S_{a,b}} \& p_b
+\arrow[equals,shorten=7,from=S,to=T]
+  \end{tikzcd} \quad = \quad \begin{tikzcd}[column sep=large, ampersand replacement=\&]
+  p_a \dar[equals] \ar[r, slash, "\S_{a,b}", ""' name=R] \& p_b \rar[slash, ""' name=S]{\{\id_{p_b}\}} \dar[equals] \& p_b \dar[equals] \\
+  p_a \dar[equals] \ar[r,""' name=U,""{name=W,below},slash,swap,"\S_{a,b}"] \& p_b \ar[r,""' name=V,slash,swap,"\S_{b,b}"] \& p_b \dar[equals] \\
+  p_a \ar[slash, ""{name=T}]{rr}[swap]{\S_{a,b}} \& \& p
+  \arrow[Rightarrow,shorten=8,from=W-|T,to=T]
+  \arrow[equals,shorten=8,from=R,to=U]
+  \arrow[Rightarrow,shorten=7,from=S,to=V]
+  \end{tikzcd}
+\end{equation}
+	\item The associativity law
+\begin{equation}\label{eqn.cat_assoc}
+\hspace{-1.4cm} \begin{tikzcd}[column sep=large,ampersand replacement=\&]
+  p_a \dar[equals] \ar[r, slash, "\S_{a,b}", ""' name=U] \& p_b \ar[r, slash, "\S_{b,c}"] \& p_c \dar[equals] \rar[slash, ""' name=V]{\S_{c,d}} \& p_d \dar[equals] \\
+  p_a \dar[equals] \ar[slash, ""{name=W,above},""{name=S, below}]{rr}[description]{\S_{a,c}} \& \& p_c \rar[slash,swap,""' name=X]{\S_{c,d}} \& p_d \dar[equals] \\
+  p_a \ar[slash, ""{name=T}]{rrr}[swap]{\S_{a,d}} \& \& \& p_d
+  \arrow[Rightarrow,shorten=8,from=U-|W,to=W]
+  \arrow[equals,shorten=8,from=V,to=X]
+  \arrow[Rightarrow,shorten=8,from=S-|T,to=T]
+  \end{tikzcd} \quad = \quad \begin{tikzcd}[column sep=large,ampersand replacement=\&]
+  p_a \dar[equals] \ar[r, slash, "\S_{a,b}", ""' name=U] \& p_b \dar[equals] \ar[r, slash, "\S_{b,c}"] \& p_c \rar[slash, ""' name=V]{\S_{c,d}} \& p_d \dar[equals] \\
+  p_a \dar[equals] \ar[slash, ""{name=W,above}]{r}[description]{\S_{a,b}} \& p_b \ar[slash, ""{name=X,above},""{name=S, below}]{rr}[description]{\S_{b,d}} \& \& p_d \dar[equals] \\
+  p_a \ar[slash, ""{name=T}]{rrr}[swap]{\S_{a,d}} \& \& \& p_d
+  \arrow[equals,shorten=8,from=U-|W,to=W]
+  \arrow[Rightarrow,shorten=8,from=V-|X,to=X]
+  \arrow[Rightarrow,shorten=8,from=S-|T,to=T]
+  \end{tikzcd}
+\end{equation}
+\end{itemize}
+\end{definition}
+
+We now present the equations for dynamic operads. These equations derive directly from the definition of operads, namely the associativity and unitality of operadic composition, but unlike the equations above only involve a single polynomial $p$.
+
+\begin{definition}\label{operadequations}
+The equations between the identitors and compositors in a dynamic operad are as follows:
+\begin{itemize}
+	\item The left and right unit laws
+\begin{equation}\label{eqn.operad_unit}
+\hspace{-1.4cm}  \begin{tikzcd}[column sep=large, ampersand replacement=\&]
+  p^{\otimes n} \dar[equals] \ar[r, slash, "\{\id_p\}^{\otimes n}", ""' name=R] \& p^{\otimes n} \rar[slash, ""' name=S]{\S_n} \dar[equals] \& p \dar[equals] \\
+  p^{\otimes n} \dar[equals] \ar[r,""' name=U,""{name=W,below},slash,swap,"\S_1^{\otimes n}"] \& p^{\otimes n} \ar[r,""' name=V,slash,swap,"\S_n"] \& p \dar[equals] \\
+  p^{\otimes n} \ar[slash, ""{name=T}]{rr}[swap]{\S_n} \& \& p
+  \arrow[Rightarrow,shorten=8,from=W-|T,to=T]
+  \arrow[Rightarrow,shorten=7,from=R,to=U]
+  \arrow[equals,shorten=8,from=S,to=V]
+  \end{tikzcd} \quad = \quad \begin{tikzcd}[column sep=large, ampersand replacement=\&]
+p^{\otimes n} \dar[equals] \rar[slash,""{name=S, below}]{\S_n} \& p \dar[equals] \\
+p^{\otimes n} \rar[slash, ""{name=T, above},swap]{\S_n} \& p
+\arrow[equals,shorten=7,from=S,to=T]
+  \end{tikzcd} \quad = \quad \begin{tikzcd}[column sep=large, ampersand replacement=\&]
+  p^{\otimes n} \dar[equals] \ar[r, slash, "\S_n", ""' name=R] \& p \rar[slash, ""' name=S]{\{\id_p\}} \dar[equals] \& p \dar[equals] \\
+  p^{\otimes n} \dar[equals] \ar[r,""' name=U,""{name=W,below},slash,swap,"\S_n"] \& p \ar[r,""' name=V,slash,swap,"\S_1"] \& p \dar[equals] \\
+  p^{\otimes n} \ar[slash, ""{name=T}]{rr}[swap]{\S_n} \& \& p
+  \arrow[Rightarrow,shorten=8,from=W-|T,to=T]
+  \arrow[equals,shorten=8,from=R,to=U]
+  \arrow[Rightarrow,shorten=7,from=S,to=V]
+  \end{tikzcd}
+\end{equation}
+	\item The associativity law
+\[ 
+\hspace{-2.6cm} \begin{tikzcd}[column sep=large,ampersand replacement=\&]
+  p^{\otimes \ell_{1,1}} \otimes \cdots \otimes p^{\otimes \ell_{n,m_n}} \dar[equals,swap,"\wr"] \ar[r, slash, "\bigotimes_{i,j} \S_{\ell_{i,j}}", ""' name=U] \& p^{\otimes m_1} \otimes \cdots \otimes p^{\otimes m_n} \ar[r, slash, "\bigotimes_i \S_{m_i}"] \& p^{\otimes n} \dar[equals] \rar[slash, ""' name=V]{\S_n} \& p \dar[equals] \\
+  p^{\otimes (\sum_j \ell_{1,j})} \otimes \cdots \otimes p^{\otimes (\sum_j \ell_{n,j})} \dar[equals,swap,"\wr"] \ar[slash, ""{name=W,above},""{name=S, below}]{rr}[description]{\bigotimes_i \S_{\sum_j \ell_{1,j}}} \& \& p^{\otimes n} \rar[slash,swap,""' name=X]{\S_n} \& p \dar[equals] \\
+  p^{\otimes (\sum_{i,j} \ell_{i,j})} \ar[slash, ""{name=T}]{rrr}[swap]{\S_{\sum_{i,j} \ell_{i,j}}} \& \& \& p
+  \arrow[Rightarrow,shorten=8,from=U-|W,to=W]
+  \arrow[equals,shorten=8,from=V,to=X]
+  \arrow[Rightarrow,shorten=8,from=S-|T,to=T]
+  \end{tikzcd}
+\]
+\begin{equation}\label{eqn.operad_assoc}
+=
+\end{equation}
+\[
+\hspace{-2.2cm} \begin{tikzcd}[column sep=large,ampersand replacement=\&]
+  p^{\otimes \ell_{1,1}} \otimes \cdots \otimes p^{\otimes \ell_{n,m_n}} \dar[equals] \ar[r, slash, "\bigotimes_{i,j} \S_{\ell_{i,j}}", ""' name=U] \& p^{\otimes m_1} \otimes \cdots \otimes p^{\otimes m_n} \dar[equals,swap,"\wr"] \ar[r, slash, "\bigotimes_i \S_{m_i}"] \& p^{\otimes n} \rar[slash, ""' name=V]{\S_n} \& p \dar[equals] \\
+  p^{\otimes \ell_{1,1}} \otimes \cdots \otimes p^{\otimes \ell_{n,m_n}} \dar[equals,swap,"\wr"] \ar[slash, ""{name=W,above}]{r}[description]{\bigotimes_{i,j} \S_{\ell_{i,j}}} \& p^{\otimes (\sum_i m_i)} \ar[slash, ""{name=X,above},""{name=S, below}]{rr}[description]{\S_{\sum_i m_i}} \& \& p \dar[equals] \\
+  p^{\otimes (\sum_{i,j} \ell_{i,j})} \ar[slash, ""{name=T}]{rrr}[swap]{\S_{\sum_{i,j} \ell_{i,j}}} \& \& \& p
+  \arrow[equals,shorten=8,from=U-|W,to=W]
+  \arrow[Rightarrow,shorten=8,from=V-|X,to=X]
+  \arrow[Rightarrow,shorten=8,from=S-|T,to=T]
+  \end{tikzcd}
+\]
+\end{itemize}
+\end{definition}
+
+The equations for dynamic PROs below are similarly derived from the definition of monoidal categories, namely that composition and products of arrows are associative and unital (giving the associativity and unitality equations for compositors and productors) and products are functorial (giving the interchange equations). 
+
+\begin{definition}\label{PROequations}
+The equations between the identitors, compositors, and productors in a dynamic PRO are as follows:
+\begin{itemize}
+	\item The identitor interchange law
+\begin{equation}\label{eqn.id_inter}
+\hspace{-1.5cm}\begin{tikzcd}[column sep={150,between origins}]
+p^{\otimes n} \otimes p^{\otimes n'} \dar[equals] \rar[slash, ""{name=S, below}]{\idcoalg{p^{\otimes n}} \otimes \idcoalg{p^{\otimes n'}}} & 
+p^{\otimes n} \otimes p^{\otimes n'} \dar[equals] \\
+p^{\otimes n} \otimes p^{\otimes n'} \dar[equals,swap]{\wr} \ar[slash, ""{name=T, above}, ""{name=U, below}]{r}[description]{\S_{n,n} \otimes \S_{n',n'}} & 
+p^{\otimes n} \otimes p^{\otimes n'} \dar[equals,swap]{\wr} \\
+p^{\otimes (n+n')} \rar[slash, ""{name=V, above},swap]{\S_{n+n',n+n'}} & 
+p^{\otimes (n+n')}
+\arrow[Rightarrow,shorten=5,from=S,to=T]
+\arrow[Rightarrow,shorten=5,from=U,to=V]
+\end{tikzcd}\quad = \quad\begin{tikzcd}[column sep={150,between origins}]
+p^{\otimes n} \otimes p^{\otimes n'} \dar[equals,swap]{\wr} \rar[slash, ""{name=S, below}]{\idcoalg{p^{\otimes n}} \otimes \idcoalg{p^{\otimes n'}}} & 
+p^{\otimes n} \otimes p^{\otimes n'} \dar[equals,swap]{\wr} \\
+p^{\otimes (n+n')} \dar[equals] \ar[slash, ""{name=T, above}, ""{name=U, below}]{r}[description]{\idcoalg{p^{\otimes (n+n')}}} & 
+p^{\otimes (n+n')} \dar[equals] \\
+p^{\otimes (n+n')} \rar[slash, ""{name=V, above},swap]{\S_{n+n',n+n'}} & 
+p^{\otimes (n+n')}
+\arrow[equals,shorten=5,from=S,to=T,swap,"\wr"]
+\arrow[Rightarrow,shorten=5,from=U,to=V]
+\end{tikzcd}
+\end{equation}
+	\item The compositor interchange law
+\begin{equation}\label{eqn.comp_inter}
+\hspace{-4cm}\begin{tikzcd}[column sep={110,between origins}]
+p^{\otimes \ell} \otimes p^{\otimes \ell'} \dar[equals,swap]{\wr} \rar[slash, ""{name=S, below}]{\S_{\ell,m} \otimes \S_{\ell',m'}} & 
+p^{\otimes m} \otimes p^{\otimes m'} \dar[equals,swap]{\wr} \rar[slash, ""{name=U, below}]{\S_{m,n} \otimes \S_{m',n'}} & 
+p^{\otimes n} \otimes p^{\otimes n'} \dar[equals,swap]{\wr} \\
+p^{\otimes (\ell + \ell')} \dar[equals] \rar[slash, ""{name=T, above},swap]{\S_{\ell+\ell',m+m'}} \ar[phantom,""{name=R, below}]{rr} & 
+p^{\otimes (m + m')} \rar[slash, ""{name=V, above},swap]{\S_{m+m',n+n'}} & 
+p^{\otimes (n + n')} \dar[equals] \\
+p^{\otimes (\ell + \ell')} \ar[slash, ""{name=W, above}]{rr}[swap]{\S_{\ell+\ell',n+n'}} & & 
+p^{\otimes (n + n')}
+\arrow[Rightarrow,shorten=5,from=S,to=T]
+\arrow[Rightarrow,shorten=5,from=U,to=V]
+\arrow[Rightarrow,shorten=5,from=R,to=W]
+\end{tikzcd}\quad = \quad\begin{tikzcd}[column sep={110,between origins}]
+p^{\otimes \ell} \otimes p^{\otimes \ell'} \dar[equals] \rar[slash, ""{name=S, below}]{\S_{\ell,m} \otimes \S_{\ell',m'}} \ar[phantom,""{name=R, below}]{rr} & 
+p^{\otimes m} \otimes p^{\otimes m'} \rar[slash, ""{name=U, below}]{\S_{m,n} \otimes \S_{m',n'}} & 
+p^{\otimes n} \otimes p^{\otimes n'} \dar[equals] \\
+p^{\otimes \ell} \otimes p^{\otimes \ell'} \dar[equals,swap]{\wr} \ar[slash, ""{name=S, above},""{name=T, below}]{rr}[description]{\S_{\ell,n} \otimes \S_{\ell',n'}} & &
+p^{\otimes n} \otimes p^{\otimes n'} \dar[equals,swap]{\wr} \\
+p^{\otimes (\ell + \ell')} \ar[slash, ""{name=U, above}]{rr}[swap]{\S_{\ell+\ell',n+n'}} & & 
+p^{\otimes (n + n')}
+\arrow[Rightarrow,shorten=5,from=R,to=S]
+\arrow[Rightarrow,shorten=5,from=T,to=U]
+\end{tikzcd}
+\end{equation}
+	\item The compositor associativity law
+\begin{equation}\label{eqn.comp_assoc}
+\hspace{-1.1cm}\begin{tikzcd}%[column sep={60,between origins}]
+p^{\otimes k} \dar[equals] \rar[slash]{\S_{k,\ell}} \ar[phantom,""{name=S, below}]{rr} & 
+p^{\otimes \ell} \rar[slash]{\S_{\ell,m}} & 
+p^{\otimes m} \dar[equals] \rar[slash, ""{name=U, below}]{\S_{m,n}} & 
+p^{\otimes n} \dar[equals] \\
+p^{\otimes k} \dar[equals] \ar[slash, ""{name=T, above}]{rr}[swap]{\S_{k,m}} \ar[phantom,""{name=W, below}]{rrr} & &
+p^{\otimes m} \rar[slash, ""{name=V, above},swap]{\S_{m,n}} & 
+p^{\otimes n} \dar[equals] \\
+p^{\otimes k} \ar[slash, ""{name=X, above}]{rrr}[swap]{\S_{k,n}} & & &
+p^{\otimes n}
+\arrow[Rightarrow,shorten=5,from=S,to=T]
+\arrow[equals,shorten=5,from=U,to=V]
+\arrow[Rightarrow,shorten=5,from=W,to=X]
+\end{tikzcd}\quad = \quad\begin{tikzcd}%[column sep={60,between origins}]
+p^{\otimes k} \dar[equals] \rar[slash,""{name=S, below}]{\S_{k,\ell}} & 
+p^{\otimes \ell} \dar[equals] \rar[slash]{\S_{\ell,m}} \ar[phantom,""{name=U, below}]{rr} & 
+p^{\otimes m} \rar[slash]{\S_{m,n}} & 
+p^{\otimes n} \dar[equals] \\
+p^{\otimes k} \dar[equals] \rar[slash, ""{name=T, above},swap]{\S_{k,\ell}} \ar[phantom,""{name=W, below}]{rrr} & 
+p^{\otimes \ell} \ar[slash, ""{name=V, above}]{rr}[swap]{\S_{\ell,n}} & &
+p^{\otimes n} \dar[equals] \\
+p^{\otimes k} \ar[slash, ""{name=X, above}]{rrr}[swap]{\S_{k,n}} & & &
+p^{\otimes n}
+\arrow[equals,shorten=5,from=S,to=T]
+\arrow[Rightarrow,shorten=5,from=U,to=V]
+\arrow[Rightarrow,shorten=5,from=W,to=X]
+\end{tikzcd}
+\end{equation}
+	\item The compositor unit laws
+\begin{equation}\label{eqn.comp_unit}
+\hspace{-1.5cm}\begin{tikzcd}
+p^{\otimes m} \dar[equals] \rar[slash,""{name=S, below}]{\idcoalg{p^{\otimes m}}} & p^{\otimes m} \dar[equals] \rar[slash,""{name=U, below}]{\S_{m,n}} & p^{\otimes n} \dar[equals] \\
+p^{\otimes m} \dar[equals] \rar[slash,""{name=T, above},swap]{\S_{m,m}} \ar[phantom,""{name=W, below}]{rr} & p^{\otimes m} \rar[slash,""{name=V, above},swap]{\S_{m,n}} & p^{\otimes n} \dar[equals] \\
+p^{\otimes m} \ar[slash, ""{name=X, above}]{rr}[swap]{\S_{m,n}} & & p^{\otimes n}
+\arrow[Rightarrow,shorten=5,from=S,to=T]
+\arrow[equals,shorten=5,from=U,to=V]
+\arrow[Rightarrow,shorten=5,from=W,to=X]
+\end{tikzcd}\quad = \quad\begin{tikzcd}
+p^{\otimes m} \dar[equals] \rar[slash,""{name=S, below}]{\S_{m,n}} & p^{\otimes n} \dar[equals] \\
+p^{\otimes m} \rar[slash, ""{name=T, above},swap]{\S_{m,n}} & p^{\otimes n}
+\arrow[equals,shorten=5,from=S,to=T]
+\end{tikzcd}\quad = \quad\begin{tikzcd}
+p^{\otimes m} \dar[equals] \rar[slash,""{name=S, below}]{\S_{m,n}} & p^{\otimes n} \dar[equals] \rar[slash,""{name=U, below}]{\idcoalg{p^{\otimes m}}} & p^{\otimes n} \dar[equals] \\
+p^{\otimes m} \dar[equals] \rar[slash,""{name=T, above},swap]{\S_{m,n}} \ar[phantom,""{name=W, below}]{rr} & p^{\otimes n} \rar[slash,""{name=V, above},swap]{\S_{n,n}} & p^{\otimes n} \dar[equals] \\
+p^{\otimes m} \ar[slash, ""{name=X, above}]{rr}[swap]{\S_{m,n}} & & p^{\otimes n}
+\arrow[equals,shorten=5,from=S,to=T]
+\arrow[Rightarrow,shorten=5,from=U,to=V]
+\arrow[Rightarrow,shorten=5,from=W,to=X]
+\end{tikzcd}
+\end{equation}
+	\item The productor associativity law
+\begin{equation}\label{eqn.prod_assoc}
+\hspace{-4.1cm}\begin{tikzcd}[column sep={180,between origins}]%work on tilted arrow
+p^{\otimes m} \otimes p^{\otimes m'} \otimes p^{\otimes m''}  \dar[equals,swap]{\wr} \rar[slash,""{name=S,below}]{\S_{m,n} \otimes \S_{m',n'} \otimes \S_{m'',n''}} & p^{\otimes n} \otimes p^{\otimes n'} \otimes p^{\otimes n''} \dar[equals,swap]{\wr} \\
+p^{\otimes (m + m')} \otimes p^{\otimes m''} \dar[equals,swap]{\wr} \ar[slash,""{name=T,above},""{name=U,below}]{r}[description]{\S_{m+m',n+n'} \otimes \S_{m'',n''}} & p^{\otimes (n + n')} \otimes p^{\otimes n''} \dar[equals,swap]{\wr} \\
+p^{\otimes (m + m' + m'')} \rar[slash, ""{name=V, above},swap]{\S_{m+m'+m'',n+n'+n''}} & p^{\otimes (n + n' + n'')}
+\arrow[Rightarrow,shorten=5,from=S,to=T]
+\arrow[Rightarrow,shorten=5,from=U,to=V]
+\end{tikzcd}\quad = \quad\begin{tikzcd}[column sep={180,between origins}]
+p^{\otimes m} \otimes p^{\otimes m'} \otimes p^{\otimes m''}  \dar[equals,swap]{\wr} \rar[slash,""{name=S,below}]{\S_{m,n} \otimes \S_{m',n'} \otimes \S_{m'',n''}} & p^{\otimes n} \otimes p^{\otimes n'} \otimes p^{\otimes n''} \dar[equals,swap]{\wr} \\
+p^{\otimes m} \otimes p^{\otimes (m+m'')} \dar[equals,swap]{\wr} \ar[slash,""{name=T,above},""{name=U,below}]{r}[description]{\S_{m,n} \otimes \S_{m'+m'',n'+n''}} & p^{\otimes n} \otimes p^{\otimes (n' + n'')} \dar[equals,swap]{\wr} \\
+p^{\otimes (m + m' + m'')} \rar[slash, ""{name=V, above},swap]{\S_{m+m'+m'',n+n'+n''}} & p^{\otimes (n + n' + n'')}
+\arrow[Rightarrow,shorten=5,from=S,to=T]
+\arrow[Rightarrow,shorten=5,from=U,to=V]
+\end{tikzcd}
+\end{equation}
+	\item The productor unit laws
+\begin{equation}\label{eqn.prod_unit}
+\hspace{-3.0cm}\begin{tikzcd}[column sep={130,between origins}]
+p^{\otimes m} \dar[equals,swap]{\wr} \rar[slash,""{name=Q, below}]{\S_{m,n}} & p^{\otimes n} \dar[equals,swap]{\wr} \\
+p^{\otimes 0} \otimes p^{\otimes m} \dar[equals] \ar[slash, ""{name=S, below}, ""{name=R, above}]{r}[description]{\idcoalg{p^{\otimes 0}} \otimes \S_{m,n}} & 
+p^{\otimes 0} \otimes p^{\otimes n} \dar[equals] \\
+p^{\otimes 0} \otimes p^{\otimes m} \dar[equals,swap]{\wr} \ar[slash, ""{name=T, above}, ""{name=U, below}]{r}[description]{\S_{0,0} \otimes \S_{m,n}} & 
+p^{\otimes 0} \otimes p^{\otimes n} \dar[equals,swap]{\wr} \\
+p^{\otimes m} \rar[slash, ""{name=V, above},swap]{\S_{m,n}} & p^{\otimes n}
+\arrow[equals,shorten=5,from=Q,to=R,swap,"\wr"]
+\arrow[Rightarrow,shorten=5,from=S,to=T]
+\arrow[Rightarrow,shorten=5,from=U,to=V]
+\end{tikzcd}\quad = \quad\begin{tikzcd}
+p^{\otimes m} \dar[equals] \rar[slash,""{name=S, below}]{\S_{m,n}} & p^{\otimes n} \dar[equals] \\
+p^{\otimes m} \rar[slash, ""{name=T, above},swap]{\S_{m,n}} & p^{\otimes n}
+\arrow[equals,shorten=5,from=S,to=T]
+\end{tikzcd}\quad = \quad\begin{tikzcd}[column sep={130,between origins}]
+p^{\otimes m} \dar[equals,swap]{\wr} \rar[slash,""{name=Q, below}]{\S_{m,n}} & p^{\otimes n} \dar[equals,swap]{\wr} \\
+p^{\otimes m} \otimes p^{\otimes 0} \dar[equals] \ar[slash, ""{name=S, below}, ""{name=R, above}]{r}[description]{\S_{m,n} \otimes \idcoalg{p^{\otimes 0}}} & 
+p^{\otimes n} \otimes p^{\otimes 0} \dar[equals] \\
+p^{\otimes m} \otimes p^{\otimes 0} \dar[equals,swap]{\wr} \ar[slash, ""{name=T, above}, ""{name=U, below}]{r}[description]{\S_{m,n} \otimes \S_{0,0}} & 
+p^{\otimes n} \otimes p^{\otimes 0} \dar[equals,swap]{\wr} \\
+p^{\otimes m} \rar[slash, ""{name=V, above},swap]{\S_{m,n}} & p^{\otimes n}
+\arrow[equals,shorten=5,from=Q,to=R,swap,"\wr"]
+\arrow[Rightarrow,shorten=5,from=S,to=T]
+\arrow[Rightarrow,shorten=5,from=U,to=V]
+\end{tikzcd}
+\end{equation}
+\end{itemize}
+\end{definition}
+
+
+
+
+%------- Chapter -------%
+\section{Proofs of Dynamic Structure}\label{proofs}
+
+
+We now proceed to prove that the coalgebras and structure maps defined above for organized predictions and gradient descent form dynamic structures. In each case, it suffices to show that the structure maps on states preserve coalgebra structure, and that the equations in \cref{operadequations} or \cref{PROequations}, respectively, are satisfied.
+
+\begin{proof}[Proof of \cref{predictionadaptive}]
+The operad equations are all satisfied as $\Delta^+$ is known to be an operad, and morphisms of coalgebras are entirely determined by a function between the state sets. It then remains only to show that the identitor and compositor as defined in \cref{sec.kelley} commute with actions and updates. This is clearly true for the identitor as it is an isomorphism, so we focus on the compositor.
+
+For the compositor to commute with actions on positions is the claim that $\Delta^+_X$ is an algebra for the operad $\Delta^+$; it means that for $\mu \in \Delta^+_N$, $\nu_1 \in \Delta^+_{M_1}$, ..., $\nu_N \in \Delta^+_{M_N}$, and $\gamma_{i,j} \in \Delta^+_X$ for $i=1,...,N$ and $j=1,...,M_i$, we have
+\[
+\sum_i \mu_i \left(\sum_j \nu_j \gamma_{i,j}\right) = \sum_{i,j} (\mu_i \nu_{i,j})\gamma_{i,j},
+\]
+which is clearly the case.
+
+The compositor commutes with actions on directions because in $(\S_{M_1} \otimes \cdots \otimes \S_{M_N}) \then \S_N$ the action of $(\nu_1,...,\nu_N,\mu)$ sends an outcome 
+\[
+x \in X = p_X[\mu \cdot (\nu \cdot \gamma)]
+\]
+to 
+\[
+(x,...,x) \in X^N = p_X^{\otimes N}[\nu_1 \cdot \gamma_1,...,\nu_N \cdot \gamma_N]
+\]
+and then to 
+\[
+(x,...,x) \in X^{\sum_i M_i} = p_X^{\otimes \sum_i M_i}[\gamma_{1,1},...,\gamma_{N,M_N}],
+\]
+while in $\S_{\sum_i M_i}$ the action of $\mu \circ \nu$ sends $x \in X$ to $(x,...,x) \in X^{\sum_i M_i}$ directly.
+
+It then only remains to show that the compositor commutes with updates. Using the shorthand notation $\nu = (\nu_1,...,\nu_N)$ and $\gamma = (\gamma_1,...,\gamma_N) = (\gamma_{1,1},...,\gamma_{N,M_N})$ already employed above, to show that the composite of the updates of $\mu,\nu$ agrees with the update of the composite $\mu \circ \nu$ amounts to the equation
+\begin{equation}\label{trustupdate}
+\gamma(x) * (\mu \circ \nu) = \big((\nu \cdot \gamma)(x) * \mu\big) \circ \big(\gamma(x) * \nu\big)
+\end{equation}
+for any $x \in X$. Here $\nu \cdot \gamma$ denotes $(\nu_1 \cdot \gamma_1,...,\nu_N \cdot \gamma_N)$ and $\gamma(x) * \nu$ denotes $(\gamma_1(x) * \nu_1,...,\gamma_N(x) * \nu_N)$. On the $(i,j)$-component of these distributions, \eqref{trustupdate} unwinds to
+\[
+\frac{\gamma_{i,j}(x)(\mu_i\nu_{i,j})}{\sum_{i',j'}\gamma_{i',j'}(x)(\mu_{i'}\nu_{i',j'})} = \left(\frac{\sum_{j'}(\nu_{i,j'}\gamma_{i,j'}(x))\mu_i}{\sum_{i'}\sum_{j'}(\nu_{i',j'}\gamma_{i',j'}(x))\mu_{i'}}\right)\left(\frac{\gamma_{i,j}(x)\nu_{i,j}}{\sum_{j'}\nu_{i,j'}\gamma_{i,j'}(x)}\right),
+\]
+which is easily seen to hold by extracting $\mu_i$ from the first fraction on the right hand side and cancelling the sums over $j'$.
+\end{proof}
+
+\begin{proof}[Proof of \cref{gradientadaptive}]
+The unit and associativity equations follow immediately from associativity and unitality of addition, cartesian products, and function composition. The interchange equations follow from the preservation of 0 under addition and identity functions under cartesian products, the analogous interchange property of function composition and cartesian products of functions, and the fact that the compositors and productors act the same way on the parameters and their dimension. 
+
+It then remains only to show that the identitors, compositors, and productors are morphisms of coalgebras. This is immediate for the productors, as each component of the action and update functions respects the cartesian products of functions and parameters that define them, so we proceed only for the identitors and compositors.
+
+For the identitors, the state $(0,\id_{\rr^n},0)$ acts as the identity function on $\rr^n$ and on directions by the transpose of its derivative, which is also the identity. The updates in the coalgebras $\S_{n,n}$ only modify the parameter $p$, so as the parameter here is 0-dimensional this state is never changed by the update function, as is the case in the coalgebra $\idcoalg{t^{\otimes n}}$. Therefore this function is a map of coalgebras.
+
+The compositors preserve the component of the action on positions as, for states 
+\[(L \in \nn, f\colon \rr^{L+\ell}, p \in \rr^L) \quad \textrm{and} \quad (M \in \nn, g\colon \rr^{M+m}, q \in \rr^M),\]
+we have 
+\[g(q,-) \circ f(p,-) = g(-,f(-,-))(q,p,-).\]
+This may seem like a trivial rewriting, but it illustrates how the compositor was defined in order for the action to be preserved, as on the left we have the composite of the actions on positions as in $\S_{\ell,m}\then\S_{m,n}$, and on the right we apply the compositor and take the action of the resulting state in $\S_{\ell,n}$.
+
+To show that the compositor preserves both the action on directions and the update we note that by the chain rule, for $x \in \rr^\ell$ and $z \in T_{g(q,f(p,x))}$,
+\[D\left( g(-,f(-,-)) \right)^\top z = Df^\top \cdot \pi_m(Dg^\top \cdot z) \in T_{(p,x)}\rr^{L+\ell}.\]
+Applying $\pi_\ell$ to both sides above shows that the compositor preserves the action on directions, as on the left we have the action on directions after applying the compositor and on the right we have the composition of the actions of $(L,f,p)$ and $(M,g,q)$ on directions as in $\S_{\ell,m}\then\S_{m,n}$.
+
+Finally for updates, we observe by the chain rule that the update rule in $\S_{\ell,n}$ agrees with that in $\S_{\ell,m}\then\S_{m,n}$ under the compositor, as either way for $x,z$ as above the composite state of $(L,f,p)$ and $(M,g,q)$ updates to 
+\[\left( M+L,g(-,f(-,-)),\left( p + \epsilon \pi_L (Df^\top \cdot \pi_m(Dg^\top \cdot z)),q + \epsilon \pi_M(Dg^\top \cdot z) \right) \right).\]
+\end{proof}
+
+
+
+
+\printbibliography 
+\end{document}
+
+%%--- Section ---%
+%\subsection{PROPS}
+%
+%\begin{definition}
+%A PROP $P$ consists of a set of objects $\ob(P)$ and a symmetric strict monoidal category whose monoid of objects is freely generated by $\ob(P)$. A morphism of PROPs is a strict monoidal functor that preserves generating objects.
+%\end{definition}
+%
+%While it is technically convenient to regard a PROP as a monoidal category, it can also be thought of as a structure similar to a polycategory, with a set of objects $\ob(P)$ and sets of many-to-many morphisms $\Hom(x_1,...,x_m;x'_1,...,x'_n)$ equipped with composition, units, and permutations of the domain and codomain objects. These many-to-many morphisms correspond to $\Hom(x_1 \otimes \cdots \otimes x_m,x'_1 \otimes \cdots \otimes x'_n)$ in the corresponding monoidal category. 
+%
+%When $P$ has only one object $x$, we can write $\Hom(m,n)$ for the set of morphisms $x^{\otimes m} \to x^{\otimes n}$. In this case $P$ is simply a monoidal category with object monoid $\nn$.
+%
+%\begin{example}
+%\begin{itemize}
+%	\item The monoid $\nn$ regarded as a discrete monoidal category is a PROP with one object and $\Hom(m,n)$ either empty when $m \neq n$ or containing only the identity when $m=n$.
+%	\item The terminal PROP has one object and a unique morphism in each $\Hom(m,n)$.
+%	\item A skeleton of the category of finite sets forms a prop. The one generator is the singleton set and the monoidal structure is given by the empty set and disjoint union.
+%\end{itemize}
+%\end{example}
+%
+%%--- Section ---%
+%\subsection{Lax functors to monoidal double categories}
+%
+%In order to state the definition of an adaptive, we recall various notions of lax functors out of monoidal categories.
+%
+%\begin{definition}%cite?
+%For $\C$ a category and $\D$ a bicategory, a lax functor $F\colon \C \to \D$ consists of
+%\begin{itemize}
+%	\item an assignment $F\colon \ob(\C) \to \ob(\D)$
+%	\item for each $c,c' \in \ob(\C)$, functions 
+%$$F\colon \Hom_\C(c,c') \to \ob(\D(F(c),F(c')))\]
+%	\item for each $c \in \ob(\C)$, an ``identitor'' 2-cell in $\D(F(c),F(c))$ 
+%$$F_{\id_c}\colon \id_{F(c)} \Rightarrow F(\id_c)\]
+%	\item for each $f\colon c \to c'$ and $f'\colon c' \to c''$ in $\C$, a ``compositor'' 2-cell  in $\D(F(c),F(c''))$
+%$$F_{f \circ f'}\colon F(f') \circ F(f) \Rightarrow F(f' \circ f)\]
+%\end{itemize}
+%such that the identitors and compositors satisfy unit and associativity equations. 
+%\end{definition}
+%
+%The equations here ensure a unique lax structure map 
+%$$F_{f_1 \circ \cdots \circ f_n}\colon F(f_n) \circ \cdots \circ F(f_1) \Rightarrow F(f_n \circ \cdots \circ f_1)\]
+%built out of composites of whiskerings of the identitors and compositors, for all $n \ge 0$ and composable morphisms $f_1,...,f_n$.
+%
+%\begin{definition}%cite? Gurski's thesis mentions lax functors of tricategories which should give a similar notion aside from the strict monoidality on objects and iso-ness of the monoidality equations
+%For $\C$ a monoidal category and $\D$ a monoidal double category, a lax monoidal lax functor $F\colon \C \to \D$ consists of
+%\begin{itemize}
+%	\item a lax functor $F\colon \C \to \D$
+%	\item an ``identitor'' vertical morphism in $\D$ %is this ok? it's a 1-cell not a 2-cell like the other...
+%$$F_I\colon I_\D \to F(I_\C)\]
+%	\item for each $c_1,c_2 \in \ob(\C)$, a ``productor'' vertical morphism in $\D$ 
+%$$F_{c_1,c_2}\colon F(c_1) \otimes F(c_2) \to F(c_1 \otimes c_2)\]
+%	\item for each $f_1\colon c_1 \to c_1'$ and $f_2\colon c_2 \to c_2'$ in $\C$, a ``productor'' square $F_{f_1 \otimes f_2}$ in $\D$
+%\[\begin{tikzcd}
+%F(c_1) \otimes F(c_2) \dar[swap]{F(f_1) \otimes F(f_2)} \ar[""{name=S, below}]{r}{F_{c_1,c_2}} & F(c_1 \otimes c_2) \dar{F(f_1 \otimes f_2)} \\
+%F(c_1') \otimes F(c_2') \ar[""{name=T, above}]{r}[swap]{F_{c_1',c_2'}} & F(c_1' \otimes c_2')
+%\arrow[Rightarrow,shorten=5,from=S,to=T]
+%\end{tikzcd}\]
+%\end{itemize}
+%such that the identitor and productors satisfy unit and associativity equations up to coherent isomorphisms, %this differs from Gurski, but we really don't want to deal with making these lax. say something about this
+%along with interchange equations with respect to the identitors and compositors coming from the lax functoriality of $F$. 
+%\end{definition}
+%
+%These equations guarantee that for any $m$ strings of $n$ composable morphisms in $\C$, there is a unique coherence square from the result of first applying $F$ on each morphism then taking products and composites in $\D$, to the result of first taking products and composites in $\C$ then applying $F$.%maybe write these out in the appendix
+%
+%\begin{proposition}
+%For $\C$ a monoidal category and $\D$ a monoidal double category, the following are equivalent.
+%\begin{enumerate}%be more specific about strictness
+%	\item A lax monoidal lax functor $F\colon \C \to \D$ such that $F_{c_1,c_2}$ is the identity for all $c_1,c_2 \in \ob(\C)$\footnote{Note that this strict monoidality condition is not assumed for the squares $F_{f_1 \otimes f_2}$}
+%	\item A lax functor $F$ from $\C$ to the horizontal bicategory of $\D$ such that $F(c_1 \otimes c_2) = F(c_1) \otimes F(c_2)$ for all $c_1,c_2 \in \ob(\C)$, and the following diagram commutes for all
+%
+%\end{enumerate}
+%\end{proposition}
+
