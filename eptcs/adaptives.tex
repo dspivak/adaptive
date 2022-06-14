@@ -549,8 +549,8 @@ This material is based upon work supported by the Air Force Office of Scientific
 %------- Chapter -------%
 \section{The Monoidal Double Category $\org$}\label{chap.org}
 
-In \cite{spivak2021learners}, the second author defined a category-enriched multicategory $\org$, whose objects are polynomials and whose morphisms are polynomial coalgebras. In this section, we describe how $\org$ in fact more naturally takes the form of a monoidal double category, with coalgebras as horizontal morphisms, maps of polynomials as vertical morphisms, and the Dirichlet tensor product $\otimes$ providing the monoidal structure.%
-\footnote{In fact, $\org$ is a duoidal double category, with a second monoidal structure given by $\tri$, but we will not use that here.}
+In \cite{spivak2021learners}, the second author defined a category-enriched multicategory $\org$, whose objects are polynomials and whose morphisms are polynomial coalgebras. In this section, we describe how $\org$ in fact more naturally takes the form of a monoidal double category, with coalgebras as horizontal morphisms, maps of polynomials as vertical morphisms, and the Dirichlet tensor product $\otimes$ (see \eqref{eqn.tensor} below) providing the monoidal structure.%
+\footnote{In fact, $\org$ is a duoidal double category, with a second monoidal structure $\tri$, but we will not use that here.}
 
 Before we begin, recall that a polynomial is a functor $p\colon \smset\to\smset$ which is isomorphic to a sum of representables; following \cite{spivak2021learners}, we denote $p,q\in\poly$ by
 \begin{equation}\label{eqn.poly_notation}
@@ -558,6 +558,12 @@ p = \sum_{I \in p(1)} \yon^{p[I]} \qqand q = \sum_{J \in q(1)} \yon^{q[J]}
 \end{equation}
 and refer to each $I\in p(1)$ as a \emph{$p$-position} and to each $i\in p[I]$ as a \emph{$p$-direction at $I$}. A map $\phi\colon p\to q$ of polynomials is a natural transformation. Combinatorially, $\phi$ provides: for each $I\in p(1)$ a choice of $\phi(I)\in q(1)$ and for each $j\in q[\phi(I)]$ a choice of $\phi(I,j)\in p[I]$.%
 \footnote{In \cite{spivak2021learners}, what we denote $\phi(I)$ is denoted $\phi_1(I)$ and what we denote $\phi(I,j)$ is denoted $\phi^\sharp_I(j)$.}
+
+For polynomials $p,q$, their Dirichlet tensor product is the polynomial
+\begin{equation}\label{eqn.tensor}
+p \otimes q = \sum_{(I,J) \in p(1) \times q(1)} \yon^{p[I] \times q[J]}
+\end{equation}
+
 
 %--- Section ---%
 \subsection{$[p,q]$-coalgebras}
@@ -576,11 +582,11 @@ It can also be written $[p,q]\cong\prod_{I\in p(1)}\sum_{J\in q(1)}\prod_{j\in q
 For intuition, a $[p,q]$-coalgebra (denoted $p \slashar q$) is a machine that outputs maps $\phi\colon p\to q$ and that inputs what \emph{flows} between them: pairs $(I,j)$ where $I\in p(1)$ is a position of $p$, which ``flows'' to $q$ as $J\coloneqq\phi(I)\in q(1)$, and $j\in q[J]$ is a direction of $q$, which ``flows'' backward to $p$ as $\phi(I,j)\in p[I]$. More precisely, using \cite[Definition 2.10]{spivak2021learners}, we define $[p,q]$-coalgebras as follows. 
 
 \begin{definition}
-The category $[p,q]\coalg$ has as objects pairs $\S = (S,\beta)$ where $S$ is a set and $\beta\colon S \to [p,q] \tri S$ is a function, and where a morphism from $\S$ to $\S'$ is a function $f\colon S \to S'$ making \eqref{eqn.coalg_map} commute. 
+The category $[p,q]\coalg$ has as objects pairs $\S = (S,\beta)$ where $S$ is a set and $\beta\colon S \to [p,q](S)$ is a function, and where a morphism from $\S$ to $\S'$ is a function $f\colon S \to S'$ making \eqref{eqn.coalg_map} commute. 
 \begin{equation}\label{eqn.coalg_map}
 \begin{tikzcd}
-S \rar{\beta} \dar[swap]{f} & {[p,q]} \tri S \dar{{[p,q]} \tri f} \\
-S' \rar[swap]{\beta'} & {[p,q]} \tri S'
+S \rar{\beta} \dar[swap]{f} & {[p,q]}(S) \dar{{[p,q]}(f)} \\
+S' \rar[swap]{\beta'} & {[p,q]}(S')
 \end{tikzcd}
 \end{equation}
 We refer to $S$ as the \emph{state set} and to each element $s\in S$ as a \emph{state}.
@@ -600,6 +606,8 @@ A special case of a static $[p,q]$-coalgebra is given by a map $\phi \in \poly(p
 
 A coalgebra is static iff it is the coproduct of singleton coalgebras.
 \end{example}
+
+More examples and intuition for $[p,q]$-coalgebras can be found in \cite{spivak2021learners}.
 
 
 %--- Section ---%
@@ -662,7 +670,7 @@ and update described similarly componentwise. The tensor product of coalgebra mo
 
 Defining $\org$ as a monoidal bicategory is sufficient for most of the constructions of $\org$-enriched structures in \cref{chap.org_enrich}. However, using a double category structure casting singleton coalgebras $\S_\phi\in[p,q]\coalg$ (see \cref{ex.single_state}) as morphisms $\phi\colon p\to q$ in $\poly$ facilitates our eventual definition of maps between dynamic structures. 
 
-Specifically, the definition of $\org$ as a monoidal bicategory extends to a monoidal (pseudo-)double category with coalgebras as horizontal morphisms, maps in $\poly$ as vertical morphisms, and squares as in \eqref{eqn.square} given by maps of coalgebras from $\S\then\{\psi\}$ to $\{\phi\}\then\S'$. 
+Specifically, the definition of $\org$ as a monoidal bicategory extends to a monoidal pseudo-double category with coalgebras as horizontal morphisms, maps in $\poly$ as vertical morphisms, and squares as in \eqref{eqn.square} given by maps of coalgebras from $\S\then\{\psi\}$ to $\{\phi\}\then\S'$. 
 \begin{equation}\label{eqn.square}
 \begin{tikzcd}
 p \rar[slash, ""{name=S, below}]{\S} \dar[swap]{\phi} & q \dar{\psi} \\
@@ -675,14 +683,14 @@ The symbol $\slashar$ is intended to indicate that the map is ``dynamic'', chang
 As $\{\phi\}$ and $\{\psi\}$ have only one state, and composition of coalgebras acts as the cartesian product on states, such a square amounts to a function $S \to S'$ making \eqref{eqn.coalg_square} commute:
 \begin{equation}\label{eqn.coalg_square}
 \begin{tikzcd}
-S \rar{\beta} \dar[swap]{f} & {[p,q]} \tri S \rar{\psi_\ast} & {[p,q']} \tri S \ar[d, "{[p,q'] \tri f}" pos=.4] \\
-S' \rar[swap]{\beta'} & {[p',q']} \tri S' \rar[swap]{\phi^\ast} & {[p,q']} \tri S'
+S \rar{\beta} \dar[swap]{f} & {[p,q]}(S) \rar{\psi_\ast} & {[p,q']}(S) \ar[d, "{[p,q'](f)}" pos=.4] \\
+S' \rar[swap]{\beta'} & {[p',q']}(S') \rar[swap]{\phi^\ast} & {[p,q']}(S')
 \end{tikzcd}
 \end{equation}
 
 Identities and composites for these squares are determined by the bicategory structure, as this double category is a restriction in the vertical direction of the double category of lax-commuting squares in a bicategory.\footnote{It should be noted however that the vertical arrows in $\org$ are regarded as polynomial maps rather than coalgebras, so that they compose strictly unitally and associatively.}
 
-We now proceed to discuss various categorical structures enriched in $\org$, which describe dynamical systems equipped with extra algebraic structure that allows us to remove abstraction barriers when considering nested layers and complex arrangements of the components of the system.
+We now proceed to discuss various categorical structures enriched in $\org$, which describe dynamical systems equipped with algebraic structure that lets us remove abstraction barriers when considering nested layers and complex arrangements of the components of the system.
 
 
 %------- Chapter -------%
@@ -695,9 +703,9 @@ Different situations call for different categorical structures to model their dy
 
 \slogan{A dynamic *thing* is a *thing* enriched in $\org$.}
 
-This slogan is intentionally imprecise, so as to be maximally inclusive of different notions of categorical structures  (*things*) and notions of enrichment, and also to allow the reader who has an intuitive understanding and no need for precision to skip the remainder of this paragraph. Our intuition and examples come from the theories of enrichment described in \cite{leinster1999generalized} and \cite{shapiro2022enrichment}. In the former, a *thing* can be any suitable type of generalized multicategory, while in the latter a *thing* can be any structure defined as an algebra for a familial monad on a presheaf category equipped with a choice of ``higher'' and ``lower'' dimensional cell shapes. In both cases, *things* are algebras for a particular cartesian monad $T$ which admit an ``enriched'' analogue with respect to any $T$-multicategory. To define $T$-algebras enriched in $\org$ is then to identify $\org$ with a $T$-multicategory, and in all of our examples this identification arises naturally from the observation that monoidal double categories give rise to $T$-multicategories in a natural way.
+This slogan is intentionally imprecise, so as to be maximally inclusive of different notions of categorical structures  (*things*) and notions of enrichment, and also to allow the reader who has an intuitive understanding and no need for precision to skip the remainder of this paragraph. Our intuition and examples come from the theories of enrichment described in \cite{leinster1999generalized} and \cite{shapiro2022enrichment}. In the former, a *thing* can be any suitable type of generalized multicategory, while in the latter a *thing* can be any structure defined as an algebra for a familial monad on a presheaf category equipped with a choice of ``higher'' and ``lower'' dimensional cell shapes. In both cases, *things* are algebras for a particular cartesian monad $T$ and admit an ``enriched'' analogue with respect to any $T$-multicategory. To define $T$-algebras enriched in $\org$ is then to identify $\org$ with a $T$-multicategory, and in all of our examples this identification arises naturally from the observation that monoidal double categories give rise to $T$-multicategories in a natural way.
 
-We give specific instances of $\org$-enrichment in the following sections: in \cref{sec.org_cats} for dynamical categories, in \cref{sec.org_multicats} for dynamical multicategories and operads, and in \cref{sec:org_monoidalcats} for dynamical monoidal categories and PRO(P)s. We are also interested in using dynamic duoidal categories to describe dynamical systems in which different contributors to a system operate at different rates, using the duoidal structure on $\org$ based on $\tri$, but that is beyond the scope of this paper.
+We now give specific instances of $\org$-enrichment: in \cref{sec.org_cats} for dynamical categories, in \cref{sec.org_multicats} for dynamical multicategories and operads, and in \cref{sec:org_monoidalcats} for dynamical monoidal categories and PRO(P)s. We are also interested in using dynamic duoidal categories to describe dynamical systems in which different contributors to a system operate at different rates, using the duoidal structure on $\org$ based on $\tri$, but that is beyond the scope of this paper.
 
 
 %--- Section ---%
@@ -731,7 +739,7 @@ such that these squares satisfy unit and associativity equations (\cref{CatEquat
 \end{definition}
 
 The sets $S_{a,b}$ form an ordinary category which we say \emph{underlies} $A$. 
-In fact, a dynamic category could be equivalently defined as an ordinary category such that each object $a$ is assigned a polynomial $p_a$ and each set of arrows $\Hom(a,b)$ is the set of states for an assigned $[p_a,p_b]$-coalgebra $\S_{a,b}$, with composition and identities respecting the coalgebra structure. This means that the arrow $\id_a$ in $\Hom(a,a)$ acts as the identity map on $p_a$ and is unchanged by updates, while for $f$ in $\Hom(a,b)$ and $g$ in $\Hom(b,c)$ the composite $f\then g$ acts as the composite $p_a \to p_b \to p_c$ of the actions of $f$ and $g$, and the update of their composite equals the composite of their updates.
+In fact, a dynamic category could be equivalently defined as an ordinary category such that each object $a$ is assigned a polynomial $p_a$ and each set of arrows $\Hom(a,b)$ is equipped with a $[p_a,p_b]$-coalgebra structure, with composition and identities respecting the coalgebra structure. This means that the arrow $\id_a$ in $\Hom(a,a)$ acts as the identity map on $p_a$ and is unchanged by updates, while for $f$ in $\Hom(a,b)$ and $g$ in $\Hom(b,c)$ the composite $f\then g$ acts as the composite $p_a \to p_b \to p_c$ of the actions of $f$ and $g$, and the update of their composite equals the composite of their updates.
 
 
 
@@ -791,7 +799,7 @@ Given any multicategory $M$ and multifunctor $F\colon M \to\poly$, where $\poly$
 	\item for each $a \in \ob(M)$, the polynomial interface $p_a \coloneqq F(a)$;
 	\item for each tuple $(a_1,...,a_n\,;\,b)$ in $\ob(M)$, state set $S_{a_1,...,a_n\,;\,b} \coloneqq M(a_1,...,a_n\,;\,b)$;
 	\item the action $\act^\beta\colon M(a_1,...,a_n\,;\,b) \to \poly(p_{a_1} \otimes \cdots \otimes p_{a_n},p_b)$ is given by $F$; and 
-	\item this coalgebra is static, in that for any state $s$ in $M(a_1,...,a_n\,;\,b)$, the update function $\upd^\beta_s$ is the constant function at $s$.
+	\item for any state $s$ in $M(a_1,...,a_n\,;\,b)$, the update function $\upd^\beta_s$ is the constant function at $s$.
 	\qedhere
 \end{itemize}
 \end{example}
@@ -957,7 +965,7 @@ S_{m,n} \coloneqq \left\{(M \in \nn, f\colon \rr^{M+m}, p \in \rr^M) \;\middle|\
 
 The idea is that these states are the possible parameters among which a gradient descender is meant to find the optimal choice, while $f$ dictates how the parameter affects the resulting function $f(p,-)$. In the dynamics of these states described below, only the value of the parameter $p$ will be updated; the parameter-space dimension $M$ and the parameterized function $f$ will remain fixed, though network composition of gradient descenders will involve combining these data in nontrivial ways. Fix $\epsilon>0$.%Do we need this footnote?\footnote{Other versions of a gradient descent dynamic PRO might have the states be simply some space of functions from $\rr^m$ to $\rr^n$, but this type of model is more difficult to describe in a computation-friendly manner as the relevant space of functions is not finite dimensional.}
 
-For every $x\in\rr$, let $T_x\rr$ denote the tangent space at $X$; for all practical purposes $T_x \rr$ can be regarded as simply $\rr$, but in both the description of polynomials as bundles and the intuition for this example it makes sense to use the tangent space at $x$. We proceed to define a dynamic PRO with interface $t \coloneqq \sum_{x \in \rr} \yon^{T_x \rr}$ and with  coalgebras $\S_{m,n}$ which update the state sets $S_{m,n}$ from \cref{def.Smn} using gradient descent. The PRO structure maps encode how networks of gradient descenders can be composed into a single gradient descender with a larger parameter space.
+For every $x\in\rr$, let $T_x\rr$ denote the tangent space at $x$; for all practical purposes $T_x \rr$ can be regarded as simply $\rr$, but in both the description of polynomials as bundles and the intuition for this example it makes sense to use the tangent space. We proceed to define a dynamic PRO with interface $t \coloneqq \sum_{x \in \rr} \yon^{T_x \rr}$ and coalgebras $\S_{m,n}$ which update the state sets $S_{m,n}$ from \cref{def.Smn} using gradient descent. The PRO structure maps encode how networks of gradient descenders can be composed into a single gradient descender with a larger parameter space.
 
 \begin{definition}
 The $[t^{\otimes m},t^{\otimes n}]$-coalgebra structure on $S_{m,n}$ is given by 
