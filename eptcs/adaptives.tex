@@ -487,7 +487,7 @@ replacement=\&]{}\ar[r,slash, "{#1}"]\&{}\end{tikzcd}}
 \begin{document}
 
 \title{Dynamic Categorical Structures:\\From deep learning to prediction markets}
-\title{Dynamic categories, dynamic operads:\\From deep learning to prediction markets}
+\title{Dynamic operads, dynamic categories:\\From deep learning to prediction markets}
 
 \def\titlerunning{Dynamic categories, dynamic operads}
 \author{Brandon T. Shapiro \and David I. Spivak}
@@ -541,7 +541,7 @@ We thank you the reader for having postponed your counterpoints and counterexamp
 
 \subsection{Acknowledgments}
 
-The influences on this paper are too numerous and unranked to name, but in particular we thank Sophie Libkind for stimulating conversations, and we thank Scott Garrabrant for teaching us about Kelly betting, which partially inspired \cref{sec.kelley}.
+The influences on this paper are too numerous and unranked to name, but in particular we thank Sophie Libkind for stimulating conversations, and we thank Scott Garrabrant for teaching us about Kelly betting, which partially inspired \cref{sec.kelley}. Thanks also to David Jaz Myers for catching a typo in \cref{def.Smn}.
 
 This material is based upon work supported by the Air Force Office of Scientific Research under award number FA9550-20-1-0348.
 
@@ -958,7 +958,7 @@ Deep learning uses the algorithm of gradient descent to optimize a choice of fun
 \begin{definition}\label{def.Smn}
 For the rest of this section, we will use the state sets 
 \[
-S_{m,n} \coloneqq \left\{(M \in \nn, f\colon \rr^{M+m}, p \in \rr^M) \;\middle|\; f \textrm{ is differentiable}\right\}.
+S_{m,n} \coloneqq \left\{(M \in \nn, f\colon \rr^{M+m} \to \rr^n, p \in \rr^M) \;\middle|\; f \textrm{ is differentiable}\right\}.
 \qedhere
 \]
 \end{definition}
@@ -1199,7 +1199,7 @@ p^{\otimes (n+n')}
 \end{equation}
 	\item The compositor interchange law
 \begin{equation}\label{eqn.comp_inter}
-\hspace{-4cm}\begin{tikzcd}[column sep={110,between origins}]
+\hspace{-3.3cm}\begin{tikzcd}[column sep={110,between origins}]
 p^{\otimes \ell} \otimes p^{\otimes \ell'} \dar[equals,swap]{\wr} \rar[slash, ""{name=S, below}]{\S_{\ell,m} \otimes \S_{\ell',m'}} & 
 p^{\otimes m} \otimes p^{\otimes m'} \dar[equals,swap]{\wr} \rar[slash, ""{name=U, below}]{\S_{m,n} \otimes \S_{m',n'}} & 
 p^{\otimes n} \otimes p^{\otimes n'} \dar[equals,swap]{\wr} \\
@@ -1277,7 +1277,7 @@ p^{\otimes m} \ar[slash, ""{name=X, above}]{rr}[swap]{\S_{m,n}} & & p^{\otimes n
 \end{equation}
 	\item The productor associativity law
 \begin{equation}\label{eqn.prod_assoc}
-\hspace{-4.1cm}\begin{tikzcd}[column sep={180,between origins}]%work on tilted arrow
+\hspace{-3.1cm}\begin{tikzcd}[column sep={180,between origins}]%work on tilted arrow
 p^{\otimes m} \otimes p^{\otimes m'} \otimes p^{\otimes m''}  \dar[equals,swap]{\wr} \rar[slash,""{name=S,below}]{\S_{m,n} \otimes \S_{m',n'} \otimes \S_{m'',n''}} & p^{\otimes n} \otimes p^{\otimes n'} \otimes p^{\otimes n''} \dar[equals,swap]{\wr} \\
 p^{\otimes (m + m')} \otimes p^{\otimes m''} \dar[equals,swap]{\wr} \ar[slash,""{name=T,above},""{name=U,below}]{r}[description]{\S_{m+m',n+n'} \otimes \S_{m'',n''}} & p^{\otimes (n + n')} \otimes p^{\otimes n''} \dar[equals,swap]{\wr} \\
 p^{\otimes (m + m' + m'')} \rar[slash, ""{name=V, above},swap]{\S_{m+m'+m'',n+n'+n''}} & p^{\otimes (n + n' + n'')}
@@ -1293,7 +1293,7 @@ p^{\otimes (m + m' + m'')} \rar[slash, ""{name=V, above},swap]{\S_{m+m'+m'',n+n'
 \end{equation}
 	\item The productor unit laws
 \begin{equation}\label{eqn.prod_unit}
-\hspace{-3.0cm}\begin{tikzcd}[column sep={130,between origins}]
+\hspace{-2.1cm}\begin{tikzcd}[column sep={130,between origins}]
 p^{\otimes m} \dar[equals,swap]{\wr} \rar[slash,""{name=Q, below}]{\S_{m,n}} & p^{\otimes n} \dar[equals,swap]{\wr} \\
 p^{\otimes 0} \otimes p^{\otimes m} \dar[equals] \ar[slash, ""{name=S, below}, ""{name=R, above}]{r}[description]{\idcoalg{p^{\otimes 0}} \otimes \S_{m,n}} & 
 p^{\otimes 0} \otimes p^{\otimes n} \dar[equals] \\
