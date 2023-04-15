@@ -1,0 +1,34 @@
+\begin{thebibliography}{10}
+\providecommand{\bibitemdeclare}[2]{}
+\providecommand{\surnamestart}{}
+\providecommand{\surnameend}{}
+\providecommand{\urlprefix}{Available at }
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\href}[2]{\texttt{#2}}
+\providecommand{\urlalt}[2]{\href{#1}{#2}}
+\providecommand{\doi}[1]{doi:\urlalt{http://dx.doi.org/#1}{#1}}
+\providecommand{\eprint}[1]{arXiv:\urlalt{https://arxiv.org/abs/#1}{#1}}
+\providecommand{\bibinfo}[2]{#2}
+
+\bibitemdeclare{article}{leinster1999generalized}
+\bibitem{leinster1999generalized} 
+\bibinfo{author}{Tom \surnamestart Leinster \surnameend} (\bibinfo{year}{1999}): \emph{\bibinfo{title}{Generalized enrichment for categories and multicategories}}, \doi{10.48550/arXiv.math/9901139}. \newblock \urlprefix\url{https://arxiv.org/abs/math/9901139}.
+
+\bibitemdeclare{article}{niu2021collectives}
+\bibitem{niu2021collectives} 
+\bibinfo{author}{Nelson \surnamestart Niu \surnameend} \& \bibinfo{author}{David I.\surnamestart Spivak \surnameend} (\bibinfo{year}{2021}): \emph{\bibinfo{title}{Collectives: Compositional protocols for contributions and returns}}, \doi{10.48550/arXiv.2112.11518}. \newblock \urlprefix\url{https://arxiv.org/abs/2112.11518}.
+
+ \bibitemdeclare{article}{shapiro2022enrichment}
+ \bibitem{shapiro2022enrichment}
+ \bibinfo{author}{Brandon T. \surnamestart Shapiro \surnameend} (\bibinfo{year}{2022}): \emph{\bibinfo{title}{Enrichment of Algebraic Higher Categories}}, \doi{10.48550/arXiv.2205.12235}. \newblock \urlprefix\url{https://arxiv.org/abs/2205.12235}.
+ 
+\bibitemdeclare{inproceedings}{spivak2021learners}
+\bibitem{spivak2021learners} 
+\bibinfo{author}{David I.\surnamestart Spivak \surnameend} (\bibinfo{year}{2021}): \emph{\bibinfo{title}{Learners' Languages}}, \doi{10.1145/2815072.2815075}. In {\sl
+  \bibinfo{booktitle}{Proceedings of the 4th Annual Conference on Applied Category Theory}},
+  \bibinfo{publisher}{EPTCS}, \bibinfo{address}{Cambridge, UK}, \doi{10.1145/2815072.2815075}.
+  
+\end{thebibliography}
+
+   
+

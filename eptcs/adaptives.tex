@@ -1,6 +1,7 @@
 \documentclass{eptcs}
 
 
+
 \usepackage{amsthm}
 \usepackage{mathtools}
 
@@ -10,16 +11,18 @@
 \usepackage{xcolor}
 
 \usepackage[capitalize]{cleveref}
-\usepackage[backend=biber, backref=true, maxbibnames = 10, style = alphabetic]{biblatex}
+%\usepackage[backend=biber, backref=true, maxbibnames = 10, style = alphabetic]{biblatex}
+\usepackage{url}
+\def\UrlBreaks{\do\/\do-}
 
 \usepackage{tikz}
 
 \usepackage{amssymb}
-\usepackage{newpxtext}
+%\usepackage{newpxtext}
 \usepackage[varg,bigdelims]{newpxmath}
 \usepackage{mathrsfs}
 \usepackage{dutchcal}
-\usepackage{fontawesome}
+%\usepackage{fontawesome}
 \usepackage{ebproof}
 \usepackage{stmaryrd}
 \usepackage{float}
@@ -31,7 +34,7 @@
 
 
 % biblatex %
-  \addbibresource{Library20220421.bib} 
+%  \addbibresource{Library20220421.bib} 
 
 % hyperref %
   \hypersetup{final}
@@ -486,10 +489,10 @@ replacement=\&]{}\ar[r,slash, "{#1}"]\&{}\end{tikzcd}}
 %--------------- Document ---------------%
 \begin{document}
 
-\title{Dynamic Categorical Structures:\\From deep learning to prediction markets}
-\title{Dynamic operads, dynamic categories:\\From deep learning to prediction markets}
+%\title{Dynamic Categorical Structures:\\From Deep Learning to Prediction Markets}
+\title{Dynamic Operads, Dynamic Categories:\\From Deep Learning to Prediction Markets}
 
-\def\titlerunning{Dynamic categories, dynamic operads}
+\def\titlerunning{Dynamic Categories, Dynamic Operads}
 \author{Brandon T. Shapiro \and David I. Spivak}
 \def\authorrunning{B.T.\ Shapiro and D.I.\ Spivak}
 \date{\vspace{-.2in}}
@@ -1073,18 +1076,18 @@ The equations between the identitors and compositors in a dynamic category are a
 \begin{itemize}
 	\item The left and right unit laws
 \begin{equation}\label{eqn.cat_unit}
-\hspace{-1.4cm}  \begin{tikzcd}[column sep=large, ampersand replacement=\&]
+\begin{tikzcd}[ampersand replacement=\&]
   p_a \dar[equals] \ar[r, slash, "\{\id_{p_a}\}", ""' name=R] \& p_a \rar[slash, ""' name=S]{\S_{a,b}} \dar[equals] \& p_b \dar[equals] \\
   p_a \dar[equals] \ar[r,""' name=U,""{name=W,below},slash,swap,"\S_{a,a}"] \& p_a \ar[r,""' name=V,slash,swap,"\S_{a,b}"] \& p_b \dar[equals] \\
   p_a \ar[slash, ""{name=T}]{rr}[swap]{\S_{a,b}} \& \& p
   \arrow[Rightarrow,shorten=8,from=W-|T,to=T]
   \arrow[Rightarrow,shorten=7,from=R,to=U]
   \arrow[equals,shorten=8,from=S,to=V]
-  \end{tikzcd} \quad = \quad \begin{tikzcd}[column sep=large, ampersand replacement=\&]
+  \end{tikzcd} \quad = \quad \begin{tikzcd}[ampersand replacement=\&]
 p_a \dar[equals] \rar[slash,""{name=S, below}]{\S_{a,b}} \& p_b \dar[equals] \\
 p_a \rar[slash, ""{name=T, above},swap]{\S_{a,b}} \& p_b
 \arrow[equals,shorten=7,from=S,to=T]
-  \end{tikzcd} \quad = \quad \begin{tikzcd}[column sep=large, ampersand replacement=\&]
+  \end{tikzcd} \quad = \quad \begin{tikzcd}[ampersand replacement=\&]
   p_a \dar[equals] \ar[r, slash, "\S_{a,b}", ""' name=R] \& p_b \rar[slash, ""' name=S]{\{\id_{p_b}\}} \dar[equals] \& p_b \dar[equals] \\
   p_a \dar[equals] \ar[r,""' name=U,""{name=W,below},slash,swap,"\S_{a,b}"] \& p_b \ar[r,""' name=V,slash,swap,"\S_{b,b}"] \& p_b \dar[equals] \\
   p_a \ar[slash, ""{name=T}]{rr}[swap]{\S_{a,b}} \& \& p
@@ -1095,16 +1098,16 @@ p_a \rar[slash, ""{name=T, above},swap]{\S_{a,b}} \& p_b
 \end{equation}
 	\item The associativity law
 \begin{equation}\label{eqn.cat_assoc}
-\hspace{-1.4cm} \begin{tikzcd}[column sep=large,ampersand replacement=\&]
+\begin{tikzcd}[ampersand replacement=\&]
   p_a \dar[equals] \ar[r, slash, "\S_{a,b}", ""' name=U] \& p_b \ar[r, slash, "\S_{b,c}"] \& p_c \dar[equals] \rar[slash, ""' name=V]{\S_{c,d}} \& p_d \dar[equals] \\
-  p_a \dar[equals] \ar[slash, ""{name=W,above},""{name=S, below}]{rr}[description]{\S_{a,c}} \& \& p_c \rar[slash,swap,""' name=X]{\S_{c,d}} \& p_d \dar[equals] \\
+  p_a \dar[equals] \ar[slash, ""{name=W,above},""{name=S, below}]{rr}[swap]{\S_{a,c}} \& \& p_c \ar[slash,""' name=X]{r}[swap]{\S_{c,d}} \& p_d \dar[equals] \\
   p_a \ar[slash, ""{name=T}]{rrr}[swap]{\S_{a,d}} \& \& \& p_d
   \arrow[Rightarrow,shorten=8,from=U-|W,to=W]
   \arrow[equals,shorten=8,from=V,to=X]
   \arrow[Rightarrow,shorten=8,from=S-|T,to=T]
-  \end{tikzcd} \quad = \quad \begin{tikzcd}[column sep=large,ampersand replacement=\&]
+  \end{tikzcd} \quad = \quad \begin{tikzcd}[ampersand replacement=\&]
   p_a \dar[equals] \ar[r, slash, "\S_{a,b}", ""' name=U] \& p_b \dar[equals] \ar[r, slash, "\S_{b,c}"] \& p_c \rar[slash, ""' name=V]{\S_{c,d}} \& p_d \dar[equals] \\
-  p_a \dar[equals] \ar[slash, ""{name=W,above}]{r}[description]{\S_{a,b}} \& p_b \ar[slash, ""{name=X,above},""{name=S, below}]{rr}[description]{\S_{b,d}} \& \& p_d \dar[equals] \\
+  p_a \dar[equals] \ar[slash, ""{name=W,above}]{r}[swap]{\S_{a,b}} \& p_b \ar[slash, ""{name=X,above},""{name=S, below}]{rr}[swap]{\S_{b,d}} \& \& p_d \dar[equals] \\
   p_a \ar[slash, ""{name=T}]{rrr}[swap]{\S_{a,d}} \& \& \& p_d
   \arrow[equals,shorten=8,from=U-|W,to=W]
   \arrow[Rightarrow,shorten=8,from=V-|X,to=X]
@@ -1122,18 +1125,18 @@ The equations between the identitors and compositors in a dynamic operad are as 
 \begin{itemize}
 	\item The left and right unit laws
 \begin{equation}\label{eqn.operad_unit}
-\hspace{-1.4cm}  \begin{tikzcd}[column sep=large, ampersand replacement=\&]
+\begin{tikzcd}[ampersand replacement=\&]
   p^{\otimes n} \dar[equals] \ar[r, slash, "\{\id_p\}^{\otimes n}", ""' name=R] \& p^{\otimes n} \rar[slash, ""' name=S]{\S_n} \dar[equals] \& p \dar[equals] \\
   p^{\otimes n} \dar[equals] \ar[r,""' name=U,""{name=W,below},slash,swap,"\S_1^{\otimes n}"] \& p^{\otimes n} \ar[r,""' name=V,slash,swap,"\S_n"] \& p \dar[equals] \\
   p^{\otimes n} \ar[slash, ""{name=T}]{rr}[swap]{\S_n} \& \& p
   \arrow[Rightarrow,shorten=8,from=W-|T,to=T]
   \arrow[Rightarrow,shorten=7,from=R,to=U]
   \arrow[equals,shorten=8,from=S,to=V]
-  \end{tikzcd} \quad = \quad \begin{tikzcd}[column sep=large, ampersand replacement=\&]
+  \end{tikzcd} \;\;\; = \;\;\; \begin{tikzcd}[ampersand replacement=\&]
 p^{\otimes n} \dar[equals] \rar[slash,""{name=S, below}]{\S_n} \& p \dar[equals] \\
 p^{\otimes n} \rar[slash, ""{name=T, above},swap]{\S_n} \& p
 \arrow[equals,shorten=7,from=S,to=T]
-  \end{tikzcd} \quad = \quad \begin{tikzcd}[column sep=large, ampersand replacement=\&]
+  \end{tikzcd} \;\;\; = \;\;\; \begin{tikzcd}[ampersand replacement=\&]
   p^{\otimes n} \dar[equals] \ar[r, slash, "\S_n", ""' name=R] \& p \rar[slash, ""' name=S]{\{\id_p\}} \dar[equals] \& p \dar[equals] \\
   p^{\otimes n} \dar[equals] \ar[r,""' name=U,""{name=W,below},slash,swap,"\S_n"] \& p \ar[r,""' name=V,slash,swap,"\S_1"] \& p \dar[equals] \\
   p^{\otimes n} \ar[slash, ""{name=T}]{rr}[swap]{\S_n} \& \& p
@@ -1144,7 +1147,7 @@ p^{\otimes n} \rar[slash, ""{name=T, above},swap]{\S_n} \& p
 \end{equation}
 	\item The associativity law
 \[ 
-\hspace{-2.6cm} \begin{tikzcd}[column sep=large,ampersand replacement=\&]
+\begin{tikzcd}[column sep=large,ampersand replacement=\&]
   p^{\otimes \ell_{1,1}} \otimes \cdots \otimes p^{\otimes \ell_{n,m_n}} \dar[equals,swap,"\wr"] \ar[r, slash, "\bigotimes_{i,j} \S_{\ell_{i,j}}", ""' name=U] \& p^{\otimes m_1} \otimes \cdots \otimes p^{\otimes m_n} \ar[r, slash, "\bigotimes_i \S_{m_i}"] \& p^{\otimes n} \dar[equals] \rar[slash, ""' name=V]{\S_n} \& p \dar[equals] \\
   p^{\otimes (\sum_j \ell_{1,j})} \otimes \cdots \otimes p^{\otimes (\sum_j \ell_{n,j})} \dar[equals,swap,"\wr"] \ar[slash, ""{name=W,above},""{name=S, below}]{rr}[description]{\bigotimes_i \S_{\sum_j \ell_{1,j}}} \& \& p^{\otimes n} \rar[slash,swap,""' name=X]{\S_n} \& p \dar[equals] \\
   p^{\otimes (\sum_{i,j} \ell_{i,j})} \ar[slash, ""{name=T}]{rrr}[swap]{\S_{\sum_{i,j} \ell_{i,j}}} \& \& \& p
@@ -1157,9 +1160,9 @@ p^{\otimes n} \rar[slash, ""{name=T, above},swap]{\S_n} \& p
 =
 \end{equation}
 \[
-\hspace{-2.2cm} \begin{tikzcd}[column sep=large,ampersand replacement=\&]
+\begin{tikzcd}[column sep=large,ampersand replacement=\&]
   p^{\otimes \ell_{1,1}} \otimes \cdots \otimes p^{\otimes \ell_{n,m_n}} \dar[equals] \ar[r, slash, "\bigotimes_{i,j} \S_{\ell_{i,j}}", ""' name=U] \& p^{\otimes m_1} \otimes \cdots \otimes p^{\otimes m_n} \dar[equals,swap,"\wr"] \ar[r, slash, "\bigotimes_i \S_{m_i}"] \& p^{\otimes n} \rar[slash, ""' name=V]{\S_n} \& p \dar[equals] \\
-  p^{\otimes \ell_{1,1}} \otimes \cdots \otimes p^{\otimes \ell_{n,m_n}} \dar[equals,swap,"\wr"] \ar[slash, ""{name=W,above}]{r}[description]{\bigotimes_{i,j} \S_{\ell_{i,j}}} \& p^{\otimes (\sum_i m_i)} \ar[slash, ""{name=X,above},""{name=S, below}]{rr}[description]{\S_{\sum_i m_i}} \& \& p \dar[equals] \\
+  p^{\otimes \ell_{1,1}} \otimes \cdots \otimes p^{\otimes \ell_{n,m_n}} \dar[equals,swap,"\wr"] \ar[slash, ""{name=W,above}]{r}[swap]{\bigotimes_{i,j} \S_{\ell_{i,j}}} \& p^{\otimes (\sum_i m_i)} \ar[slash, ""{name=X,above},""{name=S, below}]{rr}[swap]{\S_{\sum_i m_i}} \& \& p \dar[equals] \\
   p^{\otimes (\sum_{i,j} \ell_{i,j})} \ar[slash, ""{name=T}]{rrr}[swap]{\S_{\sum_{i,j} \ell_{i,j}}} \& \& \& p
   \arrow[equals,shorten=8,from=U-|W,to=W]
   \arrow[Rightarrow,shorten=8,from=V-|X,to=X]
@@ -1177,7 +1180,7 @@ The equations between the identitors, compositors, and productors in a dynamic P
 \begin{itemize}
 	\item The identitor interchange law
 \begin{equation}\label{eqn.id_inter}
-\hspace{-1.5cm}\begin{tikzcd}[column sep={150,between origins}]
+\begin{tikzcd}[column sep={130,between origins}]
 p^{\otimes n} \otimes p^{\otimes n'} \dar[equals] \rar[slash, ""{name=S, below}]{\idcoalg{p^{\otimes n}} \otimes \idcoalg{p^{\otimes n'}}} & 
 p^{\otimes n} \otimes p^{\otimes n'} \dar[equals] \\
 p^{\otimes n} \otimes p^{\otimes n'} \dar[equals,swap]{\wr} \ar[slash, ""{name=T, above}, ""{name=U, below}]{r}[description]{\S_{n,n} \otimes \S_{n',n'}} & 
@@ -1186,7 +1189,7 @@ p^{\otimes (n+n')} \rar[slash, ""{name=V, above},swap]{\S_{n+n',n+n'}} &
 p^{\otimes (n+n')}
 \arrow[Rightarrow,shorten=5,from=S,to=T]
 \arrow[Rightarrow,shorten=5,from=U,to=V]
-\end{tikzcd}\quad = \quad\begin{tikzcd}[column sep={150,between origins}]
+\end{tikzcd}\;\; = \;\;\begin{tikzcd}[column sep={130,between origins}]
 p^{\otimes n} \otimes p^{\otimes n'} \dar[equals,swap]{\wr} \rar[slash, ""{name=S, below}]{\idcoalg{p^{\otimes n}} \otimes \idcoalg{p^{\otimes n'}}} & 
 p^{\otimes n} \otimes p^{\otimes n'} \dar[equals,swap]{\wr} \\
 p^{\otimes (n+n')} \dar[equals] \ar[slash, ""{name=T, above}, ""{name=U, below}]{r}[description]{\idcoalg{p^{\otimes (n+n')}}} & 
@@ -1198,8 +1201,8 @@ p^{\otimes (n+n')}
 \end{tikzcd}
 \end{equation}
 	\item The compositor interchange law
-\begin{equation}\label{eqn.comp_inter}
-\hspace{-3.3cm}\begin{tikzcd}[column sep={110,between origins}]
+\[
+\begin{tikzcd}[column sep={110,between origins}]
 p^{\otimes \ell} \otimes p^{\otimes \ell'} \dar[equals,swap]{\wr} \rar[slash, ""{name=S, below}]{\S_{\ell,m} \otimes \S_{\ell',m'}} & 
 p^{\otimes m} \otimes p^{\otimes m'} \dar[equals,swap]{\wr} \rar[slash, ""{name=U, below}]{\S_{m,n} \otimes \S_{m',n'}} & 
 p^{\otimes n} \otimes p^{\otimes n'} \dar[equals,swap]{\wr} \\
@@ -1211,7 +1214,13 @@ p^{\otimes (n + n')}
 \arrow[Rightarrow,shorten=5,from=S,to=T]
 \arrow[Rightarrow,shorten=5,from=U,to=V]
 \arrow[Rightarrow,shorten=5,from=R,to=W]
-\end{tikzcd}\quad = \quad\begin{tikzcd}[column sep={110,between origins}]
+\end{tikzcd}
+\]
+\begin{equation}\label{eqn.comp_inter}
+= 
+\end{equation}
+\[
+\begin{tikzcd}[column sep={110,between origins}]
 p^{\otimes \ell} \otimes p^{\otimes \ell'} \dar[equals] \rar[slash, ""{name=S, below}]{\S_{\ell,m} \otimes \S_{\ell',m'}} \ar[phantom,""{name=R, below}]{rr} & 
 p^{\otimes m} \otimes p^{\otimes m'} \rar[slash, ""{name=U, below}]{\S_{m,n} \otimes \S_{m',n'}} & 
 p^{\otimes n} \otimes p^{\otimes n'} \dar[equals] \\
@@ -1222,10 +1231,10 @@ p^{\otimes (n + n')}
 \arrow[Rightarrow,shorten=5,from=R,to=S]
 \arrow[Rightarrow,shorten=5,from=T,to=U]
 \end{tikzcd}
-\end{equation}
+\]
 	\item The compositor associativity law
 \begin{equation}\label{eqn.comp_assoc}
-\hspace{-1.1cm}\begin{tikzcd}%[column sep={60,between origins}]
+\begin{tikzcd}%[column sep={60,between origins}]
 p^{\otimes k} \dar[equals] \rar[slash]{\S_{k,\ell}} \ar[phantom,""{name=S, below}]{rr} & 
 p^{\otimes \ell} \rar[slash]{\S_{\ell,m}} & 
 p^{\otimes m} \dar[equals] \rar[slash, ""{name=U, below}]{\S_{m,n}} & 
@@ -1238,7 +1247,7 @@ p^{\otimes n}
 \arrow[Rightarrow,shorten=5,from=S,to=T]
 \arrow[equals,shorten=5,from=U,to=V]
 \arrow[Rightarrow,shorten=5,from=W,to=X]
-\end{tikzcd}\quad = \quad\begin{tikzcd}%[column sep={60,between origins}]
+\end{tikzcd}\;\; = \;\;\begin{tikzcd}%[column sep={60,between origins}]
 p^{\otimes k} \dar[equals] \rar[slash,""{name=S, below}]{\S_{k,\ell}} & 
 p^{\otimes \ell} \dar[equals] \rar[slash]{\S_{\ell,m}} \ar[phantom,""{name=U, below}]{rr} & 
 p^{\otimes m} \rar[slash]{\S_{m,n}} & 
@@ -1255,18 +1264,18 @@ p^{\otimes n}
 \end{equation}
 	\item The compositor unit laws
 \begin{equation}\label{eqn.comp_unit}
-\hspace{-1.5cm}\begin{tikzcd}
+\begin{tikzcd}
 p^{\otimes m} \dar[equals] \rar[slash,""{name=S, below}]{\idcoalg{p^{\otimes m}}} & p^{\otimes m} \dar[equals] \rar[slash,""{name=U, below}]{\S_{m,n}} & p^{\otimes n} \dar[equals] \\
 p^{\otimes m} \dar[equals] \rar[slash,""{name=T, above},swap]{\S_{m,m}} \ar[phantom,""{name=W, below}]{rr} & p^{\otimes m} \rar[slash,""{name=V, above},swap]{\S_{m,n}} & p^{\otimes n} \dar[equals] \\
 p^{\otimes m} \ar[slash, ""{name=X, above}]{rr}[swap]{\S_{m,n}} & & p^{\otimes n}
 \arrow[Rightarrow,shorten=5,from=S,to=T]
 \arrow[equals,shorten=5,from=U,to=V]
 \arrow[Rightarrow,shorten=5,from=W,to=X]
-\end{tikzcd}\quad = \quad\begin{tikzcd}
+\end{tikzcd}\;\; = \;\;\begin{tikzcd}
 p^{\otimes m} \dar[equals] \rar[slash,""{name=S, below}]{\S_{m,n}} & p^{\otimes n} \dar[equals] \\
 p^{\otimes m} \rar[slash, ""{name=T, above},swap]{\S_{m,n}} & p^{\otimes n}
 \arrow[equals,shorten=5,from=S,to=T]
-\end{tikzcd}\quad = \quad\begin{tikzcd}
+\end{tikzcd}\;\; = \;\;\begin{tikzcd}
 p^{\otimes m} \dar[equals] \rar[slash,""{name=S, below}]{\S_{m,n}} & p^{\otimes n} \dar[equals] \rar[slash,""{name=U, below}]{\idcoalg{p^{\otimes m}}} & p^{\otimes n} \dar[equals] \\
 p^{\otimes m} \dar[equals] \rar[slash,""{name=T, above},swap]{\S_{m,n}} \ar[phantom,""{name=W, below}]{rr} & p^{\otimes n} \rar[slash,""{name=V, above},swap]{\S_{n,n}} & p^{\otimes n} \dar[equals] \\
 p^{\otimes m} \ar[slash, ""{name=X, above}]{rr}[swap]{\S_{m,n}} & & p^{\otimes n}
@@ -1276,24 +1285,30 @@ p^{\otimes m} \ar[slash, ""{name=X, above}]{rr}[swap]{\S_{m,n}} & & p^{\otimes n
 \end{tikzcd}
 \end{equation}
 	\item The productor associativity law
-\begin{equation}\label{eqn.prod_assoc}
-\hspace{-3.1cm}\begin{tikzcd}[column sep={180,between origins}]%work on tilted arrow
+\[
+\begin{tikzcd}[column sep={180,between origins}]%work on tilted arrow
 p^{\otimes m} \otimes p^{\otimes m'} \otimes p^{\otimes m''}  \dar[equals,swap]{\wr} \rar[slash,""{name=S,below}]{\S_{m,n} \otimes \S_{m',n'} \otimes \S_{m'',n''}} & p^{\otimes n} \otimes p^{\otimes n'} \otimes p^{\otimes n''} \dar[equals,swap]{\wr} \\
 p^{\otimes (m + m')} \otimes p^{\otimes m''} \dar[equals,swap]{\wr} \ar[slash,""{name=T,above},""{name=U,below}]{r}[description]{\S_{m+m',n+n'} \otimes \S_{m'',n''}} & p^{\otimes (n + n')} \otimes p^{\otimes n''} \dar[equals,swap]{\wr} \\
 p^{\otimes (m + m' + m'')} \rar[slash, ""{name=V, above},swap]{\S_{m+m'+m'',n+n'+n''}} & p^{\otimes (n + n' + n'')}
 \arrow[Rightarrow,shorten=5,from=S,to=T]
 \arrow[Rightarrow,shorten=5,from=U,to=V]
-\end{tikzcd}\quad = \quad\begin{tikzcd}[column sep={180,between origins}]
+\end{tikzcd}
+\]
+\begin{equation}\label{eqn.prod_assoc}
+= 
+\end{equation}
+\[
+\begin{tikzcd}[column sep={180,between origins}]
 p^{\otimes m} \otimes p^{\otimes m'} \otimes p^{\otimes m''}  \dar[equals,swap]{\wr} \rar[slash,""{name=S,below}]{\S_{m,n} \otimes \S_{m',n'} \otimes \S_{m'',n''}} & p^{\otimes n} \otimes p^{\otimes n'} \otimes p^{\otimes n''} \dar[equals,swap]{\wr} \\
 p^{\otimes m} \otimes p^{\otimes (m+m'')} \dar[equals,swap]{\wr} \ar[slash,""{name=T,above},""{name=U,below}]{r}[description]{\S_{m,n} \otimes \S_{m'+m'',n'+n''}} & p^{\otimes n} \otimes p^{\otimes (n' + n'')} \dar[equals,swap]{\wr} \\
 p^{\otimes (m + m' + m'')} \rar[slash, ""{name=V, above},swap]{\S_{m+m'+m'',n+n'+n''}} & p^{\otimes (n + n' + n'')}
 \arrow[Rightarrow,shorten=5,from=S,to=T]
 \arrow[Rightarrow,shorten=5,from=U,to=V]
 \end{tikzcd}
-\end{equation}
+\]
 	\item The productor unit laws
 \begin{equation}\label{eqn.prod_unit}
-\hspace{-2.1cm}\begin{tikzcd}[column sep={130,between origins}]
+\hspace{-1cm}\begin{tikzcd}[column sep={120,between origins}]
 p^{\otimes m} \dar[equals,swap]{\wr} \rar[slash,""{name=Q, below}]{\S_{m,n}} & p^{\otimes n} \dar[equals,swap]{\wr} \\
 p^{\otimes 0} \otimes p^{\otimes m} \dar[equals] \ar[slash, ""{name=S, below}, ""{name=R, above}]{r}[description]{\idcoalg{p^{\otimes 0}} \otimes \S_{m,n}} & 
 p^{\otimes 0} \otimes p^{\otimes n} \dar[equals] \\
@@ -1303,11 +1318,11 @@ p^{\otimes m} \rar[slash, ""{name=V, above},swap]{\S_{m,n}} & p^{\otimes n}
 \arrow[equals,shorten=5,from=Q,to=R,swap,"\wr"]
 \arrow[Rightarrow,shorten=5,from=S,to=T]
 \arrow[Rightarrow,shorten=5,from=U,to=V]
-\end{tikzcd}\quad = \quad\begin{tikzcd}
+\end{tikzcd}\!\!\!\!\!\!\! = \;\begin{tikzcd}[column sep=scriptsize]
 p^{\otimes m} \dar[equals] \rar[slash,""{name=S, below}]{\S_{m,n}} & p^{\otimes n} \dar[equals] \\
 p^{\otimes m} \rar[slash, ""{name=T, above},swap]{\S_{m,n}} & p^{\otimes n}
 \arrow[equals,shorten=5,from=S,to=T]
-\end{tikzcd}\quad = \quad\begin{tikzcd}[column sep={130,between origins}]
+\end{tikzcd}\; = \!\!\!\!\!\!\!\begin{tikzcd}[column sep={120,between origins}]
 p^{\otimes m} \dar[equals,swap]{\wr} \rar[slash,""{name=Q, below}]{\S_{m,n}} & p^{\otimes n} \dar[equals,swap]{\wr} \\
 p^{\otimes m} \otimes p^{\otimes 0} \dar[equals] \ar[slash, ""{name=S, below}, ""{name=R, above}]{r}[description]{\S_{m,n} \otimes \idcoalg{p^{\otimes 0}}} & 
 p^{\otimes n} \otimes p^{\otimes 0} \dar[equals] \\
@@ -1317,7 +1332,7 @@ p^{\otimes m} \rar[slash, ""{name=V, above},swap]{\S_{m,n}} & p^{\otimes n}
 \arrow[equals,shorten=5,from=Q,to=R,swap,"\wr"]
 \arrow[Rightarrow,shorten=5,from=S,to=T]
 \arrow[Rightarrow,shorten=5,from=U,to=V]
-\end{tikzcd}
+\end{tikzcd}\hspace{-.7cm}
 \end{equation}
 \end{itemize}
 \end{definition}
@@ -1383,13 +1398,13 @@ To show that the compositor preserves both the action on directions and the upda
 Applying $\pi_\ell$ to both sides above shows that the compositor preserves the action on directions, as on the left we have the action on directions after applying the compositor and on the right we have the composition of the actions of $(L,f,p)$ and $(M,g,q)$ on directions as in $\S_{\ell,m}\then\S_{m,n}$.
 
 Finally for updates, we observe by the chain rule that the update rule in $\S_{\ell,n}$ agrees with that in $\S_{\ell,m}\then\S_{m,n}$ under the compositor, as either way for $x,z$ as above the composite state of $(L,f,p)$ and $(M,g,q)$ updates to 
-\[\left( M+L,g(-,f(-,-)),\left( p + \epsilon \pi_L (Df^\top \cdot \pi_m(Dg^\top \cdot z)),q + \epsilon \pi_M(Dg^\top \cdot z) \right) \right).\]
+\[\left( M+L,g(-,f(-,-)),\left( p + \epsilon \pi_L (Df^\top \cdot \pi_m(Dg^\top \cdot z)),q + \epsilon \pi_M(Dg^\top \cdot z) \right) \right).\qedhere\]
 \end{proof}
 
 
 
 
-\printbibliography 
+\input{adaptives.bbl}
 \end{document}
 
 %%--- Section ---%
