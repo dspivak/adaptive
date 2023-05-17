@@ -918,14 +918,14 @@ Fix a finite set $X$, elements of which we call \emph{outcomes} and intuit to be
 \[
 	\bet_X\coloneqq\left\{\gamma\colon X\to(0,1]\;\;\middle|\;\;1=\sum_x\gamma(x) \right\}
 \]
-The monoid $((0,1],1,*)$ of nonzero subunital reals acts on $\bet_X$ by scalar multiplication, i.e. for any $0 < m\leq 1$ and $\gamma\in\bet_X$, we can define $m\cdot\gamma\in\bet_X$ as follows:
-\[
-	m\cdot \gamma\coloneqq \big(x\mapsto m\gamma (x)\big)
-\]
+%The monoid $((0,1],1,*)$ of nonzero subunital reals acts on $\bet_X$ by scalar multiplication, i.e. for any $0 < m\leq 1$ and $\gamma\in\bet_X$, we can define $m\cdot\gamma\in\bet_X$ as follows:
+%\[
+%	m\cdot \gamma\coloneqq \big(x\mapsto m\gamma (x)\big)
+%\]
 Let $\Delta^+$ denote the operad of finite nowhere-zero probability distributions, where $\Delta^+_N$ is defined as above with the natural number $N$ regarded as the $N$-element set. %\coloneqq\left\{\mu\colon N\to[0,1]\;\middle|\;1=\sum_{i\in N}\mu_i\right\}
 Then $\bet_X$ is an algebra for it: for any $\mu\in\Delta_N$ and $\gamma \in (\bet_X)^N$, we define 
 \[
-	\mu\cdot\gamma\coloneqq\bigg(x\mapsto\sum_{i\in N}(\mu_i\cdot\gamma_i)(x)\bigg)
+	\mu\cdot\gamma\coloneqq\bigg(x\mapsto\sum_{i\in N}\mu_i\cdot\gamma_i(x)\bigg)
 \]
 and it is easy to check that $(\mu\cdot\gamma)\in\bet_X$, i.e.\ its components are in bounds $(\mu\cdot\gamma)(x)\in (0,1]$ and it is normalized $\sum_x(\mu\cdot\gamma)(x)=1$.
 
